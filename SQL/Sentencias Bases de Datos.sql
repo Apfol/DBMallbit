@@ -11,6 +11,7 @@ create table cliente(
     Telefono bigint(10) not null, 
     Usuario varchar(50) not null, 
     Password varchar(50),
+    Puntos int(10),
     IDGenero int(11),
     Primary Key(IDCliente)
 );
@@ -96,15 +97,39 @@ create table premio(
     IDPremio int(11) not null auto_increment, 
     Nombre varchar(100) not null, 
     Descripcion varchar(100) not null, 
+    Puntos int(10) not null,
     IDAdministrador int(11), 
     Primary Key(IDPremio)
 );
-create table clientepremio(
+create table cliente_premio(
     IDPremio int(11), 
     IDCliente int(11), 
     Primary Key(IDPremio, IDCliente)
 );
 
+--Insert clientes
+insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
+values ("Carlos","Casas","1940-9-29","campas@gmail.com",10657389915, 3023545271, "CarlosCA", "5687", 1);
+insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
+values ("Sandra","Cardenas","1968-10-30","sara@gmail.com",10357339925, 3213585231, "SandraCA", "5847", 2);
+insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
+values ("Pedro","Bromfman","1987-1-15","pedrobr@gmail.com",10725379324, 3223555471, "PedroBr", "1367", 1);
+insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
+values ("Valeria","Ferreira","1981-7-20","valers@gmail.com",14725373324, 3222545731, "ValeFE", "6717", 2);
+insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
+values ("Juaquin","Sanchez","1952-1-15","juaquinsa@gmail.com",52161683, 3127293628, "JuaquinSan", "6182", 1);
+insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
+values ("Ana","Cordoba","1961-10-26","anaco@hotmail.com",10371369227, 3243687481, "AnaCO", "5967", 2);
+insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
+values ("Sara","Pedroza","1952-8-16","sarape@gmail.com",35536982, 3173535911, "SaraPe", "7592", 2);
+insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
+values ("Camilo","Bustos","1989-2-23","camilobu@gmail.com",1073525507, 3140373291, "CamiloBu", "8620", 1);
+insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
+values ("Cristofer","Hernandez","1948-9-8","cristoferhe@gmail.com",1073467829, 3140373291, "CristoferHe", "1660", 1);
+insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
+values ("Sandra","Cristancho","1950-11-30","sandracr@gmail.com",1078205462, 319748294, "SandraCri", "7167", 2);
+
+--Insert Vendedores
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
 values ("Fabian","Perez","1969-10-31","fape@gmail.com",1078097326, 3123352714, "FabianPe", "1234", 1);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
@@ -126,6 +151,7 @@ values ("Nicolas","Wills","1967-09-21","niwi@gmail.com",1073451971, 3169895465, 
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
 values ("Bernarda","Leon","1988-08-07","bewe@hotmail.com",1074245022, 3130990362, "BernardaLe", "1243", 2);
 
+--Insert Administradores
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
 values ("Heidy","Leon","1989-11-21","hele@gmail.com",1078097321, 3121352714, "HeidyLe", "2234", 2);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
@@ -147,16 +173,57 @@ values ("Yamile","Moreno","1990-01-31","yamo@hotmail.com",1073451979, 3169995465
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
 values ("Emilio","Bernal","1987-02-12","embe@gmail.com",1074245020, 3130090362, "EmilioBe", "2243", 1);
 
+--Insert Generos
 insert into genero(IDGenero, Tipo) 
 values(1, "Masculino");
 insert into genero(IDGenero, Tipo)
 values(2, "Femenino");
 
-insert into estado(IDEstado, Estado) 
-values(1, "Despachado");
-insert into estado(IDEstado, Estado) 
-values(2, "Entregado");
+--Insert premios
+insert into premio(Nombre, Descripcion, Puntos) values(
+    'Ford Ecosport 2.0 L Mt 2000cc 4x2', 
+    'La Ford EcoSport resulta muy ágil en condiciones 
+    de manejo exigente dentro y fuera de la ciudad. Lo 
+    anterior se da gracias a su acertada combinación entre 
+    un tamaño exterior compacto y un excelente rendimiento.',
+    100000);
+insert into premio(Nombre, Descripcion, Puntos) values(
+    'Moto Harley-davidson Dyna Street Bob Modelo 2017', 
+    'La Harley-Davidson Dyna Street Bob es el modelo más 
+    esencial de la Dyna, lo que la convierte en la bobber 
+    por excelencia de la firma de Milwaukee. ', 
+    90000);
+insert into premio(Nombre, Descripcion, Puntos) values(
+    'Viaje San Andrés', 
+    'Disfruta de un viaje a la hermosa isla de San Andrés, 
+    un paraiso en tierras Colombianas, rodeada por una formación 
+    coralina y un collar de arrecifes de una belleza incomparable ', 
+    80000);
+insert into premio(Nombre, Descripcion, Puntos) values(
+    'Alienware - Aurora R6 Desktop', 
+    'Alienware Aurora desktop computer. Its 1TB hard 
+    drive is preloaded with Windows 10 Home for 
+    compatibility with popular programs, and it includes
+    an NVIDIA GeForce GTX 1070 graphics card for detailed
+    images. This Dell Alienware Aurora desktop computer 
+    has a quad-core Intel i7 processor and 16GB of DDR4 
+    RAM for fast operation.', 
+    70000);
 
+--Insert cliente_premio
+insert into cliente_premio(IDCliente, IDPremio) values(1,4);
+insert into cliente_premio(IDCliente, IDPremio) values(4,1);
+insert into cliente_premio(IDCliente, IDPremio) values(7,2);
+insert into cliente_premio(IDCliente, IDPremio) values(3,3);
+insert into cliente_premio(IDCliente, IDPremio) values(6,4);
+
+--Insert estados
+insert into estado(Estado) 
+values("Despachado");
+insert into estado(Estado) 
+values("Entregado");
+
+--Relación llaves foráneas
 alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
 alter table producto add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
 alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
