@@ -109,75 +109,75 @@ create table cliente_premio(
 
 --Insert clientes
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Carlos","Casas","1940-9-29","campas@gmail.com",10657389915, 3023545271, "CarlosCA", "5687", 1);
+    values ("Carlos","Casas","1940-9-29","campas@gmail.com",10657389915, 3023545271, "CarlosCA", "5687", 1);
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Sandra","Cardenas","1968-10-30","sara@gmail.com",10357339925, 3213585231, "SandraCA", "5847", 2);
+    values ("Sandra","Cardenas","1968-10-30","sara@gmail.com",10357339925, 3213585231, "SandraCA", "5847", 2);
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Pedro","Bromfman","1987-1-15","pedrobr@gmail.com",10725379324, 3223555471, "PedroBr", "1367", 1);
+    values ("Pedro","Bromfman","1987-1-15","pedrobr@gmail.com",10725379324, 3223555471, "PedroBr", "1367", 1);
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Valeria","Ferreira","1981-7-20","valers@gmail.com",14725373324, 3222545731, "ValeFE", "6717", 2);
+    values ("Valeria","Ferreira","1981-7-20","valers@gmail.com",14725373324, 3222545731, "ValeFE", "6717", 2);
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Juaquin","Sanchez","1952-1-15","juaquinsa@gmail.com",52161683, 3127293628, "JuaquinSan", "6182", 1);
+    values ("Juaquin","Sanchez","1952-1-15","juaquinsa@gmail.com",52161683, 3127293628, "JuaquinSan", "6182", 1);
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Ana","Cordoba","1961-10-26","anaco@hotmail.com",10371369227, 3243687481, "AnaCO", "5967", 2);
+    values ("Ana","Cordoba","1961-10-26","anaco@hotmail.com",10371369227, 3243687481, "AnaCO", "5967", 2);
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Sara","Pedroza","1952-8-16","sarape@gmail.com",35536982, 3173535911, "SaraPe", "7592", 2);
+    values ("Sara","Pedroza","1952-8-16","sarape@gmail.com",35536982, 3173535911, "SaraPe", "7592", 2);
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Camilo","Bustos","1989-2-23","camilobu@gmail.com",1073525507, 3140373291, "CamiloBu", "8620", 1);
+    values ("Camilo","Bustos","1989-2-23","camilobu@gmail.com",1073525507, 3140373291, "CamiloBu", "8620", 1);
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Cristofer","Hernandez","1948-9-8","cristoferhe@gmail.com",1073467829, 3140373291, "CristoferHe", "1660", 1);
+    values ("Cristofer","Hernandez","1948-9-8","cristoferhe@gmail.com",1073467829, 3140373291, "CristoferHe", "1660", 1);
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Sandra","Cristancho","1950-11-30","sandracr@gmail.com",1078205462, 319748294, "SandraCri", "7167", 2);
+    values ("Sandra","Cristancho","1950-11-30","sandracr@gmail.com",1078205462, 319748294, "SandraCri", "7167", 2);
 
 --Insert Vendedores
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Fabian","Perez","1969-10-31","fape@gmail.com",1078097326, 3123352714, "FabianPe", "1234", 1);
+    values ("Fabian","Perez","1969-10-31","fape@gmail.com",1078097326, 3123352714, "FabianPe", "1234", 1);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Cesar","Sanchez","1980-12-22","cesa@hotmail.com",1077954878, 3188963537, "CesarSa", "1235", 1);
+    values ("Cesar","Sanchez","1980-12-22","cesa@hotmail.com",1077954878, 3188963537, "CesarSa", "1235", 1);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Cristina","Ochoa","1973-11-01","croc@hotmail.com",1070384676, 3186352611, "CristinaOc", "1236", 2);
+    values ("Cristina","Ochoa","1973-11-01","croc@hotmail.com",1070384676, 3186352611, "CristinaOc", "1236", 2);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Melanie","Velandia","1950-02-28","meve@hotmail.com",1076014610, 3168815381, "MelanieVe", "1237", 2);
+    values ("Melanie","Velandia","1950-02-28","meve@hotmail.com",1076014610, 3168815381, "MelanieVe", "1237", 2);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Marina","Martinez","1978-01-01","mama@gmail.com",1078123039, 3190156246, "MarinaVe", "1238", 2);
+    values ("Marina","Martinez","1978-01-01","mama@gmail.com",1078123039, 3190156246, "MarinaVe", "1238", 2);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Rodrigo","Buitrago","1972-03-13","robu@gmail.com",1073202423, 3100276490, "RodrigoBu", "1239", 1);
+    values ("Rodrigo","Buitrago","1972-03-13","robu@gmail.com",1073202423, 3100276490, "RodrigoBu", "1239", 1);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Jairo","Quintero","1990-04-21","jaqu@hotmail.com",1070241968, 3121708606, "JairoQu", "1240", 1);
+    values ("Jairo","Quintero","1990-04-21","jaqu@hotmail.com",1070241968, 3121708606, "JairoQu", "1240", 1);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("David","Beltran","1981-06-11","dave@hotmail.com",1078462991, 3140600423, "DavidBe", "1241", 1);
+    values ("David","Beltran","1981-06-11","dave@hotmail.com",1078462991, 3140600423, "DavidBe", "1241", 1);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Nicolas","Wills","1967-09-21","niwi@gmail.com",1073451971, 3169895465, "NicolasWi", "1242", 1);
+    values ("Nicolas","Wills","1967-09-21","niwi@gmail.com",1073451971, 3169895465, "NicolasWi", "1242", 1);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Bernarda","Leon","1988-08-07","bewe@hotmail.com",1074245022, 3130990362, "BernardaLe", "1243", 2);
+v   alues ("Bernarda","Leon","1988-08-07","bewe@hotmail.com",1074245022, 3130990362, "BernardaLe", "1243", 2);
 
 --Insert Administradores
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Heidy","Leon","1989-11-21","hele@gmail.com",1078097321, 3121352714, "HeidyLe", "2234", 2);
+    values ("Heidy","Leon","1989-11-21","hele@gmail.com",1078097321, 3121352714, "HeidyLe", "2234", 2);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Carlos","Ramos","1960-02-02","cara@gmail.com",1077954872, 3182963537, "CarlosRa", "2235", 1);
+    values ("Carlos","Ramos","1960-02-02","cara@gmail.com",1077954872, 3182963537, "CarlosRa", "2235", 1);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Gabriel","Montoya","1983-05-27","gamo@hotmail.com",1070384673, 3183352611, "GabrielMo", "2236", 1);
+    values ("Gabriel","Montoya","1983-05-27","gamo@hotmail.com",1070384673, 3183352611, "GabrielMo", "2236", 1);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Adriana","Otalora","1989-06-13","adot@hotmail.com",1076014614, 3164815381, "AdrianaOt", "2237", 2);
+    values ("Adriana","Otalora","1989-06-13","adot@hotmail.com",1076014614, 3164815381, "AdrianaOt", "2237", 2);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Jhonatan","Cubillos","1990-12-25","jhcu@gmail.com",1078123035, 3195156246, "JhonatanCu", "2238", 1);
+    values ("Jhonatan","Cubillos","1990-12-25","jhcu@gmail.com",1078123035, 3195156246, "JhonatanCu", "2238", 1);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Vivian","Cetina","1991-03-16","vice@gmail.com",1073202426, 3106276490, "VivianCe", "2239", 2);
+    values ("Vivian","Cetina","1991-03-16","vice@gmail.com",1073202426, 3106276490, "VivianCe", "2239", 2);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Ulises","Gacharna","1986-10-22","ulga@hotmail.com",1070241967, 3127708606, "UlisesGa", "2240", 1);
+    values ("Ulises","Gacharna","1986-10-22","ulga@hotmail.com",1070241967, 3127708606, "UlisesGa", "2240", 1);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Pedro","Cortes","1979-07-06","peco@hotmail.com",1078462998, 3148600423, "PedroCo", "2241", 1);
+    values ("Pedro","Cortes","1979-07-06","peco@hotmail.com",1078462998, 3148600423, "PedroCo", "2241", 1);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Yamile","Moreno","1990-01-31","yamo@hotmail.com",1073451979, 3169995465, "YamileMo", "2242", 2);
+    values ("Yamile","Moreno","1990-01-31","yamo@hotmail.com",1073451979, 3169995465, "YamileMo", "2242", 2);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
-values ("Emilio","Bernal","1987-02-12","embe@gmail.com",1074245020, 3130090362, "EmilioBe", "2243", 1);
+    values ("Emilio","Bernal","1987-02-12","embe@gmail.com",1074245020, 3130090362, "EmilioBe", "2243", 1);
 
 --Insert Generos
 insert into genero(IDGenero, Tipo) 
-values(1, "Masculino");
+    values(1, "Masculino");
 insert into genero(IDGenero, Tipo)
-values(2, "Femenino");
+    values(2, "Femenino");
 
 --Insert premios
 insert into premio(Nombre, Descripcion, Puntos) values(
@@ -186,19 +186,22 @@ insert into premio(Nombre, Descripcion, Puntos) values(
     de manejo exigente dentro y fuera de la ciudad. Lo 
     anterior se da gracias a su acertada combinación entre 
     un tamaño exterior compacto y un excelente rendimiento.',
-    100000);
+    100000
+);
 insert into premio(Nombre, Descripcion, Puntos) values(
     'Moto Harley-davidson Dyna Street Bob Modelo 2017', 
     'La Harley-Davidson Dyna Street Bob es el modelo más 
     esencial de la Dyna, lo que la convierte en la bobber 
     por excelencia de la firma de Milwaukee. ', 
-    90000);
+    90000
+);
 insert into premio(Nombre, Descripcion, Puntos) values(
     'Viaje San Andrés', 
     'Disfruta de un viaje a la hermosa isla de San Andrés, 
     un paraiso en tierras Colombianas, rodeada por una formación 
     coralina y un collar de arrecifes de una belleza incomparable ', 
-    80000);
+    80000
+);
 insert into premio(Nombre, Descripcion, Puntos) values(
     'Alienware - Aurora R6 Desktop', 
     'Alienware Aurora desktop computer. Its 1TB hard 
@@ -208,7 +211,8 @@ insert into premio(Nombre, Descripcion, Puntos) values(
     images. This Dell Alienware Aurora desktop computer 
     has a quad-core Intel i7 processor and 16GB of DDR4 
     RAM for fast operation.', 
-    70000);
+    70000
+);
 
 --Insert cliente_premio
 insert into cliente_premio(IDCliente, IDPremio) values(1,4);
