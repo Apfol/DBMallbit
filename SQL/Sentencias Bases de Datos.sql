@@ -147,6 +147,16 @@ values ("Yamile","Moreno","1990-01-31","yamo@hotmail.com",1073451979, 3169995465
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
 values ("Emilio","Bernal","1987-02-12","embe@gmail.com",1074245020, 3130090362, "EmilioBe", "2243", 1);
 
+insert into genero(IDGenero, Tipo) 
+values(1, "Masculino");
+insert into genero(IDGenero, Tipo)
+values(2, "Femenino");
+
+insert into estado(IDEstado, Estado) 
+values(1, "Despachado");
+insert into estado(IDEstado, Estado) 
+values(2, "Entregado");
+
 alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
 alter table producto add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
 alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
