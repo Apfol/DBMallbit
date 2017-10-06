@@ -216,7 +216,7 @@ insert into premio(Nombre, Descripcion, Puntos) values(
 
 --Insert cliente_premio
 insert into cliente_premio(IDCliente, IDPremio) values(1,4);
-insert into cliente_premio(IDCliente, IDPremio) values(4,1);
+insert into cliente_premio(IDCliente, IDPremio) values(1,1);
 insert into cliente_premio(IDCliente, IDPremio) values(7,2);
 insert into cliente_premio(IDCliente, IDPremio) values(3,3);
 insert into cliente_premio(IDCliente, IDPremio) values(6,4);
