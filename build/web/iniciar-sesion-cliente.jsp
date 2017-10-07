@@ -23,7 +23,7 @@
                 </div>
             </div>
         </nav>
-        <div class="block" id="blockis">
+        <div class="block" id="blockrc">
             <div class="card-panel">
                 <form action="ControladorCliente" method="post">
                     <input type="hidden" name="instruccion" value="validarCliente">
