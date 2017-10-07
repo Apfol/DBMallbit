@@ -272,6 +272,26 @@ insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 421845501234, "31-12-2016", 354,"Diego","Acosta");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 477740548124, "11-11-2016", 369,"Carlos","Casas");
+    
+--Insert categoría
+insert into categoria (IDCategoria, Categoria) values (1, 'Inicio');
+insert into categoria (IDCategoria, Categoria) values (2, 'Entretenimiento');
+insert into categoria (IDCategoria, Categoria) values (3, 'Tecnología');
+insert into categoria (IDCategoria, Categoria) values (4, 'Hogar');
+insert into categoria (IDCategoria, Categoria) values (5, 'Belleza');
+insert into categoria (IDCategoria, Categoria) values (6, 'Infantil');
+
+--Insert producto
+insert into producto (IDProducto, Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (1, 'Televisor', '450.000 pesos', 1, 3, 'telvisor marca Sony con pantalla led de alta definición' );
+insert into producto (IDProducto, Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (2, 'Secador para cabello', '82.000 pesos', 2, 5, 'Secador para cabello marca Nova, grande con reductor de consumo de energía' );
+insert into producto (IDProducto, Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (3, 'Consola X-BOX One', '950.000 pesos', 3, 2, 'Consola X-BOX ONE CON 500 GB de memoria, un control más cable HDMI' );
+insert into producto (IDProducto, Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (4, 'Comedor', '1.250.000 pesos', 4, 5, 'Comedor para 5 personas en pino' );
+insert into producto (IDProducto, Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (5, 'Set de lego', '35.000 pesos', 5, 6, 'Set de lego 450 piezas' );
+insert into producto (IDProducto, Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (6, 'Smartphone', '622.000 pesos', 6, 3, 'Teléfono inteligente marca samsumg con última versión Android' );
+insert into producto (IDProducto, Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (7, 'Esmalte', '20.000 pesos', 7, 5, 'Esmalte Amarillo pequeño' );
+insert into producto (IDProducto, Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (8, 'Alfombra', '200.000 pesos', 8, 4, 'Alfombra persa grande color Rojo' );
+insert into producto (IDProducto, Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (9, 'Tetero', '12.000 pesos', 9, 6, 'Tetero marca Ruby 250 ml' );
+insert into producto (IDProducto, Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (10, 'Guitarra Eléctrica', '649.000 pesos', 10, 2, 'Guitarra Eléctrica marca Frico 6 cuerdas color variado' );
 
 --Relación llaves foráneas
 alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
