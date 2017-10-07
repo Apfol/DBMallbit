@@ -22,6 +22,11 @@ public class Local {
         this.descripcion = descripcion;
     }
 
+    public Local(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+
     public int getId() {
         return id;
     }
