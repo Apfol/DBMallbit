@@ -259,19 +259,19 @@ insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)roducto)
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 461950031434, "09-05-2016", 320,"Jose","Hernandez");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 521740401534, "10-04-2016", 678,"Ana","Cordoba");
+    values ( 521740401534, "10-04-2016", 338,"Ana","Cordoba");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 471847501774, "08-03-2016", 678,"Juaquin","Sanchez");
+    values ( 471847501774, "08-03-2016", 478,"Juaquin","Sanchez");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 491440601784, "17-07-2017", 678,"Valeria","Ferreira");
+    values ( 491440601784, "17-07-2017", 448,"Valeria","Ferreira");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 411770441454, "01-05-2017", 678,"Hector","Gaviria");
+    values ( 411770441454, "01-05-2017", 645,"Hector","Gaviria");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 481710501374, "14-04-2017", 678,"Juan","Cremades");
+    values ( 481710501374, "14-04-2017", 154,"Juan","Cremades");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 421845501234, "31-12-2016", 678,"Diego","Acosta");
+    values ( 421845501234, "31-12-2016", 354,"Diego","Acosta");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 477740548124, "11-11-2016", 678,"Carlos","Casas");
+    values ( 477740548124, "11-11-2016", 369,"Carlos","Casas");
 
 --Relación llaves foráneas
 alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
