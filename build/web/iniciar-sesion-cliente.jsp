@@ -17,7 +17,7 @@
             <div class="nav-wrapper lime darken-1">
                 <div class="col s12">
                     <div id="principal-nav">
-                        <a href="index.jsp" class="brand-logo center"><i class="material-icons">shopping_basket</i>MallBIT</a>
+                        <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     </div>
                 </div>
@@ -37,11 +37,13 @@
                         </div>
                     </div>
                     <div class="input-field">
+                        <i class="material-icons prefix">account_circle</i>
                         <input id="usuario" type="text" name="usuario" class="validate">
                         <label for="usuario">Usuario</label>
                     </div>
 
                     <div class="input-field">
+                        <i class="material-icons prefix">lock_outline</i>
                         <input id="contraseña" type="password" name="password" class="validate">
                         <label for="contraseña">Contraseña</label>
                     </div>

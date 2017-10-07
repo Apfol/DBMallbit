@@ -60,7 +60,7 @@ public final class iniciar_002dsesion_002dcliente_jsp extends org.apache.jasper.
       out.write("            <div class=\"nav-wrapper lime darken-1\">\r\n");
       out.write("                <div class=\"col s12\">\r\n");
       out.write("                    <div id=\"principal-nav\">\r\n");
-      out.write("                        <a href=\"index.jsp\" class=\"brand-logo center\"><i class=\"material-icons\">shopping_basket</i>MallBIT</a>\r\n");
+      out.write("                        <a href=\"index.jsp\" class=\"brand-logo\"><i class=\"material-icons\">shopping_basket</i>MallBIT</a>\r\n");
       out.write("                        <a href=\"#\" data-activates=\"mobile-demo\" class=\"button-collapse\"><i class=\"material-icons\">menu</i></a>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
@@ -80,11 +80,13 @@ public final class iniciar_002dsesion_002dcliente_jsp extends org.apache.jasper.
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                    <div class=\"input-field\">\r\n");
+      out.write("                        <i class=\"material-icons prefix\">account_circle</i>\r\n");
       out.write("                        <input id=\"usuario\" type=\"text\" name=\"usuario\" class=\"validate\">\r\n");
       out.write("                        <label for=\"usuario\">Usuario</label>\r\n");
       out.write("                    </div>\r\n");
       out.write("\r\n");
       out.write("                    <div class=\"input-field\">\r\n");
+      out.write("                        <i class=\"material-icons prefix\">lock_outline</i>\r\n");
       out.write("                        <input id=\"contraseña\" type=\"password\" name=\"password\" class=\"validate\">\r\n");
       out.write("                        <label for=\"contraseña\">Contraseña</label>\r\n");
       out.write("                    </div>\r\n");
