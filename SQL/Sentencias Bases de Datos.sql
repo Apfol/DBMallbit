@@ -250,27 +250,27 @@ insert into compra( IDPago, IDCliente, IDProducto)
     values ( 10, 1, 5);
 		
 --Insert pago	
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 445840501244, "04-05-2016", 652,"Sandra","Cristancho");
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 491840001234, "10-05-2016", 678,"Cristofer","Hernandez");
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)roducto)
     values ( 491110501344, "09-05-2016", 677,"Camilo","Bustos");
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 461950031434, "09-05-2016", 320,"Jose","Hernandez");
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 521740401534, "10-04-2016", 678,"Ana","Cordoba");
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 471847501774, "08-03-2016", 678,"Juaquin","Sanchez");
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 491440601784, "17-07-2017", 678,"Valeria","Ferreira");
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 411770441454, "01-05-2017", 678,"Hector","Gaviria");
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 481710501374, "14-04-2017", 678,"Juan","Cremades");
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 421845501234, "31-12-2016", 678,"Diego","Acosta");
-insert into pago( IDPago, IDCliente, IDProducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 477740548124, "11-11-2016", 678,"Carlos","Casas");
 
 --Relación llaves foráneas
