@@ -227,6 +227,52 @@ values("Despachado");
 insert into estado(Estado) 
 values("Entregado");
 
+--Insert compra
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 1, 10, 4);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 2, 9, 3);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 3, 8, 2);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 4, 7, 1);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 5, 6, 10);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 6, 5, 9);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 7, 4, 8);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 8, 3, 7);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 9, 2, 6);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 10, 1, 5);
+		
+--Insert pago	
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 445840501244, "04-05-2016", 652,"Sandra","Cristancho");
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 491840001234, "10-05-2016", 678,"Cristofer","Hernandez");
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 491110501344, "09-05-2016", 677,"Camilo","Bustos");
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 461950031434, "09-05-2016", 320,"Jose","Hernandez");
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 521740401534, "10-04-2016", 678,"Ana","Cordoba");
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 471847501774, "08-03-2016", 678,"Juaquin","Sanchez");
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 491440601784, "17-07-2017", 678,"Valeria","Ferreira");
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 411770441454, "01-05-2017", 678,"Hector","Gaviria");
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 481710501374, "14-04-2017", 678,"Juan","Cremades");
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 421845501234, "31-12-2016", 678,"Diego","Acosta");
+insert into pago( IDPago, IDCliente, IDProducto)
+    values ( 477740548124, "11-11-2016", 678,"Carlos","Casas");
+
 --Relación llaves foráneas
 alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
 alter table producto add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
