@@ -5,7 +5,7 @@ create table cliente(
     IDCliente int(11) not null auto_increment, 
     Nombre varchar(50) not null, 
     Apellido varchar(50) not null,
-    FechaNacimiento date not null, 
+    FechaNacimiento date not null,
     Correo varchar(100) not null, 
     Identificacion bigint(11) not null unique,
     Telefono bigint(10) not null, 
@@ -33,7 +33,9 @@ create table producto(
     Precio int not null, 
     IDLocal int(11), 
     IDCategoria int(11),
-    Descripcion varchar(100) not null, 
+    Descripcion varchar(100) not null,
+    NombreImagenPrimaria varchar(100),
+    NombreImagenSecundaria varchar(100),
     Primary Key(IDProducto)
 );
 create table categoria(
@@ -45,7 +47,9 @@ create table local(
     IDLocal int(11) not null auto_increment, 
     Nombre varchar(100) not null, 
     IDVendedor int(11), 
-    Descripcion varchar(100) not null, 
+    Descripcion varchar(100) not null,
+    NombreImagenPrimaria varchar(100),
+    NombreImagenSecundaria varchar(100),
     Primary Key(IDLocal)
 );
 create table vendedor(
