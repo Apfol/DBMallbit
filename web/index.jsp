@@ -32,7 +32,7 @@
                                 <li><a href="iniciar-sesion-vendedor.jsp"><i class="material-icons left">local_shipping</i>Vender</a></li>
                                 <li><a href="#"><i class="material-icons left">security</i>Administrar</a></li>
                                 <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
-                                    <%} else {%>
+                                <%} else {%>
                                 <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
                                 <li>
                                     <form method="post" action="ControladorCliente" id="iu">

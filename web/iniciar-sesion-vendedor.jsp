@@ -4,6 +4,7 @@
     Author     : Andres Ramos
 --%>
 
+<%@page import="com.mallbit.genero.Genero"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" style="overflow-y: hidden">
@@ -82,7 +83,7 @@
                 <% }%>
                 <div class="center-align" id="register">
                     ¿No tienes una cuenta?
-                    <a href="ControladorGenero?instruccion=generoVendedor">
+                    <a href="ControladorGenero?instruccion=<%= Genero.GENERO_VENDEDOR %>">
                         Regístrate
                     </a>
                 </div>

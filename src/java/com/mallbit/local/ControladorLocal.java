@@ -30,7 +30,6 @@ import javax.servlet.http.Part;
 @MultipartConfig
 public class ControladorLocal extends HttpServlet {
 
-    private final static Logger LOGGER = Logger.getLogger(ControladorLocal.class.getCanonicalName());
 
     ModeloLocal modeloLocal = new ModeloLocal();
 

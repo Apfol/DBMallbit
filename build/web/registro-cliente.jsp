@@ -33,7 +33,7 @@
             <div class="card-panel">
                 <div class="row">
                     <div class="col s10">
-                        <p style="font-size: 30px" id="titleis">Registro vendedor</p>
+                        <p style="font-size: 30px" id="titleis">Registro cliente</p>
                         <p style="font-size: 15px" id="subtitleis">Acceder como cliente a MallBIT</p><br>
                     </div>
                     <div class="col s1">

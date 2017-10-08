@@ -1,3 +1,5 @@
+<%@page import="com.mallbit.genero.Genero"%>
+<%@page import="sun.util.calendar.BaseCalendar.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" style="overflow-y: hidden">
@@ -74,7 +76,7 @@
                 <% }%>
                 <div class="center-align" id="register">
                     ¿No tienes una cuenta?
-                    <a href="ControladorGenero?instruccion=generoCliente">
+                    <a href="ControladorGenero?instruccion=<%= Genero.GENERO_CLIENTE %>">
                         Regístrate
                     </a>
                 </div>
