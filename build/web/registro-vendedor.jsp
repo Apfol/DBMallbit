@@ -21,10 +21,10 @@
         <title>Registro Vendedor</title>
     </head>
 
-    <body id="cuerpov" class="lime darken-1">
+    <body id="cuerpov">
         
-        <nav>
-            <div class="nav-wrapper" id="navV">
+        <nav class="light-blue darken-3">
+            <div class="nav-wrapper">
                 <div class="col s12">
                     <div id="principal-nav">
                         <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                     <div class="center-align">
-                        <button class="btn waves-effect black-text" type="submit" name="action" id="navV">
+                        <button class="btn waves-effect black-text light-blue darken-3" type="submit" name="action">
                             Registrar
                         </button>
                     </div>

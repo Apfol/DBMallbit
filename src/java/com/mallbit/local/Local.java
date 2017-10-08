@@ -15,16 +15,22 @@ public class Local {
     private int id;
     private String nombre;
     private String descripcion;
+    private String nombreImagenPrimaria;
+    private String nombreImagenSecundaria;
 
-    public Local(int id, String nombre, String descripcion) {
+    public Local(int id, String nombre, String descripcion, String nombreImagenPrimaria, String nombreImagenSecundaria) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.nombreImagenPrimaria = nombreImagenPrimaria;
+        this.nombreImagenSecundaria = nombreImagenSecundaria;
     }
 
-    public Local(String nombre, String descripcion) {
+    public Local(String nombre, String descripcion, String nombreImagenPrimaria, String nombreImagenSecundaria) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.nombreImagenPrimaria = nombreImagenPrimaria;
+        this.nombreImagenSecundaria = nombreImagenSecundaria;
     }
 
     public int getId() {
@@ -50,5 +56,22 @@ public class Local {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String getNombreImagenPrimaria() {
+        return nombreImagenPrimaria;
+    }
+
+    public void setNombreImagenPrimaria(String nombreImagenPrimaria) {
+        this.nombreImagenPrimaria = nombreImagenPrimaria;
+    }
+
+    public String getNombreImagenSecundaria() {
+        return nombreImagenSecundaria;
+    }
+
+    public void setNombreImagenSecundaria(String nombreImagenSecundaria) {
+        this.nombreImagenSecundaria = nombreImagenSecundaria;
+    }
+    
     
 }
