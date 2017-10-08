@@ -35,6 +35,7 @@ create table producto(
     Descripcion varchar(100) not null,
     NombreImagenPrimaria varchar(100),
     NombreImagenSecundaria varchar(100),
+    IDCategoria int(11),
     Primary Key(IDProducto)
 );
 create table categoria(
@@ -49,7 +50,6 @@ create table local(
     Descripcion varchar(100) not null,
     NombreImagenPrimaria varchar(100),
     NombreImagenSecundaria varchar(100),
-    IDCategoria int(11),
     Primary Key(IDLocal)
 );
 create table vendedor(
@@ -303,7 +303,7 @@ insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (
 
 --Relación llaves foráneas
 alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
-alter table local add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
+alter table producto add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
 alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
 alter table compra add foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
 alter table compra add foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
