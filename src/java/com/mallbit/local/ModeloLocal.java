@@ -45,9 +45,11 @@ public class ModeloLocal {
         while (resultSet.next()) {
             int id = resultSet.getInt("IDLocal");
             String nombre = resultSet.getString("Nombre");
-            String apellido = resultSet.getString("Descripcion");
+            String descripcion = resultSet.getString("Descripcion");
+            String nombreImagenPrimaria = resultSet.getString("NombreImagenPrimaria");
+            String nombreImagenSecundaria = resultSet.getString("NombreImagenSecundaria");
 
-            locales.add(new Local(id, nombre, apellido));
+            locales.add(new Local(id, nombre, descripcion, nombreImagenPrimaria, nombreImagenSecundaria));
 
         }
         return locales;
@@ -63,12 +65,14 @@ public class ModeloLocal {
 
         //Crear sentencia SQL y statement
         String sentenciaSQL = "INSERT INTO local "
-                + "(Nombre,Descripcion) VALUES (?,?)";
+                + "(Nombre,Descripcion,NombreImagenPrimaria,NombreImagenSecundaria) VALUES (?,?,?,?)";
         preparedStatement = connection.prepareStatement(sentenciaSQL);
 
         //Pasar valores del objeto cliente a la sentenciaSQL
         preparedStatement.setString(1, local.getNombre());
         preparedStatement.setString(2, local.getDescripcion());
+        preparedStatement.setString(3, local.getNombreImagenPrimaria());
+        preparedStatement.setString(4, local.getNombreImagenSecundaria());
 
         preparedStatement.execute();
     }

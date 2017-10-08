@@ -5,26 +5,32 @@
  */
 package com.mallbit.local;
 
-import com.mallbit.cliente.Cliente;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
-import java.util.Locale;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Andres Ramos
  */
 @WebServlet(name = "ControladorLocal", urlPatterns = {"/ControladorLocal"})
+@MultipartConfig
 public class ControladorLocal extends HttpServlet {
+
+    private final static Logger LOGGER = Logger.getLogger(ControladorLocal.class.getCanonicalName());
 
     ModeloLocal modeloLocal = new ModeloLocal();
 
@@ -32,12 +38,11 @@ public class ControladorLocal extends HttpServlet {
             throws ServletException, IOException {
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
         //Leer parametro (value) del input hidden del formulario
         String parametro = request.getParameter("instruccion");
 
@@ -50,27 +55,27 @@ public class ControladorLocal extends HttpServlet {
                 insertarLocalesDB(request, response);
                 break;
             case "validarLocal":
-                
+
                 break;
             case "actualizarLocal":
-                
+
                 break;
             case "borrarLocal":
-                
+
                 break;
             default:
                 break;
         }
     }
-    
+
     private void listarLocalesDB(HttpServletRequest request, HttpServletResponse response) {
         try {
-            //Obtener lista de Clientes
+            //Obtener lista de locales
             List<Local> locales;
 
             locales = modeloLocal.obtenerLocalesDB();
 
-            //Agregar lista de clientes al Request
+            //Agregar lista de locales al Request
             request.setAttribute("LISTALOCALES", locales);
 
             //Enviar request al JSP correspondiente
@@ -81,43 +86,18 @@ public class ControladorLocal extends HttpServlet {
             ex.printStackTrace();
         }
     }
-    
+
     private void insertarLocalesDB(HttpServletRequest request, HttpServletResponse response) {
 
         try {
 
-            //Crear objeto Cliente con los datos recibidos del formulario
-            //<editor-fold defaultstate="collapsed" desc="Pasos para cambiar al formato fecha de MySQL">
-            //Formato de fecha que aparece en la pagina
-            //Definiendo el idioma de la fecha
-            Locale idioma = new Locale("en");
-            SimpleDateFormat formatPage = new SimpleDateFormat("dd MMM, yyyy", idioma);
-
-            //Formato de fecha que acepta MySQL
-            SimpleDateFormat formatSQL = new SimpleDateFormat("yyyy-MM-dd", idioma);
-
-            Date fechaNacimiento = null;
-
-            //Se pasa la fecha de la pagina a un objeto Date
-            Date date = formatPage.parse(request.getParameter("fechaNacimiento"));
-            //Se pasa el objeto Date al formato que admite MySQL
-            fechaNacimiento = formatSQL.parse(formatSQL.format(date));
-            System.out.println(fechaNacimiento);
-
-            // </editor-fold>      
+            //Crear objeto Local con los datos recibidos del formulario   
             String nombre = request.getParameter("nombre");
             String descripcion = request.getParameter("descripcion");
+            String nombreImagenPrimaria = guardarImagenObtenerNombre(request, "imagenPrincipal", nombre);
+            String nombreImagenSecundaria = guardarImagenObtenerNombre(request, "imagenSecundaria", nombre);;
 
-            String existe = "";
-
-            //Se envia un request al jsp correspondiente segun el caso
-            /*if(existe.equals("existe")){
-                String[] parametros= {existe,nombre,apellido,correo,contraseña,request.getParameter("fechaNacimiento"),request.getParameter("genero")};
-                request.setAttribute("ESTADO", parametros);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/registro-cliente.jsp");
-                requestDispatcher.forward(request, response);
-            }else{*/
-            Local local = new Local(nombre, descripcion);
+            Local local = new Local(nombre, descripcion, nombreImagenPrimaria, nombreImagenSecundaria);
 
             //Enviar objeto al modelo para guardar en la Base de Datos
             modeloLocal.agregarLocalDB(local);
@@ -130,4 +110,58 @@ public class ControladorLocal extends HttpServlet {
             ex.printStackTrace();
         }
     }
+
+    
+//    Con este método las imagenes que se suban al formulario
+//    seran guardadas en la carpeta images/locales y se obtiene
+//    el nombre de la imagen como una concatenación del nombre
+//    del local y el nombre de la imagen que se subio, los nombres
+//    de las imagenes se guardan en la base de datos para despues 
+//    poder manipularlas
+    private String guardarImagenObtenerNombre(HttpServletRequest request, String tipoImagen, String nombreLocal) throws ServletException, IOException {
+        // Obtener dirección a guardar archivo
+        String pathServlet = getServletContext().getRealPath("/");
+        String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
+        String path = pathProject + "\\web\\images\\locales\\";
+        Part filePart = request.getPart(tipoImagen);
+
+        //Obtener nombre archivo
+        String fileName = nombreLocal + "-" + getNombreImagen(filePart);
+
+        OutputStream out = null;
+        InputStream filecontent = null;
+
+        try {
+            out = new FileOutputStream(new File(path + File.separator + fileName));
+            filecontent = filePart.getInputStream();
+
+            int read = 0;
+            final byte[] bytes = new byte[1024];
+
+            while ((read = filecontent.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+        } catch (FileNotFoundException fne) {
+            fne.printStackTrace();
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+            if (filecontent != null) {
+                filecontent.close();
+            }
+        }
+        return fileName;
+    }
+
+    private String getNombreImagen(final Part part) {
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(
+                        content.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
+
 }

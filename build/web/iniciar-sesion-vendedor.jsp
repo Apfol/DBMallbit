@@ -19,8 +19,8 @@
     </head>
 
     <body id="cuerpov">
-        <nav class="pushpin-nav" data-target="primera">
-            <div class="nav-wrapper" id="navV">
+        <nav class="light-blue darken-3">
+            <div class="nav-wrapper">
                 <div class="col s12">
                     <div id="principal-nav">
                         <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
@@ -54,7 +54,9 @@
                         <label for="contraseña">Contraseña</label>
                     </div>
                     <div class="center-align">
-                        <button class="waves-effect waves-light btn black-text" type="submit" id="navV">Iniciar sesión</button>
+                        <button class="waves-effect waves-light btn light-blue darken-3 black-text" type="submit">
+                            Iniciar sesión
+                        </button>
                     </div>
                 </form>
                 <br>
