@@ -316,14 +316,14 @@ INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("presto",19,"tienda de
 --Insert envio
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-30","producto de limpieza de ultima generacion", 1, 1, 1);
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-16","producto inflamable marca acme",2,2,2);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-09","consola de sobremesa",3,3,3);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-10-15","equipo de computacion cuantica",4,4,4);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2016-02-01","soldadora industrial",5,5,5);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-05-31","ropa deportiva",6,6,6);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-01","producto de aseo",7,7,7);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-03-31","equipo de gimnasia",8,8,8);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-02-15","consola de videojuegos",9,9,9);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-11-30","equipo de sonido stereo",10,10,10);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-09","consola de sobremesa",2,3,3);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-10-15","equipo de computacion cuantica",1,4,4);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2016-02-01","soldadora industrial",1,5,5);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-05-31","ropa deportiva",1,6,6);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-01","producto de aseo",2,7,7);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-03-31","equipo de gimnasia",2,8,8);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-02-15","consola de videojuegos",2,9,9);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-11-30","equipo de sonido stereo",1,10,10);
 
 --Relación llaves foráneas
 alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
