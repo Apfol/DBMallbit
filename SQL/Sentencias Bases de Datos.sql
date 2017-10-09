@@ -115,7 +115,7 @@ create table cliente_premio(
     Primary Key(IDPremio, IDCliente)
 );
 
---Insert clientes
+--Insert clientes;
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
     values ("Carlos","Casas","1940-9-29","campas@gmail.com",10657389915, 3023545271, "CarlosCA", "5687", 1);
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
@@ -137,7 +137,7 @@ insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, T
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
     values ("Sandra","Cristancho","1950-11-30","sandracr@gmail.com",1078205462, 319748294, "SandraCri", "7167", 2);
 
---Insert Vendedores
+--Insert Vendedores;
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
     values ("Fabian","Perez","1969-10-31","fape@gmail.com",1078097326, 3123352714, "FabianPe", "1234", 1);
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
@@ -159,7 +159,7 @@ insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, 
 insert into vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
     values ("Bernarda","Leon","1988-08-07","bewe@hotmail.com",1074245022, 3130990362, "BernardaLe", "1243", 2);
 
---Insert Administradores
+--Insert Administradores;
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
     values ("Heidy","Leon","1989-11-21","hele@gmail.com",1078097321, 3121352714, "HeidyLe", "2234", 2);
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
@@ -181,13 +181,13 @@ insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificac
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
     values ("Emilio","Bernal","1987-02-12","embe@gmail.com",1074245020, 3130090362, "EmilioBe", "2243", 1);
 
---Insert Generos
+--Insert Generos;
 insert into genero(IDGenero, TipoGenero) 
     values(1, "Masculino");
 insert into genero(IDGenero, TipoGenero)
     values(2, "Femenino");
 
---Insert premios
+--Insert premios;
 insert into premio(Nombre, Descripcion, Puntos) values(
     'Ford Ecosport 2.0 L Mt 2000cc 4x2', 
     'La Ford EcoSport resulta muy ágil en condiciones 
@@ -222,20 +222,20 @@ insert into premio(Nombre, Descripcion, Puntos) values(
     70000
 );
 
---Insert cliente_premio
+--Insert cliente_premio;
 insert into cliente_premio(IDCliente, IDPremio) values(1,4);
 insert into cliente_premio(IDCliente, IDPremio) values(1,1);
 insert into cliente_premio(IDCliente, IDPremio) values(7,2);
 insert into cliente_premio(IDCliente, IDPremio) values(3,3);
 insert into cliente_premio(IDCliente, IDPremio) values(6,4);
 
---Insert estados
+--Insert estados;
 insert into estado(TipoEstado) 
 values("Despachado");
 insert into estado(TipoEstado) 
 values("Entregado");
 
---Insert compra
+--Insert compra;
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 1, 10, 4);
 insert into compra( IDPago, IDCliente, IDProducto)
@@ -257,7 +257,7 @@ insert into compra( IDPago, IDCliente, IDProducto)
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 10, 1, 5);
 		
---Insert pago	
+--Insert pago;	
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 445840501244, "04-05-2016", 652,"Sandra","Cristancho");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
@@ -289,7 +289,7 @@ insert into categoria (TipoCategoria) values ('Hogar');
 insert into categoria (TipoCategoria) values ('Belleza');
 insert into categoria (TipoCategoria) values ('Infantil');
 
---Insert producto
+--Insert producto;
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Televisor', '450000', 1, 3, 'Televisor marca Sony con pantalla led de alta definición' );
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Secador para cabello', '82000', 2, 5, 'Secador para cabello marca Nova, grande con reductor de consumo de energía' );
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Consola X-BOX One', '950000', 3, 2, 'Consola X-BOX ONE CON 500 GB de memoria, un control más cable HDMI' );
@@ -301,7 +301,7 @@ insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Tetero', '12000', 9, 6, 'Tetero marca Ruby 250 ml' );
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Guitarra Eléctrica', '649000', 10, 2, 'Guitarra Eléctrica marca Frico 6 cuerdas color variado' );
 
---Insert local
+--Insert local;
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("exxo",10,"tienda de variedades");
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("wartzila",11,"tienda de tecnologia");
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("rockacho",12,"tienda de musica");
@@ -313,7 +313,7 @@ INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("adidas",17,"tienda de
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("kfc",18,"tienda de comida");
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("presto",19,"tienda de comida");
 
---Insert envio
+--Insert envio;
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-30","producto de limpieza de ultima generacion", 1, 1, 1);
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-16","producto inflamable marca acme",2,2,2);
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-09","consola de sobremesa",2,3,3);
@@ -325,7 +325,7 @@ INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALU
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-02-15","consola de videojuegos",2,9,9);
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-11-30","equipo de sonido stereo",1,10,10);
 
---Relación llaves foráneas
+--Relación llaves foráneas;
 alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
 alter table producto add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
 alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
