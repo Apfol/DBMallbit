@@ -338,5 +338,5 @@ alter table envio add foreign key(IDVendedor) references vendedor(IDVendedor) ON
 alter table cliente add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
 alter table Vendedor add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
 alter table premio add foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
-alter table clientepremio add foreign key(IDCliente) references cliente(IDCliente);
-alter table clientepremio add foreign key(IDPremio) references premio(IDPremio);
+alter table cliente_premio add foreign key(IDCliente) references cliente(IDCliente);
+alter table cliente_premio add foreign key(IDPremio) references premio(IDPremio);
