@@ -17,7 +17,7 @@ create table cliente(
 );
 create table genero(
     IDGenero int(11) not null, 
-    Tipo varchar(100) not null, 
+    TipoGenero varchar(100) not null, 
     Primary Key(IDGenero)
 );
 create table compra(
@@ -40,7 +40,7 @@ create table producto(
 );
 create table categoria(
     IDCategoria int(11) not null auto_increment, 
-    Categoria varchar(100) not null, 
+    TipoCategoria varchar(100) not null, 
     Primary Key(IDCategoria)
 );
 create table local(
@@ -76,7 +76,7 @@ create table envio(
 );
 create table estado(
     IDEstado int(11) not null auto_increment, 
-    Estado varchar(100) not null, 
+    TipoEstado varchar(100) not null, 
     Primary Key(IDEstado)
 );
 create table pago(
@@ -182,9 +182,9 @@ insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificac
     values ("Emilio","Bernal","1987-02-12","embe@gmail.com",1074245020, 3130090362, "EmilioBe", "2243", 1);
 
 --Insert Generos
-insert into genero(IDGenero, Tipo) 
+insert into genero(IDGenero, TipoGenero) 
     values(1, "Masculino");
-insert into genero(IDGenero, Tipo)
+insert into genero(IDGenero, TipoGenero)
     values(2, "Femenino");
 
 --Insert premios
@@ -230,9 +230,9 @@ insert into cliente_premio(IDCliente, IDPremio) values(3,3);
 insert into cliente_premio(IDCliente, IDPremio) values(6,4);
 
 --Insert estados
-insert into estado(Estado) 
+insert into estado(TipoEstado) 
 values("Despachado");
-insert into estado(Estado) 
+insert into estado(TipoEstado) 
 values("Entregado");
 
 --Insert compra
@@ -282,12 +282,12 @@ insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 477740548124, "11-11-2016", 369,"Carlos","Casas");
     
 --Insert categoría
-insert into categoria (Categoria) values ('Inicio');
-insert into categoria (Categoria) values ('Entretenimiento');
-insert into categoria (Categoria) values ('Tecnología');
-insert into categoria (Categoria) values ('Hogar');
-insert into categoria (Categoria) values ('Belleza');
-insert into categoria (Categoria) values ('Infantil');
+insert into categoria (TipoCategoria) values ('Inicio');
+insert into categoria (TipoCategoria) values ('Entretenimiento');
+insert into categoria (TipoCategoria) values ('Tecnología');
+insert into categoria (TipoCategoria) values ('Hogar');
+insert into categoria (TipoCategoria) values ('Belleza');
+insert into categoria (TipoCategoria) values ('Infantil');
 
 --Insert producto
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Televisor', '450000', 1, 3, 'Televisor marca Sony con pantalla led de alta definición' );
