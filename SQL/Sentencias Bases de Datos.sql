@@ -252,7 +252,6 @@ insert into cliente_premio(IDCliente, IDPremio) values(7,2);
 insert into cliente_premio(IDCliente, IDPremio) values(3,3);
 insert into cliente_premio(IDCliente, IDPremio) values(6,4);
 
-<<<<<<< HEAD
 --Insert estados;
 insert into estado(TipoEstado) 
 values("Despachado");
@@ -276,10 +275,6 @@ insert into compra( IDPago, IDCliente, IDProducto)
     values ( 7, 4, 8);
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 8, 3, 7);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 9, 2, 6);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 10, 1, 5);
 --Nuevos registros de compra;
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 6, 1, 4);
@@ -297,9 +292,13 @@ insert into compra( IDPago, IDCliente, IDProducto)
     values ( 3, 3, 3);
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 1, 1, 1);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 2, 8, 3);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 4, 8, 3);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 3, 8, 3);
 		
-=======
->>>>>>> master
 --Insert pago;	
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 445840501244, "2016-05-04", 652,"Sandra","Cristancho");
