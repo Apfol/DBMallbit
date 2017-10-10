@@ -104,7 +104,7 @@ create table administrador(
 create table premio(
     IDPremio int(11) not null auto_increment, 
     Nombre varchar(100) not null, 
-    Descripcion varchar(100) not null, 
+    Descripcion varchar(500) not null, 
     Puntos int(10) not null,
     IDAdministrador int(11), 
     Primary Key(IDPremio)
