@@ -256,13 +256,30 @@ insert into compra( IDPago, IDCliente, IDProducto)
     values ( 9, 2, 6);
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 10, 1, 5);
+--Nuevos registros de compra;
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 6, 1, 4);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 7, 9, 2);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 5, 1, 9);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 7, 3, 4);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 7, 7, 7);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 4, 7, 1);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 3, 3, 3);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 1, 1, 1);
 		
 --Insert pago;	
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 445840501244, "04-05-2016", 652,"Sandra","Cristancho");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 491840001234, "10-05-2016", 678,"Cristofer","Hernandez");
-insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)roducto)
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 491110501344, "09-05-2016", 677,"Camilo","Bustos");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 461950031434, "09-05-2016", 320,"Jose","Hernandez");
@@ -281,8 +298,7 @@ insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 477740548124, "11-11-2016", 369,"Carlos","Casas");
     
---Insert categoría
-insert into categoria (TipoCategoria) values ('Inicio');
+--Insert categoría;
 insert into categoria (TipoCategoria) values ('Entretenimiento');
 insert into categoria (TipoCategoria) values ('Tecnología');
 insert into categoria (TipoCategoria) values ('Hogar');
