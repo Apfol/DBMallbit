@@ -115,6 +115,28 @@ create table cliente_premio(
     Primary Key(IDPremio, IDCliente)
 );
 
+--Relación llaves foráneas;
+alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
+alter table producto add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
+alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
+alter table compra add foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
+alter table compra add foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
+alter table compra add foreign key(IDProducto) references producto(IDProducto) ON DELETE CASCADE;
+alter table envio add foreign key(IDEstado) references estado(IDEstado) ON DELETE CASCADE;
+alter table envio add foreign key(IDCompra) references compra(IDCompra) ON DELETE CASCADE;
+alter table envio add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
+alter table cliente add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
+alter table Vendedor add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
+alter table premio add foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
+alter table cliente_premio add foreign key(IDCliente) references cliente(IDCliente);
+alter table cliente_premio add foreign key(IDPremio) references premio(IDPremio);
+
+--Insert Generos;
+insert into genero(IDGenero, TipoGenero) 
+    values(1, "Masculino");
+insert into genero(IDGenero, TipoGenero)
+    values(2, "Femenino");
+
 --Insert clientes;
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
     values ("Carlos","Casas","1940-9-29","campas@gmail.com",10657389915, 3023545271, "CarlosCA", "5687", 1);
@@ -181,11 +203,6 @@ insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificac
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
     values ("Emilio","Bernal","1987-02-12","embe@gmail.com",1074245020, 3130090362, "EmilioBe", "2243", 1);
 
---Insert Generos;
-insert into genero(IDGenero, TipoGenero) 
-    values(1, "Masculino");
-insert into genero(IDGenero, TipoGenero)
-    values(2, "Femenino");
 
 --Insert premios;
 insert into premio(Nombre, Descripcion, Puntos) values(
@@ -222,6 +239,12 @@ insert into premio(Nombre, Descripcion, Puntos) values(
     70000
 );
 
+--Insert estados;
+insert into estado(TipoEstado) 
+values("Despachado");
+insert into estado(TipoEstado) 
+values("Entregado");
+
 --Insert cliente_premio;
 insert into cliente_premio(IDCliente, IDPremio) values(1,4);
 insert into cliente_premio(IDCliente, IDPremio) values(1,1);
@@ -229,34 +252,6 @@ insert into cliente_premio(IDCliente, IDPremio) values(7,2);
 insert into cliente_premio(IDCliente, IDPremio) values(3,3);
 insert into cliente_premio(IDCliente, IDPremio) values(6,4);
 
---Insert estados;
-insert into estado(TipoEstado) 
-values("Despachado");
-insert into estado(TipoEstado) 
-values("Entregado");
-
---Insert compra;
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 1, 10, 4);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 2, 9, 3);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 3, 8, 2);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 4, 7, 1);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 5, 6, 10);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 6, 5, 9);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 7, 4, 8);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 8, 3, 7);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 9, 2, 6);
-insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 10, 1, 5);
-		
 --Insert pago;	
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 445840501244, "2016-05-04", 652,"Sandra","Cristancho");
@@ -288,18 +283,6 @@ insert into categoria (TipoCategoria) values ('Hogar');
 insert into categoria (TipoCategoria) values ('Belleza');
 insert into categoria (TipoCategoria) values ('Infantil');
 
---Insert producto;
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Televisor', '450000', 1, 3, 'Televisor marca Sony con pantalla led de alta definición' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Secador para cabello', '82000', 2, 5, 'Secador para cabello marca Nova, grande con reductor de consumo de energía' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Consola X-BOX One', '950000', 3, 2, 'Consola X-BOX ONE CON 500 GB de memoria, un control más cable HDMI' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Comedor', '1250000', 4, 5, 'Comedor para 5 personas en pino' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Set de lego', '35000', 5, 6, 'Set de lego 450 piezas' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Smartphone', '622000', 6, 3, 'Teléfono inteligente marca samsumg con última versión Android' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Esmalte', '20000', 7, 5, 'Esmalte Amarillo pequeño' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Alfombra', '200000', 8, 4, 'Alfombra persa grande color Rojo' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Tetero', '12000', 9, 6, 'Tetero marca Ruby 250 ml' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Guitarra Eléctrica', '649000', 10, 2, 'Guitarra Eléctrica marca Frico 6 cuerdas color variado' );
-
 --Insert local;
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Exxo",1,"Tienda de Variedades");
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Wartzila",2,"Tienda de Tecnologia");
@@ -312,6 +295,42 @@ INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Adidas",8,"Tienda de 
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("KFC",9,"Tienda de Comida");
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Presto",10,"Tienda de Comida");
 
+--Insert producto;
+insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Televisor', '450000', 1, 3, 'Televisor marca Sony con pantalla led de alta definición' );
+insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Secador para cabello', '82000', 2, 5, 'Secador para cabello marca Nova, grande con reductor de consumo de energía' );
+insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Consola X-BOX One', '950000', 3, 2, 'Consola X-BOX ONE CON 500 GB de memoria, un control más cable HDMI' );
+insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Comedor', '1250000', 4, 5, 'Comedor para 5 personas en pino' );
+insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Set de lego', '35000', 5, 6, 'Set de lego 450 piezas' );
+insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Smartphone', '622000', 6, 3, 'Teléfono inteligente marca samsumg con última versión Android' );
+insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Esmalte', '20000', 7, 5, 'Esmalte Amarillo pequeño' );
+insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Alfombra', '200000', 8, 4, 'Alfombra persa grande color Rojo' );
+insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Tetero', '12000', 9, 6, 'Tetero marca Ruby 250 ml' );
+insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Guitarra Eléctrica', '649000', 10, 2, 'Guitarra Eléctrica marca Frico 6 cuerdas color variado' );
+
+--Insert compra;
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 1, 10, 4);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 2, 9, 3);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 3, 8, 2);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 4, 7, 1);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 5, 6, 10);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 6, 5, 9);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 7, 4, 8);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 8, 3, 7);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 9, 2, 6);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 10, 1, 5);
+	
+
+
 --Insert envio;
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-30","Producto de Limpieza de Ultima Generación", 1, 1, 1);
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-16","Producto Inflamable Marca Acme",2,2,2);
@@ -323,19 +342,3 @@ INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALU
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-03-31","Equipo de Gimnasia",2,8,8);
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-02-15","Consola de Videojuegos",2,9,9);
 INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-11-30","Equipo de Sonido Stereo",1,10,10);
-
---Relación llaves foráneas;
-alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
-alter table producto add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
-alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
-alter table compra add foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
-alter table compra add foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
-alter table compra add foreign key(IDProducto) references producto(IDProducto) ON DELETE CASCADE;
-alter table envio add foreign key(IDEstado) references estado(IDEstado) ON DELETE CASCADE;
-alter table envio add foreign key(IDCompra) references compra(IDCompra) ON DELETE CASCADE;
-alter table envio add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
-alter table cliente add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
-alter table Vendedor add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
-alter table premio add foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
-alter table cliente_premio add foreign key(IDCliente) references cliente(IDCliente);
-alter table cliente_premio add foreign key(IDPremio) references premio(IDPremio);
