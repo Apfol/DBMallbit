@@ -282,6 +282,7 @@ insert into categoria (TipoCategoria) values ('Tecnología');
 insert into categoria (TipoCategoria) values ('Hogar');
 insert into categoria (TipoCategoria) values ('Belleza');
 insert into categoria (TipoCategoria) values ('Infantil');
+insert into categoria (TipoCategoria) values ('Comida');
 
 --Insert local;
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Exxo",1,"Tienda de Variedades");
