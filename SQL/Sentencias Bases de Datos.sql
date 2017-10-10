@@ -104,7 +104,7 @@ create table administrador(
 create table premio(
     IDPremio int(11) not null auto_increment, 
     Nombre varchar(100) not null, 
-    Descripcion varchar(100) not null, 
+    Descripcion varchar(500) not null, 
     Puntos int(10) not null,
     IDAdministrador int(11), 
     Primary Key(IDPremio)
@@ -114,6 +114,28 @@ create table cliente_premio(
     IDCliente int(11), 
     Primary Key(IDPremio, IDCliente)
 );
+
+--Relación llaves foráneas;
+alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
+alter table producto add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
+alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
+alter table compra add foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
+alter table compra add foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
+alter table compra add foreign key(IDProducto) references producto(IDProducto) ON DELETE CASCADE;
+alter table envio add foreign key(IDEstado) references estado(IDEstado) ON DELETE CASCADE;
+alter table envio add foreign key(IDCompra) references compra(IDCompra) ON DELETE CASCADE;
+alter table envio add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
+alter table cliente add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
+alter table Vendedor add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
+alter table premio add foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
+alter table cliente_premio add foreign key(IDCliente) references cliente(IDCliente);
+alter table cliente_premio add foreign key(IDPremio) references premio(IDPremio);
+
+--Insert Generos;
+insert into genero(IDGenero, TipoGenero) 
+    values(1, "Masculino");
+insert into genero(IDGenero, TipoGenero)
+    values(2, "Femenino");
 
 --Insert clientes;
 insert into cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
@@ -181,11 +203,6 @@ insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificac
 insert into administrador(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero)
     values ("Emilio","Bernal","1987-02-12","embe@gmail.com",1074245020, 3130090362, "EmilioBe", "2243", 1);
 
---Insert Generos;
-insert into genero(IDGenero, TipoGenero) 
-    values(1, "Masculino");
-insert into genero(IDGenero, TipoGenero)
-    values(2, "Femenino");
 
 --Insert premios;
 insert into premio(Nombre, Descripcion, Puntos) values(
@@ -222,6 +239,12 @@ insert into premio(Nombre, Descripcion, Puntos) values(
     70000
 );
 
+--Insert estados;
+insert into estado(TipoEstado) 
+values("Despachado");
+insert into estado(TipoEstado) 
+values("Entregado");
+
 --Insert cliente_premio;
 insert into cliente_premio(IDCliente, IDPremio) values(1,4);
 insert into cliente_premio(IDCliente, IDPremio) values(1,1);
@@ -229,6 +252,7 @@ insert into cliente_premio(IDCliente, IDPremio) values(7,2);
 insert into cliente_premio(IDCliente, IDPremio) values(3,3);
 insert into cliente_premio(IDCliente, IDPremio) values(6,4);
 
+<<<<<<< HEAD
 --Insert estados;
 insert into estado(TipoEstado) 
 values("Despachado");
@@ -274,6 +298,8 @@ insert into compra( IDPago, IDCliente, IDProducto)
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 1, 1, 1);
 		
+=======
+>>>>>>> master
 --Insert pago;	
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 445840501244, "2016-05-04", 652,"Sandra","Cristancho");
@@ -304,6 +330,19 @@ insert into categoria (TipoCategoria) values ('Tecnología');
 insert into categoria (TipoCategoria) values ('Hogar');
 insert into categoria (TipoCategoria) values ('Belleza');
 insert into categoria (TipoCategoria) values ('Infantil');
+insert into categoria (TipoCategoria) values ('Comida');
+
+--Insert local;
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Exxo",1,"Tienda de Variedades");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Wartzila",2,"Tienda de Tecnologia");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Rockacho",3,"Tienda de Musica");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Andres Carne de Res",4,"Tienda de Comida");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Microsoft",5,"Tienda de Tecnologia");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Zara",6,"Tienda de Ropa");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Arturo Calle",7,"Tienda de Ropa");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Adidas",8,"Tienda de Calzado");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("KFC",9,"Tienda de Comida");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Presto",10,"Tienda de Comida");
 
 --Insert producto;
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Televisor', '450000', 1, 3, 'Televisor marca Sony con pantalla led de alta definición' );
@@ -317,42 +356,38 @@ insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Tetero', '12000', 9, 6, 'Tetero marca Ruby 250 ml' );
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Guitarra Eléctrica', '649000', 10, 2, 'Guitarra Eléctrica marca Frico 6 cuerdas color variado' );
 
---Insert local;
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("exxo",10,"tienda de variedades");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("wartzila",11,"tienda de tecnologia");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("rockacho",12,"tienda de musica");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("andres carne de res",13,"tienda de comida");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("microsoft",14,"tienda de tecnologia");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("zara",15,"tienda de ropa");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("arturo calle",16,"tienda de ropa");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("adidas",17,"tienda de calzado");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("kfc",18,"tienda de comida");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("presto",19,"tienda de comida");
+--Insert compra;
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 1, 10, 4);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 2, 9, 3);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 3, 8, 2);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 4, 7, 1);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 5, 6, 10);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 6, 5, 9);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 7, 4, 8);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 8, 3, 7);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 9, 2, 6);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 10, 1, 5);
+	
+
 
 --Insert envio;
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-30","producto de limpieza de ultima generacion", 1, 1, 1);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-16","producto inflamable marca acme",2,2,2);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-09","consola de sobremesa",2,3,3);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-10-15","equipo de computacion cuantica",1,4,4);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2016-02-01","soldadora industrial",1,5,5);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-05-31","ropa deportiva",1,6,6);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-01","producto de aseo",2,7,7);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-03-31","equipo de gimnasia",2,8,8);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-02-15","consola de videojuegos",2,9,9);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-11-30","equipo de sonido stereo",1,10,10);
-
---Relación llaves foráneas;
-alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
-alter table producto add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
-alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
-alter table compra add foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
-alter table compra add foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
-alter table compra add foreign key(IDProducto) references producto(IDProducto) ON DELETE CASCADE;
-alter table envio add foreign key(IDEstado) references estado(IDEstado) ON DELETE CASCADE;
-alter table envio add foreign key(IDCompra) references compra(IDCompra) ON DELETE CASCADE;
-alter table envio add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
-alter table cliente add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
-alter table Vendedor add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
-alter table premio add foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
-alter table cliente_premio add foreign key(IDCliente) references cliente(IDCliente);
-alter table cliente_premio add foreign key(IDPremio) references premio(IDPremio);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-30","Producto de Limpieza de Ultima Generación", 1, 1, 1);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-16","Producto Inflamable Marca Acme",2,2,2);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-09","Consola de Sobremesa",2,3,3);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-10-15","Equipo de Computación Cuántica",1,4,4);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2016-02-01","Soldadora Industrial",1,5,5);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-05-31","Ropa Deportiva",1,6,6);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-01","Producto de Aseo",2,7,7);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-03-31","Equipo de Gimnasia",2,8,8);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-02-15","Consola de Videojuegos",2,9,9);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-11-30","Equipo de Sonido Stereo",1,10,10);
