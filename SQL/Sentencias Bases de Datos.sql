@@ -259,30 +259,29 @@ insert into compra( IDPago, IDCliente, IDProducto)
 		
 --Insert pago;	
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 445840501244, "04-05-2016", 652,"Sandra","Cristancho");
+    values ( 445840501244, "2016-05-04", 652,"Sandra","Cristancho");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 491840001234, "10-05-2016", 678,"Cristofer","Hernandez");
-insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)roducto)
-    values ( 491110501344, "09-05-2016", 677,"Camilo","Bustos");
+    values ( 491840001234, "2016-05-10", 678,"Cristofer","Hernandez");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 461950031434, "09-05-2016", 320,"Jose","Hernandez");
+    values ( 491110501344, "2016-05-09", 677,"Camilo","Bustos");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 521740401534, "10-04-2016", 338,"Ana","Cordoba");
+    values ( 461950031434, "2015-05-09", 320,"Jose","Hernandez");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 471847501774, "08-03-2016", 478,"Juaquin","Sanchez");
+    values ( 521740401534, "2016-04-10", 338,"Ana","Cordoba");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 491440601784, "17-07-2017", 448,"Valeria","Ferreira");
+    values ( 471847501774, "2016-03-08", 478,"Juaquin","Sanchez");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 411770441454, "01-05-2017", 645,"Hector","Gaviria");
+    values ( 491440601784, "2017-07-17", 448,"Valeria","Ferreira");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 481710501374, "14-04-2017", 154,"Juan","Cremades");
+    values ( 411770441454, "2017-05-01", 645,"Hector","Gaviria");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 421845501234, "31-12-2016", 354,"Diego","Acosta");
+    values ( 481710501374, "2017-04-14", 154,"Juan","Cremades");
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
-    values ( 477740548124, "11-11-2016", 369,"Carlos","Casas");
+    values ( 421845501234, "2016-12-31", 354,"Diego","Acosta");
+insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
+    values ( 477740548124, "2016-11-11", 369,"Carlos","Casas");
     
---Insert categoría
-insert into categoria (TipoCategoria) values ('Inicio');
+--Insert categoría;
 insert into categoria (TipoCategoria) values ('Entretenimiento');
 insert into categoria (TipoCategoria) values ('Tecnología');
 insert into categoria (TipoCategoria) values ('Hogar');
