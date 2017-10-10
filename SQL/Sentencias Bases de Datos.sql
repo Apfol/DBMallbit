@@ -301,28 +301,28 @@ insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values (
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Guitarra Eléctrica', '649000', 10, 2, 'Guitarra Eléctrica marca Frico 6 cuerdas color variado' );
 
 --Insert local;
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("exxo",10,"tienda de variedades");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("wartzila",11,"tienda de tecnologia");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("rockacho",12,"tienda de musica");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("andres carne de res",13,"tienda de comida");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("microsoft",14,"tienda de tecnologia");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("zara",15,"tienda de ropa");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("arturo calle",16,"tienda de ropa");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("adidas",17,"tienda de calzado");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("kfc",18,"tienda de comida");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("presto",19,"tienda de comida");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Exxo",1,"Tienda de Variedades");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Wartzila",2,"Tienda de Tecnologia");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Rockacho",3,"Tienda de Musica");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Andres Carne de Res",4,"Tienda de Comida");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Microsoft",5,"Tienda de Tecnologia");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Zara",6,"Tienda de Ropa");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Arturo Calle",7,"Tienda de Ropa");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Adidas",8,"Tienda de Calzado");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("KFC",9,"Tienda de Comida");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Presto",10,"Tienda de Comida");
 
 --Insert envio;
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-30","producto de limpieza de ultima generacion", 1, 1, 1);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-16","producto inflamable marca acme",2,2,2);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-09","consola de sobremesa",2,3,3);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-10-15","equipo de computacion cuantica",1,4,4);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2016-02-01","soldadora industrial",1,5,5);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-05-31","ropa deportiva",1,6,6);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-01","producto de aseo",2,7,7);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-03-31","equipo de gimnasia",2,8,8);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-02-15","consola de videojuegos",2,9,9);
-INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-11-30","equipo de sonido stereo",1,10,10);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-30","Producto de Limpieza de Ultima Generación", 1, 1, 1);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-16","Producto Inflamable Marca Acme",2,2,2);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-07-09","Consola de Sobremesa",2,3,3);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-10-15","Equipo de Computación Cuántica",1,4,4);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2016-02-01","Soldadora Industrial",1,5,5);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-05-31","Ropa Deportiva",1,6,6);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-09-01","Producto de Aseo",2,7,7);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-03-31","Equipo de Gimnasia",2,8,8);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-02-15","Consola de Videojuegos",2,9,9);
+INSERT INTO envio (FechaEnvio, Descripcion, IDEstado, IDCompra, IDVendedor) VALUES ("2017-11-30","Equipo de Sonido Stereo",1,10,10);
 
 --Relación llaves foráneas;
 alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
