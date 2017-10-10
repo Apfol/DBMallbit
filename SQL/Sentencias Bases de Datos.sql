@@ -35,7 +35,6 @@ create table producto(
     Descripcion varchar(100) not null,
     NombreImagenPrimaria varchar(100),
     NombreImagenSecundaria varchar(100),
-    IDCategoria int(11),
     Primary Key(IDProducto)
 );
 create table categoria(
@@ -50,6 +49,7 @@ create table local(
     Descripcion varchar(100) not null,
     NombreImagenPrimaria varchar(100),
     NombreImagenSecundaria varchar(100),
+    IDCategoria int(11),
     Primary Key(IDLocal)
 );
 create table vendedor(
@@ -117,7 +117,7 @@ create table cliente_premio(
 
 --Relación llaves foráneas;
 alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
-alter table producto add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
+alter table local add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
 alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
 alter table compra add foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
 alter table compra add foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
@@ -285,28 +285,28 @@ insert into categoria (TipoCategoria) values ('Infantil');
 insert into categoria (TipoCategoria) values ('Comida');
 
 --Insert local;
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Exxo",1,"Tienda de Variedades");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Wartzila",2,"Tienda de Tecnologia");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Rockacho",3,"Tienda de Musica");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Andres Carne de Res",4,"Tienda de Comida");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Microsoft",5,"Tienda de Tecnologia");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Zara",6,"Tienda de Ropa");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Arturo Calle",7,"Tienda de Ropa");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Adidas",8,"Tienda de Calzado");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("KFC",9,"Tienda de Comida");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Presto",10,"Tienda de Comida");
+INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Exxo",1,"Tienda de Variedades",1);
+INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Wartzila",2,"Tienda de Tecnologia",2);
+INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Rockacho",3,"Tienda de Musica",5);
+INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Andres Carne de Res",4,"Tienda de Comida",3);
+INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Microsoft",5,"Tienda de Tecnologia",4);
+INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Zara",6,"Tienda de Ropa",2);
+INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Arturo Calle",7,"Tienda de Ropa",4);
+INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Adidas",8,"Tienda de Calzado",6);
+INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("KFC",9,"Tienda de Comida",6);
+INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Presto",10,"Tienda de Comida",1);
 
 --Insert producto;
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Televisor', '450000', 1, 3, 'Televisor marca Sony con pantalla led de alta definición' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Secador para cabello', '82000', 2, 5, 'Secador para cabello marca Nova, grande con reductor de consumo de energía' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Consola X-BOX One', '950000', 3, 2, 'Consola X-BOX ONE CON 500 GB de memoria, un control más cable HDMI' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Comedor', '1250000', 4, 5, 'Comedor para 5 personas en pino' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Set de lego', '35000', 5, 6, 'Set de lego 450 piezas' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Smartphone', '622000', 6, 3, 'Teléfono inteligente marca samsumg con última versión Android' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Esmalte', '20000', 7, 5, 'Esmalte Amarillo pequeño' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Alfombra', '200000', 8, 4, 'Alfombra persa grande color Rojo' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Tetero', '12000', 9, 6, 'Tetero marca Ruby 250 ml' );
-insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Guitarra Eléctrica', '649000', 10, 2, 'Guitarra Eléctrica marca Frico 6 cuerdas color variado' );
+insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Televisor', '450000', 1, 'Televisor marca Sony con pantalla led de alta definición' );
+insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Secador para cabello', '82000', 2,'Secador para cabello marca Nova, grande con reductor de consumo de energía' );
+insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Consola X-BOX One', '950000', 3,'Consola X-BOX ONE CON 500 GB de memoria, un control más cable HDMI' );
+insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Comedor', '1250000', 4, 'Comedor para 5 personas en pino' );
+insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Set de lego', '35000', 5,'Set de lego 450 piezas' );
+insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Smartphone', '622000', 6, 'Teléfono inteligente marca samsumg con última versión Android' );
+insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Esmalte', '20000', 7, 'Esmalte Amarillo pequeño' );
+insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Alfombra', '200000', 8,'Alfombra persa grande color Rojo' );
+insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Tetero', '12000', 9, 'Tetero marca Ruby 250 ml' );
+insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Guitarra Eléctrica', '649000', 10, 'Guitarra Eléctrica marca Frico 6 cuerdas color variado' );
 
 --Insert compra;
 insert into compra( IDPago, IDCliente, IDProducto)
