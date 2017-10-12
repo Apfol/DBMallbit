@@ -336,12 +336,11 @@ INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Exxo",1,"Tienda de Va
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Wartzila",2,"Tienda de Tecnologia");
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Rockacho",3,"Tienda de Musica");
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Andres Carne de Res",4,"Tienda de Comida");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Microsoft",5,"Tienda de Tecnologia");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Matel",5,"Tienda de Tecnologia");
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Zara",6,"Tienda de Ropa");
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Arturo Calle",7,"Tienda de Ropa");
 INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Adidas",8,"Tienda de Calzado");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("KFC",9,"Tienda de Comida");
-INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Presto",10,"Tienda de Comida");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("KFC",9,"Tienda de Comida")
 
 --Insert producto;
 insert into producto (Nombre, Precio, IDLocal,IDCategoria, Descripcion) values ('Televisor', '450000', 1, 3, 'Televisor marca Sony con pantalla led de alta definición' );
@@ -369,11 +368,17 @@ insert into compra( IDPago, IDCliente, IDProducto)
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 6, 5, 9);
 insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 7, 4, 8);
+    values ( 7, 4, 0);
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 8, 3, 7);
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 9, 2, 6);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 10, 1, 5);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 10, 1, 5);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 10, 1, 7);
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 10, 1, 5);
 	
