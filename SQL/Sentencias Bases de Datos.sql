@@ -252,6 +252,53 @@ insert into cliente_premio(IDCliente, IDPremio) values(7,2);
 insert into cliente_premio(IDCliente, IDPremio) values(3,3);
 insert into cliente_premio(IDCliente, IDPremio) values(6,4);
 
+--Insert estados;
+insert into estado(TipoEstado) 
+values("Despachado");
+insert into estado(TipoEstado) 
+values("Entregado");
+
+--Insert compra;
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 1, 10, 4);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 2, 9, 3);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 3, 8, 2);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 4, 7, 1);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 5, 6, 10);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 6, 5, 9);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 7, 4, 8);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 8, 3, 7);
+--Nuevos registros de compra;
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 6, 1, 4);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 7, 9, 2);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 5, 1, 9);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 7, 3, 4);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 7, 7, 7);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 4, 7, 1);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 3, 3, 3);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 1, 1, 1);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 2, 8, 3);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 4, 8, 3);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 3, 8, 3);
+		
 --Insert pago;	
 insert into pago( NumTarjeta, FechaPago, CVV, Nombre, Apellido)
     values ( 445840501244, "2016-05-04", 652,"Sandra","Cristancho");
@@ -285,6 +332,7 @@ insert into categoria (TipoCategoria) values ('Infantil');
 insert into categoria (TipoCategoria) values ('Comida');
 
 --Insert local;
+<<<<<<< HEAD
 INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Exxo",1,"Tienda de Variedades",1);
 INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Wartzila",2,"Tienda de Tecnologia",2);
 INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Rockacho",3,"Tienda de Musica",5);
@@ -295,6 +343,17 @@ INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Arturo C
 INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Adidas",8,"Tienda de Calzado",6);
 INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("KFC",9,"Tienda de Comida",6);
 INSERT INTO local(Nombre, IDVendedor, Descripcion, IDCategoria) VALUES("Presto",10,"Tienda de Comida",1);
+=======
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Exxo",1,"Tienda de Variedades");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Wartzila",2,"Tienda de Tecnologia");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Rockacho",3,"Tienda de Musica");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Andres Carne de Res",4,"Tienda de Comida");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Matel",5,"Tienda de Tecnologia");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Zara",6,"Tienda de Ropa");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Arturo Calle",7,"Tienda de Ropa");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("Adidas",8,"Tienda de Calzado");
+INSERT INTO local(Nombre, IDVendedor, Descripcion) VALUES("KFC",9,"Tienda de Comida")
+>>>>>>> registro-consulta-sql
 
 --Insert producto;
 insert into producto (Nombre, Precio, IDLocal, Descripcion) values ('Televisor', '450000', 1, 'Televisor marca Sony con pantalla led de alta definición' );
@@ -322,11 +381,17 @@ insert into compra( IDPago, IDCliente, IDProducto)
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 6, 5, 9);
 insert into compra( IDPago, IDCliente, IDProducto)
-    values ( 7, 4, 8);
+    values ( 7, 4, 0);
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 8, 3, 7);
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 9, 2, 6);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 10, 1, 5);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 10, 1, 5);
+insert into compra( IDPago, IDCliente, IDProducto)
+    values ( 10, 1, 7);
 insert into compra( IDPago, IDCliente, IDProducto)
     values ( 10, 1, 5);
 	
