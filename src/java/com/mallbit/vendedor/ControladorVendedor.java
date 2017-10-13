@@ -37,7 +37,6 @@ public class ControladorVendedor extends HttpServlet {
         processRequest(request, response);
         //Leer parametro (value) del input hidden del formulario
         String parametro = request.getParameter("instruccion");
-        System.out.print("Hola: "+parametro);
         //Ejecutar método segun valor del parametro
         switch (parametro) {
             case "listarVendedores":
@@ -104,7 +103,7 @@ public class ControladorVendedor extends HttpServlet {
 
             //Enviar objeto al modelo para guardar en la Base de Datos
             modeloVendedor.agregarVendedorDB(vendedor);
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(true);
             session.setAttribute("VENDEDOR_SESSION", vendedor);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-vendedor.jsp");
             requestDispatcher.forward(request, response);

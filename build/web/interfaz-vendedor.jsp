@@ -35,7 +35,7 @@
 
         <div style="height: 64px;"></div>
         <%
-            Vendedor interfaz = (Vendedor)request.getAttribute("VENDEDOR_SESSION");
+            Vendedor interfaz = (Vendedor)session.getAttribute("VENDEDOR_SESSION");
             String nombre = interfaz.getNombre() + " " + interfaz.getApellido();
         %>   
         <div class="row">

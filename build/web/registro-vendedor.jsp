@@ -45,7 +45,7 @@
                         <i class="material-icons left" id="personas">local_shipping</i>
                     </div>
                 </div>
-                    <form action="ControladorVendedor" method="post" class="col s12">
+                    <form action="ControladorVendedor" method="post" onsubmit="return validar()" class="col s12">
                     <input type="hidden" name="instruccion" value="insertarVendedor"/>
                     <div class="row">
                         <div class="col s6 input-field">
@@ -63,8 +63,8 @@
                     <div class="row">
                         <div class="col s6 input-field">
                             <i class="material-icons prefix">email</i>
-                            <input id="correo" name="correo" type="text" class="validate">
-                            <label for="correo">Correo</label>
+                            <input id="correo" name="correo" type="email" class="validate">
+                            <label for="correo" data-error="No válido">Correo</label>
                         </div>
                         <div class="col s6 input-field">
                             <i class="material-icons prefix">date_range</i>
@@ -76,12 +76,12 @@
                     <div class="row">
                         <div class="col s6 input-field">
                             <i class="material-icons prefix">perm_identity</i>
-                            <input id="identificacion" name="identificacion" type="tel" maxlength="11" class="validate">
+                            <input id="identificacion" name="identificacion" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" class="validate">
                             <label for="identificacion">N° identificación</label>
                         </div>
                         <div class="col s6 input-field">
                             <i class="material-icons prefix">phone</i>
-                            <input id="telefono" name="telefono" type="tel" maxlength="10" class="validate">
+                            <input id="telefono" name="telefono" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" class="validate">
                             <label for="telefono">Teléfono</label>
                         </div>
                     </div>
@@ -117,6 +117,24 @@
             </div>
 
         </div>
+                            
+        <script>
+            function validar() {
+                var a = document.getElementById("nombre").value;
+                var b = document.getElementById("apellido").value;
+                var c = document.getElementById("correo").value;
+                var d = document.getElementById("fecha").value;
+                var e = document.getElementById("identificacion").value;
+                var f = document.getElementById("telefono").value;
+                var g = document.getElementById("usuario").value;
+                var h = document.getElementById("contraseña").value;
+                var i = document.getElementById("genero").value;
+                if (a=="" || b=="" || c=="" || d=="" || e=="" || f=="" || g=="" || h=="" || i=="") {
+                    alert("Por favor, llena todos los campos");
+                    return false;
+                }
+            }
+        </script>
         <!--Import jQuery before materialize.js-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
