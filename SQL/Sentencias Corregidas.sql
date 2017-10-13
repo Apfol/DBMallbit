@@ -29,6 +29,12 @@ create table compra(
     IDVendedor int(11),
     Primary Key(IDCompra)
 );
+create table pago(
+    IDPago int(11) not null auto-increment,
+    NumeroTarjeta bigint(11) not null,
+    CVV int(3) not null,
+    Primary Key(IDPago)
+);
 create table producto(
     IDProducto int(11) not null auto_increment, 
     Nombre varchar(100) not null,
