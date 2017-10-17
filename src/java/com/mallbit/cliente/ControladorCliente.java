@@ -1,5 +1,7 @@
 package com.mallbit.cliente;
 
+import com.mallbit.genero.Genero;
+import com.mallbit.genero.ModeloGenero;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +22,7 @@ public class ControladorCliente extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private ModeloCliente modeloCliente = new ModeloCliente();
+    private ModeloGenero modeloGenero = new ModeloGenero();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -100,23 +103,23 @@ public class ControladorCliente extends HttpServlet {
             }
 
             //Se envia un request al jsp correspondiente segun el caso
-            /*if(existe.equals("existe")){
-                String[] parametros= {existe,nombre,apellido,correo,contraseña,request.getParameter("fechaNacimiento"),request.getParameter("genero")};
+            if(existe.equals("existe")){
+                List<Genero> generos = modeloGenero.getGeneros();
+                String[] parametros= {existe,nombre,apellido,correo,contraseña,request.getParameter("fechaNacimiento"), request.getParameter("identificacion"), request.getParameter("telefono"),request.getParameter("genero")};
                 request.setAttribute("ESTADO", parametros);
+                 request.setAttribute("LISTAGENEROS", generos);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/registro-cliente.jsp");
                 requestDispatcher.forward(request, response);
-            }else{*/
-            Cliente cliente = new Cliente(nombre, apellido, correo, identificacion, telefono, usuario, contraseña, fechaNacimiento, idGenero);
+            }else{
+                Cliente cliente = new Cliente(nombre, apellido, correo, identificacion, telefono, usuario, contraseña, fechaNacimiento, idGenero);
 
-            //Enviar objeto al modelo para guardar en la Base de Datos
-            modeloCliente.agregarClienteDB(cliente);
-
-            HttpSession session = request.getSession();
-            session.setAttribute("CLIENTE_SESSION", cliente);
-
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
-            requestDispatcher.forward(request, response);
-            /*}*/
+                //Enviar objeto al modelo para guardar en la Base de Datos
+                modeloCliente.agregarClienteDB(cliente);
+                HttpSession session = request.getSession();
+                session.setAttribute("CLIENTE_SESSION", cliente);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+                requestDispatcher.forward(request, response);
+            }
 
         } catch (Exception ex) {
 
