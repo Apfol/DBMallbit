@@ -159,7 +159,9 @@
                         </div>
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
-                                <a class="carousel-item" href="#one!"><img src="http://pm1.narvii.com/6143/f853fcfcb1a4a5f315b939b666da4c3dc1f7771c_hq.jpg"></a>
+                                <form action="ControladorProducto" method="get" id="int">
+                                    <a class="carousel-item" onclick="document.getElementById('int').submit()"><img src="http://pm1.narvii.com/6143/f853fcfcb1a4a5f315b939b666da4c3dc1f7771c_hq.jpg"></a>
+                                </form>
                                 <a class="carousel-item" href="#two!"><img src="http://www.criativebrindes.com.br/content/interfaces/cms/userfiles/images/events_g.gif"></a>
                                 <a class="carousel-item" href="#three!"><img src="http://pm1.narvii.com/6143/93b5335f6a21e4c99c383e85a17e32fcf63b8fcb_hq.jpg"></a>
                                 <a class="carousel-item" href="#five!"><img src="http://pm1.narvii.com/6143/f853fcfcb1a4a5f315b939b666da4c3dc1f7771c_hq.jpg"></a>

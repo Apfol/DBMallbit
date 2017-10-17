@@ -83,10 +83,10 @@
                         <div id="puntos">
                             <div class="row" id="points">
                                 <div class="col s0" id="pointstitle">
-                                    <p id="p1">MallBITs</p>
+                                    <p id="p1Pr">MallBITs</p>
                                 </div>
                                 <div class="col s0" id="pointscount">
-                                    <p id="p2" class="center-align"><%= interfaz.getPuntos()%></p>
+                                    <p id="p2Pr" class="center-align"><%= interfaz.getPuntos()%></p>
                                 </div>
                             </div>
                         </div>

@@ -491,10 +491,235 @@ html{
     background-size: 100% 100%;
 }
 
+#cuerpopr{
+    background-image: url(fondo-ofertas.jpg);
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 100% 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 #btn22{
     display: none;
 }
 
 #btn32{
     display: none;
+}
+
+#imagencard{
+    height: 300px;
+}
+
+#latbar{
+    position: absolute;
+}
+
+#cardlocal{
+    position: fixed;
+    left: 0;
+    top: 6.8%;
+    margin-right: 75%;
+    padding-bottom: 40%;
+    background-color: #C0CA33;
+}
+
+#cardft{
+    position: absolute;
+    height: 120px;
+    width: 360px;
+    left: 0;
+}
+
+#cardnv{
+    position: absolute;
+    top: 54%;
+    height: 120px;
+    width: 360px;
+    left: 0;
+}
+
+#cardct{
+    position: absolute;
+    top: 69%;
+    height: 110px;
+    width: 360px;
+    left: 0;
+    background-color: #6f751d;
+    color: white;
+}
+
+#imagenft{
+    height: 120px;
+    width: 120px;
+}
+
+#contentft{
+    height: 60px;
+    font-size: 15px;
+    padding-top: 3%;
+    font-weight: 300;
+    text-align: center;
+    background-color: #DCE775;
+}
+
+#titlePft{
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 12px;
+    margin: 0;
+    color: #6f751d;
+}
+
+#titulolocal{
+    background-color: #DCE775;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    color: #6f751d;
+}
+
+#cardLinkft{
+    background-color: #e6edaa;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 26px;
+    padding-right: 0px;
+}
+
+#textLink{
+    color: #8a9125;
+    text-align: center;
+    font-weight: 900;
+}
+
+#iconoct{
+    font-size: 40px;
+    padding-top: 12px;
+}
+
+#navl{
+    position: fixed;
+    z-index: 2;
+}
+
+#listaproductos{
+    position: relative;
+    top: 100px;
+    left: 30%;
+}
+
+#headPr{
+    height: 300px;
+    position: relative;
+}
+
+#divimg{
+    position: absolute;
+    left: -5px;
+    top: 5px;
+}
+
+#imgPr{
+    height: 290px;
+    width: 290px;
+    padding: 30px;
+    background-color: #DCE775;
+}
+
+#comprar{
+    height: 90px;
+    width: 90px;
+    background-color: indianred;
+    position: relative;
+    left: 860px;
+    top: 35%;
+}
+
+#divtext{
+    position: absolute;
+    right: 10px;
+}
+
+#comprartext{
+    margin: 18px 10px 30px 0px;
+    font-size: 45px;
+}
+
+#titleProduct{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: 390;
+    font-size: 45px;
+}
+
+#titlePrecio{
+    font-weight: 300;
+    font-size: 45px;
+    right: 90px;
+    color: lightslategrey;
+}
+
+#UIproducto #puntosPr{
+    right: 18%;
+    top: 53%;
+}
+
+#pointsPr{
+    margin-bottom: 0px; 
+    margin-left: 34%;
+    margin-right: 34%;
+    padding: 0px;
+}
+
+#pointstitlePr{
+    background-color: lightcoral;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    border-color: #f26d6d;
+    border-style: solid;
+    border-width: 4px 0px 4px 4px;
+}
+
+#pointscountPr{
+    background-color: lightcoral;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    border-color: #f26d6d;
+    border-style: solid;
+    border-width: 4px 4px 4px 0px;
+}
+
+#p1Pr{
+    font-weight: 900;
+    color: aliceblue;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+#p2Pr{
+    background-color: white;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 2px;
+    color: gray;
+    font-weight: 900;
+}
+
+#descripcion{
+    background-color: aliceblue;
+    opacity: 0.9;
+}
+
+#subtext{
+    font-weight: 300;
+    color: #303030;
+}
+
+#desctitle{
+    color: black;
 }
