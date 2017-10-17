@@ -41,7 +41,7 @@ create table producto(
     Precio int not null, 
     Marca varchar(30) not null,
     IDLocal int(11), 
-    Descripcion varchar(10000) not null,
+    Descripcion varchar(500) not null,
     NombreImagen varchar(100) not null,
     Stock int(11) not null,
     Primary Key(IDProducto)
@@ -55,9 +55,8 @@ create table local(
     IDLocal int(11) not null auto_increment, 
     Nombre varchar(100) not null, 
     IDVendedor int(11), 
-    Descripcion varchar(100) not null,
-    NombreImagenPrimaria varchar(100),
-    NombreImagenSecundaria varchar(100),
+    Descripcion varchar(500) not null,
+    NombreImagen varchar(100),
     IDCategoria int(11),
     Primary Key(IDLocal)
 );
