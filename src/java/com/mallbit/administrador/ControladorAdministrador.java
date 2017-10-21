@@ -5,11 +5,9 @@
  */
 package com.mallbit.administrador;
 
-import com.mallbit.cliente.Cliente;
 import com.mallbit.genero.Genero;
 import com.mallbit.genero.ModeloGenero;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -28,9 +26,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "ControladorAdministrador", urlPatterns = {"/ControladorAdministrador"})
 public class ControladorAdministrador extends HttpServlet {
-    
-    private ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
-    private ModeloGenero modeloGenero = new ModeloGenero();
+
+    private final ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
+    private final ModeloGenero modeloGenero = new ModeloGenero();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,22 +42,18 @@ public class ControladorAdministrador extends HttpServlet {
 
         //Ejecutar método según valor del parametro
         switch (parametro) {
-            case "listarAdministradores":
-                listarAdministradoresDB(request, response);
-                break;
             case "insertarAdministrador":
-                insertarAdministradorDB(request, response);
+                insertarAdministrador(request, response);
+                break;
+            case "validarAdministrador":
+                validarAdministrador(request, response);
                 break;
             default:
                 break;
         }
     }
 
-    private void listarAdministradoresDB(HttpServletRequest request, HttpServletResponse response) {
-
-    }
-
-    private void insertarAdministradorDB(HttpServletRequest request, HttpServletResponse response) {
+    private void insertarAdministrador(HttpServletRequest request, HttpServletResponse response) {
         try {
 
             //Crear objeto Administrador con los datos recibidos del formulario
@@ -122,6 +116,55 @@ public class ControladorAdministrador extends HttpServlet {
 
         } catch (Exception ex) {
 
+        }
+    }
+
+    private void validarAdministrador(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String usuario = request.getParameter("usuario");
+            String contraseña = request.getParameter("password");
+            String estado = "indefinido";
+            Administrador a = null;
+
+            List<Administrador> administradores = modeloAdministrador.obtenerAdministradoresDB();
+            for (Administrador administrador : administradores) {
+                if (administrador.getUsuario().equals(usuario) && administrador.getContraseña().equals(contraseña)) {
+                    estado = "correcto";
+                    a = administrador;
+                    break;
+                }
+            }
+
+            if (estado.equals("indefinido")) {
+                for (Administrador administrador : administradores) {
+                    if (administrador.getUsuario().equals(usuario) && !administrador.getContraseña().equals(contraseña)) {
+                        estado = "incorrecto";
+                        break;
+                    }
+                }
+            }
+
+            switch (estado) {
+                case "correcto":
+                    HttpSession session = request.getSession();
+                    session.setAttribute("ADMINISTRADOR_SESSION", a);
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-administrador.jsp");
+                    requestDispatcher.forward(request, response);
+                    break;
+                case "incorrecto":
+                    request.setAttribute("RESULTADO", estado);
+                    RequestDispatcher requestDispatcherI = request.getRequestDispatcher("/iniciar-sesion-administrador.jsp");
+                    requestDispatcherI.forward(request, response);
+                    break;
+                case "indefinido":
+                    request.setAttribute("RESULTADO", estado);
+                    RequestDispatcher requestDispatcherC = request.getRequestDispatcher("/iniciar-sesion-administrador.jsp");
+                    requestDispatcherC.forward(request, response);
+                    break;
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 

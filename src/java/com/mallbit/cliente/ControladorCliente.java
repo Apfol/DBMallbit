@@ -195,7 +195,6 @@ public class ControladorCliente extends HttpServlet {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 
     private void actualizarClienteDB(HttpServletRequest request, HttpServletResponse response) {

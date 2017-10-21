@@ -26,7 +26,7 @@ public class ControladorGenero extends HttpServlet {
             //Agregar clientes al request
             request.setAttribute("LISTAGENEROS", generos);
             RequestDispatcher requestDispatcher;
-            //Enviar request a la pagina que se desea
+            //Enviar request a la página que se desea
             int parametro = Integer.parseInt(request.getParameter("instruccion"));
             switch (parametro) {
                 case Genero.GENERO_CLIENTE:
@@ -35,6 +35,10 @@ public class ControladorGenero extends HttpServlet {
                     break;
                 case Genero.GENERO_VENDEDOR:
                     requestDispatcher = request.getRequestDispatcher("/registro-vendedor.jsp");
+                    requestDispatcher.forward(request, response);
+                    break;
+                case Genero.GENERO_ADMINISTRADOR:
+                    requestDispatcher = request.getRequestDispatcher("/registro-administrador.jsp");
                     requestDispatcher.forward(request, response);
                     break;
                 default:

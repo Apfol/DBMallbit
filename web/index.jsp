@@ -30,7 +30,7 @@
                                 <% if (cliente == null) { %>
                                 <li><a href="iniciar-sesion-cliente.jsp"><i class="material-icons left">people</i>Acceder</a></li>
                                 <li><a href="iniciar-sesion-vendedor.jsp"><i class="material-icons left">local_shipping</i>Vender</a></li>
-                                <li><a href="#"><i class="material-icons left">security</i>Administrar</a></li>
+                                <li><a href="iniciar-sesion-administrador.jsp"><i class="material-icons left">security</i>Administrar</a></li>
                                 <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
                                 <%} else {%>
                                 <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>

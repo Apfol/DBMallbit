@@ -4,6 +4,7 @@ public class Genero {
 
     public static final int GENERO_CLIENTE = 0;
     public static final int GENERO_VENDEDOR = 1;
+    public static final int GENERO_ADMINISTRADOR = 2;
 
     private int idGenero;
     private String genero;

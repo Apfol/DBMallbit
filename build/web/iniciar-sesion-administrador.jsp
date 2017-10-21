@@ -1,3 +1,9 @@
+<%-- 
+    Document   : iniciar-sesion-administrador
+    Created on : Oct 21, 2017, 9:51:03 AM
+    Author     : Andres Ramos
+--%>
+
 <%@page import="com.mallbit.genero.Genero"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,15 +31,15 @@
         </nav>
         <div class="block" id="blockrc">
             <div class="card-panel">
-                <form action="ControladorAdministrador" method="post">
+                <form action="ControladorCliente" method="post">
                     <input type="hidden" name="instruccion" value="validarAdministrador">
                     <div class="row">
                         <div class="col s10">
                             <p style="font-size: 30px" id="titleis">Inicio de sesión</p>
-                            <p style="font-size: 15px" id="subtitleis">Acceder como cliente a MallBIT</p><br>
+                            <p style="font-size: 15px" id="subtitleis">Acceder como administrador a MallBIT</p><br>
                         </div>
                         <div class="col s1">
-                            <i class="material-icons left" id="personas">people</i>
+                            <i class="material-icons left" id="personas">security</i>
                         </div>
                     </div>
                     <div class="input-field">
@@ -74,7 +80,7 @@
                 <% }%>
                 <div class="center-align" id="register">
                     ¿No tienes una cuenta?
-                    <a href="ControladorGenero?instruccion=<%= Genero.GENERO_CLIENTE %>">
+                    <a href="ControladorGenero?instruccion=<%= Genero.GENERO_ADMINISTRADOR %>">
                         Regístrate
                     </a>
                 </div>
