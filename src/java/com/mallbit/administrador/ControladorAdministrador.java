@@ -1,0 +1,128 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mallbit.administrador;
+
+import com.mallbit.cliente.Cliente;
+import com.mallbit.genero.Genero;
+import com.mallbit.genero.ModeloGenero;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ *
+ * @author Andres Ramos
+ */
+@WebServlet(name = "ControladorAdministrador", urlPatterns = {"/ControladorAdministrador"})
+public class ControladorAdministrador extends HttpServlet {
+    
+    private ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
+    private ModeloGenero modeloGenero = new ModeloGenero();
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //Leer parametro (value) del input hidden del formulario
+        String parametro = request.getParameter("instruccion");
+
+        //Ejecutar método según valor del parametro
+        switch (parametro) {
+            case "listarAdministradores":
+                listarAdministradoresDB(request, response);
+                break;
+            case "insertarAdministrador":
+                insertarAdministradorDB(request, response);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void listarAdministradoresDB(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    private void insertarAdministradorDB(HttpServletRequest request, HttpServletResponse response) {
+        try {
+
+            //Crear objeto Administrador con los datos recibidos del formulario
+            //<editor-fold defaultstate="collapsed" desc="Pasos para cambiar al formato fecha de MySQL">
+            //Formato de fecha que aparece en la pagina
+            //Definiendo el idioma de la fecha
+            Locale idioma = new Locale("en");
+            SimpleDateFormat formatPage = new SimpleDateFormat("dd MMM, yyyy", idioma);
+
+            //Formato de fecha que acepta MySQL
+            SimpleDateFormat formatSQL = new SimpleDateFormat("yyyy-MM-dd", idioma);
+
+            Date fechaNacimiento = null;
+
+            //Se pasa la fecha de la pagina a un objeto Date
+            Date date = formatPage.parse(request.getParameter("fechaNacimiento"));
+            //Se pasa el objeto Date al formato que admite MySQL
+            fechaNacimiento = formatSQL.parse(formatSQL.format(date));
+            System.out.println(fechaNacimiento);
+
+            // </editor-fold>      
+            String nombre = request.getParameter("nombre");
+            String apellido = request.getParameter("apellido");
+            String usuario = request.getParameter("usuario");
+            String correo = request.getParameter("correo");
+            long identificacion = Long.parseLong(request.getParameter("identificacion"));
+            long telefono = Long.parseLong(request.getParameter("telefono"));
+            String contraseña = request.getParameter("password");
+            int idGenero = Integer.parseInt(request.getParameter("genero"));
+
+            String existe = "";
+
+            //Se verifica si existe otro administrador con ese Usuario
+            List<Administrador> administradores = modeloAdministrador.obtenerAdministradoresDB();
+            for (Administrador administrador : administradores) {
+                if (administrador.getUsuario().equals(usuario)) {
+                    existe = "existe";
+                    break;
+                }
+            }
+
+            //Se envia un request al jsp correspondiente segun el caso
+            if (existe.equals("existe")) {
+                List<Genero> generos = modeloGenero.getGeneros();
+                String[] parametros = {existe, nombre, apellido, correo, contraseña, request.getParameter("fechaNacimiento"), request.getParameter("identificacion"), request.getParameter("telefono"), request.getParameter("genero")};
+                request.setAttribute("ESTADO", parametros);
+                request.setAttribute("LISTAGENEROS", generos);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/registro-administrador.jsp");
+                requestDispatcher.forward(request, response);
+            } else {
+                Administrador administrador = new Administrador(nombre, apellido, correo, identificacion, telefono, usuario, contraseña, fechaNacimiento, idGenero);
+
+                //Enviar objeto al modelo para guardar en la Base de Datos
+                modeloAdministrador.agregarAdministradorDB(administrador);
+                HttpSession session = request.getSession();
+                session.setAttribute("ADMINISTRADOR_SESSION", administrador);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-administrador.jsp");
+                requestDispatcher.forward(request, response);
+            }
+
+        } catch (Exception ex) {
+
+        }
+    }
+
+}

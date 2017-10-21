@@ -28,6 +28,7 @@ public class ControladorCliente extends HttpServlet {
             throws ServletException, IOException {
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //Leer parametro (value) del input hidden del formulario
