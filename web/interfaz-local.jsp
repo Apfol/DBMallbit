@@ -29,7 +29,7 @@
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>                        
                                 <% if (cliente == null) { %>
-                            <li><a href="iniciar-sesion-cliente.jsp"><i class="material-icons left">people</i>Acceder</a></li>
+                            <li><a href="iniciar-sesion-cliente.jsp?i=1"><i class="material-icons left">people</i>Acceder</a></li>
                                 <% } else {%>
                             <li>
                                 <form method="post" action="ControladorCliente" id="iu">

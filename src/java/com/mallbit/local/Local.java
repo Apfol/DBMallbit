@@ -15,23 +15,53 @@ public class Local {
     private int id;
     private String nombre;
     private String descripcion;
-    private String nombreImagenPrimaria;
-    private String nombreImagenSecundaria;
+    private int idVendedor;
+    private int idCategoria;
+    private String nombreImagen1;
+    private String nombreImagen2;
 
     public Local(int id, String nombre, String descripcion, String nombreImagenPrimaria, String nombreImagenSecundaria) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.nombreImagenPrimaria = nombreImagenPrimaria;
-        this.nombreImagenSecundaria = nombreImagenSecundaria;
+        this.nombreImagen1 = nombreImagenPrimaria;
+        this.nombreImagen2 = nombreImagenSecundaria;
     }
 
     public Local(String nombre, String descripcion, String nombreImagenPrimaria, String nombreImagenSecundaria) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.nombreImagenPrimaria = nombreImagenPrimaria;
-        this.nombreImagenSecundaria = nombreImagenSecundaria;
+        this.nombreImagen1 = nombreImagenPrimaria;
+        this.nombreImagen2 = nombreImagenSecundaria;
     }
+
+    public Local(int id, String nombre, String descripcion, int idVendedor, int idCategoria, String nombreImagenPrimaria, String nombreImagenSecundaria) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.idVendedor = idVendedor;
+        this.idCategoria = idCategoria;
+        this.nombreImagen1 = nombreImagenPrimaria;
+        this.nombreImagen2 = nombreImagenSecundaria;
+    }
+
+    public int getIdVendedor() {
+        return idVendedor;
+    }
+
+    public void setIdVendedor(int idVendedor) {
+        this.idVendedor = idVendedor;
+    }
+
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -58,19 +88,19 @@ public class Local {
     }
 
     public String getNombreImagenPrimaria() {
-        return nombreImagenPrimaria;
+        return nombreImagen1;
     }
 
     public void setNombreImagenPrimaria(String nombreImagenPrimaria) {
-        this.nombreImagenPrimaria = nombreImagenPrimaria;
+        this.nombreImagen1 = nombreImagenPrimaria;
     }
 
     public String getNombreImagenSecundaria() {
-        return nombreImagenSecundaria;
+        return nombreImagen2;
     }
 
     public void setNombreImagenSecundaria(String nombreImagenSecundaria) {
-        this.nombreImagenSecundaria = nombreImagenSecundaria;
+        this.nombreImagen2 = nombreImagenSecundaria;
     }
     
     

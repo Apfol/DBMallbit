@@ -22,6 +22,11 @@ nav ul li a {
     color: black;
 }
 
+#imgCarrusel{
+    height: 50px;
+    width: 50px;
+}
+
 #card-entretenimiento h3 {
     color: #3e2723;
 }

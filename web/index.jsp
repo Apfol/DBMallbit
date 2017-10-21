@@ -1,3 +1,6 @@
+<%@page import="com.mallbit.local.Local"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.mallbit.local.ModeloLocal"%>
 <%@page import="com.mallbit.cliente.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,6 +21,13 @@
     </head>
 
     <body>
+        
+        
+        <%
+            ModeloLocal modeloLocal = new ModeloLocal();
+            ArrayList<Local> locales = (ArrayList<Local>)modeloLocal.obtenerLocalesDB();
+        %>
+        
         <!--# NOTE: Comienza parte mostrar barra navegación.-->
         <div id="primera" class="scrollspy">
             <nav class="pushpin-nav z-depth-0" data-target="primera">
@@ -159,15 +169,17 @@
                         </div>
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
-                                <form action="ControladorProducto" method="post" id="int">
-                                    <% if (cliente != null) {%>
-                                        <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">
+                                <% for (Local l : locales) { %>
+                                    <% if (l.getIdCategoria() == 1) { %>
+                                        <form action="ControladorProducto" method="post" id="int">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">
+                                            <input type="hidden" name="local" value="<%= l.getId()%>">
+                                            <% } %>
+                                            <a class="carousel-item" onclick="document.getElementById('int').submit()"><img id="imgCarrusel" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                        </form>
                                     <% } %>
-                                        <a class="carousel-item" onclick="document.getElementById('int').submit()"><img src="http://pm1.narvii.com/6143/f853fcfcb1a4a5f315b939b666da4c3dc1f7771c_hq.jpg"></a>
-                                </form>
-                                <a class="carousel-item" href="#two!"><img src="http://www.criativebrindes.com.br/content/interfaces/cms/userfiles/images/events_g.gif"></a>
-                                <a class="carousel-item" href="#three!"><img src="http://pm1.narvii.com/6143/93b5335f6a21e4c99c383e85a17e32fcf63b8fcb_hq.jpg"></a>
-                                <a class="carousel-item" href="#five!"><img src="http://pm1.narvii.com/6143/f853fcfcb1a4a5f315b939b666da4c3dc1f7771c_hq.jpg"></a>
+                                <% }%>
                             </div>
                         </div>
                     </div>

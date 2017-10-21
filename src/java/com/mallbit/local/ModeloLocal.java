@@ -45,11 +45,13 @@ public class ModeloLocal {
         while (resultSet.next()) {
             int id = resultSet.getInt("IDLocal");
             String nombre = resultSet.getString("Nombre");
+            int idVendedor = resultSet.getInt("IDVendedor");
             String descripcion = resultSet.getString("Descripcion");
-            String nombreImagenPrimaria = resultSet.getString("NombreImagenPrimaria");
-            String nombreImagenSecundaria = resultSet.getString("NombreImagenSecundaria");
+            String nombreImagen1 = resultSet.getString("NombreImagen1");
+            String nombreImagen2 = resultSet.getString("NombreImagen2");
+            int idCategoria = resultSet.getInt("IDCategoria");
 
-            locales.add(new Local(id, nombre, descripcion, nombreImagenPrimaria, nombreImagenSecundaria));
+            locales.add(new Local(id, nombre, descripcion, idVendedor, idCategoria, nombreImagen1, nombreImagen2));
 
         }
         return locales;
