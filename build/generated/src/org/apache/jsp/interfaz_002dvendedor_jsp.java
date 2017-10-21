@@ -84,7 +84,7 @@ public final class interfaz_002dvendedor_jsp extends org.apache.jasper.runtime.H
       out.write("        <div style=\"height: 64px;\"></div>\r\n");
       out.write("        ");
 
-            Vendedor interfaz = (Vendedor)request.getAttribute("VENDEDOR_SESSION");
+            Vendedor interfaz = (Vendedor)session.getAttribute("VENDEDOR_SESSION");
             String nombre = interfaz.getNombre() + " " + interfaz.getApellido();
         
       out.write("   \r\n");
