@@ -11,7 +11,7 @@ create table cliente(
     Telefono bigint(10) not null, 
     Usuario varchar(50) not null, 
     Password varchar(50),
-    Puntos int(10),
+    Puntos int(10) default 0,
     IDGenero int(11),
     Primary Key(IDCliente)
 );
@@ -44,6 +44,7 @@ create table producto(
     Descripcion varchar(500) not null,
     NombreImagen varchar(100) not null,
     Stock int(11) not null,
+    Puntos int(10) default 0,
     Primary Key(IDProducto)
 );
 create table categoria(
@@ -56,7 +57,8 @@ create table local(
     Nombre varchar(100) not null, 
     IDVendedor int(11), 
     Descripcion varchar(500) not null,
-    NombreImagen varchar(100),
+    NombreImagen1 varchar(100),
+    NombreImagen2 varchar(100),
     IDCategoria int(11),
     Primary Key(IDLocal)
 );
@@ -113,22 +115,6 @@ create table cliente_premio(
     Primary Key(IDPremio, IDCliente)
 );
 
---Relación llaves foráneas;
-alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
-alter table local add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
-alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
-alter table compra add foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
-alter table compra add foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
-alter table compra add foreign key(IDProducto) references producto(IDProducto) ON DELETE CASCADE;
-alter table compra add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
-alter table envio add foreign key(IDEstado) references estado(IDEstado) ON DELETE CASCADE;
-alter table envio add foreign key(IDCompra) references compra(IDCompra) ON DELETE CASCADE;
-alter table cliente add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
-alter table Vendedor add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
-alter table premio add foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
-alter table cliente_premio add foreign key(IDCliente) references cliente(IDCliente);
-alter table cliente_premio add foreign key(IDPremio) references premio(IDPremio);
-
 --Insert Generos;
 insert into genero(IDGenero, TipoGenero) 
     values(1, "Masculino");
@@ -149,9 +135,29 @@ insert into categoria (TipoCategoria) values ('Belleza');
 insert into categoria (TipoCategoria) values ('Infantil');
 insert into categoria (TipoCategoria) values ('Comida');
 
+--Insert local;
+insert into local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria)
+values ("Local1", 1, "Local de Prueba para funcionalidad", "images/Locales/prueba.png", 1);
+
 --Insert producto;
 insert into producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock)
 values ("Celular Samsung Galaxy S6", 1700000, "Samsung", 1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","images/Productos/prueba.png", 2);
 
 insert into producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock)
 values ("Xbox One", 2300000, "Microsoft", 1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","images/Productos/prueba2.jpg", 0);
+
+--Relación llaves foráneas;
+alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
+alter table local add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
+alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
+alter table compra add foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
+alter table compra add foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
+alter table compra add foreign key(IDProducto) references producto(IDProducto) ON DELETE CASCADE;
+alter table compra add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
+alter table envio add foreign key(IDEstado) references estado(IDEstado) ON DELETE CASCADE;
+alter table envio add foreign key(IDCompra) references compra(IDCompra) ON DELETE CASCADE;
+alter table cliente add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
+alter table Vendedor add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
+alter table premio add foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
+alter table cliente_premio add foreign key(IDCliente) references cliente(IDCliente);
+alter table cliente_premio add foreign key(IDPremio) references premio(IDPremio);
