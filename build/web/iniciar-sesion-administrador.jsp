@@ -21,7 +21,7 @@
 
     <body id="cuerpo">
         <nav>
-            <div class="nav-wrapper lime darken-1">
+            <div class="nav-wrapper light-green">
                 <div class="col s12">
                     <div id="principal-nav">
                         <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
@@ -31,7 +31,7 @@
         </nav>
         <div class="block" id="blockrc">
             <div class="card-panel">
-                <form action="ControladorCliente" method="post">
+                <form action="ControladorAdministrador" method="post">
                     <input type="hidden" name="instruccion" value="validarAdministrador">
                     <div class="row">
                         <div class="col s10">

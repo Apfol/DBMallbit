@@ -48,8 +48,6 @@ public class ControladorAdministrador extends HttpServlet {
             case "validarAdministrador":
                 validarAdministrador(request, response);
                 break;
-            default:
-                break;
         }
     }
 

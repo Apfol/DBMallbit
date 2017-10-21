@@ -24,7 +24,7 @@
     <body id="cuerpo" class="lime darken-1">
         
         <nav>
-            <div class="nav-wrapper lime darken-1">
+            <div class="nav-wrapper light-green">
                 <div class="col s12">
                     <div id="principal-nav">
                         <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
