@@ -23,12 +23,17 @@
                 </div>
             </div>
         </nav>
+        <% 
+            
+        %>
         <% String valor = (String) request.getParameter("i");%>
+        <% String local = (String) request.getParameter("o");%>
         <div class="block" id="blockrc">
             <div class="card-panel">
                 <form action="ControladorCliente" method="post">
                     <input type="hidden" name="instruccion" value="validarCliente">
                     <input type="hidden" name="interfaz" value="<%= valor%>">
+                    <input type="hidden" name="local" value="<%= local%>">
                     <div class="row">
                         <div class="col s10">
                             <p style="font-size: 30px" id="titleis">Inicio de sesión</p>

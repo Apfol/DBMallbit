@@ -24,8 +24,7 @@ public class Vendedor {
     private Date fechaNacimiento;
     private int idGenero;
 
-    public Vendedor(int id, String nombre, String apellido, String correo, long identificacion, long telefono, String usuario, String contraseña, Date fechaNacimiento, int idGenero) {
-        this.id = id;
+    public Vendedor(String nombre, String apellido, String correo, long identificacion, long telefono, String usuario, String contraseña, Date fechaNacimiento, int idGenero) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
@@ -37,14 +36,15 @@ public class Vendedor {
         this.idGenero = idGenero;
     }
 
-    public Vendedor(String nombre, String apellido, String correo, long identificacion, long telefono, String usuario, String contraseña, Date fechaNacimiento, int idGenero) {
+    Vendedor(int id, String nombre, String apellido, Date fechaNacimiento, String correo, Long identificacion, Long telefono, String usuario, String password, int idGenero) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.identificacion = identificacion;
         this.telefono = telefono;
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contraseña = password;
         this.fechaNacimiento = fechaNacimiento;
         this.idGenero = idGenero;
     }

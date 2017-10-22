@@ -53,7 +53,7 @@ public class ModeloVendedor {
             Date fechaNacimiento = resultSet.getDate("FechaNacimiento");
             int idGenero = resultSet.getInt("IDGenero");
 
-            vendedores.add(new Vendedor(id, nombre, apellido, correo, identificacion, telefono, usuario, contraseña, fechaNacimiento, idGenero));
+            vendedores.add(new Vendedor(id, nombre, apellido, fechaNacimiento, correo, identificacion, telefono, usuario, contraseña, idGenero));
 
         }
         return vendedores;
@@ -134,6 +134,45 @@ public class ModeloVendedor {
             password.setString(2, vendedor.getUsuario());
             password.executeUpdate();
         }
+    }
+
+    public Vendedor obtenerVendedorL(String local) throws SQLException {
+        
+        Vendedor vendedor = null;
+        
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement
+        String sentenciaSQL = "SELECT * FROM vendedor v INNER JOIN local l ON v.IDVendedor=l.IDVendedor WHERE l.IDLocal=?";
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+        preparedStatement.setString(1, local);
+
+        //Ejecutar SQL
+        resultSet = preparedStatement.executeQuery();
+
+        //Recorrer resultados de la sentencia mientras existan
+        while (resultSet.next()) {
+        	
+            int id = resultSet.getInt("IDVendedor");
+            String nombre = resultSet.getString("Nombre");
+            String apellido = resultSet.getString("Apellido");
+            Date fechaNacimiento = resultSet.getDate("FechaNacimiento");
+            String correo = resultSet.getString("correo");
+            Long identificacion = resultSet.getLong("Identificacion");
+            Long telefono = resultSet.getLong("Telefono");
+            String usuario = resultSet.getString("Usuario");
+            String password = resultSet.getString("Password");
+            int idGenero = resultSet.getInt("IDGenero");
+
+            vendedor = new Vendedor(id, nombre, apellido, fechaNacimiento, correo, identificacion, telefono, usuario, password, idGenero);
+
+        }
+        return vendedor;
     }
 }
 

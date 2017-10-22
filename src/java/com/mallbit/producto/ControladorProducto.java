@@ -9,6 +9,8 @@ import com.mallbit.cliente.Cliente;
 import com.mallbit.cliente.ModeloCliente;
 import com.mallbit.local.Local;
 import com.mallbit.local.ModeloLocal;
+import com.mallbit.vendedor.ModeloVendedor;
+import com.mallbit.vendedor.Vendedor;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -31,38 +33,68 @@ public class ControladorProducto extends HttpServlet {
     ModeloProducto modeloProducto = new ModeloProducto();
     ModeloCliente modeloCliente = new ModeloCliente();
     ModeloLocal modeloLocal = new ModeloLocal();
+    ModeloVendedor modeloVendedor = new ModeloVendedor();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, IOException {
         
+        String local = request.getParameter("idlocal");
+        if(local == null){
+            listarProductos(request, response);
+        }else{
+            listarProductosL(request, response, local);
+        }
+    }
+
+    private void listarProductos(HttpServletRequest request, HttpServletResponse response){
         try {
-            List<Producto> productos = null;
-            String local = request.getParameter("local");
-            if (local == null) {
-                productos = modeloProducto.getProductos();
-            }else{
-                productos = modeloProducto.getProductos(local);
-            }
-            Cliente c = null;
-            String usuario = request.getParameter("user");
+            List<Producto> productos = modeloProducto.getProductos();
+            //Agregar clientes al request
+            request.setAttribute("LISTAPRODUCTOS", productos);
+            //Enviar request a la pagina que se desea
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-local.jsp");
+            requestDispatcher.forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void listarProductosL(HttpServletRequest request, HttpServletResponse response, String local){
+        try {
+            List<Producto> productos = modeloProducto.getProductos(local);
+            List<Local> locales = modeloLocal.obtenerLocalesDB();
             List<Cliente> clientes = modeloCliente.obtenerClientesDB();
+            Vendedor vendedor = modeloVendedor.obtenerVendedorL(local);
+            
+            Cliente c = null;
+            Local l = null;
+            String usuario = request.getParameter("user");
             for (Cliente cliente : clientes) {
                 if (cliente.getUsuario().equals(usuario)) {
                     c = cliente;
                     break;
                 }
             }
+            for (Local buscado : locales) {
+                if (local.equals(Integer.toString(buscado.getId())));
+                l = buscado;
+                break;
+            }
+            
+            //Crear sesion del cliente
             HttpSession session = request.getSession();
             session.setAttribute("CLIENTE_SESSION", c);
-            //Agregar clientes al request
+            //Agregar objetos al request
             request.setAttribute("LISTAPRODUCTOS", productos);
+            request.setAttribute("LOCAL", l);
+            request.setAttribute("VENDEDOR", vendedor);
             //Enviar request a la pagina que se desea
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-local.jsp");
             requestDispatcher.forward(request, response);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
