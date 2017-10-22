@@ -13,6 +13,8 @@ import java.util.Date;
  */
 public class Administrador {
     
+    public static final String ADMINISTRADOR_COOKIE = "administrador";
+    
     private int id;
     private String nombre;
     private String apellido;

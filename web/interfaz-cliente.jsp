@@ -26,7 +26,7 @@
                     <div id="principal-nav">
                         <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="index.jsp" onclick="<% session.invalidate(); %>"><i class="material-icons left">exit_to_app</i>Salir</a></li>
+                            <li><a href="index.jsp"><i class="material-icons left">home</i>Página principal</a></li>
                         </ul>
                     </div>
                 </div>

@@ -9,6 +9,8 @@ import java.util.Date;
 
 public class Cliente {
     
+    public static final String CLIENTE_COOKIE = "cliente";
+    
     private int id;
     private String nombre;
     private String apellido;

@@ -5,6 +5,7 @@
  */
 package com.mallbit.administrador;
 
+import com.mallbit.cookies.ControladorCookie;
 import com.mallbit.genero.Genero;
 import com.mallbit.genero.ModeloGenero;
 import java.io.IOException;
@@ -15,7 +16,6 @@ import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -107,11 +107,7 @@ public class ControladorAdministrador extends HttpServlet {
 
                 //Guardar id del administrador en una cookie
                 int idAdministrador = administradores.get(administradores.size() - 1).getId();
-                Cookie cookieAdministrador = new Cookie("administrador", String.valueOf(idAdministrador));
-                cookieAdministrador.setMaxAge(30 * 12 * 60 * 60);// Duración de 30 días
-                cookieAdministrador.setPath("/");
-                response.addCookie(cookieAdministrador);
-
+                ControladorCookie.crearCookie(idAdministrador, Administrador.ADMINISTRADOR_COOKIE, response);
                 response.sendRedirect("interfaz-administrador.jsp");
             }
 
@@ -148,10 +144,7 @@ public class ControladorAdministrador extends HttpServlet {
             switch (estado) {
                 case "correcto":
                     //Guardar id del administrador en una cookie
-                    Cookie cookieAdministrador = new Cookie("administrador", String.valueOf(a.getId()));
-                    cookieAdministrador.setMaxAge(30 * 12 * 60 * 60);// Duración de 30 días
-                    cookieAdministrador.setPath("/");
-                    response.addCookie(cookieAdministrador);
+                    ControladorCookie.crearCookie(a.getId(), Administrador.ADMINISTRADOR_COOKIE, response);
                     response.sendRedirect("interfaz-administrador.jsp");
                     break;
                 case "incorrecto":

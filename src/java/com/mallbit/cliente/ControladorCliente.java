@@ -1,5 +1,6 @@
 package com.mallbit.cliente;
 
+import com.mallbit.cookies.ControladorCookie;
 import com.mallbit.genero.Genero;
 import com.mallbit.genero.ModeloGenero;
 import java.io.IOException;
@@ -11,11 +12,9 @@ import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/ControladorCliente")
 public class ControladorCliente extends HttpServlet {
@@ -117,7 +116,8 @@ public class ControladorCliente extends HttpServlet {
                 clientes = modeloCliente.obtenerClientesDB();
                 //Guardar id del clientes en una cookie
                 int idCliente = clientes.get(clientes.size() - 1).getId();
-                crearCookie(idCliente, response);
+                ControladorCookie.crearCookie(idCliente, Cliente.CLIENTE_COOKIE, response);
+                response.sendRedirect("index.jsp");
             }
 
         } catch (Exception ex) {
@@ -176,20 +176,14 @@ public class ControladorCliente extends HttpServlet {
             switch (estado) {
                 case "correcto":
                     //Guardar id del cliente en una cookie
-                    crearCookie(c.getId(), response);
-                    HttpSession session = request.getSession();
-                    session.setAttribute("CLIENTE_SESSION", c);
-                    RequestDispatcher requestDispatcher = null;
+                    ControladorCookie.crearCookie(c.getId(), Cliente.CLIENTE_COOKIE, response);
                     if (interfaz.equals("1")) {
                         response.sendRedirect("/ControladorProducto?user=" + c.getUsuario() + "&idlocal=" + local);
-                        //requestDispatcher = request.getRequestDispatcher("/ControladorProducto?user=" + c.getUsuario() + "&idlocal=" + local);
                     } else {
                         System.out.println(interfaz);
                         System.out.println("aiuda");
                         response.sendRedirect("index.jsp");
-                        //requestDispatcher = request.getRequestDispatcher("/index.jsp");
                     }
-                    //requestDispatcher.forward(request, response);
                     break;
                 case "incorrecto":
                     request.setAttribute("RESULTADO", estado);
@@ -277,15 +271,6 @@ public class ControladorCliente extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }
-
-    //En ese metodo se guarda el id del cliente de la sesión actual en una cookie.
-    private void crearCookie(int idCliente, HttpServletResponse response) throws IOException {
-        Cookie cookieCliente = new Cookie("clienteID", String.valueOf(idCliente));
-        cookieCliente.setMaxAge(30 * 12 * 60 * 60);// Duración de 30 días
-        cookieCliente.setPath("/");
-        response.addCookie(cookieCliente);
-        response.sendRedirect("index.jsp");
     }
 
 }

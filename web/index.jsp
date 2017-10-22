@@ -1,4 +1,4 @@
-<%@page import="com.mallbit.cookies.GestionCookies"%>
+
 <%@page import="java.util.List"%>
 <%@page import="com.mallbit.cliente.ModeloCliente"%>
 <%@page import="com.mallbit.local.Local"%>
@@ -6,25 +6,29 @@
 <%@page import="com.mallbit.local.ModeloLocal"%>
 <%@page import="com.mallbit.cliente.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-    <%
-        //En esta parte de código lo que se hace es obtener el cliente que tiene el mismo id que se guardo en la cookie.
-        ModeloCliente modeloCliente = new ModeloCliente();
-        List<Cliente> clientes = modeloCliente.obtenerClientesDB();
-        Cliente cliente = null;
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("clienteID")) {
-                for (Cliente client : clientes) {
-                    if (client.getId() == Integer.parseInt(cookie.getValue())) {
-                        cliente = client;
-                        break;
-                    }
+
+<%
+    //En esta parte de código lo que se hace es obtener el cliente que tiene el mismo id que se guardo en la cookie.
+    ModeloCliente modeloCliente = new ModeloCliente();
+    List<Cliente> clientes = modeloCliente.obtenerClientesDB();
+    Cliente cliente = null;
+    Cookie[] cookies = request.getCookies();
+    Cookie cookieCliente = null;
+    for (Cookie cookie : cookies) {
+        if (cookie.getName().equals(Cliente.CLIENTE_COOKIE)) {
+            cookieCliente = cookie;
+            for (Cliente client : clientes) {
+                if (client.getId() == Integer.parseInt(cookie.getValue())) {
+                    cliente = client;
+                    break;
                 }
             }
         }
-    %>
+    }
+%>
+
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -70,7 +74,7 @@
                                     </form>
                                 </li>
                                 <li><a href="sass.html"><i class="material-icons left">shopping_cart</i>Mis Compras</a></li>
-                                <li><a href="index.jsp"><i class="material-icons left">exit_to_app</i>Salir</a></li>
+                                <li><a href="ControladorCookie?objeto=<%= Cliente.CLIENTE_COOKIE %>"><i class="material-icons left">exit_to_app</i>Salir</a></li>
                                     <% }%>
                             </ul>
                         </div>
