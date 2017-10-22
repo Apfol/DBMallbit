@@ -10,7 +10,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%  ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
+    <%  
+        //En esta parte de código lo que se hace es obtener el administrador que tiene el mismo id que se guardo en la cookie.
+        ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
         List<Administrador> administradores = modeloAdministrador.obtenerAdministradoresDB();
         Administrador administrador = null;
         Cookie[] cookies = request.getCookies();

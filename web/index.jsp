@@ -1,3 +1,6 @@
+<%@page import="com.mallbit.cookies.GestionCookies"%>
+<%@page import="java.util.List"%>
+<%@page import="com.mallbit.cliente.ModeloCliente"%>
 <%@page import="com.mallbit.local.Local"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.mallbit.local.ModeloLocal"%>
@@ -5,7 +8,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
+    <%
+        //En esta parte de código lo que se hace es obtener el cliente que tiene el mismo id que se guardo en la cookie.
+        ModeloCliente modeloCliente = new ModeloCliente();
+        List<Cliente> clientes = modeloCliente.obtenerClientesDB();
+        Cliente cliente = null;
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("clienteID")) {
+                for (Cliente client : clientes) {
+                    if (client.getId() == Integer.parseInt(cookie.getValue())) {
+                        cliente = client;
+                        break;
+                    }
+                }
+            }
+        }
+    %>
     <head>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,13 +40,13 @@
     </head>
 
     <body>
-        
-        
+
+
         <%
             ModeloLocal modeloLocal = new ModeloLocal();
-            ArrayList<Local> locales = (ArrayList<Local>)modeloLocal.obtenerLocalesDB();
+            ArrayList<Local> locales = (ArrayList<Local>) modeloLocal.obtenerLocalesDB();
         %>
-        
+
         <!--# NOTE: Comienza parte mostrar barra navegación.-->
         <div id="primera" class="scrollspy">
             <nav class="pushpin-nav z-depth-0" data-target="primera">
@@ -36,13 +55,12 @@
                         <div id="principal-nav">
                             <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <% Cliente cliente = (Cliente) session.getAttribute("CLIENTE_SESSION"); %>
                                 <% if (cliente == null) { %>
                                 <li><a href="iniciar-sesion-cliente.jsp"><i class="material-icons left">people</i>Acceder</a></li>
                                 <li><a href="iniciar-sesion-vendedor.jsp"><i class="material-icons left">local_shipping</i>Vender</a></li>
                                 <li><a href="iniciar-sesion-administrador.jsp"><i class="material-icons left">security</i>Administrar</a></li>
                                 <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
-                                <%} else {%>
+                                    <%} else {%>
                                 <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
                                 <li>
                                     <form method="post" action="ControladorCliente" id="iu">
@@ -52,8 +70,8 @@
                                     </form>
                                 </li>
                                 <li><a href="sass.html"><i class="material-icons left">shopping_cart</i>Mis Compras</a></li>
-                                <li><a href="index.jsp" onclick="<% session.invalidate(); %>"><i class="material-icons left">exit_to_app</i>Salir</a></li>
-                                <% }%>
+                                <li><a href="index.jsp"><i class="material-icons left">exit_to_app</i>Salir</a></li>
+                                    <% }%>
                             </ul>
                         </div>
 
@@ -170,15 +188,15 @@
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
                                 <% for (Local l : locales) { %>
-                                    <% if (l.getIdCategoria() == 1) { %>
-                                        <form action="ControladorProducto" method="post" id="int">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int').submit()"><img id="imgCarrusel" src="<%= l.getNombreImagenPrimaria() %>"></a>
-                                        </form>
-                                    <% } %>
+                                <% if (l.getIdCategoria() == 1) { %>
+                                <form action="ControladorProducto" method="post" id="int">
+                                    <% if (cliente != null) {%>
+                                    <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                    <% }%>
+                                    <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                    <a class="carousel-item" onclick="document.getElementById('int').submit()"><img id="imgCarrusel" src="<%= l.getNombreImagenPrimaria()%>"></a>
+                                </form>
+                                <% } %>
                                 <% }%>
                             </div>
                         </div>
@@ -189,7 +207,7 @@
                 <div class="container center-align">
                     <div class="row">
                         <% for (Local l : locales) { %>
-                        <% if (l.getIdCategoria() == 1) { %>
+                        <% if (l.getIdCategoria() == 1) {%>
                         <div class="col s3">
                             <div class="card small">
                                 <div class="card-image waves-effect waves-block waves-light">
@@ -198,11 +216,11 @@
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
                                     <form action="ControladorProducto" method="post" id="cad">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <p><a onclick="document.getElementById('cad').submit()">Ir al local</a></p>
+                                        <% if (cliente != null) {%>
+                                        <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                        <% }%>
+                                        <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                        <p><a onclick="document.getElementById('cad').submit()">Ir al local</a></p>
                                     </form>   
                                 </div>
                                 <div class="card-reveal">
@@ -629,3 +647,4 @@
     </body>
 
 </html>
+

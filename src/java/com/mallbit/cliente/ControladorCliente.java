@@ -11,6 +11,7 @@ import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +58,7 @@ public class ControladorCliente extends HttpServlet {
     }
 
     private void insertarClienteDB(HttpServletRequest request, HttpServletResponse response) {
-        
+
         try {
 
             //Crear objeto Cliente con los datos recibidos del formulario
@@ -100,26 +101,27 @@ public class ControladorCliente extends HttpServlet {
             }
 
             //Se envia un request al jsp correspondiente segun el caso
-            if(existe.equals("existe")){
+            if (existe.equals("existe")) {
                 List<Genero> generos = modeloGenero.getGeneros();
-                String[] parametros= {existe,nombre,apellido,correo,contraseña,request.getParameter("fechaNacimiento"), request.getParameter("identificacion"), request.getParameter("telefono"),request.getParameter("genero")};
+                String[] parametros = {existe, nombre, apellido, correo, contraseña, request.getParameter("fechaNacimiento"), request.getParameter("identificacion"), request.getParameter("telefono"), request.getParameter("genero")};
                 request.setAttribute("ESTADO", parametros);
                 request.setAttribute("LISTAGENEROS", generos);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/registro-cliente.jsp");
                 requestDispatcher.forward(request, response);
-            }else{
+            } else {
                 Cliente cliente = new Cliente(nombre, apellido, correo, identificacion, telefono, usuario, contraseña, fechaNacimiento, idGenero);
 
                 //Enviar objeto al modelo para guardar en la Base de Datos
                 modeloCliente.agregarClienteDB(cliente);
-                HttpSession session = request.getSession();
-                session.setAttribute("CLIENTE_SESSION", cliente);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
-                requestDispatcher.forward(request, response);
+                //Actualiza lista de clientes con el que se acaba de ingresar
+                clientes = modeloCliente.obtenerClientesDB();
+                //Guardar id del clientes en una cookie
+                int idCliente = clientes.get(clientes.size() - 1).getId();
+                crearCookie(idCliente, response);
             }
 
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         }
 
     }
@@ -173,18 +175,21 @@ public class ControladorCliente extends HttpServlet {
 
             switch (estado) {
                 case "correcto":
+                    //Guardar id del cliente en una cookie
+                    crearCookie(c.getId(), response);
                     HttpSession session = request.getSession();
                     session.setAttribute("CLIENTE_SESSION", c);
                     RequestDispatcher requestDispatcher = null;
-                    
-                    if(interfaz.equals("1")){
-                        requestDispatcher = request.getRequestDispatcher("/ControladorProducto?user="+c.getUsuario()+"&idlocal="+local);
-                    }else{
+                    if (interfaz.equals("1")) {
+                        response.sendRedirect("/ControladorProducto?user=" + c.getUsuario() + "&idlocal=" + local);
+                        //requestDispatcher = request.getRequestDispatcher("/ControladorProducto?user=" + c.getUsuario() + "&idlocal=" + local);
+                    } else {
                         System.out.println(interfaz);
                         System.out.println("aiuda");
-                        requestDispatcher = request.getRequestDispatcher("/index.jsp");
+                        response.sendRedirect("index.jsp");
+                        //requestDispatcher = request.getRequestDispatcher("/index.jsp");
                     }
-                    requestDispatcher.forward(request, response);
+                    //requestDispatcher.forward(request, response);
                     break;
                 case "incorrecto":
                     request.setAttribute("RESULTADO", estado);
@@ -274,8 +279,13 @@ public class ControladorCliente extends HttpServlet {
         }
     }
 
-    private void sesionIL(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //En ese metodo se guarda el id del cliente de la sesión actual en una cookie.
+    private void crearCookie(int idCliente, HttpServletResponse response) throws IOException {
+        Cookie cookieCliente = new Cookie("clienteID", String.valueOf(idCliente));
+        cookieCliente.setMaxAge(30 * 12 * 60 * 60);// Duración de 30 días
+        cookieCliente.setPath("/");
+        response.addCookie(cookieCliente);
+        response.sendRedirect("index.jsp");
     }
 
 }
