@@ -15,6 +15,7 @@ import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,10 +30,6 @@ public class ControladorAdministrador extends HttpServlet {
 
     private final ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
     private final ModeloGenero modeloGenero = new ModeloGenero();
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -106,10 +103,17 @@ public class ControladorAdministrador extends HttpServlet {
 
                 //Enviar objeto al modelo para guardar en la Base de Datos
                 modeloAdministrador.agregarAdministradorDB(administrador);
-                HttpSession session = request.getSession();
-                session.setAttribute("ADMINISTRADOR_SESSION", administrador);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-administrador.jsp");
-                requestDispatcher.forward(request, response);
+                //Actualiza lista de administradores con el que se acaba de ingresar
+                administradores = modeloAdministrador.obtenerAdministradoresDB();
+
+                //Guardar id del administrador en una cookie
+                int idAdministrador = administradores.get(administradores.size() - 1).getId();
+                Cookie cookieAdministrador = new Cookie("administrador", String.valueOf(idAdministrador));
+                cookieAdministrador.setMaxAge(30 * 12 * 60 * 60);// Duración de 30 días
+                cookieAdministrador.setPath("/");
+                response.addCookie(cookieAdministrador);
+
+                response.sendRedirect("interfaz-administrador.jsp");
             }
 
         } catch (Exception ex) {
@@ -144,10 +148,12 @@ public class ControladorAdministrador extends HttpServlet {
 
             switch (estado) {
                 case "correcto":
-                    HttpSession session = request.getSession();
-                    session.setAttribute("ADMINISTRADOR_SESSION", a);
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-administrador.jsp");
-                    requestDispatcher.forward(request, response);
+                    //Guardar id del administrador en una cookie
+                    Cookie cookieAdministrador = new Cookie("administrador", String.valueOf(a.getId()));
+                    cookieAdministrador.setMaxAge(30 * 12 * 60 * 60);// Duración de 30 días
+                    cookieAdministrador.setPath("/");
+                    response.addCookie(cookieAdministrador);
+                    response.sendRedirect("interfaz-administrador.jsp");
                     break;
                 case "incorrecto":
                     request.setAttribute("RESULTADO", estado);

@@ -21,10 +21,10 @@
         <title>Registro Administrador</title>
     </head>
 
-    <body id="cuerpo" class="lime darken-1">
+    <body id="cuerpoA">
         
         <nav>
-            <div class="nav-wrapper light-green">
+            <div class="nav-wrapper light-green darken-1">
                 <div class="col s12">
                     <div id="principal-nav">
                         <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <div class="center-align">
-                        <button class="btn waves-effect waves-light lime lighten-2 black-text" type="submit" name="action">
+                        <button class="btn waves-effect waves-light light-green darken-1 black-text" type="submit" name="action">
                             Registrar
                         </button>
                     </div>
@@ -185,7 +185,7 @@
                         </div>
                     </div>
                     <div class="center-align">
-                        <button class="btn waves-effect waves-light lime lighten-2 black-text" type="submit" name="action">
+                        <button class="btn waves-effect waves-light light-green darken-1 black-text" type="submit" name="action">
                             Registrar
                         </button>
                     </div>

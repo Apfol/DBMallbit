@@ -27,14 +27,10 @@ public class ControladorVendedor extends HttpServlet {
    
     private ModeloVendedor modeloVendedor = new ModeloVendedor();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
         //Leer parametro (value) del input hidden del formulario
         String parametro = request.getParameter("instruccion");
         //Ejecutar método segun valor del parametro

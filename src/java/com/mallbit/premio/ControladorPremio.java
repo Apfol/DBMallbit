@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mallbit.local;
+package com.mallbit.premio;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -19,106 +18,95 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 /**
  *
  * @author Andres Ramos
  */
-@WebServlet(name = "ControladorLocal", urlPatterns = {"/ControladorLocal"})
+@WebServlet(name = "ControladorPremio", urlPatterns = {"/ControladorPremio"})
 @MultipartConfig
-public class ControladorLocal extends HttpServlet {
+public class ControladorPremio extends HttpServlet {
+
+    ModeloPremio modeloPremio = new ModeloPremio();
     
-    ModeloLocal modeloLocal = new ModeloLocal();
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         //Leer parametro (value) del input hidden del formulario
         String parametro = request.getParameter("instruccion");
 
         //Ejecutar método según valor del parametro
         switch (parametro) {
-            case "listarLocales":
-                listarLocalesDB(request, response);
+            case "listarPremios":
+                listarPremios(request, response);
                 break;
-            case "insertarLocal":
-                insertarLocalesDB(request, response);
+            case "insertarPremio":
+                insertarPremio(request, response);
                 break;
-            case "validarLocal":
-
+            case "actualizarPremio":
+                actualizarCliente(request, response);
                 break;
-            case "actualizarLocal":
-
-                break;
-            case "borrarLocal":
-
+            case "borrarPremio":
+                borrarCliente(request, response);
                 break;
             default:
                 break;
         }
     }
+    
+  
+    private void listarPremios(HttpServletRequest request, HttpServletResponse response) {
 
-    private void listarLocalesDB(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            //Obtener lista de locales
-            List<Local> locales;
-
-            locales = modeloLocal.obtenerLocalesDB();
-
-            //Agregar lista de locales al Request
-            request.setAttribute("LISTALOCALES", locales);
-
-            //Enviar request al JSP correspondiente
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 
-    private void insertarLocalesDB(HttpServletRequest request, HttpServletResponse response) {
-
+    private void insertarPremio(HttpServletRequest request, HttpServletResponse response) {
         try {
-
-            //Crear objeto Local con los datos recibidos del formulario   
+            //Crear objeto Premio con los datos recibidos del formulario     
             String nombre = request.getParameter("nombre");
             String descripcion = request.getParameter("descripcion");
-            String nombreImagenPrimaria = guardarImagenObtenerNombre(request, "imagenPrincipal", nombre);
-            String nombreImagenSecundaria = guardarImagenObtenerNombre(request, "imagenSecundaria", nombre);;
+            String nombreImagen = guardarImagenObtenerNombre(request, "imagenPrincipal", nombre);
+            int puntos = Integer.parseInt(request.getParameter("puntos"));
+            int idAdministrador = Integer.parseInt(request.getParameter("admin"));
 
-            Local local = new Local(nombre, descripcion, nombreImagenPrimaria, nombreImagenSecundaria);
+            Premio premio = new Premio(nombre, descripcion, nombreImagen, puntos, idAdministrador);
 
             //Enviar objeto al modelo para guardar en la Base de Datos
-            modeloLocal.agregarLocalDB(local);
-
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+            modeloPremio.agregarPremioDB(premio);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-administrador.jsp");
             requestDispatcher.forward(request, response);
-            /*}*/
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    
-//    Con este método las imagenes que se suban al formulario
-//    seran guardadas en la carpeta images/locales y se obtiene
-//    el nombre de la imagen como una concatenación del nombre
-//    del local y el nombre de la imagen que se subio, los nombres
-//    de las imagenes se guardan en la base de datos para despues 
-//    poder manipularlas
-    private String guardarImagenObtenerNombre(HttpServletRequest request, String tipoImagen, String nombreLocal) throws ServletException, IOException {
+    private void actualizarCliente(HttpServletRequest request, HttpServletResponse response) {
+        
+    }
+
+    private void borrarCliente(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    //    Con este método las imagenes que se suban al formulario
+    //    seran guardadas en la carpeta images/premios y se obtiene
+    //    el nombre de la imagen como una concatenación del nombre
+    //    del premio y el nombre de la imagen que se subio, los nombres
+    //    de las imagenes se guardan en la base de datos para despues 
+    //    poder manipularlas
+    private String guardarImagenObtenerNombre(HttpServletRequest request, String tipoImagen, String nombrePremio) throws ServletException, IOException {
         // Obtener dirección a guardar archivo
         String pathServlet = getServletContext().getRealPath("/");
         String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
-        String path = pathProject + "\\web\\images\\locales\\";
+        String path = pathProject + "\\web\\images\\premios\\";
         Part filePart = request.getPart(tipoImagen);
 
         //Obtener nombre archivo
-        String fileName = nombreLocal + "-" + getNombreImagen(filePart);
+        String fileName = nombrePremio + "-" + getNombreImagen(filePart);
 
         OutputStream out = null;
         InputStream filecontent = null;

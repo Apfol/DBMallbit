@@ -19,13 +19,14 @@
         <title>Iniciar Sesión</title>
     </head>
 
-    <body id="cuerpo">
+    <body id="cuerpoA">
         <nav>
-            <div class="nav-wrapper light-green">
+            <div class="nav-wrapper light-green darken-1">
                 <div class="col s12">
                     <div id="principal-nav">
                         <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                     </div>
+
                 </div>
             </div>
         </nav>
@@ -54,7 +55,7 @@
                         <label for="contraseña">Contraseña</label>
                     </div>
                     <div class="center-align">
-                        <button class="waves-effect waves-light btn lime lighten-2 black-text" type="submit">Iniciar sesión</button>
+                        <button class="waves-effect waves-light btn light-green darken-1 black-text" type="submit">Iniciar sesión</button>
                     </div>
                 </form>
                 <br>
@@ -80,7 +81,7 @@
                 <% }%>
                 <div class="center-align" id="register">
                     ¿No tienes una cuenta?
-                    <a href="ControladorGenero?instruccion=<%= Genero.GENERO_ADMINISTRADOR %>">
+                    <a href="ControladorGenero?instruccion=<%= Genero.GENERO_ADMINISTRADOR%>">
                         Regístrate
                     </a>
                 </div>
