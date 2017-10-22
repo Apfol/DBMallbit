@@ -48,7 +48,7 @@
                     <div id="principal-nav">
                         <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="interfaz-administrador.jsp" onclick="<% session.invalidate();%>"><i class="material-icons left">exit_to_app</i>Salir</a></li>
+                            <li><a href="index.jsp"><i class="material-icons left">exit_to_app</i>Salir</a></li>
                         </ul>
                     </div>
                 </div>
@@ -130,6 +130,7 @@
         <!--Import jQuery before materialize.js-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script src="js/script.js"></script>
         <script src="js/script-administrador.js"></script>
     </body>
 
