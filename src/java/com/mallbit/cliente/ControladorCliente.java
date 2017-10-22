@@ -24,10 +24,7 @@ public class ControladorCliente extends HttpServlet {
     private ModeloCliente modeloCliente = new ModeloCliente();
     private ModeloGenero modeloGenero = new ModeloGenero();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //Leer parametro (value) del input hidden del formulario
@@ -60,7 +57,7 @@ public class ControladorCliente extends HttpServlet {
     }
 
     private void insertarClienteDB(HttpServletRequest request, HttpServletResponse response) {
-
+        
         try {
 
             //Crear objeto Cliente con los datos recibidos del formulario
@@ -204,7 +201,6 @@ public class ControladorCliente extends HttpServlet {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 
     private void actualizarClienteDB(HttpServletRequest request, HttpServletResponse response) {

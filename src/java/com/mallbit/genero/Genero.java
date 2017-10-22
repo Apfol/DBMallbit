@@ -4,12 +4,13 @@ public class Genero {
 
     public static final int GENERO_CLIENTE = 0;
     public static final int GENERO_VENDEDOR = 1;
+    public static final int GENERO_ADMINISTRADOR = 2;
 
-    private int idGenero;
+    private int id;
     private String genero;
 
     public Genero(int idGenero, String genero) {
-        this.idGenero = idGenero;
+        this.id = idGenero;
         this.genero = genero;
     }
 
@@ -18,11 +19,11 @@ public class Genero {
     }
 
     public int getIdGenero() {
-        return idGenero;
+        return id;
     }
 
     public void setIdGenero(int idGenero) {
-        this.idGenero = idGenero;
+        this.id = idGenero;
     }
 
     public String getGenero() {
@@ -35,7 +36,7 @@ public class Genero {
 
     @Override
     public String toString() {
-        return "Genero [idGenero=" + idGenero + ", genero=" + genero + "]";
+        return "Genero [idGenero=" + id + ", genero=" + genero + "]";
     }
 
 }

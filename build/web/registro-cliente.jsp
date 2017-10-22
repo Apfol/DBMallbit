@@ -42,7 +42,8 @@
                 </div>
                 <%String[] estado = (String[]) request.getAttribute("ESTADO"); %>
                 <%if (request.getAttribute("ESTADO") == null) {%>
-                <!--Formulario registro por primera vez--><form action="ControladorCliente" onsubmit="return validar()" method="post" class="col s12">
+                <!--Formulario registro por primera vez-->
+                <form action="ControladorCliente" onsubmit="return validar()" method="post" class="col s12">
                     <input type="hidden" name="instruccion" value="insertarCliente"/>
                     <div class="row">
                         <div class="col s6 input-field">

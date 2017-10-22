@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -29,18 +28,12 @@ import javax.servlet.http.Part;
 @WebServlet(name = "ControladorLocal", urlPatterns = {"/ControladorLocal"})
 @MultipartConfig
 public class ControladorLocal extends HttpServlet {
-
-
+    
     ModeloLocal modeloLocal = new ModeloLocal();
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
 
         //Leer parametro (value) del input hidden del formulario
         String parametro = request.getParameter("instruccion");

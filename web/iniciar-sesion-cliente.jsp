@@ -1,5 +1,4 @@
 <%@page import="com.mallbit.genero.Genero"%>
-<%@page import="sun.util.calendar.BaseCalendar.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" style="overflow-y: hidden">
@@ -15,12 +14,11 @@
     </head>
 
     <body id="cuerpo">
-        <nav class="pushpin-nav" data-target="primera">
+        <nav>
             <div class="nav-wrapper lime darken-1">
                 <div class="col s12">
                     <div id="principal-nav">
                         <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
-                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     </div>
                 </div>
             </div>
