@@ -1,6 +1,7 @@
 <%@page import="com.mallbit.vendedor.Vendedor"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +36,7 @@
 
         <div style="height: 64px;"></div>
         <%
-            Vendedor interfaz = (Vendedor)session.getAttribute("VENDEDOR_SESSION");
+            Vendedor interfaz = (Vendedor)request.getAttribute("VENDEDOR");
             String nombre = interfaz.getNombre() + " " + interfaz.getApellido();
         %>   
         <div class="row">

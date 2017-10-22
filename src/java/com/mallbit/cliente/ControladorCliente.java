@@ -107,7 +107,7 @@ public class ControladorCliente extends HttpServlet {
                 List<Genero> generos = modeloGenero.getGeneros();
                 String[] parametros= {existe,nombre,apellido,correo,contraseña,request.getParameter("fechaNacimiento"), request.getParameter("identificacion"), request.getParameter("telefono"),request.getParameter("genero")};
                 request.setAttribute("ESTADO", parametros);
-                 request.setAttribute("LISTAGENEROS", generos);
+                request.setAttribute("LISTAGENEROS", generos);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/registro-cliente.jsp");
                 requestDispatcher.forward(request, response);
             }else{
@@ -152,6 +152,7 @@ public class ControladorCliente extends HttpServlet {
             String usuario = request.getParameter("usuario");
             String contraseña = request.getParameter("password");
             String interfaz = request.getParameter("interfaz");
+            String local = request.getParameter("local");
             String estado = "indefinido";
             Cliente c = null;
 
@@ -180,7 +181,7 @@ public class ControladorCliente extends HttpServlet {
                     RequestDispatcher requestDispatcher = null;
                     
                     if(interfaz.equals("1")){
-                        requestDispatcher = request.getRequestDispatcher("/ControladorProducto?user="+c.getUsuario());
+                        requestDispatcher = request.getRequestDispatcher("/ControladorProducto?user="+c.getUsuario()+"&idlocal="+local);
                     }else{
                         System.out.println(interfaz);
                         System.out.println("aiuda");

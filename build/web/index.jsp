@@ -173,9 +173,9 @@
                                     <% if (l.getIdCategoria() == 1) { %>
                                         <form action="ControladorProducto" method="post" id="int">
                                             <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">
-                                            <input type="hidden" name="local" value="<%= l.getId()%>">
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
                                             <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
                                             <a class="carousel-item" onclick="document.getElementById('int').submit()"><img id="imgCarrusel" src="<%= l.getNombreImagenPrimaria() %>"></a>
                                         </form>
                                     <% } %>
