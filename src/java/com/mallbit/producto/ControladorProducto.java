@@ -34,10 +34,17 @@ public class ControladorProducto extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, IOException {
+        
         try {
+            List<Producto> productos = null;
+            String local = request.getParameter("local");
+            if (local == null) {
+                productos = modeloProducto.getProductos();
+            }else{
+                productos = modeloProducto.getProductos(local);
+            }
             Cliente c = null;
-            List<Producto> productos = modeloProducto.getProductos();
             String usuario = request.getParameter("user");
             List<Cliente> clientes = modeloCliente.obtenerClientesDB();
             for (Cliente cliente : clientes) {

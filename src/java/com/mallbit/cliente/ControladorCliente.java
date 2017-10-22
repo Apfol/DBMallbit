@@ -152,6 +152,7 @@ public class ControladorCliente extends HttpServlet {
         try {
             String usuario = request.getParameter("usuario");
             String contraseña = request.getParameter("password");
+            String interfaz = request.getParameter("interfaz");
             String estado = "indefinido";
             Cliente c = null;
 
@@ -177,7 +178,15 @@ public class ControladorCliente extends HttpServlet {
                 case "correcto":
                     HttpSession session = request.getSession();
                     session.setAttribute("CLIENTE_SESSION", c);
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+                    RequestDispatcher requestDispatcher = null;
+                    
+                    if(interfaz.equals("1")){
+                        requestDispatcher = request.getRequestDispatcher("/ControladorProducto?user="+c.getUsuario());
+                    }else{
+                        System.out.println(interfaz);
+                        System.out.println("aiuda");
+                        requestDispatcher = request.getRequestDispatcher("/index.jsp");
+                    }
                     requestDispatcher.forward(request, response);
                     break;
                 case "incorrecto":
@@ -266,6 +275,10 @@ public class ControladorCliente extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void sesionIL(HttpServletRequest request, HttpServletResponse response) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

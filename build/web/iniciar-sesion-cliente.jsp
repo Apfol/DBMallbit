@@ -23,10 +23,17 @@
                 </div>
             </div>
         </nav>
+        <% String valor = (String) request.getParameter("i");%>
         <div class="block" id="blockrc">
             <div class="card-panel">
+<<<<<<< HEAD
                 <form action="ControladorAdministrador" method="post">
                     <input type="hidden" name="instruccion" value="validarAdministrador">
+=======
+                <form action="ControladorCliente" method="post">
+                    <input type="hidden" name="instruccion" value="validarCliente">
+                    <input type="hidden" name="interfaz" value="<%= valor%>">
+>>>>>>> master
                     <div class="row">
                         <div class="col s10">
                             <p style="font-size: 30px" id="titleis">Inicio de sesión</p>
