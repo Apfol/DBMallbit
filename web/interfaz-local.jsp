@@ -1,3 +1,5 @@
+<%@page import="com.mallbit.vendedor.Vendedor"%>
+<%@page import="com.mallbit.local.Local"%>
 <%@page import="com.mallbit.cliente.Cliente"%>
 <%@page import="com.mallbit.producto.Producto"%>
 <%@page import="java.util.List"%>
@@ -21,15 +23,17 @@
     <body id="cuerpopr">
         <% Cliente cliente = (Cliente) session.getAttribute("CLIENTE_SESSION"); %>
         <% List<Producto> productos = (List<Producto>)(request.getAttribute("LISTAPRODUCTOS")); %>
+        <% Local local = (Local) request.getAttribute("LOCAL"); %>
+        <% Vendedor vendedor = (Vendedor) request.getAttribute("VENDEDOR"); %>
         <nav class="pushpin-nav z-depth-5" id="navl">
             <div class="nav-wrapper lime lighten-2">
                 <div class="col s12">
                     <div id="principal-nav">
-                        <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
+                        <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>                        
                                 <% if (cliente == null) { %>
-                            <li><a href="iniciar-sesion-cliente.jsp?i=1"><i class="material-icons left">people</i>Acceder</a></li>
+                            <li><a href="iniciar-sesion-cliente.jsp?i=1&o=<%= local.getId() %>"><i class="material-icons left">people</i>Acceder</a></li>
                                 <% } else {%>
                             <li>
                                 <form method="post" action="ControladorCliente" id="iu">
@@ -70,10 +74,10 @@
                     <div class="col s12 m7">
                         <div class="card z-depth-5" id="cardlocal">
                             <div class="card-image">
-                                <img src="css/fondo-entretenimiento.jpg" id="imagencard">
+                                <img src="<%= local.getNombreImagenPrimaria() %>" id="imagencard">
                             </div>
                             <div class="card-content" id="titulolocal">
-                                <p>Nombre Local</p>
+                                <p><%= local.getNombre() %></p>
                             </div>
                             <div class="col s12 m7">
                                 <div class="card horizontal" id="cardft">
@@ -114,8 +118,8 @@
                                     </div>
                                     <div class="col s9">
                                 <span id="textoct"><b>Contacto</b><br>
-                                Teléfono: 3104567843<br>
-                                Correo: hola@ejemplo.com</span>
+                                Teléfono: <%= vendedor.getTelefono() %><br>
+                                Correo: <%= vendedor.getCorreo() %></span>
                                         </div>
                                     </div>
                             </div>

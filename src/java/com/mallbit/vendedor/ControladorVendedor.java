@@ -103,8 +103,7 @@ public class ControladorVendedor extends HttpServlet {
 
             //Enviar objeto al modelo para guardar en la Base de Datos
             modeloVendedor.agregarVendedorDB(vendedor);
-            HttpSession session = request.getSession(true);
-            session.setAttribute("VENDEDOR_SESSION", vendedor);
+            request.setAttribute("VENDEDOR", vendedor);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-vendedor.jsp");
             requestDispatcher.forward(request, response);
 
@@ -160,7 +159,7 @@ public class ControladorVendedor extends HttpServlet {
 
             switch (estado) {
                 case "correcto":
-                    request.setAttribute("VENDEDOR_SESSION", v);
+                    request.setAttribute("VENDEDOR", v);
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-vendedor.jsp");
                     requestDispatcher.forward(request, response);
                     break;

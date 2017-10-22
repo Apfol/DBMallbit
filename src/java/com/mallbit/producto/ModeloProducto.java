@@ -69,7 +69,7 @@ public class ModeloProducto {
         preparedStatement.setString(1, local);
 
         //Ejecutar SQL
-        resultSet = preparedStatement.executeQuery(sentenciaSQL);
+        resultSet = preparedStatement.executeQuery();
 
         //Recorrer resultados de la sentencia mientras existan
         while (resultSet.next()) {
