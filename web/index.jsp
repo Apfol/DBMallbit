@@ -186,70 +186,33 @@
                 </div>
 
                 <!--# NOTE: Entretenimiento, comienza parte mostrar locales.-->
-                <div class="container">
+                <div class="container center-align">
                     <div class="row">
+                        <% for (Local l : locales) { %>
+                        <% if (l.getIdCategoria() == 1) { %>
                         <div class="col s3">
                             <div class="card small">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://image.freepik.com/free-vector/multicolor-logo-template_1195-41.jpg">
+                                    <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">DIGITAL IDEA<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
+                                    <span class="card-title activator grey-text text-darken-4"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
+                                    <form action="ControladorProducto" method="post" id="cad">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <p><a onclick="document.getElementById('cad').submit()">Ir al local</a></p>
+                                    </form>   
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                    <span class="card-title grey-text text-darken-4">Descripción<i class="material-icons right">close</i></span>
+                                    <p><%= l.getDescripcion()%></p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="http://img.freepik.com/free-vector/software-logo_1103-316.jpg?size=338&ext=jpg">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
+                        <% }%>
                     </div>
                 </div>
             </div>
