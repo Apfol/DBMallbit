@@ -1,5 +1,6 @@
 package com.mallbit.cliente;
 
+import com.mallbit.administrador.Administrador;
 import com.mallbit.cookies.ControladorCookie;
 import com.mallbit.genero.Genero;
 import com.mallbit.genero.ModeloGenero;
@@ -12,6 +13,7 @@ import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -271,6 +273,22 @@ public class ControladorCliente extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public Cliente obtenerClienteCookie(List<Cliente> clientes, HttpServletRequest request) {
+        Cliente cliente = null;
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(Cliente.CLIENTE_COOKIE)) {
+                for (Cliente client : clientes) {
+                    if (client.getId() == Integer.parseInt(cookie.getValue())) {
+                        cliente = client;
+                        break;
+                    }
+                }
+            }
+        }
+        return cliente;
     }
 
 }

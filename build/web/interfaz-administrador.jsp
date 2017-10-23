@@ -4,6 +4,7 @@
     Author     : Andres Ramos
 --%>
 
+<%@page import="com.mallbit.administrador.ControladorAdministrador"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mallbit.administrador.ModeloAdministrador"%>
 <%@page import="com.mallbit.administrador.Administrador"%>
@@ -12,18 +13,7 @@
     //En esta parte de código lo que se hace es obtener el administrador que tiene el mismo id que se guardo en la cookie.
     ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
     List<Administrador> administradores = modeloAdministrador.obtenerAdministradoresDB();
-    Administrador administrador = null;
-    Cookie[] cookies = request.getCookies();
-    for (Cookie cookie : cookies) {
-        if (cookie.getName().equals(Administrador.ADMINISTRADOR_COOKIE)) {
-            for (Administrador admin : administradores) {
-                if (admin.getId() == Integer.parseInt(cookie.getValue())) {
-                    administrador = admin;
-                    break;
-                }
-            }
-        }
-    }
+    Administrador administrador = new ControladorAdministrador().ObtenerAdministradorCookie(administradores, request);
 %>
 <!DOCTYPE html>
 <html>
@@ -116,9 +106,11 @@
                 </div>-->
 
         <div id="actualizarDatosPersonales" class="modal modal-fixed-footer">
-            <div class="modal-content">
-                <h4>Actualización de datos administrador</h4>
-                <form>
+            <form action="ControladorAdministrador" method="post">
+                <div class="modal-content">
+                    <h4>Actualización de datos administrador</h4>
+
+                    <input type="hidden" name="instruccion" value="actualizarAdministrador"/>
                     <div class="row">
                         <div class="col s12 input-field">
                             <i class="material-icons prefix">person</i>
@@ -150,12 +142,12 @@
                             <label for="contraseña">Contraseña</label>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Listo</a>
-            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-action modal-close waves-effect waves-light btn light-green darken-1 black-text" type="submit">Actualizar datos</button>
+                </div>
+            </form>
         </div>
 
         <div class="tap-target" data-activates="elementosAdmin">

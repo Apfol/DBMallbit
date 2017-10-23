@@ -1,3 +1,4 @@
+<%@page import="com.mallbit.vendedor.ControladorVendedor"%>
 <%@page import="com.mallbit.vendedor.ModeloVendedor"%>
 <%@page import="com.mallbit.vendedor.Vendedor"%>
 <%@page import="java.util.Date"%>
@@ -7,18 +8,7 @@
     //En esta parte de código lo que se hace es obtener el vendedor que tiene el mismo id que se guardo en la cookie.
     ModeloVendedor modeloVendedor = new ModeloVendedor();
     List<Vendedor> vendedores = modeloVendedor.obtenerVendedoresDB();
-    Vendedor vendedor = null;
-    Cookie[] cookies = request.getCookies();
-    for (Cookie cookie : cookies) {
-        if (cookie.getName().equals(Vendedor.VENDEDOR_COOKIE)) {
-            for (Vendedor seller : vendedores) {
-                if (seller.getId() == Integer.parseInt(cookie.getValue())) {
-                    vendedor = seller;
-                    break;
-                }
-            }
-        }
-    }
+    Vendedor vendedor = new ControladorVendedor().obtenerVendedorCookie(vendedores, request);
 %>
 <!DOCTYPE html>
 <html lang="en">

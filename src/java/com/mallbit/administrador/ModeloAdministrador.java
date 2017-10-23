@@ -87,6 +87,55 @@ public class ModeloAdministrador {
 
         preparedStatement.execute();
     }
+
+    public void actualizarAdministradorDB(Administrador antiguoAdmin, Administrador nuevoAdmin) throws SQLException {
+        Connection connection;
+        PreparedStatement nombre;
+        PreparedStatement apellido;
+        PreparedStatement telefono;
+        PreparedStatement correo;
+        PreparedStatement password;
+
+        //Establecer la conexión
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement en caso de que los valores no sean nulos y ejecutar
+        if (!antiguoAdmin.getNombre().equals("")) {
+            String sentenciaNombre = "UPDATE administrador SET Nombre=? WHERE IDAdministrador=?";
+            nombre = connection.prepareStatement(sentenciaNombre);
+            nombre.setString(1, nuevoAdmin.getNombre());
+            nombre.setInt(2, antiguoAdmin.getId());
+            nombre.executeUpdate();
+        }
+        if (!antiguoAdmin.getApellido().equals("")) {
+            String sentenciaApellido = "UPDATE administrador SET Apellido=? WHERE IDAdministrador=?";
+            apellido = connection.prepareStatement(sentenciaApellido);
+            apellido.setString(1, nuevoAdmin.getApellido());
+            apellido.setInt(2, antiguoAdmin.getId());
+            apellido.executeUpdate();
+        }
+        if (antiguoAdmin.getTelefono() != 0) {
+            String sentenciaTelefono = "UPDATE administrador SET Telefono=? WHERE IDAdministrador=?";
+            telefono = connection.prepareStatement(sentenciaTelefono);
+            telefono.setLong(1, nuevoAdmin.getTelefono());
+            telefono.setInt(2, antiguoAdmin.getId());
+            telefono.executeUpdate();
+        }
+        if (!antiguoAdmin.getCorreo().equals("")) {
+            String sentenciaCorreo = "UPDATE administrador SET Correo=? WHERE IDAdministrador=?";
+            correo = connection.prepareStatement(sentenciaCorreo);
+            correo.setString(1, nuevoAdmin.getCorreo());
+            correo.setInt(2, antiguoAdmin.getId());
+            correo.executeUpdate();
+        }
+        if (!antiguoAdmin.getContraseña().equals("")) {
+            String sentenciaPassword = "UPDATE administrador SET Password=? WHERE IDAdministrador=?";
+            password = connection.prepareStatement(sentenciaPassword);
+            password.setString(1, nuevoAdmin.getContraseña());
+            password.setInt(2, antiguoAdmin.getId());
+            password.executeUpdate();
+        }
+    }
     
     
 }

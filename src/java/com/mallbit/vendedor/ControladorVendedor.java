@@ -5,7 +5,6 @@
  */
 package com.mallbit.vendedor;
 
-import com.mallbit.administrador.Administrador;
 import com.mallbit.cookies.ControladorCookie;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -15,10 +14,10 @@ import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -108,7 +107,7 @@ public class ControladorVendedor extends HttpServlet {
             int idVendedor = vendedores.get(vendedores.size() - 1).getId();
             ControladorCookie.crearCookie(idVendedor, Vendedor.VENDEDOR_COOKIE, response);
             response.sendRedirect("interfaz-vendedor.jsp");
-            
+
             request.setAttribute("VENDEDOR", vendedor);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-vendedor.jsp");
             requestDispatcher.forward(request, response);
@@ -219,6 +218,22 @@ public class ControladorVendedor extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public Vendedor obtenerVendedorCookie(List<Vendedor> vendedores, HttpServletRequest request) {
+        Vendedor vendedor = null;
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(Vendedor.VENDEDOR_COOKIE)) {
+                for (Vendedor seller : vendedores) {
+                    if (seller.getId() == Integer.parseInt(cookie.getValue())) {
+                        vendedor = seller;
+                        break;
+                    }
+                }
+            }
+        }
+        return vendedor;
     }
 
 }

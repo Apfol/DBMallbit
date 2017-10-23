@@ -150,10 +150,5 @@ public class Cliente {
         this.puntos = puntos;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", identificacion=" + identificacion + ", telefono=" + telefono + ", usuario=" + usuario + ", contrase\u00f1a=" + contraseña + ", fechaNacimiento=" + fechaNacimiento + ", idGenero=" + idGenero + ", puntos=" + puntos + '}';
-    }
-
 }
   

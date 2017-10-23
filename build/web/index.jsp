@@ -1,4 +1,5 @@
 
+<%@page import="com.mallbit.cliente.ControladorCliente"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mallbit.cliente.ModeloCliente"%>
 <%@page import="com.mallbit.local.Local"%>
@@ -11,20 +12,7 @@
     //En esta parte de código lo que se hace es obtener el cliente que tiene el mismo id que se guardo en la cookie.
     ModeloCliente modeloCliente = new ModeloCliente();
     List<Cliente> clientes = modeloCliente.obtenerClientesDB();
-    Cliente cliente = null;
-    Cookie[] cookies = request.getCookies();
-    Cookie cookieCliente = null;
-    for (Cookie cookie : cookies) {
-        if (cookie.getName().equals(Cliente.CLIENTE_COOKIE)) {
-            cookieCliente = cookie;
-            for (Cliente client : clientes) {
-                if (client.getId() == Integer.parseInt(cookie.getValue())) {
-                    cliente = client;
-                    break;
-                }
-            }
-        }
-    }
+    Cliente cliente = new ControladorCliente().obtenerClienteCookie(clientes, request);
 %>
 
 <!DOCTYPE html>

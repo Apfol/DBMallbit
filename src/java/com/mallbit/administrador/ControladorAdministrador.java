@@ -16,6 +16,7 @@ import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +44,9 @@ public class ControladorAdministrador extends HttpServlet {
                 break;
             case "validarAdministrador":
                 validarAdministrador(request, response);
+                break;
+            case "actualizarAdministrador":
+                actualizarAdministrador(request, response);
                 break;
         }
     }
@@ -162,6 +166,44 @@ public class ControladorAdministrador extends HttpServlet {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    private void actualizarAdministrador(HttpServletRequest request, HttpServletResponse response) {
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String usuario = request.getParameter("usuario");
+        String correo = request.getParameter("correo");
+        long telefono = 0;
+        if (!request.getParameter("telefono").equals("")) {
+            telefono = Long.parseLong(request.getParameter("telefono"));
+        }
+        String password = request.getParameter("password");
+        Administrador administrador = new Administrador(nombre, apellido, correo, 0, telefono, usuario, password, null, 0);
+        try {
+            List<Administrador> administradores = modeloAdministrador.obtenerAdministradoresDB();
+            modeloAdministrador.actualizarAdministradorDB(ObtenerAdministradorCookie(administradores, request), administrador);
+
+            response.sendRedirect("interfaz-administrador.jsp");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public Administrador ObtenerAdministradorCookie(List<Administrador> administradores, HttpServletRequest request) {
+        Administrador administrador = null;
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(Administrador.ADMINISTRADOR_COOKIE)) {
+                for (Administrador admin : administradores) {
+                    if (admin.getId() == Integer.parseInt(cookie.getValue())) {
+                        administrador = admin;
+                        break;
+                    }
+                }
+            }
+        }
+        return administrador;
     }
 
 }
