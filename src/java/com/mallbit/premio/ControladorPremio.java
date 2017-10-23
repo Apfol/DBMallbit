@@ -5,12 +5,14 @@
  */
 package com.mallbit.premio;
 
+import com.mallbit.cliente.Cliente;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -29,8 +31,6 @@ import javax.servlet.http.Part;
 public class ControladorPremio extends HttpServlet {
 
     ModeloPremio modeloPremio = new ModeloPremio();
-    
-    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -56,10 +56,24 @@ public class ControladorPremio extends HttpServlet {
                 break;
         }
     }
-    
-  
-    private void listarPremios(HttpServletRequest request, HttpServletResponse response) {
 
+    private void listarPremios(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            //Obtener lista de Clientes
+            List<Premio> premios;
+
+            premios = modeloPremio.obtenerPremiosDB();
+
+            //Agregar lista de clientes al Request
+            request.setAttribute("LISTAPREMIOS", premios);
+
+            //Enviar request al JSP correspondiente
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/interfaz-administrador.jsp");
+            dispatcher.forward(request, response);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void insertarPremio(HttpServletRequest request, HttpServletResponse response) {
@@ -83,7 +97,7 @@ public class ControladorPremio extends HttpServlet {
     }
 
     private void actualizarCliente(HttpServletRequest request, HttpServletResponse response) {
-        
+
     }
 
     private void borrarCliente(HttpServletRequest request, HttpServletResponse response) {
