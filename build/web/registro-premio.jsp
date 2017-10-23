@@ -54,7 +54,7 @@
                         </div>
                         <div class="col s4 input-field">
                             <i class="material-icons prefix">adjust</i>
-                            <input id="puntos" name="puntos" type="text" class="validate">
+                            <input id="puntos" name="puntos" type="number" class="validate">
                             <label for="puntos">Puntos</label>
                         </div>
                     </div>

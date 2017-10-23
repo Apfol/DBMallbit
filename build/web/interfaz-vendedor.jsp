@@ -1,7 +1,25 @@
+<%@page import="com.mallbit.vendedor.ModeloVendedor"%>
 <%@page import="com.mallbit.vendedor.Vendedor"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List" %>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    //En esta parte de c贸digo lo que se hace es obtener el administrador que tiene el mismo id que se guardo en la cookie.
+    ModeloVendedor modeloVendedor = new ModeloVendedor();
+    List<Vendedor> vendedores = modeloVendedor.obtenerVendedoresDB();
+    Vendedor vendedor = null;
+    Cookie[] cookies = request.getCookies();
+    for (Cookie cookie : cookies) {
+        if (cookie.getName().equals(Vendedor.VENDEDOR_COOKIE)) {
+            for (Vendedor seller : vendedores) {
+                if (seller.getId() == Integer.parseInt(cookie.getValue())) {
+                    vendedor = seller;
+                    break;
+                }
+            }
+        }
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,14 +38,14 @@
     </head>
 
     <body id="cuerpov">
-        <!--# NOTE: Comienza parte mostrar barra navegaci髇.-->
+        <!--# NOTE: Comienza parte mostrar barra navegaci贸n.-->
         <nav>
-            <div class="nav-wrapper navV" id="sombra">
+            <div class="nav-wrapper light-blue darken-3">
                 <div class="col s12">
                     <div id="principal-nav">
-                        <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
+                        <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="index.jsp" onclick="<% session.invalidate(); %>"><i class="material-icons left">exit_to_app</i>Salir</a></li>
+                            <li><a href="ControladorCookie?objeto=<%= Vendedor.VENDEDOR_COOKIE %>"><i class="material-icons left">exit_to_app</i>Salir</a></li>
                         </ul>
                     </div>
                 </div>
@@ -35,10 +53,7 @@
         </nav>
 
         <div style="height: 64px;"></div>
-        <%
-            Vendedor interfaz = (Vendedor)request.getAttribute("VENDEDOR");
-            String nombre = interfaz.getNombre() + " " + interfaz.getApellido();
-        %>   
+        <% String nombre = vendedor.getNombre() + " " + vendedor.getApellido(); %>   
         <div class="row">
             <div class="col s8" >
                 <div class="block" id="bloque">
@@ -50,37 +65,37 @@
                         <div id="datos">
                             <div id="datapair">
                                 <p id="datatitle"><b>Usuario</b></p>
-                                <div class="right-align" id="data"><%= interfaz.getUsuario()%></div>
+                                <div class="right-align" id="data"><%= vendedor.getUsuario()%></div>
                             </div>
                             <div id="datapair">
                                 <p id="datatitle"><b>Correo</b></p>
-                                <div class="right-align" id="data"><%= interfaz.getCorreo()%></div>
+                                <div class="right-align" id="data"><%= vendedor.getCorreo()%></div>
                             </div >
                             <div id="datapair">
-                                <p id="datatitle"><b>Identificaci髇</b></p>
-                                <div class="right-align" id="data"><%= interfaz.getIdentificacion()%></div>
+                                <p id="datatitle"><b>Identificaci贸n</b></p>
+                                <div class="right-align" id="data"><%= vendedor.getIdentificacion()%></div>
                             </div >
                             <div id="datapair">
-                                <p id="datatitle"><b>Tel閒ono</b></p>
-                                <div class="right-align" id="data"><%= interfaz.getTelefono()%></div>
+                                <p id="datatitle"><b>Tel茅fono</b></p>
+                                <div class="right-align" id="data"><%= vendedor.getTelefono()%></div>
                             </div >
                             <div id="datapair">
                                 <p id="datatitle"><b>Fecha de Nacimiento</b></p>
-                                <div class="right-align" id="data"><%= interfaz.getFechaNacimiento()%></div>
+                                <div class="right-align" id="data"><%= vendedor.getFechaNacimiento()%></div>
                             </div>
                             <div id="datapair">
-                                <p id="datatitle"><b>G閚ero</b></p>
-                                <div class="right-align" id="data"><% if (interfaz.getIdGenero() == 1) {%>Masculino<%} else {%>Femenino<%}%></div>
+                                <p id="datatitle"><b>G茅nero</b></p>
+                                <div class="right-align" id="data"><% if (vendedor.getIdGenero() == 1) {%>Masculino<%} else {%>Femenino<%}%></div>
                             </div>
                         </div>
                     </div>
                     <div class="card-panel" id="cardpa">
                         <form action="ControladorVendedor" method="post">
                             <input type="hidden" name="instruccion" value="actualizarVendedor"/>
-                            <input type="hidden" name="usuario" value="<%= interfaz.getUsuario()%>">
+                            <input type="hidden" name="usuario" value="<%= vendedor.getUsuario()%>">
                             <div class="center-align" id="cardtop">
-                                <p id="titleis2" class="center-align">Actualizaci髇 de Datos</p>
-                                <p id="subtitleis2" class="center-align"><%= interfaz.getUsuario()%></p><br>
+                                <p id="titleis2" class="center-align">Actualizaci贸n de Datos</p>
+                                <p id="subtitleis2" class="center-align"><%= vendedor.getUsuario()%></p><br>
                             </div>
                             <div id="datos2">
                                 <div class="input-field">
@@ -96,12 +111,12 @@
                                     <input id="correo" name="correo" type="text" class="validate">
                                 </div>
                                 <div class="input-field">
-                                    <label for="telefono">Tel閒ono</label>
+                                    <label for="telefono">Tel茅fono</label>
                                     <input id="telefono" name="telefono" type="tel" maxlength="10" class="validate">
                                 </div>
                                 <div class="input-field">
-                                    <input id="contrase馻" name="password" type="password" class="validate">
-                                    <label for="contrase馻">Contrase馻</label>
+                                    <input id="contrase帽a" name="password" type="password" class="validate">
+                                    <label for="contrase帽a">Contrase帽a</label>
                                 </div>
                             </div>
                             <div class="center-align">

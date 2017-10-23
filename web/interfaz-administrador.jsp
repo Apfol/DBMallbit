@@ -8,25 +8,25 @@
 <%@page import="com.mallbit.administrador.ModeloAdministrador"%>
 <%@page import="com.mallbit.administrador.Administrador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <%  
-        //En esta parte de código lo que se hace es obtener el administrador que tiene el mismo id que se guardo en la cookie.
-        ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
-        List<Administrador> administradores = modeloAdministrador.obtenerAdministradoresDB();
-        Administrador administrador = null;
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("administrador")) {
-                for (Administrador admin : administradores) {
-                    if (admin.getId() == Integer.parseInt(cookie.getValue())) {
-                        administrador = admin;
-                        break;
-                    }
+<%
+    //En esta parte de código lo que se hace es obtener el administrador que tiene el mismo id que se guardo en la cookie.
+    ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
+    List<Administrador> administradores = modeloAdministrador.obtenerAdministradoresDB();
+    Administrador administrador = null;
+    Cookie[] cookies = request.getCookies();
+    for (Cookie cookie : cookies) {
+        if (cookie.getName().equals(Administrador.ADMINISTRADOR_COOKIE)) {
+            for (Administrador admin : administradores) {
+                if (admin.getId() == Integer.parseInt(cookie.getValue())) {
+                    administrador = admin;
+                    break;
                 }
             }
         }
-    %>
+    }
+%>
+<!DOCTYPE html>
+<html>
     <head>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

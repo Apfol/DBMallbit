@@ -18,7 +18,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 /**
@@ -76,8 +75,7 @@ public class ControladorPremio extends HttpServlet {
 
             //Enviar objeto al modelo para guardar en la Base de Datos
             modeloPremio.agregarPremioDB(premio);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-administrador.jsp");
-            requestDispatcher.forward(request, response);
+            response.sendRedirect("interfaz-administrador.jsp");
 
         } catch (Exception ex) {
             ex.printStackTrace();

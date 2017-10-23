@@ -5,6 +5,8 @@
  */
 package com.mallbit.vendedor;
 
+import com.mallbit.administrador.Administrador;
+import com.mallbit.cookies.ControladorCookie;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,13 +26,13 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "ControladorVendedor", urlPatterns = {"/ControladorVendedor"})
 public class ControladorVendedor extends HttpServlet {
-   
+
     private ModeloVendedor modeloVendedor = new ModeloVendedor();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         //Leer parametro (value) del input hidden del formulario
         String parametro = request.getParameter("instruccion");
         //Ejecutar método segun valor del parametro
@@ -99,6 +101,14 @@ public class ControladorVendedor extends HttpServlet {
 
             //Enviar objeto al modelo para guardar en la Base de Datos
             modeloVendedor.agregarVendedorDB(vendedor);
+            //Actualiza lista de vendedor con el que se acaba de ingresar
+            vendedores = modeloVendedor.obtenerVendedoresDB();
+
+            //Guardar id del administrador en una cookie
+            int idVendedor = vendedores.get(vendedores.size() - 1).getId();
+            ControladorCookie.crearCookie(idVendedor, Vendedor.VENDEDOR_COOKIE, response);
+            response.sendRedirect("interfaz-vendedor.jsp");
+            
             request.setAttribute("VENDEDOR", vendedor);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-vendedor.jsp");
             requestDispatcher.forward(request, response);
@@ -155,9 +165,9 @@ public class ControladorVendedor extends HttpServlet {
 
             switch (estado) {
                 case "correcto":
-                    request.setAttribute("VENDEDOR", v);
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-vendedor.jsp");
-                    requestDispatcher.forward(request, response);
+                    //Guardar id del administrador en una cookie
+                    ControladorCookie.crearCookie(v.getId(), Vendedor.VENDEDOR_COOKIE, response);
+                    response.sendRedirect("interfaz-vendedor.jsp");
                     break;
                 case "incorrecto":
                     request.setAttribute("RESULTADO", estado);
@@ -176,7 +186,7 @@ public class ControladorVendedor extends HttpServlet {
         }
 
     }
-    
+
     private void actualizarVendedorDB(HttpServletRequest request, HttpServletResponse response) {
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
@@ -201,7 +211,7 @@ public class ControladorVendedor extends HttpServlet {
                     break;
                 }
             }
-            
+
             request.setAttribute("VENDEDOR_SESSION", buscado);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-vendedor.jsp");
             requestDispatcher.forward(request, response);
@@ -211,6 +221,4 @@ public class ControladorVendedor extends HttpServlet {
         }
     }
 
-
 }
-

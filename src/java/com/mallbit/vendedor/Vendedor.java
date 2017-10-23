@@ -13,6 +13,8 @@ import java.util.Date;
  */
 public class Vendedor {
     
+    public static final String VENDEDOR_COOKIE = "vendedor";
+    
     private int id;
     private String nombre;
     private String apellido;
