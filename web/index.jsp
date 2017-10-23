@@ -74,7 +74,7 @@
                                     </form>
                                 </li>
                                 <li><a href="sass.html"><i class="material-icons left">shopping_cart</i>Mis Compras</a></li>
-                                <li><a href="ControladorCookie?objeto=<%= Cliente.CLIENTE_COOKIE %>"><i class="material-icons left">exit_to_app</i>Salir</a></li>
+                                <li><a href="ControladorCookie?objeto=<%= Cliente.CLIENTE_COOKIE %>"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
                                     <% }%>
                             </ul>
                         </div>

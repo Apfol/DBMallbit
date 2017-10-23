@@ -4,7 +4,7 @@
 <%@page import="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    //En esta parte de código lo que se hace es obtener el administrador que tiene el mismo id que se guardo en la cookie.
+    //En esta parte de código lo que se hace es obtener el vendedor que tiene el mismo id que se guardo en la cookie.
     ModeloVendedor modeloVendedor = new ModeloVendedor();
     List<Vendedor> vendedores = modeloVendedor.obtenerVendedoresDB();
     Vendedor vendedor = null;
@@ -45,7 +45,7 @@
                     <div id="principal-nav">
                         <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="ControladorCookie?objeto=<%= Vendedor.VENDEDOR_COOKIE %>"><i class="material-icons left">exit_to_app</i>Salir</a></li>
+                            <li><a href="ControladorCookie?objeto=<%= Vendedor.VENDEDOR_COOKIE %>"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
