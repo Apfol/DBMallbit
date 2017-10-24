@@ -8,11 +8,7 @@ package com.mallbit.premio;
 import com.mallbit.Conexion.ConexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -41,37 +37,5 @@ public class ModeloPremio {
 
         preparedStatement.execute();
     }
-
-    public List<Premio> obtenerPremiosDB(int idAdmin) throws SQLException {
-        List<Premio> premios = new ArrayList<>();
-
-        Connection connection;
-        Statement statement;
-        ResultSet resultSet;
-
-        //Establecer la conexi�n
-        connection = ConexionDB.conectar();
-
-        //Crear sentencia SQL y statement
-        String sentenciaSQL = "SELECT * FROM premio WHERE IDAdministrador= " + idAdmin;
-        statement = connection.createStatement();
-
-        //Ejecutar SQL y guardar valores de consulta en resultSet
-        resultSet = statement.executeQuery(sentenciaSQL);
-
-        //Recorrer resultador de la sentencia
-        while (resultSet.next()) {
-            int id = resultSet.getInt("IDPremio");
-            String nombre = resultSet.getString("Nombre");
-            String descripcion = resultSet.getString("Descripcion");
-            String nombreImagen = resultSet.getString("NombreImagen");
-            int puntos = resultSet.getInt("puntos");
-            int idAdministrador = resultSet.getInt("IDAdministrador");
-
-            premios.add(new Premio(id, nombre, descripcion, nombreImagen, puntos, idAdministrador));
-
-        }
-        return premios;
-    }
-
+    
 }
