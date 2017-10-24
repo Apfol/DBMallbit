@@ -135,8 +135,7 @@
 
         <div class="tap-target" data-activates="elementosAdmin">
             <div class="tap-target-content">
-                <% if (administrador.getIdGenero()
-                            == 1) {%>
+                <% if (administrador.getIdGenero() == 1) {%>
                 <h5>¡Bienvenido <%= administrador.getNombre()%>!</h5>
                 <%} else {%>
                 <h5>¡Bienvenida <%= administrador.getNombre()%>!</h5>
