@@ -139,7 +139,7 @@ create table cliente_premio(
 	INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria) VALUES
 		("Sony", 1, "Empresa multinacional y uno de los fabricantes más importantes a nivel mundial en electrónica", "images/Locales/prueba.png", 1),
 		("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "images/Locales/prueba.png", 1),
-		("Panamericána", 3, "Cadena de almacenes especializada en la venta de libros, papelería y artículos tecnológicos", "images/Locales/prueba.png", 1),
+		("Panamericana", 3, "Cadena de almacenes especializada en la venta de libros, papelería y artículos tecnológicos", "images/Locales/prueba.png", 1),
 		("Samsung", 4, "Empresa Multinacional", "images/Locales/prueba.png", 2),
 		("Nikon", 5, "Empresa multinacional dedicada al sector de la fotografía y de la óptica.", "images/Locales/prueba.png", 2),
 		("Genius", 6, "Empresa multinacional dedicada a la fabrica de periféricos para computadora", "images/Locales/prueba.png", 2),
