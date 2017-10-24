@@ -116,25 +116,24 @@ create table cliente_premio(
     Primary Key(IDPremio, IDCliente)
 );
 
---Insert Generos;
-insert into genero(IDGenero, TipoGenero) 
-    values(1, "Masculino");
-insert into genero(IDGenero, TipoGenero)
-    values(2, "Femenino");
+	--Insert Generos;
+	INSERT INTO genero(IDGenero, TipoGenero) VALUES
+		(1, "Masculino"),
+		(2, "Femenino");
 
---Insert estados;
-insert into estado(TipoEstado) 
-values("Despachado");
-insert into estado(TipoEstado) 
-values("Entregado");
+	--Insert estados;
+	INSERT INTO estado(TipoEstado) VALUES
+		("Despachado"),
+		("Entregado");
     
---Insert categoría;
-insert into categoria (TipoCategoria) values ('Entretenimiento');
-insert into categoria (TipoCategoria) values ('Tecnología');
-insert into categoria (TipoCategoria) values ('Hogar');
-insert into categoria (TipoCategoria) values ('Belleza');
-insert into categoria (TipoCategoria) values ('Infantil');
-insert into categoria (TipoCategoria) values ('Comida');
+	--Insert categoría;
+	INSERT INTO categoria(TipoCategoria) VALUES 
+		('Entretenimiento'),
+		('Tecnología'),
+		('Hogar'),
+		('Belleza'),
+		('Infantil'),
+		('Comida');
 
 	--Insert local;
 	INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria) VALUES
@@ -199,10 +198,24 @@ insert into categoria (TipoCategoria) values ('Comida');
 		("Alexandra","Morganela","2012-08-14","Alexitha@yahoo.com.co", 1034223456, 3156574345, "Alexa", "Bliss", 2),
 		("Barack","Obama","1965-05-13","MrPresident@yahoo.com.us", 1067959453, 3144093021, "DelaCasaBlanca", "Ste_Trump", 1),
 		("Manola","Uribita","1993-01-01","LaManola@hotmail.com", 1027845666, 3177727475, "#SoyManolaaaa", "Bibaeldotoruribe", 2),
-		("Donald","Trump","1930-06-09","BestPresident@trump.mx", 1099845631, 3124322212, "ElPatoDonald", "JodeteObamaVivaelMuro", 1);
-		("Ben","Tennyson","2000-12-01","BenTen@plomeros.com", 1096645454, 3133422890, "RealBen10", "VilgaxLofiu", 1);
-		("Laura","Bozo","1900-02-15","RealLauraBozo@yahoo.com.pe", 1095612001, 3142014310, "SeñoritaLaura", "Quepaseldesgraciado", 2);
+		("Donald","Trump","1930-06-09","BestPresident@trump.mx", 1099845631, 3124322212, "ElPatoDonald", "JodeteObamaVivaelMuro", 1),
+		("Ben","Tennyson","2000-12-01","BenTen@plomeros.com", 1096645454, 3133422890, "RealBen10", "VilgaxLofiu", 1),
+		("Laura","Bozo","1900-02-15","RealLauraBozo@yahoo.com.pe", 1095612001, 3142014310, "SeñoritaLaura", "Quepaseldesgraciado", 2),
 		("Juan","Pablon","1990-05-11","SoyJuanPablon@unisabana.edu.co", 1075878554, 3123421873, "JuanPablon", "HailFuhrer", 1);
+	COMMIT;
+	
+	--Insert Cliente;
+	INSERT INTO cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, Puntos, IDGenero) VALUES
+		("Carlos","Casas","1940-9-29","campas@gmail.com",10657389915, 3023545271, "CarlosCA", "5687", 20, 1),
+		("Sandra","Cardenas","1968-10-30","sara@gmail.com",10357339925, 3213585231, "SandraCA", "5847", 10, 2),
+		("Pedro","Bromfman","1987-1-15","pedrobr@gmail.com",10725379324, 3223555471, "PedroBr", "1367", 5, 1),
+		("Valeria","Ferreira","1981-7-20","valers@gmail.com",14725373324, 3222545731, "ValeFE", "6717", 1000, 2),
+		("Juaquin","Sanchez","1952-1-15","juaquinsa@gmail.com",52161683, 3127293628, "JuaquinSan", "6182", 2, 1),
+		("Ana","Cordoba","1961-10-26","anaco@hotmail.com",10371369227, 3243687481, "AnaCO", "5967", 5, 2),
+		("Sara","Pedroza","1952-8-16","sarape@gmail.com",35536982, 3173535911, "SaraPe", "7592", 55, 2),
+		("Camilo","Bustos","1989-2-23","camilobu@gmail.com",1073525507, 3140373291, "CamiloBu", "8620", 12, 1),
+		("Cristofer","Hernandez","1948-9-8","cristoferhe@gmail.com",1073467829, 3140373291, "CristoferHe", "1660", 10, 1),
+		("Sandra","Cristancho","1950-11-30","sandracr@gmail.com",1078205462, 319748294, "SandraCri", "7167", 20, 2);
 	COMMIT;
 
 
