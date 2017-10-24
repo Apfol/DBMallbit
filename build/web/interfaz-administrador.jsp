@@ -4,6 +4,8 @@
     Author     : Andres Ramos
 --%>
 
+<%@page import="com.mallbit.premio.ModeloPremio"%>
+<%@page import="com.mallbit.premio.Premio"%>
 <%@page import="com.mallbit.administrador.ControladorAdministrador"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mallbit.administrador.ModeloAdministrador"%>
@@ -58,52 +60,33 @@
             </ul>
         </div>
 
-        <div class="row">
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="images/prueba.png">
-                        <span class="card-title">Card Title</span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                    </div>
-                    <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="images/prueba.png">
-                        <span class="card-title">Card Title</span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                    </div>
-                    <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="images/prueba.png">
-                        <span class="card-title">Card Title</span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                    </div>
-                    <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                </div>
-            </div>
+        <% List<Premio> premios = new ModeloPremio().obtenerPremiosDB(administrador.getId()); %>
+        <% if (premios.isEmpty()) { %>
+        <div id="contenedorAviso" class="valign-wrapper">
+            <div class="row">
+                <div class="col s6 offset-s3 m6 offset-m3">
+                    <h4 class="center-align">Aún no haz añadido ningún premio.</h4>
+                </div>  
+            </div> 
         </div>
-
-        <!--        <div id="contenedorAviso" class="valign-wrapper">
-                    <div class="row">
-                        <div class="col s6 offset-s3 m6 offset-m3">
-                            <h4 class="center-align">Aún no haz añadido ningún premio.</h4>
-                        </div>  
-                    </div> 
-                </div>-->
+        <% } else { %>
+        <div class="row">
+            <% for (Premio premio : premios) {%>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/premios/<%= premio.getNombreImagen()%>">
+                        <span class="card-title"><%= premio.getNombre()%></span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p><%= premio.getDescripcion()%></p>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <% } %>
 
         <div id="actualizarDatosPersonales" class="modal modal-fixed-footer">
             <form action="ControladorAdministrador" method="post">

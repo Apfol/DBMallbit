@@ -5,12 +5,17 @@
  */
 package com.mallbit.premio;
 
+import com.mallbit.administrador.Administrador;
+import com.mallbit.administrador.ControladorAdministrador;
+import com.mallbit.administrador.ModeloAdministrador;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -29,37 +34,61 @@ import javax.servlet.http.Part;
 public class ControladorPremio extends HttpServlet {
 
     ModeloPremio modeloPremio = new ModeloPremio();
-    
-    
+
+    List<Administrador> administradores;
+    Administrador administrador;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Leer parametro (value) del input hidden del formulario
-        String parametro = request.getParameter("instruccion");
 
-        //Ejecutar método según valor del parametro
-        switch (parametro) {
-            case "listarPremios":
-                listarPremios(request, response);
-                break;
-            case "insertarPremio":
-                insertarPremio(request, response);
-                break;
-            case "actualizarPremio":
-                actualizarCliente(request, response);
-                break;
-            case "borrarPremio":
-                borrarCliente(request, response);
-                break;
-            default:
-                break;
+        try {
+            //Obtener administrador que iniciÃ³ sesiÃ³n
+            administradores = new ModeloAdministrador().obtenerAdministradoresDB();
+            administrador = new ControladorAdministrador().ObtenerAdministradorCookie(administradores, request);
+
+            //Leer parametro (value) del input hidden del formulario
+            String parametro = request.getParameter("instruccion");
+
+            //Ejecutar mÃ©todo segÃºn valor del parametro
+            switch (parametro) {
+                case "listarPremios":
+                    listarPremios(request, response);
+                    break;
+                case "insertarPremio":
+                    insertarPremio(request, response);
+                    break;
+                case "actualizarPremio":
+                    actualizarCliente(request, response);
+                    break;
+                case "borrarPremio":
+                    borrarCliente(request, response);
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
-    
-  
-    private void listarPremios(HttpServletRequest request, HttpServletResponse response) {
 
+    private void listarPremios(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            //Obtener lista de Clientes
+            List<Premio> premios;
+
+            premios = modeloPremio.obtenerPremiosDB(administrador.getId());
+
+            //Agregar lista de clientes al Request
+            request.setAttribute("LISTAPREMIOS", premios);
+
+            //Enviar request al JSP correspondiente
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/interfaz-administrador.jsp");
+            dispatcher.forward(request, response);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void insertarPremio(HttpServletRequest request, HttpServletResponse response) {
@@ -69,13 +98,20 @@ public class ControladorPremio extends HttpServlet {
             String descripcion = request.getParameter("descripcion");
             String nombreImagen = guardarImagenObtenerNombre(request, "imagenPrincipal", nombre);
             int puntos = Integer.parseInt(request.getParameter("puntos"));
-            int idAdministrador = Integer.parseInt(request.getParameter("admin"));
 
-            Premio premio = new Premio(nombre, descripcion, nombreImagen, puntos, idAdministrador);
+            Premio premio = new Premio(nombre, descripcion, nombreImagen, puntos, administrador.getId());
 
             //Enviar objeto al modelo para guardar en la Base de Datos
             modeloPremio.agregarPremioDB(premio);
-            response.sendRedirect("interfaz-administrador.jsp");
+            PrintWriter out;
+            response.setContentType("text/html");
+            out = response.getWriter();
+
+            /*out.println("<script language='JavaScript'>");
+            out.print("");
+            //Aqui arriba va el cuerpo del mÃ©todo javascript o la llamada a una funciÃ³n javascript
+            out.println("</script>");*/
+            response.sendRedirect("carga-administrador.jsp");
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -83,21 +119,21 @@ public class ControladorPremio extends HttpServlet {
     }
 
     private void actualizarCliente(HttpServletRequest request, HttpServletResponse response) {
-        
+
     }
 
     private void borrarCliente(HttpServletRequest request, HttpServletResponse response) {
 
     }
 
-    //    Con este método las imagenes que se suban al formulario
+    //    Con este mÃ©todo las imagenes que se suban al formulario
     //    seran guardadas en la carpeta images/premios y se obtiene
-    //    el nombre de la imagen como una concatenación del nombre
+    //    el nombre de la imagen como una concatenaciÃ³n del nombre
     //    del premio y el nombre de la imagen que se subio, los nombres
     //    de las imagenes se guardan en la base de datos para despues 
     //    poder manipularlas
     private String guardarImagenObtenerNombre(HttpServletRequest request, String tipoImagen, String nombrePremio) throws ServletException, IOException {
-        // Obtener dirección a guardar archivo
+        // Obtener direcciÃ³n a guardar archivo
         String pathServlet = getServletContext().getRealPath("/");
         String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
         String path = pathProject + "\\web\\images\\premios\\";
