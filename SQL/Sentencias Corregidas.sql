@@ -142,16 +142,16 @@ insert into categoria (TipoCategoria) values ('Comida');
 		("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "images/Locales/prueba.png", 1),
 		("Panamericána", 3, "Cadena de almacenes especializada en la venta de libros, papelería y artículos tecnológicos", "images/Locales/prueba.png", 1),
 		("Samsung", 4, "Empresa Multinacional", "images/Locales/prueba.png", 2),
-		("Nikon", 4, "Empresa multinacional dedicada al sector de la fotografía y de la óptica.", "images/Locales/prueba.png", 2),
-		("Genius", 5, "Empresa multinacional dedicada a la fabrica de periféricos para computadora", "images/Locales/prueba.png", 2),
-		("Homecenter", 5, "Empresa multinacional dedicada al comercio de la construcción, ferretería y mejoramiento del hogar", "images/Locales/prueba.png", 3),
-		("Konfort", 6, "Empresa dedicada al comercio de muebles, tapeteria y carpinteria del Hogar", "images/Locales/prueba.png", 3),
-		("Nivea", 7, "Empresa de productos cosméticos", "images/Locales/prueba.png", 4),
-		("Yanbal", 8, "Empresa multinacional de fabricación y venta de productos de belleza y cosméticos", "images/Locales/prueba.png", 4),
-		("Lego", 9, "Empresa y marca de juguetes", "images/Locales/prueba.png", 5),
-		("Hasbro", 10, "Empresa de Jugueteria", "images/Locales/prueba.png", 5),
-		("McDonald´s", 11, "Cadena de restaurantes de comida rápida", "images/Locales/prueba.png", 6),
-		("WOK", 11, "Cadena de restaurantes dedicado a la comida asiática", "images/Locales/prueba.png", 6);
+		("Nikon", 5, "Empresa multinacional dedicada al sector de la fotografía y de la óptica.", "images/Locales/prueba.png", 2),
+		("Genius", 6, "Empresa multinacional dedicada a la fabrica de periféricos para computadora", "images/Locales/prueba.png", 2),
+		("Homecenter", 7, "Empresa multinacional dedicada al comercio de la construcción, ferretería y mejoramiento del hogar", "images/Locales/prueba.png", 3),
+		("Konfort", 8, "Empresa dedicada al comercio de muebles, tapeteria y carpinteria del Hogar", "images/Locales/prueba.png", 3),
+		("Nivea", 9, "Empresa de productos cosméticos", "images/Locales/prueba.png", 4),
+		("Yanbal", 10, "Empresa multinacional de fabricación y venta de productos de belleza y cosméticos", "images/Locales/prueba.png", 4),
+		("Lego", 11, "Empresa y marca de juguetes", "images/Locales/prueba.png", 5),
+		("Hasbro", 12, "Empresa de Jugueteria", "images/Locales/prueba.png", 5),
+		("McDonald´s", 13, "Cadena de restaurantes de comida rápida", "images/Locales/prueba.png", 6),
+		("WOK", 14, "Cadena de restaurantes dedicado a la comida asiática", "images/Locales/prueba.png", 6);
 	COMMIT;
 
 
@@ -200,6 +200,9 @@ insert into categoria (TipoCategoria) values ('Comida');
 		("Barack","Obama","1965-05-13","MrPresident@yahoo.com.us", 1067959453, 3144093021, "DelaCasaBlanca", "Ste_Trump", 1),
 		("Manola","Uribita","1993-01-01","LaManola@hotmail.com", 1027845666, 3177727475, "#SoyManolaaaa", "Bibaeldotoruribe", 2),
 		("Donald","Trump","1930-06-09","BestPresident@trump.mx", 1099845631, 3124322212, "ElPatoDonald", "JodeteObamaVivaelMuro", 1);
+		("Ben","Tennyson","2000-12-01","BenTen@plomeros.com", 1096645454, 3133422890, "RealBen10", "VilgaxLofiu", 1);
+		("Laura","Bozo","1900-02-15","RealLauraBozo@yahoo.com.pe", 1095612001, 3142014310, "SeñoritaLaura", "Quepaseldesgraciado", 2);
+		("Juan","Pablon","1990-05-11","SoyJuanPablon@unisabana.edu.co", 1075878554, 3123421873, "JuanPablon", "HailFuhrer", 1);
 	COMMIT;
 
 
