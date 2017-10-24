@@ -165,9 +165,9 @@
                     </div>
                 </div>
             </nav>
+            
             <!--# NOTE: Entretenimiento genero.-->
-
-            <div id="entretenimiento" class="scrollspy ">
+            <div id="entretenimiento" class="scrollspy">
                 <div class="parallax-container">
                     <div class="parallax"><img src="images/parallax3.jpg"></div>
                     <div class="row">
@@ -180,15 +180,16 @@
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
                                 <% for (Local l : locales) { %>
-                                <% if (l.getIdCategoria() == 1) {%>
-                                <form action="ControladorProducto" method="post" id="int<%= l.getId()%>">
-                                    <% if (cliente != null) {%>
-                                    <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                    <% }%>
-                                    <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                    <a class="carousel-item" onclick="document.getElementById('int<%= l.getId()%>').submit()"><img id="imgCarrusel" src="<%= l.getNombreImagenPrimaria()%>"></a>
-                                </form>
-                                <% } %>
+
+                                    <% if (l.getIdCategoria() == 1) { %>  
+                                        <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                        </form>
+                                    <% } %>
                                 <% }%>
                             </div>
                         </div>
@@ -196,33 +197,33 @@
                 </div>
 
                 <!--# NOTE: Entretenimiento, comienza parte mostrar locales.-->
-                <div class="container center-align">
-                    <div class="row">
+                <div class="container" style="height:320px ; width: 80%; padding: 0px; overflow: auto" id="style-2">
+                    <div class="row" style="margin-left: auto; margin-right: auto; padding: 0px; margin-bottom: 0; margin-top: 0">
                         <% for (Local l : locales) { %>
                         <% if (l.getIdCategoria() == 1) {%>
-                        <div class="col s3">
-                            <div class="card small">
+                        <div class="col s3" style="margin: 0px">
+                            <div class="card small" style="margin-bottom: 0;">
                                 <div class="card-image waves-effect waves-block waves-light">
                                     <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
-                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId()%>">
-                                        <% if (cliente != null) {%>
-                                        <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                        <% }%>
-                                        <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                        <p><a onclick="document.getElementById('cad<%= l.getId()%>').submit()">Ir al local</a></p>
+                                    <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId() %>">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId() %>').submit()">Ir al local</a></p>
                                     </form>   
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Descripción<i class="material-icons right">close</i></span>
-                                    <p><%= l.getDescripcion()%></p>
+                                    <span class="card-title grey-text text-darken-4" style="font-weight: 500;"><span>Descripción</span><i class="material-icons right bottom" style="margin-top: 6px">close</i></span>
+                                    <p style="text-align: justify"><%= l.getDescripcion()%></p>
                                 </div>
                             </div>
                         </div>
                         <% } %>
-                        <% }%>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -230,17 +231,23 @@
             <div class="divider"></div>
 
             <!--# NOTE: Tecnología, genero.-->
-
             <div id="tecnologia" class="scrollspy">
                 <div class="parallax-container">
                     <div class="parallax"><img src="images/parallax-tecnologia.jpg"></div>
                     <div class="row">
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
-                                <a class="carousel-item" href="#one!"><img src="https://image.freepik.com/free-vector/multicolor-logo-template_1195-41.jpg"></a>
-                                <a class="carousel-item" href="#two!"><img src="http://img.freepik.com/free-vector/software-logo_1103-316.jpg?size=338&ext=jpg"></a>
-                                <a class="carousel-item" href="#three!"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou"></a>
-                                <a class="carousel-item" href="#five!"><img src="http://img.freepik.com/free-vector/abstract-cross-logo_23-2147536124.jpg?size=338&ext=jpg"></a>
+                                <% for (Local l : locales) { %>
+                                    <% if (l.getIdCategoria() == 2) { %>  
+                                        <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                        </form>
+                                    <% } %>
+                                <% }%>
                             </div>
                         </div>
                         <div style="height: 400px;" class="col s5 center valign-wrapper">
@@ -252,70 +259,33 @@
                     </div>
                 </div>
                 <!--# NOTE: Tecnologia, comienza parte mostrar locales.-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col s3">
-                            <div class="card small">
+                <div class="container" style="height:320px ; width: 80%; padding: 0px; overflow: auto" id="style-2">
+                    <div class="row" style="margin-left: auto; margin-right: auto; padding: 0px; margin-bottom: 0; margin-top: 0">
+                        <% for (Local l : locales) { %>
+                        <% if (l.getIdCategoria() == 2) {%>
+                        <div class="col s3" style="margin: 0px">
+                            <div class="card small" style="margin-bottom: 0;">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://image.freepik.com/free-vector/multicolor-logo-template_1195-41.jpg">
+                                    <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">DIGITAL IDEA<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
+                                    <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId() %>">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId() %>').submit()">Ir al local</a></p>
+                                    </form>   
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                    <span class="card-title grey-text text-darken-4" style="font-weight: 500;"><span>Descripción</span><i class="material-icons right bottom" style="margin-top: 6px">close</i></span>
+                                    <p style="text-align: justify"><%= l.getDescripcion()%></p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="http://img.freepik.com/free-vector/software-logo_1103-316.jpg?size=338&ext=jpg">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -336,79 +306,49 @@
                         </div>
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
-                                <a class="carousel-item" href="#one!"><img src="https://image.freepik.com/free-vector/multicolor-logo-template_1195-41.jpg"></a>
-                                <a class="carousel-item" href="#two!"><img src="http://img.freepik.com/free-vector/software-logo_1103-316.jpg?size=338&ext=jpg"></a>
-                                <a class="carousel-item" href="#three!"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou"></a>
-                                <a class="carousel-item" href="#five!"><img src="http://img.freepik.com/free-vector/abstract-cross-logo_23-2147536124.jpg?size=338&ext=jpg"></a>
+                                <% for (Local l : locales) { %>
+                                    <% if (l.getIdCategoria() == 3) { %>  
+                                        <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                        </form>
+                                    <% } %>
+                                <% }%>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--# NOTE: Hogar, comienza parte mostrar locales.-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col s3">
-                            <div class="card small">
+                <div class="container" style="height:320px ; width: 80%; padding: 0px; overflow: auto" id="style-2">
+                    <div class="row" style="margin-left: auto; margin-right: auto; padding: 0px; margin-bottom: 0; margin-top: 0">
+                        <% for (Local l : locales) { %>
+                        <% if (l.getIdCategoria() == 3) {%>
+                        <div class="col s3" style="margin: 0px">
+                            <div class="card small" style="margin-bottom: 0;">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://image.freepik.com/free-vector/multicolor-logo-template_1195-41.jpg">
+                                    <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">DIGITAL IDEA<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
+                                    <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId() %>">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId() %>').submit()">Ir al local</a></p>
+                                    </form>   
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                    <span class="card-title grey-text text-darken-4" style="font-weight: 500;"><span>Descripción</span><i class="material-icons right bottom" style="margin-top: 6px">close</i></span>
+                                    <p style="text-align: justify"><%= l.getDescripcion()%></p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="http://img.freepik.com/free-vector/software-logo_1103-316.jpg?size=338&ext=jpg">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -423,10 +363,17 @@
                     <div class="row">
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
-                                <a class="carousel-item" href="#one!"><img src="https://image.freepik.com/free-vector/multicolor-logo-template_1195-41.jpg"></a>
-                                <a class="carousel-item" href="#two!"><img src="http://img.freepik.com/free-vector/software-logo_1103-316.jpg?size=338&ext=jpg"></a>
-                                <a class="carousel-item" href="#three!"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou"></a>
-                                <a class="carousel-item" href="#five!"><img src="http://img.freepik.com/free-vector/abstract-cross-logo_23-2147536124.jpg?size=338&ext=jpg"></a>
+                                <% for (Local l : locales) { %>
+                                    <% if (l.getIdCategoria() == 4) { %>  
+                                        <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                        </form>
+                                    <% } %>
+                                <% }%>
                             </div>
                         </div>
                         <div style="height: 400px;" class="col s5 center valign-wrapper">
@@ -438,70 +385,33 @@
                     </div>
                 </div>
                 <!--# NOTE: Belleza, comienza parte mostrar locales.-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col s3">
-                            <div class="card small">
+                <div class="container" style="height:320px ; width: 80%; padding: 0px; overflow: auto" id="style-2">
+                    <div class="row" style="margin-left: auto; margin-right: auto; padding: 0px; margin-bottom: 0; margin-top: 0">
+                        <% for (Local l : locales) { %>
+                        <% if (l.getIdCategoria() == 4) {%>
+                        <div class="col s3" style="margin: 0px">
+                            <div class="card small" style="margin-bottom: 0;">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://image.freepik.com/free-vector/multicolor-logo-template_1195-41.jpg">
+                                    <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">DIGITAL IDEA<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
+                                    <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId() %>">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId() %>').submit()">Ir al local</a></p>
+                                    </form>   
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                    <span class="card-title grey-text text-darken-4" style="font-weight: 500;"><span>Descripción</span><i class="material-icons right bottom" style="margin-top: 6px">close</i></span>
+                                    <p style="text-align: justify"><%= l.getDescripcion()%></p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="http://img.freepik.com/free-vector/software-logo_1103-316.jpg?size=338&ext=jpg">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -522,79 +432,49 @@
                         </div>
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
-                                <a class="carousel-item" href="#one!"><img src="https://image.freepik.com/free-vector/multicolor-logo-template_1195-41.jpg"></a>
-                                <a class="carousel-item" href="#two!"><img src="http://img.freepik.com/free-vector/software-logo_1103-316.jpg?size=338&ext=jpg"></a>
-                                <a class="carousel-item" href="#three!"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou"></a>
-                                <a class="carousel-item" href="#five!"><img src="http://img.freepik.com/free-vector/abstract-cross-logo_23-2147536124.jpg?size=338&ext=jpg"></a>
+                                <% for (Local l : locales) { %>
+                                    <% if (l.getIdCategoria() == 5) { %>  
+                                        <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                        </form>
+                                    <% } %>
+                                <% }%>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--# NOTE: Infantil, comienza parte mostrar locales.-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col s3">
-                            <div class="card small">
+                <div class="container" style="height:320px ; width: 80%; padding: 0px; overflow: auto" id="style-2">
+                    <div class="row" style="margin-left: auto; margin-right: auto; padding: 0px; margin-bottom: 0; margin-top: 0">
+                        <% for (Local l : locales) { %>
+                        <% if (l.getIdCategoria() == 5) {%>
+                        <div class="col s3" style="margin: 0px">
+                            <div class="card small" style="margin-bottom: 0;">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://image.freepik.com/free-vector/multicolor-logo-template_1195-41.jpg">
+                                    <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">DIGITAL IDEA<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
+                                    <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId() %>">
+                                            <% if (cliente != null) {%>
+                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                            <% } %>
+                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                            <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId() %>').submit()">Ir al local</a></p>
+                                    </form>   
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                    <span class="card-title grey-text text-darken-4" style="font-weight: 500;"><span>Descripción</span><i class="material-icons right bottom" style="margin-top: 6px">close</i></span>
+                                    <p style="text-align: justify"><%= l.getDescripcion()%></p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="http://img.freepik.com/free-vector/software-logo_1103-316.jpg?size=338&ext=jpg">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s3">
-                            <div class="card small">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBoWs5Kd5RKp8YM9omx7FDI7q17qAPHLzOSXMpdQ5wGBcF5Pou">
-                                </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                                    <p><a href="#">This is a link</a></p>
-                                </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -627,9 +507,6 @@
                 </div>
             </footer>
         </div>
-
-
-
 
         <!--Import jQuery before materialize.js-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

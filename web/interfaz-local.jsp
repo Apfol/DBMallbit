@@ -45,8 +45,8 @@
                             </li>
                             <%if (cliente != null) { %>
                             <li><a href="sass.html"><i class="material-icons left">shopping_cart</i>Mis Compras</a></li>
-                            <li><a href="index.jsp" onclick="<% session.invalidate(); %>"><i class="material-icons left">exit_to_app</i>Salir</a></li>
-                                <% } %>
+                            <li><a href="index.jsp"><i class="material-icons left">home</i>Página principal</a></li>
+                            <% } %>
                         </ul>
                     </div>
 
