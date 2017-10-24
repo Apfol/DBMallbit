@@ -79,4 +79,36 @@ public class ModeloLocal {
         preparedStatement.execute();
     }
     
+    public Local obtenerLocalDB(String idLocal) throws SQLException {
+        
+        Local local = null;
+        
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement
+        String sentenciaSQL = "SELECT * FROM local WHERE IDLocal="+idLocal;
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+
+        //Ejecutar SQL
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("IDLocal");
+            String nombre = resultSet.getString("Nombre");
+            int idVendedor = resultSet.getInt("IDVendedor");
+            String descripcion = resultSet.getString("Descripcion");
+            String nombreImagen1 = resultSet.getString("NombreImagen1");
+            String nombreImagen2 = resultSet.getString("NombreImagen2");
+            int idCategoria = resultSet.getInt("IDCategoria");
+
+            local = new Local(id, nombre, descripcion, idVendedor, idCategoria, nombreImagen1, nombreImagen2);
+
+        }
+        return local;
+        
+    }
 }

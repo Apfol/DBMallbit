@@ -40,6 +40,7 @@ public class ControladorProducto extends HttpServlet {
             throws ServletException, IOException, IOException {
         
         String local = request.getParameter("idlocal");
+        System.out.println(local);
         if(local == null){
             listarProductos(request, response);
         }else{
@@ -63,12 +64,11 @@ public class ControladorProducto extends HttpServlet {
     private void listarProductosL(HttpServletRequest request, HttpServletResponse response, String local){
         try {
             List<Producto> productos = modeloProducto.getProductos(local);
-            List<Local> locales = modeloLocal.obtenerLocalesDB();
+            Local localB = modeloLocal.obtenerLocalDB(local);
             List<Cliente> clientes = modeloCliente.obtenerClientesDB();
             Vendedor vendedor = modeloVendedor.obtenerVendedorL(local);
             
             Cliente c = null;
-            Local l = null;
             String usuario = request.getParameter("user");
             for (Cliente cliente : clientes) {
                 if (cliente.getUsuario().equals(usuario)) {
@@ -76,18 +76,15 @@ public class ControladorProducto extends HttpServlet {
                     break;
                 }
             }
-            for (Local buscado : locales) {
-                if (local.equals(Integer.toString(buscado.getId())));
-                l = buscado;
-                break;
-            }
+            
+            System.out.println(localB.getNombre());
             
             //Crear sesion del cliente
             HttpSession session = request.getSession();
             session.setAttribute("CLIENTE_SESSION", c);
             //Agregar objetos al request
             request.setAttribute("LISTAPRODUCTOS", productos);
-            request.setAttribute("LOCAL", l);
+            request.setAttribute("LOCAL", localB);
             request.setAttribute("VENDEDOR", vendedor);
             //Enviar request a la pagina que se desea
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-local.jsp");

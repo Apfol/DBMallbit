@@ -38,7 +38,7 @@ public class ControladorLocal extends HttpServlet {
         //Leer parametro (value) del input hidden del formulario
         String parametro = request.getParameter("instruccion");
 
-        //Ejecutar método según valor del parametro
+        //Ejecutar mÃ©todo segÃºn valor del parametro
         switch (parametro) {
             case "listarLocales":
                 listarLocalesDB(request, response);
@@ -104,9 +104,9 @@ public class ControladorLocal extends HttpServlet {
     }
 
     
-//    Con este método las imagenes que se suban al formulario
+//    Con este mÃ©todo las imagenes que se suban al formulario
 //    seran guardadas en la carpeta images/locales y se obtiene
-//    el nombre de la imagen como una concatenación del nombre
+//    el nombre de la imagen como una concatenaciÃ³n del nombre
 //    del local y el nombre de la imagen que se subio, los nombres
 //    de las imagenes se guardan en la base de datos para despues 
 //    poder manipularlas

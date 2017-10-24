@@ -62,7 +62,7 @@
                                     </form>
                                 </li>
                                 <li><a href="sass.html"><i class="material-icons left">shopping_cart</i>Mis Compras</a></li>
-                                <li><a href="ControladorCookie?objeto=<%= Cliente.CLIENTE_COOKIE %>"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
+                                <li><a href="ControladorCookie?objeto=<%= Cliente.CLIENTE_COOKIE%>"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
                                     <% }%>
                             </ul>
                         </div>
@@ -180,13 +180,13 @@
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
                                 <% for (Local l : locales) { %>
-                                <% if (l.getIdCategoria() == 1) { %>
-                                <form action="ControladorProducto" method="post" id="int">
+                                <% if (l.getIdCategoria() == 1) {%>
+                                <form action="ControladorProducto" method="post" id="int<%= l.getId()%>">
                                     <% if (cliente != null) {%>
                                     <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
                                     <% }%>
                                     <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                    <a class="carousel-item" onclick="document.getElementById('int').submit()"><img id="imgCarrusel" src="<%= l.getNombreImagenPrimaria()%>"></a>
+                                    <a class="carousel-item" onclick="document.getElementById('int<%= l.getId()%>').submit()"><img id="imgCarrusel" src="<%= l.getNombreImagenPrimaria()%>"></a>
                                 </form>
                                 <% } %>
                                 <% }%>
@@ -207,12 +207,12 @@
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
-                                    <form action="ControladorProducto" method="post" id="cad">
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId()%>">
                                         <% if (cliente != null) {%>
                                         <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
                                         <% }%>
                                         <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                        <p><a onclick="document.getElementById('cad').submit()">Ir al local</a></p>
+                                        <p><a onclick="document.getElementById('cad<%= l.getId()%>').submit()">Ir al local</a></p>
                                     </form>   
                                 </div>
                                 <div class="card-reveal">

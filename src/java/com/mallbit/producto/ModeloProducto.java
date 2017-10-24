@@ -44,8 +44,9 @@ public class ModeloProducto {
             String descripcion = resultSet.getString("Descripcion");
             String nombreImagen = resultSet.getString("NombreImagen");
             int stock = resultSet.getInt("Stock");
+            int puntos = resultSet.getInt("Puntos");
 
-            Producto producto = new Producto(id, nombre, precio, marca, idLocal, descripcion, nombreImagen, stock);
+            Producto producto = new Producto(id, nombre, precio, marca, idLocal, descripcion, nombreImagen, stock, puntos);
             productos.add(producto);
 
         }
@@ -64,9 +65,8 @@ public class ModeloProducto {
         connection = ConexionDB.conectar();
 
         //Crear sentencia SQL y statement
-        String sentenciaSQL = "SELECT * FROM producto WHERE IDLocal=?";
+        String sentenciaSQL = "SELECT * FROM producto WHERE IDLocal="+local;
         preparedStatement = connection.prepareStatement(sentenciaSQL);
-        preparedStatement.setString(1, local);
 
         //Ejecutar SQL
         resultSet = preparedStatement.executeQuery();
@@ -82,8 +82,9 @@ public class ModeloProducto {
             String descripcion = resultSet.getString("Descripcion");
             String nombreImagen = resultSet.getString("NombreImagen");
             int stock = resultSet.getInt("Stock");
+            int puntos = resultSet.getInt("Puntos");
 
-            Producto producto = new Producto(id, nombre, precio, marca, idLocal, descripcion, nombreImagen, stock);
+            Producto producto = new Producto(id, nombre, precio, marca, idLocal, descripcion, nombreImagen, stock, puntos);
             productos.add(producto);
 
         }

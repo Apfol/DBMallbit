@@ -15,8 +15,9 @@ public class Producto {
     private String descripcion;
     private String nombreImagen;
     private int stock;
+    private int puntos;
 
-    public Producto(int id, String nombre, int precio, String marca, int idLocal, String descripcion, String nombreImagen, int stock) {
+    public Producto(int id, String nombre, int precio, String marca, int idLocal, String descripcion, String nombreImagen, int stock, int puntos) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
@@ -25,9 +26,10 @@ public class Producto {
         this.descripcion = descripcion;
         this.nombreImagen = nombreImagen;
         this.stock = stock;
+        this.puntos = puntos;
     }
 
-    public Producto(String nombre, int precio, String marca, int idLocal, String descripcion, String nombreImagen, int stock) {
+    public Producto(String nombre, int precio, String marca, int idLocal, String descripcion, String nombreImagen, int stock, int puntos) {
         this.nombre = nombre;
         this.precio = precio;
         this.marca = marca;
@@ -35,7 +37,17 @@ public class Producto {
         this.descripcion = descripcion;
         this.nombreImagen = nombreImagen;
         this.stock = stock;
+        this.puntos = puntos;
     }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
 
     public int getId() {
         return id;
