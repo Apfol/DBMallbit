@@ -45,7 +45,6 @@
                 </div>
                 <form action="ControladorPremio" method="post" enctype="multipart/form-data" class="col s12">
                     <input type="hidden" name="instruccion" value="insertarPremio"/>
-                    <input type="hidden" name="admin" value="<%= request.getParameter("admin") %>"/>
                     <div class="row">
                         <div class="col s8 input-field">
                             <i class="material-icons prefix">account_circle</i>
