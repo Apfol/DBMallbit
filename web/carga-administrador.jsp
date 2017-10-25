@@ -65,7 +65,7 @@
         </div>
 
         <script language="JavaScript">
-            setTimeout("location.href='interfaz-administrador.jsp'", 1000);
+            setTimeout("location.href='interfaz-administrador.jsp'", 5000);
         </script>
     </body>
 </html>

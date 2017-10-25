@@ -75,7 +75,7 @@
             <div class="col s12 m4">
                 <div class="card">
                     <div class="card-image">
-                        <img src="images/premios/<%= premio.getNombreImagen()%>">
+                        <img src="images/premios/<%=premio.getNombreImagen()%>">
                         <span class="card-title"><%= premio.getNombre()%></span>
                         <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                     </div>
