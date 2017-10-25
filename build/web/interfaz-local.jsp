@@ -153,7 +153,7 @@
                                                 <p id="p1Pr">MallBITs</p>
                                             </div>
                                             <div class="col s6" id="pointscountPr">
-                                                <p id="p2Pr" class="center-align">10</p>
+                                                <p id="p2Pr" class="center-align"><%= p.getPuntos() %></p>
                                             </div>
                                         </div>
                                     </div>
