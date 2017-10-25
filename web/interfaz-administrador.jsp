@@ -15,7 +15,7 @@
     //En esta parte de código lo que se hace es obtener el administrador que tiene el mismo id que se guardo en la cookie.
     ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
     List<Administrador> administradores = modeloAdministrador.obtenerAdministradoresDB();
-    Administrador administrador = new ControladorAdministrador().ObtenerAdministradorCookie(administradores, request);
+    Administrador administrador = new ControladorAdministrador().obtenerAdministradorCookie(administradores, request);
 %>
 <!DOCTYPE html>
 <html>
