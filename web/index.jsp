@@ -204,7 +204,7 @@
                         <div class="col s3" style="margin: 0px">
                             <div class="card small" style="margin-bottom: 0;">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
+                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
@@ -266,7 +266,7 @@
                         <div class="col s3" style="margin: 0px">
                             <div class="card small" style="margin-bottom: 0;">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
+                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
@@ -329,7 +329,7 @@
                         <div class="col s3" style="margin: 0px">
                             <div class="card small" style="margin-bottom: 0;">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
+                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
@@ -392,7 +392,7 @@
                         <div class="col s3" style="margin: 0px">
                             <div class="card small" style="margin-bottom: 0;">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
+                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
@@ -455,7 +455,7 @@
                         <div class="col s3" style="margin: 0px">
                             <div class="card small" style="margin-bottom: 0;">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="<%= l.getNombreImagenPrimaria()%>">
+                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
