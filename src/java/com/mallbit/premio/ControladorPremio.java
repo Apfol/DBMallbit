@@ -45,7 +45,7 @@ public class ControladorPremio extends HttpServlet {
         try {
             //Obtener administrador que iniciÃ³ sesiÃ³n
             administradores = new ModeloAdministrador().obtenerAdministradoresDB();
-            administrador = new ControladorAdministrador().ObtenerAdministradorCookie(administradores, request);
+            administrador = new ControladorAdministrador().obtenerAdministradorCookie(administradores, request);
 
             //Leer parametro (value) del input hidden del formulario
             String parametro = request.getParameter("instruccion");
@@ -126,7 +126,7 @@ public class ControladorPremio extends HttpServlet {
 
     }
 
-    //    Con este mÃ©todo las imagenes que se suban al formulario
+    //    Con este método las imagenes que se suban al formulario
     //    seran guardadas en la carpeta images/premios y se obtiene
     //    el nombre de la imagen como una concatenaciÃ³n del nombre
     //    del premio y el nombre de la imagen que se subio, los nombres

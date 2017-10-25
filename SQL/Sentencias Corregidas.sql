@@ -137,8 +137,8 @@ create table cliente_premio(
 
 	--Insert local;
 	INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria) VALUES
-		("Sony", 1, "Empresa multinacional y uno de los fabricantes más importantes a nivel mundial en electrónica", "images/Locales/prueba.png", 1),
-		("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "images/Locales/prueba.png", 1),
+		("Sony", 1, "Empresa multinacional y uno de los fabricantes más importantes a nivel mundial en electrónica", "images/Locales/Sony.png", 1),
+		("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "images/Locales/Microsoft.png", 1),
 		("Panamericana", 3, "Cadena de almacenes especializada en la venta de libros, papelería y artículos tecnológicos", "images/Locales/prueba.png", 1),
 		("Samsung", 4, "Empresa Multinacional", "images/Locales/prueba.png", 2),
 		("Nikon", 5, "Empresa multinacional dedicada al sector de la fotografía y de la óptica.", "images/Locales/prueba.png", 2),
@@ -217,6 +217,9 @@ create table cliente_premio(
 		("Cristofer","Hernandez","1948-9-8","cristoferhe@gmail.com",1073467829, 3140373291, "CristoferHe", "1660", 10, 1),
 		("Sandra","Cristancho","1950-11-30","sandracr@gmail.com",1078205462, 319748294, "SandraCri", "7167", 20, 2);
 	COMMIT;
+	
+	INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria) VALUES
+		("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "images/Locales/Microsoft.png", 1);
 
 
 --Relación llaves foráneas;

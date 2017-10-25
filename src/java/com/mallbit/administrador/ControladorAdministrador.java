@@ -181,7 +181,7 @@ public class ControladorAdministrador extends HttpServlet {
         Administrador administrador = new Administrador(nombre, apellido, correo, 0, telefono, usuario, password, null, 0);
         try {
             List<Administrador> administradores = modeloAdministrador.obtenerAdministradoresDB();
-            modeloAdministrador.actualizarAdministradorDB(ObtenerAdministradorCookie(administradores, request), administrador);
+            modeloAdministrador.actualizarAdministradorDB(obtenerAdministradorCookie(administradores, request), administrador);
 
             response.sendRedirect("interfaz-administrador.jsp");
 
@@ -190,7 +190,7 @@ public class ControladorAdministrador extends HttpServlet {
         }
     }
 
-    public Administrador ObtenerAdministradorCookie(List<Administrador> administradores, HttpServletRequest request) {
+    public Administrador obtenerAdministradorCookie(List<Administrador> administradores, HttpServletRequest request) {
         Administrador administrador = null;
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
