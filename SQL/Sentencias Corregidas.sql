@@ -223,17 +223,17 @@ create table cliente_premio(
 
 
 --Relación llaves foráneas;
-alter table producto add foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
-alter table local add foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
-alter table local add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
-alter table compra add foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
-alter table compra add foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
-alter table compra add foreign key(IDProducto) references producto(IDProducto) ON DELETE CASCADE;
-alter table compra add foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
-alter table envio add foreign key(IDEstado) references estado(IDEstado) ON DELETE CASCADE;
-alter table envio add foreign key(IDCompra) references compra(IDCompra) ON DELETE CASCADE;
-alter table cliente add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
-alter table Vendedor add foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
-alter table premio add foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
-alter table cliente_premio add foreign key(IDCliente) references cliente(IDCliente);
-alter table cliente_premio add foreign key(IDPremio) references premio(IDPremio);
+alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
+alter table local add constraint local_categoria foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
+alter table local add constraint local_vendedor foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
+alter table compra add constraint compra_pago foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
+alter table compra add constraint compra_cliente foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
+alter table compra add constraint compra_producto foreign key(IDProducto) references producto(IDProducto) ON DELETE CASCADE;
+alter table compra add constraint compra_vendedor foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
+alter table envio add constraint envio_estado foreign key(IDEstado) references estado(IDEstado) ON DELETE CASCADE;
+alter table envio add constraint envio_compra foreign key(IDCompra) references compra(IDCompra) ON DELETE CASCADE;
+alter table cliente add constraint cliente_genero foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
+alter table Vendedor add constraint vendedor_genero foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
+alter table premio add constraint premio_administrador foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
+alter table cliente_premio add constraint cliente_premio foreign key(IDCliente) references cliente(IDCliente);
+alter table cliente_premio add constraint premio_cliente foreign key(IDPremio) references premio(IDPremio);
