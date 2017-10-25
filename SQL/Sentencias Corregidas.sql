@@ -137,20 +137,20 @@ create table cliente_premio(
 
 	--Insert local;
 	INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria) VALUES
-		("Sony", 1, "Empresa multinacional y uno de los fabricantes más importantes a nivel mundial en electrónica", "images/Locales/Sony.png", 1),
-		("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "images/Locales/Microsoft.png", 1),
-		("Panamericana", 3, "Cadena de almacenes especializada en la venta de libros, papelería y artículos tecnológicos", "images/Locales/prueba.png", 1),
-		("Samsung", 4, "Empresa Multinacional", "images/Locales/prueba.png", 2),
-		("Nikon", 5, "Empresa multinacional dedicada al sector de la fotografía y de la óptica.", "images/Locales/prueba.png", 2),
-		("Genius", 6, "Empresa multinacional dedicada a la fabrica de periféricos para computadora", "images/Locales/prueba.png", 2),
-		("Homecenter", 7, "Empresa multinacional dedicada al comercio de la construcción, ferretería y mejoramiento del hogar", "images/Locales/prueba.png", 3),
-		("Konfort", 8, "Empresa dedicada al comercio de muebles, tapeteria y carpinteria del Hogar", "images/Locales/prueba.png", 3),
-		("Nivea", 9, "Empresa de productos cosméticos", "images/Locales/prueba.png", 4),
-		("Yanbal", 10, "Empresa multinacional de fabricación y venta de productos de belleza y cosméticos", "images/Locales/prueba.png", 4),
-		("Lego", 11, "Empresa y marca de juguetes", "images/Locales/prueba.png", 5),
-		("Hasbro", 12, "Empresa de Jugueteria", "images/Locales/prueba.png", 5),
-		("McDonald´s", 13, "Cadena de restaurantes de comida rápida", "images/Locales/prueba.png", 6),
-		("WOK", 14, "Cadena de restaurantes dedicado a la comida asiática", "images/Locales/prueba.png", 6);
+		("Sony", 1, "Empresa multinacional y uno de los fabricantes más importantes a nivel mundial en electrónica", "Sony.png", 1),
+		("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "Microsoft.png", 1),
+		("Panamericana", 3, "Cadena de almacenes especializada en la venta de libros, papelería y artículos tecnológicos", "Panamericana.png", 1),
+		("Samsung", 4, "Empresa Multinacional", "Samsung.png", 2),
+		("Nikon", 5, "Empresa multinacional dedicada al sector de la fotografía y de la óptica.", "Nikon.png", 2),
+		("Genius", 6, "Empresa multinacional dedicada a la fabrica de periféricos para computadora", "Genius.png", 2),
+		("Homecenter", 7, "Empresa multinacional dedicada al comercio de la construcción, ferretería y mejoramiento del hogar", "Homecenter.png", 3),
+		("Konfort", 8, "Empresa dedicada al comercio de muebles, tapeteria y carpinteria del Hogar", "Konfort.png", 3),
+		("Nivea", 9, "Empresa de productos cosméticos", "Nivea.png", 4),
+		("Yanbal", 10, "Empresa multinacional de fabricación y venta de productos de belleza y cosméticos", "Yanbal.png", 4),
+		("Lego", 11, "Empresa y marca de juguetes", "Lego.png", 5),
+		("Hasbro", 12, "Empresa de Jugueteria", "Hasbro.png", 5),
+		("McDonald´s", 13, "Cadena de restaurantes de comida rápida", "Mcdonalds.png", 6),
+		("WOK", 14, "Cadena de restaurantes dedicado a la comida asiática", "WOK.png", 6);
 	COMMIT;
 
 
