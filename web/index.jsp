@@ -147,9 +147,6 @@
             </header>
         </div>
 
-
-
-
         <div id="segunda">
             <nav class="pushpin-nav" data-target="segunda">
                 <div class="nav-wrapper lime darken-1">
@@ -180,14 +177,13 @@
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
                                 <% for (Local l : locales) { %>
-
                                     <% if (l.getIdCategoria() == 1) { %>  
                                         <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
                                             <% if (cliente != null) {%>
                                             <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
                                             <% } %>
                                             <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
                                         </form>
                                     <% } %>
                                 <% }%>
@@ -195,21 +191,15 @@
                         </div>
                     </div>
                 </div>
-
-                <!--# NOTE: Entretenimiento, comienza parte mostrar locales.-->
+                <!--# NOTE: Hogar, comienza parte mostrar locales.-->
                 <div class="container" style="height:320px ; width: 80%; padding: 0px; overflow: auto" id="style-2">
                     <div class="row" style="margin-left: auto; margin-right: auto; padding: 0px; margin-bottom: 0; margin-top: 0">
                         <% for (Local l : locales) { %>
                         <% if (l.getIdCategoria() == 1) {%>
                         <div class="col s3" style="margin: 0px">
                             <div class="card small" style="margin-bottom: 0;">
-
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>">
-
                                 <div class="card-image waves-effect waves-block waves-light" style="height: 300px">
-                                    <img style="height: 200px" class="activator" src="<%= l.getNombreImagenPrimaria()%>">
-
+                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>" style="height: 200px">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
@@ -249,7 +239,7 @@
                                             <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
                                             <% } %>
                                             <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
                                         </form>
                                     <% } %>
                                 <% }%>
@@ -270,8 +260,8 @@
                         <% if (l.getIdCategoria() == 2) {%>
                         <div class="col s3" style="margin: 0px">
                             <div class="card small" style="margin-bottom: 0;">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>">
+                                <div class="card-image waves-effect waves-block waves-light" style="height: 300px">
+                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>" style="height: 200px">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
@@ -318,7 +308,7 @@
                                             <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
                                             <% } %>
                                             <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
                                         </form>
                                     <% } %>
                                 <% }%>
@@ -333,8 +323,8 @@
                         <% if (l.getIdCategoria() == 3) {%>
                         <div class="col s3" style="margin: 0px">
                             <div class="card small" style="margin-bottom: 0;">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>">
+                                <div class="card-image waves-effect waves-block waves-light" style="height: 300px">
+                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>" style="height: 200px">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
@@ -375,7 +365,7 @@
                                             <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
                                             <% } %>
                                             <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
                                         </form>
                                     <% } %>
                                 <% }%>
@@ -396,8 +386,8 @@
                         <% if (l.getIdCategoria() == 4) {%>
                         <div class="col s3" style="margin: 0px">
                             <div class="card small" style="margin-bottom: 0;">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>">
+                                <div class="card-image waves-effect waves-block waves-light" style="height: 300px">
+                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>" style="height: 200px">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
@@ -444,7 +434,7 @@
                                             <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
                                             <% } %>
                                             <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="<%= l.getNombreImagenPrimaria() %>"></a>
+                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
                                         </form>
                                     <% } %>
                                 <% }%>
@@ -459,8 +449,8 @@
                         <% if (l.getIdCategoria() == 5) {%>
                         <div class="col s3" style="margin: 0px">
                             <div class="card small" style="margin-bottom: 0;">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>">
+                                <div class="card-image waves-effect waves-block waves-light" style="height: 300px">
+                                    <img class="activator" src="images/Locales/<%= l.getNombreImagenPrimaria()%>" style="height: 200px">
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
@@ -483,6 +473,7 @@
                     </div>
                 </div>
             </div>
+            
 
             <!--# NOTE: Comienza parte pie de página.-->
 
