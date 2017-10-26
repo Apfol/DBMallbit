@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div class="center-align">
-                        <button class="btn waves-effect waves-light light-blue darken-3 black-text" type="submit" name="action">
+                        <button class="btn waves-effect waves-light light-green darken-1 black-text" type="submit" name="action">
                             Registrar
                         </button>
                     </div>

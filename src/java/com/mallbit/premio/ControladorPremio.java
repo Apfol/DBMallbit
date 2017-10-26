@@ -136,7 +136,7 @@ public class ControladorPremio extends HttpServlet {
         // Obtener direcciÃ³n a guardar archivo
         String pathServlet = getServletContext().getRealPath("/");
         String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
-        String path = pathProject + "\\web\\images\\premios\\";
+        String path = pathProject + "\\web\\images\\Premios\\";
         Part filePart = request.getPart(tipoImagen);
 
         //Obtener nombre archivo
