@@ -79,12 +79,6 @@
                 </style>
                 <% }%>
                 <% }%>
-                <div class="center-align" id="register">
-                    ¿No tienes una cuenta?
-                    <a href="ControladorGenero?instruccion=<%= Genero.GENERO_ADMINISTRADOR%>">
-                        Regístrate
-                    </a>
-                </div>
                 <br>
 
             </div>
