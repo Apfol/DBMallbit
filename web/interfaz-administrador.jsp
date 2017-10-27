@@ -73,18 +73,25 @@
         <div class="row">
             <% for (Premio premio : premios) {%>
             <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img style="width: 100%; height: 400px;" src="images/Premios/<%=premio.getNombreImagen()%>">
-                        <span class="card-title"><%= premio.getNombre()%></span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons">add</i></a>
+                <div class="card sticky-action">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="images/Premios/<%=premio.getNombreImagen()%>">
                     </div>
                     <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"><%= premio.getNombre()%><i class="material-icons right">more_vert</i></span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><%= premio.getNombre()%><i class="material-icons right">close</i></span>
                         <p><%= premio.getDescripcion()%></p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">Eliminar premio</a>
+                        <a href="#">Editar premio</a>
                     </div>
                 </div>
             </div>
             <% } %>
+
         </div>
         <% } %>
 
