@@ -262,6 +262,11 @@ INSERT INTO administrador (Nombre, Apellido, FechaNacimiento, Correo, Identifica
     ("Maria Fernanda","Perez Contreras","1998-7-6","sarape@unisabana.edu.co",1073525507, 3105678815, "SaraPe", "administrador", 2);
 COMMIT;
 
+--Insert premio;
+INSERT INTO premio(Nombre, Descripcion, NombreImagen, Puntos, IDAdministrador) VALUES
+	("Xbox One X", "The new feature of Xbox One X will be explained to the public before the launch of the new console of Microsoft. Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 110, 1);
+COMMIT;
+
 --Relación llaves foráneas;
 alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
 alter table local add constraint local_categoria foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
