@@ -54,7 +54,7 @@
                         </div>
                         <div class="col s4 input-field">
                             <i class="material-icons prefix">adjust</i>
-                            <input id="puntos" name="puntos" type="number" class="validate">
+                            <input id="puntos" name="puntos" type="number" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="validate">
                             <label for="puntos">Puntos</label>
                         </div>
                     </div>
