@@ -218,9 +218,15 @@ INSERT INTO cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, T
 	("Sandra","Cristancho","1950-11-30","sandracr@gmail.com",1078205462, 319748294, "SandraCri", "7167", 20, 2);
 COMMIT;
 
+
+--Insert local;
 INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria) VALUES
 	("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "images/Locales/Microsoft.png", 1);
-
+	
+--Insert Administrador;
+INSERT INTO administrador (Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero) VALUES
+    ("Maria Fernanda","Perez Contreras","1998-7-6","sarape@unisabana.edu.co",1073525507, 3105678815, "SaraPe", "administrador", 2);
+COMMIT;
 
 --Relación llaves foráneas;
 alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
