@@ -57,8 +57,7 @@ create table local(
     Nombre varchar(100) not null, 
     IDVendedor int(11), 
     Descripcion varchar(500) not null,
-    NombreImagen1 varchar(100),
-    NombreImagen2 varchar(100),
+    NombreImagen varchar(100),
     IDCategoria int(11),
     Primary Key(IDLocal)
 );
@@ -136,7 +135,7 @@ INSERT INTO categoria(TipoCategoria) VALUES
 	('Comida');
 
 --Insert local;
-INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria) VALUES
+INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen, IDCategoria) VALUES
 	("Sony", 1, "Empresa multinacional y uno de los fabricantes más importantes a nivel mundial en electrónica", "Sony.png", 1),
 	("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "Microsoft.png", 1),
 	("Panamericana", 3, "Cadena de almacenes especializada en la venta de libros, papelería y artículos tecnológicos", "Panamericana.png", 1),
@@ -149,11 +148,10 @@ INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria) 
 	("Yanbal", 10, "Empresa multinacional de fabricación y venta de productos de belleza y cosméticos", "Yanbal.png", 4),
 	("Lego", 11, "Empresa y marca de juguetes", "Lego.png", 5),
 	("Hasbro", 12, "Empresa de Jugueteria", "Hasbro.png", 5),
-	("McDonald´s", 13, "Cadena de restaurantes de comida rápida", "Mcdonalds.png", 6),
+	("McDonalds", 13, "Cadena de restaurantes de comida rápida", "McDonalds.png", 6),
 	("WOK", 14, "Cadena de restaurantes dedicado a la comida asiática", "WOK.png", 6);
 COMMIT;
 
-<<<<<<< HEAD
 	--Insert producto;
 	INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock) VALUES
 		("Samsung Galaxy Note 7", 2000000, "Samsung", 4, "Explota.","images/Productos/prueba.png", 10),
@@ -185,40 +183,6 @@ COMMIT;
 		("Ramen", 20000, "WOK", 14, "Ramen con Carne de Cerdo.","images/Productos/prueba.png", 1),
 		("Arroz Chino", 27000, "WOK", 14, "Arroz Chino con Verduras.","images/Productos/prueba.png", 4);
 	COMMIT;
-=======
->>>>>>> 5ea353e17dc7cdec34029b9ffb5e1d584a47a9f2
-
---Insert producto;
-INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock) VALUES
-	("Samsung Galaxy Note 7", 2000000, "Samsung", 4, "Explota.","images/Productos/prueba.png", 10),
-	("Consola PS4 Pro", 1400000, "Sony", 1, "Consola Videojuegos.","images/Productos/prueba.png", 3),
-	("Televisor X94E", 4000000, "Sony", 1, "Televisión 4K.","images/Productos/prueba.png", 0),
-	("Consola Xbox One X", 1800000, "Microsoft", 2, "Consola Videojuegos.","images/Productos/prueba.png", 1000),
-	("Office 365", 200000, "Microsoft", 2, "Licencia Office.","images/Productos/prueba.png", 10),
-	("Wigetta", 20000, "Editorial", 3, "Libro para Mkas.","images/Productos/prueba.png", 100),
-	("Joycon", 300000, "Nintendo", 3, "Control Nintendo Switch.","images/Productos/prueba.png", 1),
-	("Samsung Galaxy J7", 850000, "Sony", 4, "Celular Samsung.","images/Productos/prueba.png", 0),
-	("D3400", 1200000, "Nikon", 5, "Cámara Profesional.","images/Productos/prueba.png", 34),
-	("Lente 35mm", 620000, "Nikon", 5, "Lente Cámaras.","images/Productos/prueba.png", 22),
-	("Mouse DX-110", 20000, "Genius", 6, "Mouse Inalámbrico.","images/Productos/prueba.png", 12),
-	("Teclado K220", 42000, "Genius", 6, "Teclado Gamer.","images/Productos/prueba.png", 8),
-	("Puerta", 88000, "Homecenter", 7, "Puerta de Madera.","images/Productos/prueba.png", 4),
-	("Madera Pino", 20000, "Homecenter", 7, "Madera de Pino de 2x2.","images/Productos/prueba.png", 19),
-	("Silla de Ruedas", 1100000, "Konfort", 8, "Silla de Ruedas Reclinable.","images/Productos/prueba.png", 12),
-	("Sanitario", 127000, "Konfort", 8, "Eleva Sanitario con COnfort.","images/Productos/prueba.png", 11),
-	("Bloqueador Fps 60", 25000, "Nivea", 9, "Bloqueador Sun Fps 60.","images/Productos/prueba.png", 7),
-	("Crema Anti-Arrugas", 13000, "Nivea", 9, "Crema cuidado de la Piel.","images/Productos/prueba.png", 5),
-	("Perfume", 57000, "Yanbal", 10, "Perfume para Hombre.","images/Productos/prueba.png", 16),
-	("Bloqueador Total Block Fps 100", 33000, "Yanbal", 10, "Bloqueador Solar.","images/Productos/prueba.png", 6),
-	("Torre Eiffel Lego", 190000, "Lego", 11, "Torre Eiffel para Montar en Lego.","images/Productos/prueba.png", 4),
-	("Ladrillos Creativos Lego", 90000, "Lego", 11, "Conjunto Ladrillos Lego.","images/Productos/prueba.png", 12),
-	("Que dijo", 118000, "Hasbro", 12, "Juego de Mesa.","images/Productos/prueba.png", 7),
-	("Reloj Yo-Kai Watch", 149000, "Hasbro", 12, "Reloj con Motivo de Yo-Kai Watch.","images/Productos/prueba.png", 120),
-	("Hamburguesa Doble Carnes", 10000, "McDonald´s", 13, "Hamburguesa McDonald´s.","images/Productos/prueba.png", 1000),
-	("Cajita Feliz Pokemon", 13000, "McDonald´s", 13, "Cajita Feliz con Motivo de Pokemon.","images/Productos/prueba.png", 1000),
-	("Ramen", 20000, "WOK", 14, "Ramen con Carne de Cerdo.","images/Productos/prueba.png", 1),
-	("Arroz Chino", 27000, "WOK", 14, "Arroz Chino con Verduras.","images/Productos/prueba.png", 4);
-COMMIT;
 
 --Insert Vendedor;
 INSERT INTO vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero) VALUES
@@ -251,11 +215,6 @@ INSERT INTO cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, T
 	("Cristofer","Hernandez","1948-9-8","cristoferhe@gmail.com",1073467829, 3140373291, "CristoferHe", "1660", 10, 1),
 	("Sandra","Cristancho","1950-11-30","sandracr@gmail.com",1078205462, 319748294, "SandraCri", "7167", 20, 2);
 COMMIT;
-
-
---Insert local;
-INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria) VALUES
-	("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "images/Locales/Microsoft.png", 1);
 	
 --Insert Administrador;
 INSERT INTO administrador (Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero) VALUES
