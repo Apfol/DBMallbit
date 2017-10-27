@@ -72,7 +72,6 @@ nav ul li a {
 }
 
 #first-photo-slides {
-    /*background: linear-gradient(rgba(62, 39, 35, 0.9), rgba(62, 39, 35, 0.1)), url(slides-foto1.jpg);*/
     background-image: url(slides-foto1.jpg);
 }
 

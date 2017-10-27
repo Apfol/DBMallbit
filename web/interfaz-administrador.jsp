@@ -78,15 +78,15 @@
                         <img class="activator" src="images/Premios/<%=premio.getNombreImagen()%>">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><%= premio.getNombre()%><i class="material-icons right">more_vert</i></span>
+                        <span class="card-title activator grey-text text-darken-4"><%= premio.getNombre() %><b class="right"><%= premio.getPuntos() + " puntos " %></b></span>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4"><%= premio.getNombre()%><i class="material-icons right">close</i></span>
                         <p><%= premio.getDescripcion()%></p>
                     </div>
                     <div class="card-action">
-                        <a href="#">Eliminar premio</a>
-                        <a href="#">Editar premio</a>
+                        <a class="green-text lighten-1" href="#">Editar premio</a>
+                        <a class="red-text" href="#">Eliminar premio</a>
                     </div>
                 </div>
             </div>
