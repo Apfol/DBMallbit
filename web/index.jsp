@@ -1,4 +1,10 @@
 
+<%@page import="com.mallbit.administrador.ControladorAdministrador"%>
+<%@page import="com.mallbit.administrador.Administrador"%>
+<%@page import="com.mallbit.administrador.ModeloAdministrador"%>
+<%@page import="com.mallbit.vendedor.ControladorVendedor"%>
+<%@page import="com.mallbit.vendedor.Vendedor"%>
+<%@page import="com.mallbit.vendedor.ModeloVendedor"%>
 <%@page import="com.mallbit.cliente.ControladorCliente"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mallbit.cliente.ModeloCliente"%>
@@ -13,6 +19,14 @@
     ModeloCliente modeloCliente = new ModeloCliente();
     List<Cliente> clientes = modeloCliente.obtenerClientesDB();
     Cliente cliente = new ControladorCliente().obtenerClienteCookie(clientes, request);
+
+    ModeloVendedor modeloVendedor = new ModeloVendedor();
+    List<Vendedor> vendedores = modeloVendedor.obtenerVendedoresDB();
+    Vendedor vendedor = new ControladorVendedor().obtenerVendedorCookie(vendedores, request);
+
+    ModeloAdministrador modeloAdministrador = new ModeloAdministrador();
+    List<Administrador> administradores = modeloAdministrador.obtenerAdministradoresDB();
+    Administrador administrador = new ControladorAdministrador().obtenerAdministradorCookie(administradores, request);
 %>
 
 <!DOCTYPE html>
@@ -49,10 +63,18 @@
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
                                 <% if (cliente == null) { %>
                                 <li><a href="iniciar-sesion-cliente.jsp"><i class="material-icons left">people</i>Acceder</a></li>
+                                    <% if (vendedor == null) {%>
                                 <li><a href="iniciar-sesion-vendedor.jsp"><i class="material-icons left">local_shipping</i>Vender</a></li>
-                                <li><a href="iniciar-sesion-administrador.jsp"><i class="material-icons left">security</i>Administrar</a></li>
-                                <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
                                     <%} else {%>
+                                <li><a href="interfaz-vendedor.jsp"><i class="material-icons left">local_shipping</i>Vender</a></li>
+                                    <% }%>    
+                                    <% if (administrador == null) {%>
+                                <li><a href="iniciar-sesion-administrador.jsp"><i class="material-icons left">security</i>Administrar</a></li>
+                                    <% } else {%>
+                                <li><a href="interfaz-administrador.jsp"><i class="material-icons left">security</i>Administrar</a></li>
+                                    <% }%>
+                                <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
+                                <%} else {%>
                                 <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
                                 <li>
                                     <form method="post" action="ControladorCliente" id="iu">
@@ -63,7 +85,7 @@
                                 </li>
                                 <li><a href="sass.html"><i class="material-icons left">shopping_cart</i>Mis Compras</a></li>
                                 <li><a href="ControladorCookie?objeto=<%= Cliente.CLIENTE_COOKIE%>"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
-                                    <% }%>
+                                <% }%>
                             </ul>
                         </div>
 
@@ -162,7 +184,7 @@
                     </div>
                 </div>
             </nav>
-            
+
             <!--# NOTE: Entretenimiento genero.-->
             <div id="entretenimiento" class="scrollspy">
                 <div class="parallax-container">
@@ -177,15 +199,15 @@
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
                                 <% for (Local l : locales) { %>
-                                    <% if (l.getIdCategoria() == 1) { %>  
-                                        <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
-                                        </form>
-                                    <% } %>
+                                <% if (l.getIdCategoria() == 1) {%>  
+                                <form action="ControladorProducto" method="post" id="int<%= l.getId()%>">
+                                    <% if (cliente != null) {%>
+                                    <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                    <% }%>
+                                    <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                    <a class="carousel-item" onclick="document.getElementById('int<%= l.getId()%>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
+                                </form>
+                                <% } %>
                                 <% }%>
                             </div>
                         </div>
@@ -203,12 +225,12 @@
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
-                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId() %>">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId() %>').submit()">Ir al local</a></p>
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId()%>">
+                                        <% if (cliente != null) {%>
+                                        <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                        <% }%>
+                                        <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                        <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId()%>').submit()">Ir al local</a></p>
                                     </form>   
                                 </div>
                                 <div class="card-reveal">
@@ -233,15 +255,15 @@
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
                                 <% for (Local l : locales) { %>
-                                    <% if (l.getIdCategoria() == 2) { %>  
-                                        <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
-                                        </form>
-                                    <% } %>
+                                <% if (l.getIdCategoria() == 2) {%>  
+                                <form action="ControladorProducto" method="post" id="int<%= l.getId()%>">
+                                    <% if (cliente != null) {%>
+                                    <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                    <% }%>
+                                    <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                    <a class="carousel-item" onclick="document.getElementById('int<%= l.getId()%>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
+                                </form>
+                                <% } %>
                                 <% }%>
                             </div>
                         </div>
@@ -265,12 +287,12 @@
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
-                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId() %>">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId() %>').submit()">Ir al local</a></p>
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId()%>">
+                                        <% if (cliente != null) {%>
+                                        <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                        <% }%>
+                                        <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                        <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId()%>').submit()">Ir al local</a></p>
                                     </form>   
                                 </div>
                                 <div class="card-reveal">
@@ -302,15 +324,15 @@
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
                                 <% for (Local l : locales) { %>
-                                    <% if (l.getIdCategoria() == 3) { %>  
-                                        <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
-                                        </form>
-                                    <% } %>
+                                <% if (l.getIdCategoria() == 3) {%>  
+                                <form action="ControladorProducto" method="post" id="int<%= l.getId()%>">
+                                    <% if (cliente != null) {%>
+                                    <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                    <% }%>
+                                    <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                    <a class="carousel-item" onclick="document.getElementById('int<%= l.getId()%>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
+                                </form>
+                                <% } %>
                                 <% }%>
                             </div>
                         </div>
@@ -328,12 +350,12 @@
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
-                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId() %>">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId() %>').submit()">Ir al local</a></p>
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId()%>">
+                                        <% if (cliente != null) {%>
+                                        <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                        <% }%>
+                                        <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                        <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId()%>').submit()">Ir al local</a></p>
                                     </form>   
                                 </div>
                                 <div class="card-reveal">
@@ -359,15 +381,15 @@
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
                                 <% for (Local l : locales) { %>
-                                    <% if (l.getIdCategoria() == 4) { %>  
-                                        <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
-                                        </form>
-                                    <% } %>
+                                <% if (l.getIdCategoria() == 4) {%>  
+                                <form action="ControladorProducto" method="post" id="int<%= l.getId()%>">
+                                    <% if (cliente != null) {%>
+                                    <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                    <% }%>
+                                    <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                    <a class="carousel-item" onclick="document.getElementById('int<%= l.getId()%>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
+                                </form>
+                                <% } %>
                                 <% }%>
                             </div>
                         </div>
@@ -391,12 +413,12 @@
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
-                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId() %>">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId() %>').submit()">Ir al local</a></p>
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId()%>">
+                                        <% if (cliente != null) {%>
+                                        <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                        <% }%>
+                                        <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                        <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId()%>').submit()">Ir al local</a></p>
                                     </form>   
                                 </div>
                                 <div class="card-reveal">
@@ -428,15 +450,15 @@
                         <div class="col s7 center">
                             <div class="carousel carousel-logos">
                                 <% for (Local l : locales) { %>
-                                    <% if (l.getIdCategoria() == 5) { %>  
-                                        <form action="ControladorProducto" method="post" id="int<%= l.getId() %>">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <a class="carousel-item" onclick="document.getElementById('int<%= l.getId() %>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
-                                        </form>
-                                    <% } %>
+                                <% if (l.getIdCategoria() == 5) {%>  
+                                <form action="ControladorProducto" method="post" id="int<%= l.getId()%>">
+                                    <% if (cliente != null) {%>
+                                    <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                    <% }%>
+                                    <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                    <a class="carousel-item" onclick="document.getElementById('int<%= l.getId()%>').submit()"><img style="height: 250px; width: 250px" src="images/Locales/<%= l.getNombreImagenPrimaria()%>"></a>
+                                </form>
+                                <% } %>
                                 <% }%>
                             </div>
                         </div>
@@ -454,12 +476,12 @@
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4" style="font-weight: 300"><%= l.getNombre()%><i class="material-icons right">more_vert</i></span>
-                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId() %>">
-                                            <% if (cliente != null) {%>
-                                            <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
-                                            <% } %>
-                                            <input type="hidden" name="idlocal" value="<%= l.getId()%>">
-                                            <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId() %>').submit()">Ir al local</a></p>
+                                    <form action="ControladorProducto" method="post" id="cad<%= l.getId()%>">
+                                        <% if (cliente != null) {%>
+                                        <input type="hidden" name="user" value="<%= cliente.getUsuario()%>">                                         
+                                        <% }%>
+                                        <input type="hidden" name="idlocal" value="<%= l.getId()%>">
+                                        <p class="center" style="margin-top: 5%"><a href="#!" onclick="document.getElementById('cad<%= l.getId()%>').submit()">Ir al local</a></p>
                                     </form>   
                                 </div>
                                 <div class="card-reveal">
@@ -469,11 +491,11 @@
                             </div>
                         </div>
                         <% } %>
-                        <% } %>
+                        <% }%>
                     </div>
                 </div>
             </div>
-            
+
 
             <!--# NOTE: Comienza parte pie de página.-->
 
