@@ -95,11 +95,11 @@
                         <div class="col s3 right">
                             <div class="card brown darken-3 z-depth-5">
                                 <div class="card-content white-text">
-                                    <span class="card-title">Card Title</span>
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                    <span class="card-title">Nombre_Local</span>
+                                    <p>Cambienme plz.</p>
                                 </div>
                                 <div class="card-action">
-                                    <a href="#">This is a link</a>
+                                    <a href="#">Ir al Local</a>
                                 </div>
                             </div>
                         </div>
@@ -108,11 +108,11 @@
                         <div style="margin: 20px;" class="col s3 right">
                             <div class="card blue lighten-5 z-depth-5">
                                 <div class="card-content black-text">
-                                    <span class="card-title">Card Title</span>
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                    <span class="card-title">Nombre_Local</span>
+                                    <p>Cambienme plz x2.</p>
                                 </div>
                                 <div class="card-action">
-                                    <a href="#">This is a link</a>
+                                    <a href="#">Ir al Local</a>
                                 </div>
                             </div>
                         </div>
@@ -121,11 +121,11 @@
                         <div style="margin: 20px;" class="col s3 left">
                             <div class="card blue lighten-5 z-depth-5">
                                 <div class="card-content black-text">
-                                    <span class="card-title">Card Title</span>
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                    <span class="card-title">Nombre_Local</span>
+                                    <p>Cambienme plz x3.</p>
                                 </div>
                                 <div class="card-action">
-                                    <a href="#">This is a link</a>
+                                    <a href="#">Ir al Local</a>
                                 </div>
                             </div>
                         </div>
@@ -134,11 +134,11 @@
                         <div style="margin: 20px;" class="col s3 left">
                             <div class="card lime lighten-4 z-depth-5">
                                 <div class="card-content black-text">
-                                    <span class="card-title">Card Title</span>
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                    <span class="card-title">Nombre_Local</span>
+                                    <p>Cambienme plz x4.</p>
                                 </div>
                                 <div class="card-action">
-                                    <a href="#">This is a link</a>
+                                    <a href="#">Ir al Local</a>
                                 </div>
                             </div>
                         </div>
