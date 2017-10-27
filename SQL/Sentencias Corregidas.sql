@@ -153,40 +153,37 @@ INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen1, IDCategoria) 
 	("WOK", 14, "Cadena de restaurantes dedicado a la comida asiática", "WOK.png", 6);
 COMMIT;
 
-<<<<<<< HEAD
-	--Insert producto;
-	INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock) VALUES
-		("Samsung Galaxy Note 7", 2000000, "Samsung", 4, "Explota.","images/Productos/prueba.png", 10),
-		("Consola PS4 Pro", 1400000, "Sony", 1, "Consola Videojuegos.","images/Productos/prueba.png", 3),
-		("Televisor X94E", 4000000, "Sony", 1, "Televisión 4K.","images/Productos/prueba.png", 0),
-		("Consola Xbox One X", 1800000, "Microsoft", 2, "Consola Videojuegos.","images/Productos/prueba.png", 1000),
-		("Office 365", 200000, "Microsoft", 2, "Licencia Office.","images/Productos/prueba.png", 10),
-		("Wigetta", 20000, "Editorial", 3, "Libro para Mkas.","images/Productos/prueba.png", 100),
-		("Joycon", 300000, "Nintendo", 3, "Control Nintendo Switch.","images/Productos/prueba.png", 1),
-		("Samsung Galaxy J7", 850000, "Sony", 4, "Celular Samsung.","images/Productos/prueba.png", 0),
-		("D3400", 1200000, "Nikon", 5, "Cámara Profesional.","images/Productos/prueba.png", 34),
-		("Lente 35mm", 620000, "Nikon", 5, "Lente Cámaras.","images/Productos/prueba.png", 22),
-		("Mouse DX-110", 20000, "Genius", 6, "Mouse Inalámbrico.","images/Productos/prueba.png", 12),
-		("Teclado K220", 42000, "Genius", 6, "Teclado Gamer.","images/Productos/prueba.png", 8),
-		("Puerta", 88000, "Homecenter", 7, "Puerta de Madera.","images/Productos/prueba.png", 4),
-		("Madera Pino", 20000, "Homecenter", 7, "Madera de Pino de 2x2.","images/Productos/prueba.png", 19),
-		("Silla de Ruedas", 1100000, "Konfort", 8, "Silla de Ruedas Reclinable.","images/Productos/prueba.png", 12),
-		("Sanitario", 127000, "Konfort", 8, "Eleva Sanitario con COnfort.","images/Productos/prueba.png", 11),
-		("Bloqueador Fps 60", 25000, "Nivea", 9, "Bloqueador Sun Fps 60.","images/Productos/prueba.png", 7),
-		("Crema Anti-Arrugas", 13000, "Nivea", 9, "Crema cuidado de la Piel.","images/Productos/prueba.png", 5),
-		("Perfume", 57000, "Yanbal", 10, "Perfume para Hombre.","images/Productos/prueba.png", 16),
-		("Bloqueador Total Block Fps 100", 33000, "Yanbal", 10, "Bloqueador Solar.","images/Productos/prueba.png", 6),
-		("Torre Eiffel Lego", 190000, "Lego", 11, "Torre Eiffel para Montar en Lego.","images/Productos/prueba.png", 4),
-		("Ladrillos Creativos Lego", 90000, "Lego", 11, "Conjunto Ladrillos Lego.","images/Productos/prueba.png", 12),
-		("Que dijo", 118000, "Hasbro", 12, "Juego de Mesa.","images/Productos/prueba.png", 7),
-		("Reloj Yo-Kai Watch", 149000, "Hasbro", 12, "Reloj con Motivo de Yo-Kai Watch.","images/Productos/prueba.png", 120),
-		("Hamburguesa Doble Carnes", 10000, "McDonald´s", 13, "Hamburguesa McDonald´s.","images/Productos/prueba.png", 1000),
-		("Cajita FelizNombre VARCHAR(100) NOT NULL, Apellido VARCHAR(100) NOT NULL", 13000, "McDonald´s", 13, "Cajita Feliz con Motivo de Pokemon.","images/Productos/prueba.png", 1000),
-		("Ramen", 20000, "WOK", 14, "Ramen con Carne de Cerdo.","images/Productos/prueba.png", 1),
-		("Arroz Chino", 27000, "WOK", 14, "Arroz Chino con Verduras.","images/Productos/prueba.png", 4);
-	COMMIT;
-=======
->>>>>>> 5ea353e17dc7cdec34029b9ffb5e1d584a47a9f2
+--Insert producto;
+INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock) VALUES
+	("Samsung Galaxy Note 7", 2000000, "Samsung", 4, "Explota.","images/Productos/prueba.png", 10),
+	("Consola PS4 Pro", 1400000, "Sony", 1, "Consola Videojuegos.","images/Productos/prueba.png", 3),
+	("Televisor X94E", 4000000, "Sony", 1, "Televisión 4K.","images/Productos/prueba.png", 0),
+	("Consola Xbox One X", 1800000, "Microsoft", 2, "Consola Videojuegos.","images/Productos/prueba.png", 1000),
+	("Office 365", 200000, "Microsoft", 2, "Licencia Office.","images/Productos/prueba.png", 10),
+	("Wigetta", 20000, "Editorial", 3, "Libro para Mkas.","images/Productos/prueba.png", 100),
+	("Joycon", 300000, "Nintendo", 3, "Control Nintendo Switch.","images/Productos/prueba.png", 1),
+	("Samsung Galaxy J7", 850000, "Sony", 4, "Celular Samsung.","images/Productos/prueba.png", 0),
+	("D3400", 1200000, "Nikon", 5, "Cámara Profesional.","images/Productos/prueba.png", 34),
+	("Lente 35mm", 620000, "Nikon", 5, "Lente Cámaras.","images/Productos/prueba.png", 22),
+	("Mouse DX-110", 20000, "Genius", 6, "Mouse Inalámbrico.","images/Productos/prueba.png", 12),
+	("Teclado K220", 42000, "Genius", 6, "Teclado Gamer.","images/Productos/prueba.png", 8),
+	("Puerta", 88000, "Homecenter", 7, "Puerta de Madera.","images/Productos/prueba.png", 4),
+	("Madera Pino", 20000, "Homecenter", 7, "Madera de Pino de 2x2.","images/Productos/prueba.png", 19),
+	("Silla de Ruedas", 1100000, "Konfort", 8, "Silla de Ruedas Reclinable.","images/Productos/prueba.png", 12),
+	("Sanitario", 127000, "Konfort", 8, "Eleva Sanitario con COnfort.","images/Productos/prueba.png", 11),
+	("Bloqueador Fps 60", 25000, "Nivea", 9, "Bloqueador Sun Fps 60.","images/Productos/prueba.png", 7),
+	("Crema Anti-Arrugas", 13000, "Nivea", 9, "Crema cuidado de la Piel.","images/Productos/prueba.png", 5),
+	("Perfume", 57000, "Yanbal", 10, "Perfume para Hombre.","images/Productos/prueba.png", 16),
+	("Bloqueador Total Block Fps 100", 33000, "Yanbal", 10, "Bloqueador Solar.","images/Productos/prueba.png", 6),
+	("Torre Eiffel Lego", 190000, "Lego", 11, "Torre Eiffel para Montar en Lego.","images/Productos/prueba.png", 4),
+	("Ladrillos Creativos Lego", 90000, "Lego", 11, "Conjunto Ladrillos Lego.","images/Productos/prueba.png", 12),
+	("Que dijo", 118000, "Hasbro", 12, "Juego de Mesa.","images/Productos/prueba.png", 7),
+	("Reloj Yo-Kai Watch", 149000, "Hasbro", 12, "Reloj con Motivo de Yo-Kai Watch.","images/Productos/prueba.png", 120),
+	("Hamburguesa Doble Carnes", 10000, "McDonald´s", 13, "Hamburguesa McDonald´s.","images/Productos/prueba.png", 1000),
+	("Cajita FelizNombre VARCHAR(100) NOT NULL, Apellido VARCHAR(100) NOT NULL", 13000, "McDonald´s", 13, "Cajita Feliz con Motivo de Pokemon.","images/Productos/prueba.png", 1000),
+	("Ramen", 20000, "WOK", 14, "Ramen con Carne de Cerdo.","images/Productos/prueba.png", 1),
+	("Arroz Chino", 27000, "WOK", 14, "Arroz Chino con Verduras.","images/Productos/prueba.png", 4);
+COMMIT;
 
 --Insert producto;
 INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock) VALUES
