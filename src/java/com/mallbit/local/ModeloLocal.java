@@ -17,10 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author Andres Ramos
- */
 public class ModeloLocal {
     
     public List<Local> obtenerLocalesDB() throws Exception {
@@ -47,11 +43,10 @@ public class ModeloLocal {
             String nombre = resultSet.getString("Nombre");
             int idVendedor = resultSet.getInt("IDVendedor");
             String descripcion = resultSet.getString("Descripcion");
-            String nombreImagen1 = resultSet.getString("NombreImagen1");
-            String nombreImagen2 = resultSet.getString("NombreImagen2");
+            String nombreImagen = resultSet.getString("NombreImagen");
             int idCategoria = resultSet.getInt("IDCategoria");
 
-            locales.add(new Local(id, nombre, descripcion, idVendedor, idCategoria, nombreImagen1, nombreImagen2));
+            locales.add(new Local(id, nombre, descripcion, idVendedor, idCategoria, nombreImagen));
 
         }
         return locales;
@@ -67,14 +62,16 @@ public class ModeloLocal {
 
         //Crear sentencia SQL y statement
         String sentenciaSQL = "INSERT INTO local "
-                + "(Nombre,Descripcion,NombreImagenPrimaria,NombreImagenSecundaria) VALUES (?,?,?,?)";
+                + "(Nombre, IDVendedor, Descripcion, NombreImagen, IDCategoria) VALUES (?,?,?,?,?)";
         preparedStatement = connection.prepareStatement(sentenciaSQL);
 
+        
         //Pasar valores del objeto cliente a la sentenciaSQL
         preparedStatement.setString(1, local.getNombre());
-        preparedStatement.setString(2, local.getDescripcion());
-        preparedStatement.setString(3, local.getNombreImagenPrimaria());
-        preparedStatement.setString(4, local.getNombreImagenSecundaria());
+        preparedStatement.setString(2, Integer.toString(local.getIdVendedor()));
+        preparedStatement.setString(3, local.getDescripcion());
+        preparedStatement.setString(4, local.getNombreImagen());
+        preparedStatement.setInt(5, local.getIdCategoria());
 
         preparedStatement.execute();
     }
@@ -101,11 +98,42 @@ public class ModeloLocal {
             String nombre = resultSet.getString("Nombre");
             int idVendedor = resultSet.getInt("IDVendedor");
             String descripcion = resultSet.getString("Descripcion");
-            String nombreImagen1 = resultSet.getString("NombreImagen1");
-            String nombreImagen2 = resultSet.getString("NombreImagen2");
+            String nombreImagen = resultSet.getString("NombreImagen");
             int idCategoria = resultSet.getInt("IDCategoria");
 
-            local = new Local(id, nombre, descripcion, idVendedor, idCategoria, nombreImagen1, nombreImagen2);
+            local = new Local(id, nombre, descripcion, idVendedor, idCategoria, nombreImagen);
+
+        }
+        return local;
+        
+    }
+    
+    public Local obtenerLocalV(String IDVendedor) throws SQLException {
+        
+        Local local = null;
+        
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+        
+        //Crear sentencia SQL y statement
+        String sentenciaSQL = "SELECT * FROM local WHERE IDVendedor="+IDVendedor;
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+
+        //Ejecutar SQL
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("IDLocal");
+            String nombre = resultSet.getString("Nombre");
+            int idVendedor = resultSet.getInt("IDVendedor");
+            String descripcion = resultSet.getString("Descripcion");
+            String nombreImagen = resultSet.getString("NombreImagen");
+            int idCategoria = resultSet.getInt("IDCategoria");
+
+            local = new Local(id, nombre, descripcion, idVendedor, idCategoria, nombreImagen);
 
         }
         return local;

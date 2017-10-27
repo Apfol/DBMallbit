@@ -89,7 +89,6 @@
                             <input id="usuario" name="usuario" type="text" class="validate">
                             <label for="usuario">Usuario</label>
                         </div>
-
                         <div class="col s4 input-field">
                             <i class="material-icons prefix">lock_outline</i>
                             <input id="contraseña" name="password" type="password" class="validate">

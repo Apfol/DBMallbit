@@ -1,9 +1,3 @@
-<%-- 
-    Document   : interfaz-administrador
-    Created on : Oct 21, 2017, 10:23:27 AM
-    Author     : Andres Ramos
---%>
-
 <%@page import="com.mallbit.premio.ModeloPremio"%>
 <%@page import="com.mallbit.premio.Premio"%>
 <%@page import="com.mallbit.administrador.ControladorAdministrador"%>
@@ -31,7 +25,7 @@
         <%} else {%>
         <title>Administradora <%= administrador.getNombre()%></title>
         <%}%>
-        <title>Admnistrador </title>
+        <title>Administrador </title>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
@@ -147,14 +141,14 @@
                 <%} else {%>
                 <h5>¡Bienvenida <%= administrador.getNombre()%>!</h5>
                 <% }%>
-                <p>Si deseas agregar un nuevo premio a la plataforma, o cambiar tus datos personales haz click en este botón.</p>
+                <p>Si deseas agregar un nuevo premio a la plataforma, o cambiar tus datos personales has click en este botón.</p>
             </div>
         </div>
         <!--Import jQuery before materialize.js-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script src="js/script.js"></script>
-        <script src="js/script-administrador.js"></script>
+        <script src="js/script-inicio.js"></script>
     </body>
 
 </html>
