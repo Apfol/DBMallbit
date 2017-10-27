@@ -51,7 +51,7 @@
 
 
         <div class="fixed-action-btn">
-            <a id="elementosAdmin" class="btn-floating btn-large red lighten-1">
+            <a id="elementosAdmin" class="btn-floating btn-large green lighten-1">
                 <i class="large material-icons">add</i>
             </a>
             <ul>
@@ -65,7 +65,7 @@
         <div id="contenedorAviso" class="valign-wrapper">
             <div class="row">
                 <div class="col s6 offset-s3 m6 offset-m3">
-                    <h4 class="center-align">Aún no haz añadido ningún premio.</h4>
+                    <h4 class="center-align">Aún no has añadido ningún premio.</h4>
                 </div>  
             </div> 
         </div>
@@ -75,9 +75,9 @@
             <div class="col s12 m4">
                 <div class="card">
                     <div class="card-image">
-                        <img src="images/premios/<%=premio.getNombreImagen()%>">
+                        <img style="width: 100%; height: 400px;" src="images/Premios/<%=premio.getNombreImagen()%>">
                         <span class="card-title"><%= premio.getNombre()%></span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        <a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons">add</i></a>
                     </div>
                     <div class="card-content">
                         <p><%= premio.getDescripcion()%></p>
@@ -133,7 +133,7 @@
             </form>
         </div>
 
-        <div class="tap-target" data-activates="elementosAdmin">
+        <div class="tap-target" data-activates="elementosAdmin" style="background-color: #66bb6a">
             <div class="tap-target-content">
                 <% if (administrador.getIdGenero() == 1) {%>
                 <h5>¡Bienvenido <%= administrador.getNombre()%>!</h5>
