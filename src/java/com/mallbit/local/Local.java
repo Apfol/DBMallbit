@@ -17,33 +17,26 @@ public class Local {
     private String descripcion;
     private int idVendedor;
     private int idCategoria;
-    private String nombreImagen1;
-    private String nombreImagen2;
+    private String nombreImagen;
 
-    public Local(int id, String nombre, String descripcion, String nombreImagenPrimaria, String nombreImagenSecundaria) {
-        this.id = id;
+    public Local(String nombre, int idVendedor, String descripcion, int idCategoria, String nombreImagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.nombreImagen1 = nombreImagenPrimaria;
-        this.nombreImagen2 = nombreImagenSecundaria;
+        this.idVendedor = idVendedor;
+        this.idCategoria = idCategoria;
+        this.nombreImagen = nombreImagen;
     }
 
-    public Local(String nombre, String descripcion, String nombreImagenPrimaria, String nombreImagenSecundaria) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.nombreImagen1 = nombreImagenPrimaria;
-        this.nombreImagen2 = nombreImagenSecundaria;
-    }
 
-    public Local(int id, String nombre, String descripcion, int idVendedor, int idCategoria, String nombreImagenPrimaria, String nombreImagenSecundaria) {
+    public Local(int id, String nombre, String descripcion, int idVendedor, int idCategoria, String nombreImagenPrimaria) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.idVendedor = idVendedor;
         this.idCategoria = idCategoria;
-        this.nombreImagen1 = nombreImagenPrimaria;
-        this.nombreImagen2 = nombreImagenSecundaria;
+        this.nombreImagen = nombreImagenPrimaria;
     }
+
 
     public int getIdVendedor() {
         return idVendedor;
@@ -87,20 +80,12 @@ public class Local {
         this.descripcion = descripcion;
     }
 
-    public String getNombreImagenPrimaria() {
-        return nombreImagen1;
+    public String getNombreImagen() {
+        return nombreImagen;
     }
 
-    public void setNombreImagenPrimaria(String nombreImagenPrimaria) {
-        this.nombreImagen1 = nombreImagenPrimaria;
-    }
-
-    public String getNombreImagenSecundaria() {
-        return nombreImagen2;
-    }
-
-    public void setNombreImagenSecundaria(String nombreImagenSecundaria) {
-        this.nombreImagen2 = nombreImagenSecundaria;
+    public void setNombreImagen(String nombreImagen) {
+        this.nombreImagen = nombreImagen;
     }
     
     

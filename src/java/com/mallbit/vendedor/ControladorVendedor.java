@@ -103,15 +103,11 @@ public class ControladorVendedor extends HttpServlet {
             //Actualiza lista de vendedor con el que se acaba de ingresar
             vendedores = modeloVendedor.obtenerVendedoresDB();
 
-            //Guardar id del administrador en una cookie
+            //Guardar id del vendedor en una cookie
             int idVendedor = vendedores.get(vendedores.size() - 1).getId();
             ControladorCookie.crearCookie(idVendedor, Vendedor.VENDEDOR_COOKIE, response);
-            response.sendRedirect("interfaz-vendedor.jsp");
-
-            request.setAttribute("VENDEDOR", vendedor);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-vendedor.jsp");
-            requestDispatcher.forward(request, response);
-
+            response.sendRedirect("registro-local.jsp");
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
