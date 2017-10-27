@@ -181,7 +181,7 @@ create table cliente_premio(
 		("Que dijo", 118000, "Hasbro", 12, "Juego de Mesa.","images/Productos/prueba.png", 7),
 		("Reloj Yo-Kai Watch", 149000, "Hasbro", 12, "Reloj con Motivo de Yo-Kai Watch.","images/Productos/prueba.png", 120),
 		("Hamburguesa Doble Carnes", 10000, "McDonald´s", 13, "Hamburguesa McDonald´s.","images/Productos/prueba.png", 1000),
-		("Cajita Feliz Pokemon", 13000, "McDonald´s", 13, "Cajita Feliz con Motivo de Pokemon.","images/Productos/prueba.png", 1000),
+		("Cajita FelizNombre VARCHAR(100) NOT NULL, Apellido VARCHAR(100) NOT NULL", 13000, "McDonald´s", 13, "Cajita Feliz con Motivo de Pokemon.","images/Productos/prueba.png", 1000),
 		("Ramen", 20000, "WOK", 14, "Ramen con Carne de Cerdo.","images/Productos/prueba.png", 1),
 		("Arroz Chino", 27000, "WOK", 14, "Arroz Chino con Verduras.","images/Productos/prueba.png", 4);
 	COMMIT;
