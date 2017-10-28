@@ -3,16 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/web/interfaz-administrador.jsp</file>
-            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/web/index.jsp</file>
-            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/web/iniciar-sesion-vendedor.jsp</file>
-            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/src/java/com/mallbit/vendedor/ControladorVendedor.java</file>
-            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/src/java/com/mallbit/Conexion/ConexionDB.java</file>
-            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/web/iniciar-sesion-administrador.jsp</file>
-=======
             <file>file:/C:/Users/DELL/Documents/GitHub/DBMallBit/src/java/com/mallbit/Conexion/ConexionDB.java</file>
->>>>>>> ba1346be2b457d0e7e4ece5f9eb26772aabbaab2
         </group>
     </open-files>
 </project-private>
