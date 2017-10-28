@@ -116,7 +116,7 @@ public class ControladorCliente extends HttpServlet {
                 modeloCliente.agregarClienteDB(cliente);
                 //Actualiza lista de clientes con el que se acaba de ingresar
                 clientes = modeloCliente.obtenerClientesDB();
-                //Guardar id del clientes en una cookie
+                //Guardar id del cliente en una cookie
                 int idCliente = clientes.get(clientes.size() - 1).getId();
                 ControladorCookie.crearCookie(idCliente, Cliente.CLIENTE_COOKIE, response);
                 response.sendRedirect("index.jsp");

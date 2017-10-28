@@ -1,9 +1,3 @@
-<%-- 
-    Document   : interfaz-administrador
-    Created on : Oct 21, 2017, 10:23:27 AM
-    Author     : Andres Ramos
---%>
-
 <%@page import="com.mallbit.premio.ModeloPremio"%>
 <%@page import="com.mallbit.premio.Premio"%>
 <%@page import="com.mallbit.administrador.ControladorAdministrador"%>
@@ -31,7 +25,7 @@
         <%} else {%>
         <title>Administradora <%= administrador.getNombre()%></title>
         <%}%>
-        <title>Admnistrador </title>
+        <title>Administrador </title>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
@@ -73,18 +67,25 @@
         <div class="row">
             <% for (Premio premio : premios) {%>
             <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img style="width: 100%; height: 400px;" src="images/Premios/<%=premio.getNombreImagen()%>">
-                        <span class="card-title"><%= premio.getNombre()%></span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons">add</i></a>
+                <div class="card sticky-action">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="images/Premios/<%=premio.getNombreImagen()%>">
                     </div>
                     <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"><%= premio.getNombre() %><b class="right"><%= premio.getPuntos() + " puntos " %></b></span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><%= premio.getNombre()%><i class="material-icons right">close</i></span>
                         <p><%= premio.getDescripcion()%></p>
+                    </div>
+                    <div class="card-action">
+                        <a class="green-text lighten-1" href="#">Editar premio</a>
+                        <a class="red-text" href="#">Eliminar premio</a>
                     </div>
                 </div>
             </div>
             <% } %>
+
         </div>
         <% } %>
 
@@ -140,14 +141,14 @@
                 <%} else {%>
                 <h5>¡Bienvenida <%= administrador.getNombre()%>!</h5>
                 <% }%>
-                <p>Si deseas agregar un nuevo premio a la plataforma, o cambiar tus datos personales haz click en este botón.</p>
+                <p>Si deseas agregar un nuevo premio a la plataforma, o cambiar tus datos personales has click en este botón.</p>
             </div>
         </div>
         <!--Import jQuery before materialize.js-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script src="js/script.js"></script>
-        <script src="js/script-administrador.js"></script>
+        <script src="js/script-inicio.js"></script>
     </body>
 
 </html>

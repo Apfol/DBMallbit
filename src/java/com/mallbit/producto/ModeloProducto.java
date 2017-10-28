@@ -53,7 +53,7 @@ public class ModeloProducto {
         return productos;
     }
 
-    List<Producto> getProductos(String local) throws Exception{
+    public List<Producto> getProductos(String local) throws Exception{
         
         List<Producto> productos = new ArrayList<>();
 

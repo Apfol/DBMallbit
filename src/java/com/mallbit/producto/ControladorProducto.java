@@ -77,8 +77,6 @@ public class ControladorProducto extends HttpServlet {
                 }
             }
             
-            System.out.println(localB.getNombre());
-            
             //Crear sesion del cliente
             HttpSession session = request.getSession();
             session.setAttribute("CLIENTE_SESSION", c);
