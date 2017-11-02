@@ -202,7 +202,6 @@ public class ControladorVendedor extends HttpServlet {
             for (Vendedor v : vendedores) {
                 if (v.getUsuario().equals(usuario)) {
                     buscado = v;
-                    System.out.println("Hola BB");
                     break;
                 }
             }
