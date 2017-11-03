@@ -78,7 +78,6 @@ public class ControladorCliente extends HttpServlet {
             Date date = formatPage.parse(request.getParameter("fechaNacimiento"));
             //Se pasa el objeto Date al formato que admite MySQL
             fechaNacimiento = formatSQL.parse(formatSQL.format(date));
-            System.out.println(fechaNacimiento);
 
             // </editor-fold>      
             String nombre = request.getParameter("nombre");
