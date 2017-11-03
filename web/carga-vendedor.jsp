@@ -1,13 +1,13 @@
-<%@page import="com.mallbit.administrador.ControladorAdministrador"%>
-<%@page import="com.mallbit.administrador.Administrador"%>
+<%@page import="com.mallbit.vendedor.ControladorVendedor"%>
+<%@page import="com.mallbit.vendedor.ModeloVendedor"%>
+<%@page import="com.mallbit.vendedor.Vendedor"%>
 <%@page import="java.util.List"%>
-<%@page import="com.mallbit.administrador.ModeloAdministrador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
     //En esta parte de código lo que se hace es obtener el administrador que tiene el mismo id que se guardo en la cookie.
-    List<Administrador> administradores = new ModeloAdministrador().obtenerAdministradoresDB();
-    Administrador administrador = new ControladorAdministrador().obtenerAdministradorCookie(administradores, request);
+    List<Vendedor> vendedores = new ModeloVendedor().obtenerVendedoresDB();
+    Vendedor vendedor = new ControladorVendedor().obtenerVendedorCookie(vendedores, request);
 %>
 <html>
     <head>
@@ -17,23 +17,18 @@
         <link href="css/style.css" rel="stylesheet" />
         <link href="css/style-interfaz-administrador.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" href="css/materialize.css" />
-        <% if (administrador.getIdGenero() == 1) {%>
-        <title>Administrador <%= administrador.getNombre()%></title>
-        <%} else {%>
-        <title>Administradora <%= administrador.getNombre()%></title>
-        <%}%>
-        <title>Admnistrador </title>
+        <title>Saliendo... </title>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
-    <body>
+    <body id="cuerpo" >
         <nav>
-            <div class="nav-wrapper light-green darken-1">
+            <div class="nav-wrapper light-green lighten-1">
                 <div class="col s12">
                     <div id="principal-nav">
                         <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="ControladorCookie?objeto=<%= Administrador.ADMINISTRADOR_COOKIE%>"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
+                            <li><a href="ControladorCookie?objeto=<%= Vendedor.VENDEDOR_COOKIE%>"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -59,7 +54,7 @@
         </div>
 
         <script language="JavaScript">
-            setTimeout("location.href='interfaz-administrador.jsp'", 5000);
+            setTimeout("location.href='index.jsp'", 10000);
         </script>
     </body>
 </html>

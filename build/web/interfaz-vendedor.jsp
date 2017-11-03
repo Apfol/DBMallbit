@@ -33,7 +33,7 @@
             <div class="nav-wrapper light-blue darken-3">
                 <div class="col s12">
                     <div id="principal-nav">
-                        <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
+                        <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="ControladorCookie?objeto=<%= Vendedor.VENDEDOR_COOKIE %>"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
                         </ul>

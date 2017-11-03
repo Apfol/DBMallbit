@@ -1,9 +1,3 @@
-<%-- 
-    Document   : carga-administrador
-    Created on : Oct 24, 2017, 1:00:07 AM
-    Author     : Andres Ramos
---%>
-
 <%@page import="com.mallbit.administrador.ControladorAdministrador"%>
 <%@page import="com.mallbit.administrador.Administrador"%>
 <%@page import="java.util.List"%>
