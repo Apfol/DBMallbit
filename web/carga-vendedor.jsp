@@ -17,13 +17,13 @@
         <link href="css/style.css" rel="stylesheet" />
         <link href="css/style-interfaz-administrador.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" href="css/materialize.css" />
-        <title>Saliendo... </title>
+        <title>Cargando... </title>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
-    <body id="cuerpo" >
+    <body id="cuerpov" >
         <nav>
-            <div class="nav-wrapper light-green lighten-1">
+            <div class="nav-wrapper light-blue darken-3">
                 <div class="col s12">
                     <div id="principal-nav">
                         <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
@@ -54,7 +54,7 @@
         </div>
 
         <script language="JavaScript">
-            setTimeout("location.href='index.jsp'", 10000);
+            setTimeout("location.href='interfaz-vendedor.jsp'", 10000);
         </script>
     </body>
 </html>
