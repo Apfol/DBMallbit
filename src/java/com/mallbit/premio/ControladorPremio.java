@@ -25,10 +25,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-/**
- *
- * @author Andres Ramos
- */
 @WebServlet(name = "ControladorPremio", urlPatterns = {"/ControladorPremio"})
 @MultipartConfig
 public class ControladorPremio extends HttpServlet {

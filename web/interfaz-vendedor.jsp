@@ -120,7 +120,7 @@
             </div>
             <div class="col s2" id="opciones">
                 <div class="center-align" id="btn1">
-                    <a class="btn-floating btn-large waves-effect waves-light" id="compras"><i id="comprastext2">Mi Tienda</i><i class="material-icons" id="comprastext">store</i></a>
+                    <a class="btn-floating btn-large waves-effect waves-light" href="interfaz-productos.jsp" id="compras"><i id="comprastext2">Mi Tienda</i><i class="material-icons" id="comprastext">store</i></a>
                 </div>
                 <div class="center-align" id="btn2">
                     <a class="btn-floating btn-large waves-effect waves-light" id="editar" onclick="mostrarEditar()"><i id="editartext2">Editar</i><i class="material-icons" id="editartext">create</i></a>

@@ -90,4 +90,32 @@ public class ModeloProducto {
         }
         return productos;
     }
+    
+    public void insertarProducto (Producto producto) throws Exception{
+        
+        Connection connection;
+        PreparedStatement preparedStatement;
+
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement
+        String sentenciaSQL = "INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock, Puntos) "
+                            + "VALUES (?,?,?,?,?,?,?,?)";
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+        preparedStatement.setString(1, producto.getNombre());
+        preparedStatement.setInt(2, producto.getPrecio());
+        preparedStatement.setString(3, producto.getMarca());
+        preparedStatement.setInt(4, producto.getIdLocal());
+        preparedStatement.setString(5, producto.getDescripcion());
+        preparedStatement.setString(6, producto.getNombreImagen());
+        preparedStatement.setInt(7, producto.getStock());
+        preparedStatement.setInt(8, producto.getPuntos());
+        
+        preparedStatement.execute();
+        
+        preparedStatement.close();
+        connection.close();
+        
+    }
 }

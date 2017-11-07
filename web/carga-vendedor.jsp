@@ -8,6 +8,14 @@
     //En esta parte de código lo que se hace es obtener el administrador que tiene el mismo id que se guardo en la cookie.
     List<Vendedor> vendedores = new ModeloVendedor().obtenerVendedoresDB();
     Vendedor vendedor = new ControladorVendedor().obtenerVendedorCookie(vendedores, request);
+    
+    String jsp = "";
+    String caso = request.getAttribute("caso").toString();
+    if(caso == null){
+        jsp = "interfaz-vendedor.jsp";
+    }else{
+        jsp = "interfaz-productos.jsp";
+    }
 %>
 <html>
     <head>
@@ -54,7 +62,7 @@
         </div>
 
         <script language="JavaScript">
-            setTimeout("location.href='interfaz-vendedor.jsp'", 10000);
+            setTimeout("location.href='<%= jsp %>'", 5000);
         </script>
 
     </body>
