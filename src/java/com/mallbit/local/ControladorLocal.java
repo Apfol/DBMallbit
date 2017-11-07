@@ -85,15 +85,7 @@ public class ControladorLocal extends HttpServlet {
             
             //Crear objeto Local con los datos recibidos del formulario   
             String nombre = request.getParameter("nombre");
-            //<editor-fold defaultstate="collapsed" desc="Crear directorio del local con carpeta de Productos">
-            
-            String pathServlet = getServletContext().getRealPath("/");
-            String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
-            String path = pathProject + "\\web\\images\\Locales\\" + nombre + "\\Productos";
-            File f = new File (path);
-            f.mkdirs();
-            
-            // </editor-fold>  
+
             int idVendedor = Integer.parseInt(request.getParameter("vendedor"));
             String descripcion = request.getParameter("descripcion");
             String nombreImagen = guardarImagenObtenerNombre(request, "imagenPrincipal", nombre);
@@ -104,7 +96,7 @@ public class ControladorLocal extends HttpServlet {
             //Enviar objeto al modelo para guardar en la Base de Datos
             modeloLocal.agregarLocalDB(local);
             
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-vendedor.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/carga-vendedor.jsp");
             requestDispatcher.forward(request, response);
 
         } catch (Exception ex) {
@@ -123,7 +115,7 @@ public class ControladorLocal extends HttpServlet {
         // Obtener dirección a guardar archivo
         String pathServlet = getServletContext().getRealPath("/");
         String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
-        String path = pathProject + "\\web\\images\\Locales\\" + nombreLocal + "\\";
+        String path = pathProject + "\\web\\images\\Locales\\";
         Part filePart = request.getPart(tipoImagen);
 
         //Obtener nombre archivo

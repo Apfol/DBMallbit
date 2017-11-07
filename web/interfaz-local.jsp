@@ -74,7 +74,7 @@
                     <div class="col s12 m7">
                         <div class="card z-depth-5" id="cardlocal">
                             <div class="card-image">
-                                <img src="images/Locales/<%= local.getNombre() %>/<%= local.getNombreImagen() %>" id="imagencard">
+                                <img src="images/Locales/<%= local.getNombreImagen() %>" id="imagencard">
                             </div>
                             <div class="card-content" id="titulolocal">
                                 <p><%= local.getNombre() %></p>
