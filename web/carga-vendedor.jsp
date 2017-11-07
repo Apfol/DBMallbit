@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col s6 offset-s3 m6 offset-m3">
                     <div class="preloader-wrapper big active">
-                        <div class="spinner-layer spinner-green-only">
+                        <div class="spinner-layer spinner-blue-only">
                             <div class="circle-clipper left">
                                 <div class="circle"></div>
                             </div><div class="gap-patch">
@@ -56,5 +56,6 @@
         <script language="JavaScript">
             setTimeout("location.href='interfaz-vendedor.jsp'", 10000);
         </script>
+
     </body>
 </html>

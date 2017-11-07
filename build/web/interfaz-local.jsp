@@ -4,6 +4,10 @@
 <%@page import="com.mallbit.producto.Producto"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% Cliente cliente = (Cliente) session.getAttribute("CLIENTE_SESSION"); %>
+<% List<Producto> productos = (List<Producto>)(request.getAttribute("LISTAPRODUCTOS")); %>
+<% Local local = (Local) request.getAttribute("LOCAL"); %>
+<% Vendedor vendedor = (Vendedor) request.getAttribute("VENDEDOR"); %>
 
 <!DOCTYPE html>
 <html>
@@ -14,17 +18,12 @@
         <link href="css/style.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" href="css/materialize.css" />
 
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Usuario</title>
+        <title><%= local.getNombre() %></title>
     </head>
     <body id="cuerpopr">
-        <% Cliente cliente = (Cliente) session.getAttribute("CLIENTE_SESSION"); %>
-        <% List<Producto> productos = (List<Producto>)(request.getAttribute("LISTAPRODUCTOS")); %>
-        <% Local local = (Local) request.getAttribute("LOCAL"); %>
-        <% Vendedor vendedor = (Vendedor) request.getAttribute("VENDEDOR"); %>
         <nav class="pushpin-nav z-depth-5" id="navl">
             <div class="nav-wrapper lime lighten-2">
                 <div class="col s12">
@@ -74,7 +73,7 @@
                     <div class="col s12 m7">
                         <div class="card z-depth-5" id="cardlocal">
                             <div class="card-image">
-                                <img src="images/Locales/<%= local.getNombreImagen() %>" id="imagencard">
+                                <img id="localImg" src="images/Locales/<%= local.getNombreImagen() %>" id="imagencard">
                             </div>
                             <div class="card-content" id="titulolocal">
                                 <p><%= local.getNombre() %></p>
@@ -142,7 +141,7 @@
                             <a class="btn-floating btn-large waves-effect waves-light" id="comprar"><i class="material-icons" id="comprartext">shopping_cart</i></a>
                             <div class="row">
                                 <div class="col s3" id="divimg">
-                                    <img class="materialboxed" src="<%= p.getNombreImagen() %>" id="imgPr">
+                                    <img class="materialboxed" src="images/Productos/<%= p.getNombreImagen() %>" id="imgPr">
                                 </div>
                                 <div class="col s8 center-align" id="divtext">
                                     <h1 id="titleProduct"><%= p.getNombre() %></h1>
