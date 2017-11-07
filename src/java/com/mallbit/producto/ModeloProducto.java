@@ -118,4 +118,40 @@ public class ModeloProducto {
         connection.close();
         
     }
+    
+    public List<String> obtenerEstadisticas (String iDLocal) throws Exception{
+        
+        List<String> estadisticas = new ArrayList<>();
+        
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+        
+        //Crear sentencia SQL y statement
+        String sentenciaSQL = "SELECT Nombre, VecesVendido, Despachos, Entregas FROM estadisticasP WHERE IDLocal ="+iDLocal;
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+        
+        //Ejecutar sentencia
+        resultSet = preparedStatement.executeQuery();
+        
+        //Recorrer resultados de la Sentencia
+        while (resultSet.next()) {
+        	
+            String nombre = resultSet.getString("Nombre");
+            int vecesVendido = resultSet.getInt("VecesVendido");
+            int despachos = resultSet.getInt("Despachos");
+            int envios = resultSet.getInt("Entregas");
+            
+            String concat = nombre + "--" + vecesVendido + "--" + despachos + "--" + envios;
+            estadisticas.add(concat);
+
+        }
+
+        return estadisticas;
+        
+    }
+    
 }

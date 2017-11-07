@@ -14,6 +14,7 @@
     Vendedor vendedor = new ControladorVendedor().obtenerVendedorCookie(vendedores, request);
     
     String iDLocal = Integer.toString(new ModeloLocal().obtenerLocalV(Integer.toString(vendedor.getId())).getId());
+    List<String> estadisticas = new ModeloProducto().obtenerEstadisticas(iDLocal);
 %>
 <!DOCTYPE html>
 <html>
@@ -92,53 +93,79 @@
                 </div>
             </div>
             <% } %>
-
         </div>
         <% } %>
 
         <div id="actualizarDatosPersonales" class="modal modal-fixed-footer">
-            <form action="ControladorAdministrador" method="post">
-                <div class="modal-content">
-                    <h4>Actualización de datos administrador</h4>
-
-                    <input type="hidden" name="instruccion" value="actualizarAdministrador"/>
-                    <div class="row">
-                        <div class="col s12 input-field">
-                            <i class="material-icons prefix">person</i>
-                            <input id="nombre" name="nombre" type="text" class="validate">
-                            <label for="nombre">Nombre</label>
-                        </div>
+            <div class="modal-content col s12">
+                <h4 class="center" style="font-weight: 700">Revisión de Estadísticas de Ventas</h4>
+                <div class="row indigo lighten-1" style="padding-bottom: 10px;">
+                    <div class="col s1 input-field">
+                        <i class="material-icons prefix" style="padding: 0; margin: 0;">local_mall</i>
                     </div>
-                    <div class="row">
-                        <div class="col s12 input-field">
-                            <i class="material-icons prefix">person</i>
-                            <input id="apellido" name="apellido" type="text" class="validate">
-                            <label for="apellido">Apellido</label>
-                        </div>
+                    <div class="col s2 input-field" style="border-right-style: solid; border-right-width: 1px">
+                        <p style="padding: 0; margin: 0; text-align: center">Nombre</p><br>
                     </div>
-                    <div class="row">
-                        <div class="col s4 input-field">
-                            <i class="material-icons prefix">email</i>
-                            <input id="correo" name="correo" type="email" class="validate">
-                            <label for="correo" data-error="No válido">Correo</label>
-                        </div>
-                        <div class="col s4 input-field">
-                            <i class="material-icons prefix">phone</i>
-                            <input id="telefono" name="telefono" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" class="validate">
-                            <label for="telefono">Teléfono</label>
-                        </div>
-                        <div class="col s4 input-field">
-                            <i class="material-icons prefix">lock_outline</i>
-                            <input id="contraseña" name="password" type="password" class="validate">
-                            <label for="contraseña">Contraseña</label>
-                        </div>
+                    <div class="col s1 input-field">
+                        <i class="material-icons prefix" style="padding: 0; margin: 0;">attach_money</i>
                     </div>
-
+                    <div class="col s2 input-field" style="border-right-style: solid; border-right-width: 1px">
+                        <p style="padding: 0; margin: 0; text-align: center">Cantidad de Ventas</p>
+                    </div>
+                    <div class="col s1 input-field">
+                        <i class="material-icons prefix" style="padding: 0; margin: 0;">local_shipping</i>
+                    </div>
+                    <div class="col s2 input-field" style="border-right-style: solid; border-right-width: 1px">
+                        <p style="padding: 0; margin: 0; text-align: center">Cantidad de Despachos</p>
+                    </div>
+                    <div class="col s1 input-field">
+                        <i class="material-icons prefix" style="padding: 0; margin: 0;">check_circle</i>
+                    </div>   
+                    <div class="col s2 input-field">
+                        <p style="padding: 0; margin: 0; text-align: center">Cantidad de Entregas</p>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button class="modal-action modal-close waves-effect waves-light btn light-green darken-1 black-text" type="submit">Actualizar datos</button>
+                <%
+                    int totalVentas = 0;
+                    int totalDespachos = 0;
+                    int totalEntregas = 0;
+                    for (String concat : estadisticas) {
+                        String[] stats = concat.split("--");
+                %>
+                <div class="row indigo lighten-5">
+                    <div class="col s3">
+                        <p style="text-align: center; font-weight: 300;"><%= stats[0]%></p>
+                    </div>
+                    <div class="col s3">
+                        <p style="text-align: center; font-weight: 300;"><%= stats[1]%></p>
+                    </div>
+                    <div class="col s3">
+                        <p style="text-align: center; font-weight: 300;"><%= stats[2]%></p>
+                    </div>
+                    <div class="col s3">
+                        <p style="text-align: center; font-weight: 300;"><%= stats[3]%></p>
+                    </div>
                 </div>
-            </form>
+                <%
+                        totalVentas = totalVentas + Integer.parseInt(stats[1]);
+                        totalDespachos = totalDespachos + Integer.parseInt(stats[2]);
+                        totalEntregas = totalEntregas + Integer.parseInt(stats[3]);
+                    }
+                %>   
+            </div>
+            <div class="modal-footer" style="overflow: hidden">
+                <div class="row">
+                    <div class="col s4">
+                        <p style="text-align: center; font-weight: 300;"><b>VENTAS: </b><%= totalVentas%></p>
+                    </div>
+                    <div class="col s4">
+                        <p style="text-align: center; font-weight: 300;"><b>DESPACHOS: </b><%= totalDespachos%></p>
+                    </div>
+                    <div class="col s4">
+                        <p style="text-align: center; font-weight: 300;"><b>ENTREGAS: </b><%= totalEntregas%></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="tap-target light-blue darken-3" data-activates="elementosAdmin">
