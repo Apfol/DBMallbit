@@ -227,6 +227,30 @@ INSERT INTO premio(Nombre, Descripcion, NombreImagen, Puntos, IDAdministrador) V
 	("Xbox One X", "The new feature of Xbox One X will be explained to the public before the launch of the new console of Microsoft. Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 110, 1);
 COMMIT;
 
+--Insert view Estadisticas de Productos;
+CREATE VIEW estadisticasP AS
+ SELECT p.Nombre, COUNT(c.IDProducto) VecesVendido, 
+ CASE WHEN d.Despachos IS NULL THEN 0 ELSE d.Despachos END Despachos, 
+ CASE WHEN e.Entregas IS NULL THEN 0 ELSE e.Entregas END Entregas,
+ l.IDLocal
+ FROM producto p
+ LEFT OUTER JOIN compra c ON c.IDProducto = p.IDProducto
+ INNER JOIN local l ON p.IDLocal = l.IDLocal
+ LEFT OUTER JOIN (SELECT e.IDCompra, COUNT(e.IDCompra) Despachos
+			FROM envio e
+			LEFT OUTER JOIN compra c ON c.IDCompra = e.IDCompra
+			INNER JOIN estado s ON s.IDEstado = e.IDEstado
+			WHERE s.TipoEstado = "Despachado"
+			GROUP BY e.IDCompra) AS d ON c.IDCompra = d.IDCompra
+ LEFT OUTER JOIN (SELECT e.IDCompra, COUNT(e.IDCompra) Entregas
+			FROM envio e
+			LEFT OUTER JOIN compra c ON c.IDCompra = e.IDCompra
+			INNER JOIN estado s ON s.IDEstado = e.IDEstado
+			WHERE s.TipoEstado = "Entregado"
+			GROUP BY e.IDCompra) AS e ON c.IDCompra = e.IDCompra
+ GROUP BY p.Nombre
+ ORDER BY l.IDLocal;
+
 --Relación llaves foráneas;
 alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
 alter table local add constraint local_categoria foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
