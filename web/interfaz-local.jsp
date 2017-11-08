@@ -139,7 +139,7 @@
                            disponible = "Sí";
                        }
                     %>
-                    <li id="producto<%= p.getId() %>">
+                    <li id="producto<%= p.getId() %>" class="scrollspy">
                         <div class="collapsible-header" id="headPr">
                             <a class="btn-floating btn-large waves-effect waves-light" id="comprar"><i class="material-icons" id="comprartext">shopping_cart</i></a>
                             <div class="row">
