@@ -1,9 +1,3 @@
-<%-- 
-    Document   : registro-premio
-    Created on : Oct 21, 2017, 9:58:59 PM
-    Author     : Andres Ramos
---%>
-
 <%@page import="com.mallbit.administrador.Administrador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +11,7 @@
         <link type="text/css" rel="stylesheet" href="css/materialize.css"/>
 
         <meta charset="UTF-8">
-        <title>Registro Premio</title>
+        <title>Registro Producto</title>
     </head>
 
     <body id="cuerpoA">
@@ -45,7 +39,7 @@
                 </div>
                 <form action="ControladorPremio" method="post" enctype="multipart/form-data" class="col s12">
                     <input type="hidden" name="instruccion" value="insertarPremio"/>
-                    <input type="hidden" name="admin" value="<%= request.getParameter("admin") %>"/>
+                    <input type="hidden" name="vendor" value="<%= request.getParameter("admin") %>"/>
                     <div class="row">
                         <div class="col s8 input-field">
                             <i class="material-icons prefix">account_circle</i>
@@ -57,8 +51,7 @@
                             <input id="puntos" name="puntos" type="number" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="validate">
                             <label for="puntos">Puntos</label>
                         </div>
-                    </div>
-                    
+                    </div>         
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">mode_edit</i>

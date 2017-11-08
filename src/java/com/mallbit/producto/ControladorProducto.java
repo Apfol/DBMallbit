@@ -11,21 +11,25 @@ import com.mallbit.local.Local;
 import com.mallbit.local.ModeloLocal;
 import com.mallbit.vendedor.ModeloVendedor;
 import com.mallbit.vendedor.Vendedor;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
-/**
- *
- * @author Andres Ramos
- */
 @WebServlet(name = "ControladorProducto", urlPatterns = {"/ControladorProducto"})
+@MultipartConfig
 public class ControladorProducto extends HttpServlet {
 
      private static final long serialVersionUID = 1L;
@@ -39,13 +43,29 @@ public class ControladorProducto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, IOException {
         
-        String local = request.getParameter("idlocal");
-        System.out.println(local);
-        if(local == null){
-            listarProductos(request, response);
-        }else{
-            listarProductosL(request, response, local);
+        String parametro = request.getParameter("instruccion");
+
+        try{
+        
+        switch (parametro) {
+            case "listarProductos":
+                listarProductos(request, response);
+                break;
+            case "listarProductosL":
+                String local = request.getParameter("iDLocal");
+                System.out.print("dfed"+local);
+                listarProductosL(request, response, local);
+                break;
+            case "insertarProducto":
+                insertarProducto(request, response);
+            default:
+                break;
         }
+        
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
     }
 
     private void listarProductos(HttpServletRequest request, HttpServletResponse response){
@@ -91,6 +111,85 @@ public class ControladorProducto extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void insertarProducto(HttpServletRequest request, HttpServletResponse response) {
+        try{
+            
+            Local l = modeloLocal.obtenerLocalDB(request.getParameter("local"));
+            String nombre = request.getParameter("nombre");
+            int precio = Integer.parseInt(request.getParameter("precio"));
+            String marca = request.getParameter("marca");
+            int stock = Integer.parseInt(request.getParameter("stock"));
+            String descripcion = request.getParameter("descripcion");
+            String nombreImagen = guardarImagenObtenerNombre(request, "imagenPrincipal", nombre, l.getNombre());
+            
+            //Operacion para calcular puntos
+            int puntos = 0; 
+            
+            Producto producto = new Producto (nombre, precio, marca, l.getId(), descripcion, nombreImagen, stock, puntos);
+            modeloProducto.insertarProducto(producto);
+            
+            request.setAttribute("caso", "InterfazProductos");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/carga-vendedor.jsp");
+            requestDispatcher.forward(request, response);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    //    Con este mÃ©todo las imagenes que se suban al formulario
+//    seran guardadas en la carpeta images/locales y se obtiene
+//    el nombre de la imagen como una concatenaciÃ³n del nombre
+//    del local y el nombre de la imagen que se subio, los nombres
+//    de las imagenes se guardan en la base de datos para despues 
+//    poder manipularlas
+    private String guardarImagenObtenerNombre(HttpServletRequest request, String tipoImagen, String nombreProducto, String nombreLocal) throws ServletException, IOException {
+        // Obtener dirección a guardar archivo
+        String pathServlet = getServletContext().getRealPath("/");
+        String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
+        String path = pathProject + "\\web\\images\\Productos\\";
+        Part filePart = request.getPart(tipoImagen);
+
+        //Asignar nombre archivo
+        String[] a = getNombreImagen(filePart).split("\\.(?=[^\\.]+$)");
+        String fileName = nombreLocal + "-" + nombreProducto +"." + a[1];
+
+        OutputStream out = null;
+        InputStream filecontent = null;
+
+        try {
+            out = new FileOutputStream(new File(path + File.separator + fileName));
+            filecontent = filePart.getInputStream();
+
+            int read = 0;
+            final byte[] bytes = new byte[1024];
+
+            while ((read = filecontent.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+        } catch (FileNotFoundException fne) {
+            fne.printStackTrace();
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+            if (filecontent != null) {
+                filecontent.close();
+            }
+        }
+        return fileName;
+    }
+
+    private String getNombreImagen(final Part part) {
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(
+                        content.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
     }
 
 }

@@ -115,17 +115,17 @@ create table cliente_premio(
     Primary Key(IDPremio, IDCliente)
 );
 
---Insert Generos;
+/* Insert Generos */
 INSERT INTO genero(IDGenero, TipoGenero) VALUES
 	(1, "Masculino"),
 	(2, "Femenino");
 
---Insert estados;
+/* Insert estados */
 INSERT INTO estado(TipoEstado) VALUES
 	("Despachado"),
 	("Entregado");
 
---Insert categoría;
+/* Insert categoría */
 INSERT INTO categoria(TipoCategoria) VALUES 
 	('Entretenimiento'),
 	('Tecnología'),
@@ -134,7 +134,7 @@ INSERT INTO categoria(TipoCategoria) VALUES
 	('Infantil'),
 	('Comida');
 
---Insert local;
+/* Insert local */
 INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen, IDCategoria) VALUES
 	("Sony", 1, "Empresa multinacional y uno de los fabricantes más importantes a nivel mundial en electrónica", "Sony.png", 1),
 	("Microsoft", 2, "Empresa multinacional dedicada al sector del software y el hardware", "Microsoft.png", 1),
@@ -152,7 +152,7 @@ INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen, IDCategoria) V
 	("WOK", 14, "Cadena de restaurantes dedicado a la comida asiática", "WOK.png", 6);
 COMMIT;
 
---Insert producto;
+/* Insert producto */
 INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock) VALUES
 	("Samsung Galaxy Note 7", 2000000, "Samsung", 4, "Explota.","Samsung-Samsung Galaxy Note 7.png", 10),
 	("Consola PS4 Pro", 1400000, "Sony", 1, "Consola Videojuegos.","Sony-Consola PS$ Pro.png", 3),
@@ -185,7 +185,7 @@ INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen,
 COMMIT;
 
 
---Insert Vendedor;
+/* Insert Vendedor */
 INSERT INTO vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero) VALUES
 	("Robinson","Muñoz","1979-10-31","Romu@gmail.com",1078097326, 3123352714, "RoMuñoz", "1234", 1),
 	("Bryan","Rovira","1995-01-21","ElBrayan@gmail.com",1054097421, 3133451298, "Brianxhito", "Yurani", 1),
@@ -203,7 +203,7 @@ INSERT INTO vendedor(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, 
 	("Juan","Pablon","1990-05-11","SoyJuanPablon@unisabana.edu.co", 1075878554, 3123421873, "JuanPablon", "HailFuhrer", 1);
 COMMIT;
 
---Insert Cliente;
+/* Insert Cliente */
 INSERT INTO cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, Puntos, IDGenero) VALUES
 	("Carlos","Casas","1940-9-29","campas@gmail.com",10657389915, 3023545271, "CarlosCA", "5687", 20, 1),
 	("Sandra","Cardenas","1968-10-30","sara@gmail.com",10357339925, 3213585231, "SandraCA", "5847", 10, 2),
@@ -217,17 +217,55 @@ INSERT INTO cliente(Nombre, Apellido, FechaNacimiento, Correo, Identificacion, T
 	("Sandra","Cristancho","1950-11-30","sandracr@gmail.com",1078205462, 319748294, "SandraCri", "7167", 20, 2);
 COMMIT;
 	
---Insert Administrador;
+/* Insert Administrador */
 INSERT INTO administrador (Nombre, Apellido, FechaNacimiento, Correo, Identificacion, Telefono, Usuario, Password, IDGenero) VALUES
     ("Maria Fernanda","Perez Contreras","1998-7-6","sarape@unisabana.edu.co",1073525507, 3105678815, "SaraPe", "administrador", 2);
 COMMIT;
 
---Insert premio;
+/* Insert premio */
 INSERT INTO premio(Nombre, Descripcion, NombreImagen, Puntos, IDAdministrador) VALUES
 	("Xbox One X", "Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 500, 1);
 COMMIT;
 
---Relación llaves foráneas;
+/* Insert view Estadisticas de Productos */
+CREATE VIEW estadisticasP AS
+ SELECT p.Nombre, COUNT(c.IDProducto) VecesVendido, 
+ CASE WHEN d.Despachos IS NULL THEN 0 ELSE d.Despachos END Despachos, 
+ CASE WHEN e.Entregas IS NULL THEN 0 ELSE e.Entregas END Entregas,
+ l.IDLocal
+ FROM producto p
+ LEFT OUTER JOIN compra c ON c.IDProducto = p.IDProducto
+ INNER JOIN local l ON p.IDLocal = l.IDLocal
+ LEFT OUTER JOIN (SELECT e.IDCompra, COUNT(e.IDCompra) Despachos
+			FROM envio e
+			LEFT OUTER JOIN compra c ON c.IDCompra = e.IDCompra
+			INNER JOIN estado s ON s.IDEstado = e.IDEstado
+			WHERE s.TipoEstado = "Despachado"
+			GROUP BY e.IDCompra) AS d ON c.IDCompra = d.IDCompra
+ LEFT OUTER JOIN (SELECT e.IDCompra, COUNT(e.IDCompra) Entregas
+			FROM envio e
+			LEFT OUTER JOIN compra c ON c.IDCompra = e.IDCompra
+			INNER JOIN estado s ON s.IDEstado = e.IDEstado
+			WHERE s.TipoEstado = "Entregado"
+			GROUP BY e.IDCompra) AS e ON c.IDCompra = e.IDCompra
+ GROUP BY p.Nombre
+ ORDER BY l.IDLocal;
+ 
+/* Insert view Productos más vendidos por Local */
+CREATE VIEW masVendido AS	
+ SELECT p.IDProducto, p.Nombre, p.Precio, p.Marca, p.IDLocal, p.Descripcion, p. NombreImagen, p.Stock, p.Puntos FROM producto p
+ INNER JOIN ( SELECT Nombre
+			FROM estadisticasP
+			WHERE VecesVendido in (SELECT MAX(VecesVendido) FROM estadisticasP GROUP BY IDLocal)
+			GROUP BY IDLocal ) AS d ON p.Nombre = d.Nombre;
+			
+/* Insert view Producto más reciente por Local */
+CREATE VIEW masReciente AS
+ SELECT * FROM producto
+ WHERE IDProducto IN (SELECT MAX(IDProducto) FROM producto GROUP BY IDLocal)
+ GROUP BY IDLocal;
+
+/* Relación llaves foráneas */
 alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
 alter table local add constraint local_categoria foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
 alter table local add constraint local_vendedor foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
