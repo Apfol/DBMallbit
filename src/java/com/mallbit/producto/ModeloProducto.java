@@ -201,4 +201,47 @@ public class ModeloProducto {
         
     }
     
+    public Producto masReciente(String iDLocal) throws Exception{
+        
+        Producto producto = null;
+        
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+        
+        //Crear sentencia SQL y statement
+        String sentenciaSQL = "SELECT * FROM masReciente WHERE IDLocal ="+iDLocal;
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+        
+        //Ejecutar sentencia
+        resultSet = preparedStatement.executeQuery();
+        
+        //Recorrer resultados de la Sentencia
+        while (resultSet.next()) {
+        	
+            int id = resultSet.getInt("IDProducto");
+            String nombre = resultSet.getString("Nombre");
+            int precio = resultSet.getInt("Precio");
+            String marca = resultSet.getString("Marca");
+            int idLocal = resultSet.getInt("IDLocal");
+            String descripcion = resultSet.getString("Descripcion");
+            String nombreImagen = resultSet.getString("NombreImagen");
+            int stock = resultSet.getInt("Stock");
+            int puntos = resultSet.getInt("Puntos");
+
+            producto = new Producto(id, nombre, precio, marca, idLocal, descripcion, nombreImagen, stock, puntos);
+
+        }
+
+        preparedStatement.close();
+        resultSet.close();
+        connection.close();
+        
+        return producto;
+        
+    }
+    
 }

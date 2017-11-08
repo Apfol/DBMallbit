@@ -10,6 +10,7 @@
 <% Local local = (Local) request.getAttribute("LOCAL"); %>
 <% Vendedor vendedor = (Vendedor) request.getAttribute("VENDEDOR"); %>
 <% Producto masVendido = new ModeloProducto().masVendido(Integer.toString(local.getId())); %>
+<% Producto masReciente = new ModeloProducto().masReciente(Integer.toString(local.getId())); %>
 
 <!DOCTYPE html>
 <html>
@@ -91,7 +92,7 @@
                                             <p><%= masVendido.getNombre() %></p>
                                         </div>
                                         <div class="waves-effect card-action center" id="cardLinkft">
-                                            <a href="#" id="textLink">Más Información</a>
+                                            <a href="#producto<%= masVendido.getId() %>" id="textLink">Más Información</a>
                                         </div>
                                     </div>
                                 </div>
@@ -99,15 +100,15 @@
                             <div class="col s12 m7">
                                 <div class="card horizontal" id="cardnv">
                                     <div class="card-image">
-                                        <img src="css/fondo-entretenimiento.jpg" id="imagenft">
+                                        <img src="images/Productos/<%= masReciente.getNombreImagen() %>" id="imagenft">
                                     </div>
                                     <div class="card-stacked">
                                         <div class="card-content" id="contentft">
                                             <p id="titlePft">Lo Último</p>
-                                            <p>Nombre Producto</p>
+                                            <p><%= masReciente.getNombre() %></p>
                                         </div>
                                         <div class="waves-effect card-action center" id="cardLinkft">
-                                            <a href="#" id="textLink">Más Información</a>
+                                            <a href="#producto<%= masReciente.getId() %>" id="textLink">Más Información</a>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +139,7 @@
                            disponible = "Sí";
                        }
                     %>
-                    <li id="producto">
+                    <li id="producto<%= p.getId() %>">
                         <div class="collapsible-header" id="headPr">
                             <a class="btn-floating btn-large waves-effect waves-light" id="comprar"><i class="material-icons" id="comprartext">shopping_cart</i></a>
                             <div class="row">
