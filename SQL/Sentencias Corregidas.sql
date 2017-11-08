@@ -258,6 +258,12 @@ CREATE VIEW masVendido AS
 			FROM estadisticasP
 			WHERE VecesVendido in (SELECT MAX(VecesVendido) FROM estadisticasP GROUP BY IDLocal)
 			GROUP BY IDLocal ) AS d ON p.Nombre = d.Nombre;
+			
+/* Insert view Producto más reciente por Local */
+CREATE VIEW masReciente AS
+ SELECT * FROM producto
+ WHERE IDProducto IN (SELECT MAX(IDProducto) FROM producto GROUP BY IDLocal)
+ GROUP BY IDLocal;
 
 /* Relación llaves foráneas */
 alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
