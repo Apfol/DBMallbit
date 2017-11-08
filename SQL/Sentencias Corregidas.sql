@@ -224,7 +224,7 @@ COMMIT;
 
 --Insert premio;
 INSERT INTO premio(Nombre, Descripcion, NombreImagen, Puntos, IDAdministrador) VALUES
-	("Xbox One X", "The new feature of Xbox One X will be explained to the public before the launch of the new console of Microsoft. Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 110, 1);
+	("Xbox One X", "Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 500, 1);
 COMMIT;
 
 --Relación llaves foráneas;
