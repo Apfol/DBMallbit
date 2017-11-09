@@ -14,8 +14,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -33,6 +35,31 @@ public class ControladorPremio extends HttpServlet {
 
     List<Administrador> administradores;
     Administrador administrador;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            //Obtener administrador que inició sesión
+            administradores = new ModeloAdministrador().obtenerAdministradoresDB();
+            administrador = new ControladorAdministrador().obtenerAdministradorCookie(administradores, request);
+
+            //Leer parametro (value) del input hidden del formulario
+            String parametro = request.getParameter("instruccion");
+
+            //Ejecutar mÃ©todo según valor del parametro
+            switch (parametro) {
+                case "borrarPremio":
+                    borrarPremio(request, response);
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -58,7 +85,7 @@ public class ControladorPremio extends HttpServlet {
                     actualizarCliente(request, response);
                     break;
                 case "borrarPremio":
-                    borrarCliente(request, response);
+                    borrarPremio(request, response);
                     break;
                 default:
                     break;
@@ -99,14 +126,7 @@ public class ControladorPremio extends HttpServlet {
 
             //Enviar objeto al modelo para guardar en la Base de Datos
             modeloPremio.agregarPremioDB(premio);
-            PrintWriter out;
-            response.setContentType("text/html");
-            out = response.getWriter();
 
-            /*out.println("<script language='JavaScript'>");
-            out.print("");
-            //Aqui arriba va el cuerpo del mÃ©todo javascript o la llamada a una funciÃ³n javascript
-            out.println("</script>");*/
             response.sendRedirect("carga-administrador.jsp");
 
         } catch (Exception ex) {
@@ -118,13 +138,22 @@ public class ControladorPremio extends HttpServlet {
 
     }
 
-    private void borrarCliente(HttpServletRequest request, HttpServletResponse response) {
-
+    private void borrarPremio(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String idPremio = request.getParameter("idPremio");
+        
+        try {
+            eliminarImagen(idPremio);
+            modeloPremio.eliminiarPremioDB(idPremio);
+            response.sendRedirect("interfaz-administrador.jsp");
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorPremio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     //    Con este método las imagenes que se suban al formulario
     //    seran guardadas en la carpeta images/premios y se obtiene
-    //    el nombre de la imagen como una concatenaciÃ³n del nombre
+    //    el nombre de la imagen como una concatenación del nombre
     //    del premio y el nombre de la imagen que se subio, los nombres
     //    de las imagenes se guardan en la base de datos para despues 
     //    poder manipularlas
@@ -172,6 +201,24 @@ public class ControladorPremio extends HttpServlet {
             }
         }
         return null;
+    }
+    
+    private void eliminarImagen(String idPremio) throws SQLException {
+        List<Premio> premios = modeloPremio.obtenerPremiosDB(administrador.getId());
+        
+        String nombreImagen = "";
+        for(Premio premio: premios) {
+            if(premio.getId() == Integer.parseInt(idPremio)) {
+                nombreImagen = premio.getNombreImagen();
+            }
+        }
+        
+        String pathServlet = getServletContext().getRealPath("/");
+        String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
+        String path = pathProject + "\\web\\images\\Premios\\";
+        
+        File imagen = new File(path + File.separator + nombreImagen);
+        imagen.delete();
     }
 
 }

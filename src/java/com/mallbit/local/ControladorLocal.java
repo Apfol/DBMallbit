@@ -106,7 +106,7 @@ public class ControladorLocal extends HttpServlet {
     }
 
     
-//    Con este mÃ©todo las imagenes que se suban al formulario
+//    Con este método las imagenes que se suban al formulario
 //    seran guardadas en la carpeta images/locales y se obtiene
 //    el nombre de la imagen como una concatenaciÃ³n del nombre
 //    del local y el nombre de la imagen que se subio, los nombres

@@ -74,4 +74,18 @@ public class ModeloPremio {
         return premios;
     }
 
+    void eliminiarPremioDB(String idPremio) throws SQLException {
+        Connection connection;
+        PreparedStatement borrar;
+
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement y ejecutar
+        String sentencia = "DELETE FROM premio WHERE IDPremio = ?";
+        borrar = connection.prepareStatement(sentencia);
+        borrar.setString(1, idPremio);
+        borrar.execute();
+    }
+
 }

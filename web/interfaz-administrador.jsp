@@ -72,7 +72,7 @@
                         <img class="activator" src="images/Premios/<%=premio.getNombreImagen()%>" style="height: 350px; width: 458px;">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><%= premio.getNombre() %><b class="right"><%= premio.getPuntos() + " puntos " %></b></span>
+                        <span class="card-title activator grey-text text-darken-4"><%= premio.getNombre()%><b class="right"><%= premio.getPuntos() + " puntos "%></b></span>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4"><%= premio.getNombre()%><i class="material-icons right">close</i></span>
@@ -80,12 +80,21 @@
                     </div>
                     <div class="card-action">
                         <a class="green-text lighten-1" href="#">Editar premio</a>
-                        <a class="red-text" href="#">Eliminar premio</a>
+                        <a class="red-text modal-trigger" href="#eliminarPremio<%= premio.getId() %>">Eliminar premio</a>
                     </div>
                 </div>
             </div>
+            <div id="eliminarPremio<%= premio.getId() %>" class="modal">
+                <div class="modal-content">
+                    <h4>Eliminar premio</h4>
+                    <p>¿Estás seguro de eliminar el premio "<%= premio.getNombre() %>"?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                    <a href="ControladorPremio?instruccion=borrarPremio&idPremio=<%= premio.getId()%>" class="modal-action modal-close waves-effect waves-green btn-flat red-text">Eliminar</a>
+                </div>
+            </div>
             <% } %>
-
         </div>
         <% } %>
 
@@ -132,6 +141,16 @@
                     <button class="modal-action modal-close waves-effect waves-light btn light-green darken-1 black-text" type="submit">Actualizar datos</button>
                 </div>
             </form>
+        </div>
+
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Modal Header</h4>
+                <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
         </div>
 
         <div class="tap-target" data-activates="elementosAdmin" style="background-color: #66bb6a">
