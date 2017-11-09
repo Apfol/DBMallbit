@@ -8,6 +8,14 @@
     //En esta parte de código lo que se hace es obtener el administrador que tiene el mismo id que se guardo en la cookie.
     List<Vendedor> vendedores = new ModeloVendedor().obtenerVendedoresDB();
     Vendedor vendedor = new ControladorVendedor().obtenerVendedorCookie(vendedores, request);
+    
+    String jsp = "";
+    String caso = request.getAttribute("caso").toString();
+    if(caso == null){
+        jsp = "interfaz-vendedor.jsp";
+    }else{
+        jsp = "interfaz-productos.jsp";
+    }
 %>
 <html>
     <head>
@@ -17,13 +25,13 @@
         <link href="css/style.css" rel="stylesheet" />
         <link href="css/style-interfaz-administrador.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" href="css/materialize.css" />
-        <title>Saliendo... </title>
+        <title>Cargando... </title>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
-    <body id="cuerpo" >
+    <body id="cuerpov" >
         <nav>
-            <div class="nav-wrapper light-green lighten-1">
+            <div class="nav-wrapper light-blue darken-3">
                 <div class="col s12">
                     <div id="principal-nav">
                         <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
@@ -39,7 +47,7 @@
             <div class="row">
                 <div class="col s6 offset-s3 m6 offset-m3">
                     <div class="preloader-wrapper big active">
-                        <div class="spinner-layer spinner-green-only">
+                        <div class="spinner-layer spinner-blue-only">
                             <div class="circle-clipper left">
                                 <div class="circle"></div>
                             </div><div class="gap-patch">
@@ -54,7 +62,8 @@
         </div>
 
         <script language="JavaScript">
-            setTimeout("location.href='index.jsp'", 10000);
+            setTimeout("location.href='<%= jsp %>'", 5000);
         </script>
+
     </body>
 </html>

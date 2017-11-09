@@ -1,9 +1,16 @@
+<%@page import="com.mallbit.producto.ModeloProducto"%>
 <%@page import="com.mallbit.vendedor.Vendedor"%>
 <%@page import="com.mallbit.local.Local"%>
 <%@page import="com.mallbit.cliente.Cliente"%>
 <%@page import="com.mallbit.producto.Producto"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% Cliente cliente = (Cliente) session.getAttribute("CLIENTE_SESSION"); %>
+<% List<Producto> productos = (List<Producto>)(request.getAttribute("LISTAPRODUCTOS")); %>
+<% Local local = (Local) request.getAttribute("LOCAL"); %>
+<% Vendedor vendedor = (Vendedor) request.getAttribute("VENDEDOR"); %>
+<% Producto masVendido = new ModeloProducto().masVendido(Integer.toString(local.getId())); %>
+<% Producto masReciente = new ModeloProducto().masReciente(Integer.toString(local.getId())); %>
 
 <!DOCTYPE html>
 <html>
@@ -14,17 +21,12 @@
         <link href="css/style.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" href="css/materialize.css" />
 
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Usuario</title>
+        <title><%= local.getNombre() %></title>
     </head>
     <body id="cuerpopr">
-        <% Cliente cliente = (Cliente) session.getAttribute("CLIENTE_SESSION"); %>
-        <% List<Producto> productos = (List<Producto>)(request.getAttribute("LISTAPRODUCTOS")); %>
-        <% Local local = (Local) request.getAttribute("LOCAL"); %>
-        <% Vendedor vendedor = (Vendedor) request.getAttribute("VENDEDOR"); %>
         <nav class="pushpin-nav z-depth-5" id="navl">
             <div class="nav-wrapper lime lighten-2">
                 <div class="col s12">
@@ -74,7 +76,7 @@
                     <div class="col s12 m7">
                         <div class="card z-depth-5" id="cardlocal">
                             <div class="card-image">
-                                <img src="images/Locales/<%= local.getNombre() %>/<%= local.getNombreImagen() %>" id="imagencard">
+                                <img id="localImg" src="images/Locales/<%= local.getNombreImagen() %>" style="height: 310px" id="imagencard">
                             </div>
                             <div class="card-content" id="titulolocal">
                                 <p><%= local.getNombre() %></p>
@@ -82,15 +84,15 @@
                             <div class="col s12 m7">
                                 <div class="card horizontal" id="cardft">
                                     <div class="card-image">
-                                        <img src="https://lorempixel.com/100/190/nature/6" id="imagenft">
+                                        <img src="images/Productos/<%= masVendido.getNombreImagen() %>" id="imagenft">
                                     </div>
                                     <div class="card-stacked">
                                         <div class="card-content" id="contentft">
                                             <p id="titlePft">Más Vendido</p>
-                                            <p>Nombre Producto</p>
+                                            <p><%= masVendido.getNombre() %></p>
                                         </div>
                                         <div class="waves-effect card-action center" id="cardLinkft">
-                                            <a href="#" id="textLink">Más Información</a>
+                                            <a href="#producto<%= masVendido.getId() %>" id="textLink">Más Información</a>
                                         </div>
                                     </div>
                                 </div>
@@ -98,15 +100,15 @@
                             <div class="col s12 m7">
                                 <div class="card horizontal" id="cardnv">
                                     <div class="card-image">
-                                        <img src="css/fondo-entretenimiento.jpg" id="imagenft">
+                                        <img src="images/Productos/<%= masReciente.getNombreImagen() %>" id="imagenft">
                                     </div>
                                     <div class="card-stacked">
                                         <div class="card-content" id="contentft">
                                             <p id="titlePft">Lo Último</p>
-                                            <p>Nombre Producto</p>
+                                            <p><%= masReciente.getNombre() %></p>
                                         </div>
                                         <div class="waves-effect card-action center" id="cardLinkft">
-                                            <a href="#" id="textLink">Más Información</a>
+                                            <a href="#producto<%= masReciente.getId() %>" id="textLink">Más Información</a>
                                         </div>
                                     </div>
                                 </div>
@@ -137,12 +139,12 @@
                            disponible = "Sí";
                        }
                     %>
-                    <li id="producto">
+                    <li id="producto<%= p.getId() %>" class="scrollspy">
                         <div class="collapsible-header" id="headPr">
                             <a class="btn-floating btn-large waves-effect waves-light" id="comprar"><i class="material-icons" id="comprartext">shopping_cart</i></a>
                             <div class="row">
                                 <div class="col s3" id="divimg">
-                                    <img class="materialboxed" src="<%= p.getNombreImagen() %>" id="imgPr">
+                                    <img class="materialboxed" src="images/Productos/<%= p.getNombreImagen() %>" id="imgPr">
                                 </div>
                                 <div class="col s8 center-align" id="divtext">
                                     <h1 id="titleProduct"><%= p.getNombre() %></h1>

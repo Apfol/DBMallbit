@@ -67,9 +67,9 @@
         <div class="row">
             <% for (Premio premio : premios) {%>
             <div class="col s12 m4">
-                <div class="card sticky-action">
+                <div  class="card sticky-action">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="images/Premios/<%=premio.getNombreImagen()%>">
+                        <img class="activator" src="images/Premios/<%=premio.getNombreImagen()%>" style="height: 350px; width: 458px;">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4"><%= premio.getNombre() %><b class="right"><%= premio.getPuntos() + " puntos " %></b></span>

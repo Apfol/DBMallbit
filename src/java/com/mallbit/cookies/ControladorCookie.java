@@ -25,11 +25,7 @@ public class ControladorCookie extends HttpServlet {
             throws ServletException, IOException {
         String objeto = request.getParameter("objeto");
         eliminarCookie(response, objeto);
-        if(objeto.equals("vendedor")){
-            response.sendRedirect("carga-vendedor.jsp");
-        }else{
-            response.sendRedirect("index.jsp");
-        }
+        response.sendRedirect("index.jsp");
     }
     
     //En ese metodo se guarda el id del objeto de la sesión actual en una cookie.
