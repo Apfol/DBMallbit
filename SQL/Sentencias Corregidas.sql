@@ -227,6 +227,20 @@ INSERT INTO premio(Nombre, Descripcion, NombreImagen, Puntos, IDAdministrador) V
 	("Xbox One X", "Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 500, 1);
 COMMIT;
 
+/* Insert cliente-premio */
+
+insert into cliente_premio (IDPremio, IDCliente) VALUES
+	(1, 2),
+	(1, 4),
+	(1, 7),
+	(1, 8),
+	(2, 1),
+	(2, 4),
+	(2, 5),
+	(2, 6),
+	(2, 8),
+	(2, 9);
+
 /* Insert view Estadisticas de Productos */
 CREATE VIEW estadisticasP AS
  SELECT p.Nombre, COUNT(c.IDProducto) VecesVendido, 
@@ -265,6 +279,18 @@ CREATE VIEW masReciente AS
  WHERE IDProducto IN (SELECT MAX(IDProducto) FROM producto GROUP BY IDLocal)
  GROUP BY IDLocal;
 
+/* Insert view cantidad de clientes por premio*/
+CREATE VIEW clientesPremio AS
+	SELECT P.IDPremio AS ID, COUNT(Cl.IDPremio) AS Cuenta FROM premio P
+	INNER JOIN cliente_premio Cl ON P.IDPremio = Cl.IDPremio
+	GROUP BY Cl.IDPremio;
+
+/* Insert view Premio más popular */
+CREATE VIEW masPopular AS
+	SELECT * FROM premio 
+	INNER JOIN (SELECT ID FROM clientesPremio WHERE Cuenta = (SELECT MAX(Cuenta) FROM clientesPremio) GROUP BY ID) AS d
+	ON d.ID = premio.IDPremio; 
+
 /* Relación llaves foráneas */
 alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
 alter table local add constraint local_categoria foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
@@ -280,3 +306,4 @@ alter table Vendedor add constraint vendedor_genero foreign key(IDGenero) refere
 alter table premio add constraint premio_administrador foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
 alter table cliente_premio add constraint cliente_premio foreign key(IDCliente) references cliente(IDCliente);
 alter table cliente_premio add constraint premio_cliente foreign key(IDPremio) references premio(IDPremio);
+
