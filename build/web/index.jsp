@@ -513,19 +513,22 @@
             <% List<Premio> premios = new ModeloPremio().obtenerTodosPremios();%>
             <% if (premios != null) { %>
             <div class="divider"></div>
-            <div id="premios" class="scrollspy container">
+            <div id="premios" class="scrollspy">
                 <br>
-                <div class="row valign-wrapper scrollspy">
-                    <div class="col s4">
+                <h4 class="center"style="font-weight: bold">¡Tienes la posibilidad de ganar premios!</h4>
+                <h5 class="center grey-text">Cuando compras en MallBit estas acumulando puntos con los que podrás ganar cualquiera de estos premios.</h5>
+                <br>
+                <div class="row scrollspy valign-wrapper container">
+                    <div class="col s6">
                         <div>
-                            <h5 class="black-text">Tienes la posibilidad de ganar premios</h5>
+                            <h5 class="black-text">Gran variedad de premios</h5>
                             <br>
                             <span class="black-text">
-                                Cuando compras en MallBit estas acumulando puntos con los que podras ganar cualquiera de estos premios.
+                                Mallbit ofrece una gran variedad de premios los cuales cada uno tiene cierta cantidad de puntos.
                             </span>
                         </div>
                     </div>
-                    <div class="col s8" style="height:300px; overflow: auto" id="style-2">
+                    <div class="col s6" style="height:300px; overflow: auto" id="style-2">
                         <% for (Premio premio : premios) {%>
                         <div class="col s12 m12">
                             <div  class="card sticky-action">
@@ -542,6 +545,36 @@
                             </div>
                         </div>
                         <% } %>
+                    </div>
+                </div>
+
+                <div class="row container valign-wrapper">
+                    <div class="col s6" style="height:300px;">
+                        <% for (Premio premio : premios) {%>
+                        <div class="col s12 m12">
+                            <div  class="card sticky-action">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="images/Premios/<%=premio.getNombreImagen()%>" style="height: 200px">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4"><%= premio.getNombre()%><b class="right"><%= premio.getPuntos() + " puntos "%></b></span>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4"><%= premio.getNombre()%><i class="material-icons right">close</i></span>
+                                    <p><%= premio.getDescripcion()%></p>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                    <div class="col s6">
+                        <div>
+                            <h5 class="black-text">Premio con más ganadores</h5>
+                            <br>
+                            <span class="black-text">
+                                Este es el producto que más clientes han llegado a ganar, si compras en MallBIT podrás ser uno de los siguientes ganadores.
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <br>
