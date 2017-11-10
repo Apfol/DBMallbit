@@ -224,11 +224,11 @@ COMMIT;
 
 /* Insert premio */
 INSERT INTO premio(Nombre, Descripcion, NombreImagen, Puntos, IDAdministrador) VALUES
-	("Xbox One X", "Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 500, 1);
+	("Xbox One X", "Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 500, 1),
+	("Super Mario Odyssey", "Ponte en la piel de Mario y viaja a través de varios mundos en tu nave en forma de sombrero, la «Odyssey», en un esfuerzo por rescatar a la Princesa Peach de Bowser, quién planea casarse con ella. Esta vez Bowser se ha aliado con nuevos enemigos llamados Broodal que conseguirán ponerte en un terrible aprieto. Disfruta de emocionantes gameplays en los que podrás viajar junto a Mario a través de varios reinos. Completa distintos objetivos para poder obtener las «lunas de poder» que servirán de combustible para la Odyssey y te darán acceso a nuevos mundos.", "Super Mario Odyssey-Super Mario Odyssey.jpg", 200, 1);
 COMMIT;
 
 /* Insert cliente-premio */
-
 insert into cliente_premio (IDPremio, IDCliente) VALUES
 	(1, 2),
 	(1, 4),
@@ -306,4 +306,3 @@ alter table Vendedor add constraint vendedor_genero foreign key(IDGenero) refere
 alter table premio add constraint premio_administrador foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;
 alter table cliente_premio add constraint cliente_premio foreign key(IDCliente) references cliente(IDCliente);
 alter table cliente_premio add constraint premio_cliente foreign key(IDPremio) references premio(IDPremio);
-
