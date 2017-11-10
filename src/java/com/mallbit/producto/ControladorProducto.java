@@ -9,6 +9,7 @@ import com.mallbit.cliente.Cliente;
 import com.mallbit.cliente.ModeloCliente;
 import com.mallbit.local.Local;
 import com.mallbit.local.ModeloLocal;
+import com.mallbit.premio.Premio;
 import com.mallbit.vendedor.ModeloVendedor;
 import com.mallbit.vendedor.Vendedor;
 import java.io.File;
@@ -17,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,6 +41,28 @@ public class ControladorProducto extends HttpServlet {
     ModeloLocal modeloLocal = new ModeloLocal();
     ModeloVendedor modeloVendedor = new ModeloVendedor();
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, IOException {
+    
+        try {
+
+            //Leer parametro (value) del input hidden del formulario
+            String parametro = request.getParameter("instruccion");
+
+            //Ejecutar método según valor del parametro
+            switch (parametro) {
+                case "borrarProducto":
+                    borrarProducto(request, response);
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+    }  
+        
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, IOException {
@@ -52,9 +76,7 @@ public class ControladorProducto extends HttpServlet {
                 listarProductos(request, response);
                 break;
             case "listarProductosL":
-                String local = request.getParameter("iDLocal");
-                System.out.print("dfed"+local);
-                listarProductosL(request, response, local);
+                listarProductosL(request, response);
                 break;
             case "insertarProducto":
                 insertarProducto(request, response);
@@ -81,8 +103,9 @@ public class ControladorProducto extends HttpServlet {
         }
     }
 
-    private void listarProductosL(HttpServletRequest request, HttpServletResponse response, String local){
+    private void listarProductosL(HttpServletRequest request, HttpServletResponse response){
         try {
+            String local = request.getParameter("iDLocal");
             List<Producto> productos = modeloProducto.getProductos(local);
             Local localB = modeloLocal.obtenerLocalDB(local);
             List<Cliente> clientes = modeloCliente.obtenerClientesDB();
@@ -139,12 +162,27 @@ public class ControladorProducto extends HttpServlet {
         }
     }
     
-    //    Con este mÃ©todo las imagenes que se suban al formulario
+    private void borrarProducto(HttpServletRequest request, HttpServletResponse response) {
+                try{
+                    
+            String idProducto = request.getParameter("idProducto");
+            String idLocal = request.getParameter("local");
+            eliminarImagen(idProducto, idLocal);
+            modeloProducto.eliminarProducto(idProducto);
+            response.sendRedirect("interfaz-productos.jsp");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+//    Con estos métodos las imágenes que se suban al formulario
 //    seran guardadas en la carpeta images/locales y se obtiene
-//    el nombre de la imagen como una concatenaciÃ³n del nombre
-//    del local y el nombre de la imagen que se subio, los nombres
-//    de las imagenes se guardan en la base de datos para despues 
-//    poder manipularlas
+//    el nombre de la imagen como una concatenación del nombre
+//    del local y el nombre de la imagen que se subió, los nombres
+//    de las imagenes se guardan en la base de datos para después 
+//    poder manipularlas.
+    //<editor-fold defaultstate="collapsed" desc="Métodos para administrar imágenes">
     private String guardarImagenObtenerNombre(HttpServletRequest request, String tipoImagen, String nombreProducto, String nombreLocal) throws ServletException, IOException {
         // Obtener dirección a guardar archivo
         String pathServlet = getServletContext().getRealPath("/");
@@ -191,5 +229,25 @@ public class ControladorProducto extends HttpServlet {
         }
         return null;
     }
+    
+    private void eliminarImagen(String idPremio, String idLocal) throws Exception {
+        
+        List<Producto> productos = modeloProducto.getProductos(idLocal);
+        
+        String nombreImagen = "";
+        for(Producto producto: productos) {
+            if(producto.getId() == Integer.parseInt(idPremio)) {
+                nombreImagen = producto.getNombreImagen();
+            }
+        }
+        
+        String pathServlet = getServletContext().getRealPath("/");
+        String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
+        String path = pathProject + "\\web\\images\\Productos\\";
+        
+        File imagen = new File(path + File.separator + nombreImagen);
+        imagen.delete();
+    }
+    // </editor-fold>
 
 }

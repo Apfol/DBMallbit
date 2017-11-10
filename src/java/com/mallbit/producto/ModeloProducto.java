@@ -243,5 +243,21 @@ public class ModeloProducto {
         return producto;
         
     }
+
+    void eliminarProducto(String idProducto) throws Exception {
+        
+        Connection connection;
+        PreparedStatement borrar;
+
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement y ejecutar
+        String sentencia = "DELETE FROM producto WHERE idProducto=?";
+        borrar = connection.prepareStatement(sentencia);
+        borrar.setString(1, idProducto);
+        borrar.execute();
+        
+    }
     
 }

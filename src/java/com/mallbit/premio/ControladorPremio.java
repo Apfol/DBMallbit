@@ -145,14 +145,15 @@ public class ControladorPremio extends HttpServlet {
         
     }
 
-    //    Con este método las imagenes que se suban al formulario
-    //    seran guardadas en la carpeta images/premios y se obtiene
-    //    el nombre de la imagen como una concatenación del nombre
-    //    del premio y el nombre de la imagen que se subio, los nombres
-    //    de las imagenes se guardan en la base de datos para despues 
-    //    poder manipularlas
+//    Con estos métodos las imágenes que se suban al formulario
+//    seran guardadas en la carpeta images/locales y se obtiene
+//    el nombre de la imagen como una concatenación del nombre
+//    del local y el nombre de la imagen que se subió, los nombres
+//    de las imagenes se guardan en la base de datos para después 
+//    poder manipularlas.
+    //<editor-fold defaultstate="collapsed" desc="Métodos para administrar imágenes">
     private String guardarImagenObtenerNombre(HttpServletRequest request, String tipoImagen, String nombrePremio) throws ServletException, IOException {
-        // Obtener direcciÃ³n a guardar archivo
+        // Obtener dirección a guardar archivo
         String pathServlet = getServletContext().getRealPath("/");
         String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
         String path = pathProject + "\\web\\images\\Premios\\";
@@ -214,5 +215,5 @@ public class ControladorPremio extends HttpServlet {
         File imagen = new File(path + File.separator + nombreImagen);
         imagen.delete();
     }
-
+    // </editor-fold>
 }

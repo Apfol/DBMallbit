@@ -88,8 +88,18 @@
                     </div>
                     <div class="card-action">
                         <a class="green-text lighten-1" href="#">Editar</a>
-                        <a class="red-text right" href="#">Eliminar</a>
+                        <a class="red-text modal-trigger right" href="#eliminarProducto<%= producto.getId() %>">Eliminar</a>
                     </div>
+                </div>
+            </div>
+            <div id="eliminarProducto<%= producto.getId()%>" class="modal">
+                <div class="modal-content">
+                    <h4>Eliminar producto</h4>
+                    <p>¿Estás seguro de eliminar el producto "<%= producto.getNombre()%>"?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                    <a href="ControladorProducto?instruccion=borrarProducto&idProducto=<%= producto.getId()%>&local=<%= producto.getIdLocal() %>" class="modal-action modal-close waves-effect waves-green btn-flat red-text">Eliminar</a>
                 </div>
             </div>
             <% } %>

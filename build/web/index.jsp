@@ -524,7 +524,7 @@
                             <h5 class="black-text">Gran variedad de premios</h5>
                             <br>
                             <span class="black-text">
-                                Mallbit ofrece una gran variedad de premios los cuales cada uno tiene cierta cantidad de puntos.
+                                Mallbit ofrece una gran variedad de premios, para que tengas más posibilidades de ser ganador ¡Elige el que más te guste!
                             </span>
                         </div>
                     </div>
@@ -572,7 +572,7 @@
                             <h5 class="black-text">Premio con más ganadores</h5>
                             <br>
                             <span class="black-text">
-                                Este es el producto que más clientes han llegado a ganar, si compras en MallBIT podrás ser uno de los siguientes ganadores.
+                                Este es el producto que más clientes han llegado a ganar, si compras en MallBIT podrás ser el siguiente.
                             </span>
                         </div>
                     </div>
