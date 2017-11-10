@@ -73,6 +73,38 @@ public class ModeloPremio {
         }
         return premios;
     }
+    
+    public List<Premio> obtenerTodosPremios() throws SQLException {
+        List<Premio> premios = new ArrayList<>();
+
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        //Establecer la conexiï¿½n
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement
+        String sentenciaSQL = "SELECT * FROM premio";
+        statement = connection.createStatement();
+
+        //Ejecutar SQL y guardar valores de consulta en resultSet
+        resultSet = statement.executeQuery(sentenciaSQL);
+
+        //Recorrer resultador de la sentencia
+        while (resultSet.next()) {
+            int id = resultSet.getInt("IDPremio");
+            String nombre = resultSet.getString("Nombre");
+            String descripcion = resultSet.getString("Descripcion");
+            String nombreImagen = resultSet.getString("NombreImagen");
+            int puntos = resultSet.getInt("puntos");
+            int idAdministrador = resultSet.getInt("IDAdministrador");
+
+            premios.add(new Premio(id, nombre, descripcion, nombreImagen, puntos, idAdministrador));
+
+        }
+        return premios;
+    }
 
     void eliminiarPremioDB(String idPremio) throws SQLException {
         Connection connection;

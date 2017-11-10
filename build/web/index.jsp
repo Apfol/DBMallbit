@@ -1,4 +1,6 @@
 
+<%@page import="com.mallbit.premio.ModeloPremio"%>
+<%@page import="com.mallbit.premio.Premio"%>
 <%@page import="com.mallbit.administrador.ControladorAdministrador"%>
 <%@page import="com.mallbit.administrador.Administrador"%>
 <%@page import="com.mallbit.administrador.ModeloAdministrador"%>
@@ -180,6 +182,7 @@
                             <li><a href="#hogar">HOGAR</a></li>
                             <li><a href="#belleza">BELLEZA</a></li>
                             <li><a href="#infantil">INFANTIL</a></li>
+                            <li><a href="#premios">PREMIOS</a></li>
                         </ul>
                     </div>
                 </div>
@@ -506,6 +509,44 @@
                 </div>
             </div>
 
+            <!--Mostrar premios.-->
+            <% List<Premio> premios = new ModeloPremio().obtenerTodosPremios();%>
+            <% if (premios != null) { %>
+            <div class="divider"></div>
+            <div id="premios" class="scrollspy container">
+                <br>
+                <div class="row valign-wrapper scrollspy">
+                    <div class="col s4">
+                        <div>
+                            <h5 class="black-text">Tienes la posibilidad de ganar premios</h5>
+                            <br>
+                            <span class="black-text">
+                                Cuando compras en MallBit estas acumulando puntos con los que podras ganar cualquiera de estos premios.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col s8" style="height:300px; overflow: auto" id="style-2">
+                        <% for (Premio premio : premios) {%>
+                        <div class="col s12 m12">
+                            <div  class="card sticky-action">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="images/Premios/<%=premio.getNombreImagen()%>" style="height: 200px">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4"><%= premio.getNombre()%><b class="right"><%= premio.getPuntos() + " puntos "%></b></span>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4"><%= premio.getNombre()%><i class="material-icons right">close</i></span>
+                                    <p><%= premio.getDescripcion()%></p>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+                <br>
+            </div>  
+            <% }%>
 
             <!--# NOTE: Comienza parte pie de página.-->
 
