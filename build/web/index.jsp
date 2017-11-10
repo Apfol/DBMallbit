@@ -515,7 +515,7 @@
             <div class="divider"></div>
             <div id="premios" class="scrollspy">
                 <br>
-                <h4 class="center"style="font-weight: bold">¡Tienes la posibilidad de ganar premios!</h4>
+                <h4 class="center" style="font-weight: bold">¡Tienes la posibilidad de ganar premios!</h4>
                 <h5 class="center grey-text">Cuando compras en MallBit estas acumulando puntos con los que podrás ganar cualquiera de estos premios.</h5>
                 <br>
                 <div class="row scrollspy valign-wrapper container">
@@ -550,7 +550,7 @@
 
                 <div class="row container valign-wrapper">
                     <div class="col s6" style="height:300px;">
-                        <% for (Premio premio : premios) {%>
+                        <% Premio premio = new ModeloPremio().obtenerMasPopular(); %>
                         <div class="col s12 m12">
                             <div  class="card sticky-action">
                                 <div class="card-image waves-effect waves-block waves-light">
@@ -565,11 +565,10 @@
                                 </div>
                             </div>
                         </div>
-                        <% } %>
                     </div>
                     <div class="col s6">
                         <div>
-                            <h5 class="black-text">Premio con más ganadores</h5>
+                            <h5 class="black-text">Premio más popular</h5>
                             <br>
                             <span class="black-text">
                                 Este es el producto que más clientes han llegado a ganar, si compras en MallBIT podrás ser uno de los siguientes ganadores.
