@@ -12,7 +12,7 @@
     ModeloVendedor modeloVendedor = new ModeloVendedor();
     List<Vendedor> vendedores = modeloVendedor.obtenerVendedoresDB();
     Vendedor vendedor = new ControladorVendedor().obtenerVendedorCookie(vendedores, request);
-    
+
     String iDLocal = Integer.toString(new ModeloLocal().obtenerLocalV(Integer.toString(vendedor.getId())).getId());
     List<String> estadisticas = new ModeloProducto().obtenerEstadisticas(iDLocal);
 %>
@@ -77,18 +77,18 @@
                         <img class="activator" src="images/Productos/<%=producto.getNombreImagen()%>" style="height: 250px; width: 338px;">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><%= producto.getNombre() %><b class="right"><%= "$"+producto.getPrecio() %></b></span>
+                        <span class="card-title activator grey-text text-darken-4"><%= producto.getNombre()%><b class="right"><%= "$" + producto.getPrecio()%></b></span>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4"><b><%= producto.getNombre()%></b><i class="material-icons right">close</i></span>
                         <p style="font-size: 18px; text-align: justify"><%= producto.getDescripcion()%></p>
-                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Marca: </b>" + producto.getMarca() %></p>
-                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Stock: </b>" + producto.getStock() %></p>
-                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Puntos: </b>" + producto.getPuntos() %></p>
+                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Marca: </b>" + producto.getMarca()%></p>
+                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Stock: </b>" + producto.getStock()%></p>
+                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Puntos: </b>" + producto.getPuntos()%></p>
                     </div>
                     <div class="card-action">
-                        <a class="green-text lighten-1" href="#">Editar</a>
-                        <a class="red-text modal-trigger right" href="#eliminarProducto<%= producto.getId() %>">Eliminar</a>
+                        <a class="green-text modal-trigger lighten-1" href="#editarProducto<%= producto.getId()%>">Editar</a>
+                        <a class="red-text modal-trigger right" href="#eliminarProducto<%= producto.getId()%>">Eliminar</a>
                     </div>
                 </div>
             </div>
@@ -99,8 +99,73 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-                    <a href="ControladorProducto?instruccion=borrarProducto&idProducto=<%= producto.getId()%>&local=<%= producto.getIdLocal() %>" class="modal-action modal-close waves-effect waves-green btn-flat red-text">Eliminar</a>
+                    <a href="ControladorProducto?instruccion=borrarProducto&idProducto=<%= producto.getId()%>&local=<%= producto.getIdLocal()%>" class="modal-action modal-close waves-effect waves-green btn-flat red-text">Eliminar</a>
                 </div>
+            </div>
+            <div id="editarProducto<%= producto.getId()%>" class="modal modal-fixed-footer" style="overflow: hidden">
+                <form action="ControladorProducto" method="post" enctype="multipart/form-data" class="col s12">
+                    <input type="hidden" name="instruccion" value="actualizarProducto"/>
+                    <input type="hidden" name="iDProducto" value="<%= producto.getId() %>"/>
+                    <input type="hidden" name="iDLocal" value="<%= producto.getIdLocal() %>"/>
+                    <div class="modal-content center-align" style="overflow: hidden">
+                        <h3 class="light-blue-text text-darken-3">Editar producto</h3>
+                        <p class="center" style="font-weight: 500; font-size: 15px;">A continuación ingresa los datos que desees actualizar</p>
+                        <div class="row" style="margin-right: 20px">
+                            <div class="col s6 input-field">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="nombre" name="nombre" type="text" class="validate" placeholder="<%= producto.getNombre()%>">
+                                <label for="nombre">Nombre del producto</label>
+                            </div>
+                            <div class="col s6 input-field">
+                                <i class="material-icons prefix">attach_money</i>
+                                <input id="puntos" name="precio" type="number" class="validate" value="<%= producto.getPrecio()%>">
+                                <label for="precio">Precio</label>
+                            </div>
+                        </div> 
+                        <div class="row" style="margin-right: 20px">
+                            <div class="col s6 input-field">
+                                <i class="material-icons prefix">grade</i>
+                                <input id="nombre" name="marca" type="text" class="validate" placeholder="<%= producto.getMarca()%>">
+                                <label for="marca">Marca</label>
+                            </div>
+                            <div class="col s6 input-field">
+                                <i class="material-icons prefix">widgets</i>
+                                <input id="puntos" name="stock" type="number" class="validate" value="<%= producto.getStock()%>">
+                                <label for="stock">Stock</label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-right: 20px">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <textarea id="textarea1" name="descripcion" class="materialize-textarea" placeholder="<%= producto.getDescripcion()%>"></textarea>
+                                <label for="textarea1">Descripción del producto</label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-right: 20px">
+                            <div class="col s12 file-field input-field">
+                                <div class="btn grey darken-4">
+                                    <i class="material-icons">file_upload</i>
+                                    <input type="file" name="imagenPrincipal">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="<%= producto.getNombreImagen()%>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col s6">
+                                <button class="btn waves-effect waves-light light-blue darken-3 white-text" type="submit" name="action">
+                                    Actualizar
+                                </button>
+                            </div>
+                            <div class="col s1">
+                                <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             <% } %>
         </div>
