@@ -224,8 +224,22 @@ COMMIT;
 
 /* Insert premio */
 INSERT INTO premio(Nombre, Descripcion, NombreImagen, Puntos, IDAdministrador) VALUES
-	("Xbox One X", "Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 500, 1);
+	("Xbox One X", "Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 500, 1),
+	("Super Mario Odyssey", "Ponte en la piel de Mario y viaja a través de varios mundos en tu nave en forma de sombrero, la «Odyssey», en un esfuerzo por rescatar a la Princesa Peach de Bowser, quién planea casarse con ella. Esta vez Bowser se ha aliado con nuevos enemigos llamados Broodal que conseguirán ponerte en un terrible aprieto. Disfruta de emocionantes gameplays en los que podrás viajar junto a Mario a través de varios reinos. Completa distintos objetivos para poder obtener las «lunas de poder» que servirán de combustible para la Odyssey y te darán acceso a nuevos mundos.", "Super Mario Odyssey-Super Mario Odyssey.jpg", 200, 1);
 COMMIT;
+
+/* Insert cliente-premio */
+insert into cliente_premio (IDPremio, IDCliente) VALUES
+	(1, 2),
+	(1, 4),
+	(1, 7),
+	(1, 8),
+	(2, 1),
+	(2, 4),
+	(2, 5),
+	(2, 6),
+	(2, 8),
+	(2, 9);
 
 /* Insert view Estadisticas de Productos */
 CREATE VIEW estadisticasP AS
@@ -264,6 +278,18 @@ CREATE VIEW masReciente AS
  SELECT * FROM producto
  WHERE IDProducto IN (SELECT MAX(IDProducto) FROM producto GROUP BY IDLocal)
  GROUP BY IDLocal;
+
+/* Insert view cantidad de clientes por premio*/
+CREATE VIEW clientesPremio AS
+	SELECT P.IDPremio AS ID, COUNT(Cl.IDPremio) AS Cuenta FROM premio P
+	INNER JOIN cliente_premio Cl ON P.IDPremio = Cl.IDPremio
+	GROUP BY Cl.IDPremio;
+
+/* Insert view Premio más popular */
+CREATE VIEW masPopular AS
+	SELECT * FROM premio 
+	INNER JOIN (SELECT ID FROM clientesPremio WHERE Cuenta = (SELECT MAX(Cuenta) FROM clientesPremio) GROUP BY ID) AS d
+	ON d.ID = premio.IDPremio; 
 
 /* Relación llaves foráneas */
 alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;

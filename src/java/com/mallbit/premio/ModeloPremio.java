@@ -6,6 +6,7 @@
 package com.mallbit.premio;
 
 import com.mallbit.Conexion.ConexionDB;
+import com.mallbit.producto.Producto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -119,5 +120,36 @@ public class ModeloPremio {
         borrar.setString(1, idPremio);
         borrar.execute();
     }
+    
+    public Premio obtenerMasPopular() throws SQLException {
+        
+        Premio premio = null;
+        
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+        
+        String sentenciaSQL = "SELECT * FROM masPopular";
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+        
+        //Ejecutar sentencia
+        resultSet = preparedStatement.executeQuery();
+        
+        //Recorrer resultados de la Sentencia
+        while (resultSet.next()) {
+        	
+            int id = resultSet.getInt("IDPremio");
+            String nombre = resultSet.getString("Nombre");
+            String descripcion = resultSet.getString("Descripcion");
+            String nombreImagen = resultSet.getString("NombreImagen");
+            int puntos = resultSet.getInt("Puntos");
+            int idAdministrador = resultSet.getInt("IDAdministrador");
 
+            premio = new Premio(id, nombre, descripcion, nombreImagen, puntos, idAdministrador);
+        }
+        return premio;
+    }
 }
