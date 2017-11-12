@@ -550,7 +550,7 @@
 
                 <div class="row container valign-wrapper">
                     <div class="col s6" style="height:300px;">
-                        <% Premio premio = new ModeloPremio().obtenerMasPopular(); %>
+                        <% Premio premio = new ModeloPremio().obtenerMasPopular();%>
                         <div class="col s12 m12">
                             <div  class="card sticky-action">
                                 <div class="card-image waves-effect waves-block waves-light">
@@ -579,6 +579,36 @@
                 <br>
             </div>  
             <% }%>
+
+            <!-- Acerca de nosotros -->
+            <div class="divider"></div>
+
+            <div id="aboutUs">
+                <br>
+                <h4 class="center" style="font-weight: bold">¡Conoce un poco acerca de nosotros!</h4>
+                <h5 class="center grey-text">Aqui podras ver las cantidades de usuarios, locales y productos en MallBIT.</h5>
+                <div>
+                    <div class="row">
+                        <div class="col s3">
+                            <h4 class="center-align  lime-text text-darken-3">100</h4>
+                            <p class="center-align" style="font-weight: bold">Clientes activos</p>
+                        </div>
+                        <div class="col s3">
+                            <h4 class="center-align  lime-text text-darken-3">100</h4>
+                            <p class="center-align" style="font-weight: bold">Vendedores activos</p>
+                        </div>
+                        <div class="col s3">
+                            <h4 class="center-align  lime-text text-darken-3">100</h4>
+                            <p class="center-align" style="font-weight: bold">Locales</p>
+                        </div>
+                        <div class="col s3">
+                            <h4 class="center-align  lime-text text-darken-3">100</h4>
+                            <p class="center-align" style="font-weight: bold">Productos</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
 
             <!--# NOTE: Comienza parte pie de página.-->
 
