@@ -1,3 +1,5 @@
+<%@page import="com.mallbit.cliente.ControladorCliente"%>
+<%@page import="com.mallbit.cliente.ModeloCliente"%>
 <%@page import="com.mallbit.producto.ModeloProducto"%>
 <%@page import="com.mallbit.vendedor.Vendedor"%>
 <%@page import="com.mallbit.local.Local"%>
@@ -5,12 +7,17 @@
 <%@page import="com.mallbit.producto.Producto"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% Cliente cliente = (Cliente) session.getAttribute("CLIENTE_SESSION"); %>
 <% List<Producto> productos = (List<Producto>)(request.getAttribute("LISTAPRODUCTOS")); %>
 <% Local local = (Local) request.getAttribute("LOCAL"); %>
 <% Vendedor vendedor = (Vendedor) request.getAttribute("VENDEDOR"); %>
 <% Producto masVendido = new ModeloProducto().masVendido(Integer.toString(local.getId())); %>
 <% Producto masReciente = new ModeloProducto().masReciente(Integer.toString(local.getId())); %>
+<%
+    ModeloCliente modeloCliente = new ModeloCliente();
+    List<Cliente> clientes = modeloCliente.obtenerClientesDB();
+    Cliente cliente = new ControladorCliente().obtenerClienteCookie(clientes, request);
+%>
+
 
 <!DOCTYPE html>
 <html>
@@ -141,7 +148,11 @@
                     %>
                     <li id="producto<%= p.getId() %>" class="scrollspy">
                         <div class="collapsible-header" id="headPr">
-                            <a class="btn-floating btn-large waves-effect waves-light" id="comprar"><i class="material-icons" id="comprartext">shopping_cart</i></a>
+                            <% if (cliente != null) { %>
+                            <a class="btn-floating btn-large waves-effect waves-light" id="comprar" href="registro-pago.jsp"><i class="material-icons" id="comprartext">shopping_cart</i></a>
+                            <% } else { %>
+                            <a class="btn-floating btn-large waves-effect waves-light" id="comprar" href="iniciar-sesion-cliente.jsp"><i class="material-icons" id="comprartext">shopping_cart</i></a>
+                            <% } %>
                             <div class="row">
                                 <div class="col s3" id="divimg">
                                     <img class="materialboxed" src="images/Productos/<%= p.getNombreImagen() %>" id="imgPr">
