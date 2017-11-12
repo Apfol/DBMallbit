@@ -53,8 +53,6 @@ public class ControladorPremio extends HttpServlet {
             ex.printStackTrace();
         }
     }
-    
-    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -77,7 +75,7 @@ public class ControladorPremio extends HttpServlet {
                     insertarPremio(request, response);
                     break;
                 case "actualizarPremio":
-                    actualizarCliente(request, response);
+                    actualizarPremio(request, response);
                     break;
                 case "borrarPremio":
                     borrarPremio(request, response);
@@ -95,7 +93,7 @@ public class ControladorPremio extends HttpServlet {
             //Obtener lista de Clientes
             List<Premio> premios;
 
-            premios = modeloPremio.obtenerPremiosDB(administrador.getId());
+            premios = modeloPremio.obtenerPremiosAdministradorDB(administrador.getId());
 
             //Agregar lista de clientes al Request
             request.setAttribute("LISTAPREMIOS", premios);
@@ -129,8 +127,25 @@ public class ControladorPremio extends HttpServlet {
         }
     }
 
-    private void actualizarCliente(HttpServletRequest request, HttpServletResponse response) {
+    private void actualizarPremio(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        String nombre = request.getParameter("nombre");
+        String descripcion = request.getParameter("descripcion");
+        int puntos = 0;
 
+        if (!request.getParameter("puntos").equals("")) {
+            puntos = Integer.parseInt(request.getParameter("puntos"));
+        }
+
+        Premio nuevoPremio = new Premio(nombre, descripcion, "", puntos, 0);
+        Premio antiguoPremio = null;
+
+        for (Premio premio : modeloPremio.obtenerTodosPremios()) {
+            if (premio.getId() == Integer.parseInt(request.getParameter("idPremio"))) {
+                antiguoPremio = premio;
+            }
+        }
+        modeloPremio.actualizarPremioDB(antiguoPremio, nuevoPremio);
+        response.sendRedirect("interfaz-administrador.jsp");
     }
 
     private void borrarPremio(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -142,7 +157,7 @@ public class ControladorPremio extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(ControladorPremio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
 //    Con estos métodos las imágenes que se suban al formulario
@@ -197,21 +212,21 @@ public class ControladorPremio extends HttpServlet {
         }
         return null;
     }
-    
+
     private void eliminarImagen(String idPremio) throws SQLException {
-        List<Premio> premios = modeloPremio.obtenerPremiosDB(administrador.getId());
-        
+        List<Premio> premios = modeloPremio.obtenerPremiosAdministradorDB(administrador.getId());
+
         String nombreImagen = "";
-        for(Premio premio: premios) {
-            if(premio.getId() == Integer.parseInt(idPremio)) {
+        for (Premio premio : premios) {
+            if (premio.getId() == Integer.parseInt(idPremio)) {
                 nombreImagen = premio.getNombreImagen();
             }
         }
-        
+
         String pathServlet = getServletContext().getRealPath("/");
         String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
         String path = pathProject + "\\web\\images\\Premios\\";
-        
+
         File imagen = new File(path + File.separator + nombreImagen);
         imagen.delete();
     }

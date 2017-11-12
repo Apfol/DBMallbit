@@ -54,7 +54,7 @@
             </ul>
         </div>
 
-        <% List<Premio> premios = new ModeloPremio().obtenerPremiosDB(administrador.getId()); %>
+        <% List<Premio> premios = new ModeloPremio().obtenerPremiosAdministradorDB(administrador.getId()); %>
         <% if (premios.isEmpty()) { %>
         <div id="contenedorAviso" class="valign-wrapper">
             <div class="row">
@@ -79,24 +79,99 @@
                         <p><%= premio.getDescripcion()%></p>
                     </div>
                     <div class="card-action">
-                        <a class="green-text lighten-1" href="#">Editar premio</a>
-                        <a class="red-text modal-trigger" href="#eliminarPremio<%= premio.getId() %>">Eliminar premio</a>
+                        <a class="green-text lighten-1 modal-trigger" href="#actualizarPremio<%= premio.getId()%>">Editar premio</a>
+                        <a class="red-text modal-trigger" href="#eliminarPremio<%= premio.getId()%>">Eliminar premio</a>
                     </div>
                 </div>
             </div>
-            <div id="eliminarPremio<%= premio.getId() %>" class="modal">
+            <div id="eliminarPremio<%= premio.getId()%>" class="modal">
                 <div class="modal-content">
                     <h4>Eliminar premio</h4>
-                    <p>¿Estás seguro de eliminar el premio "<%= premio.getNombre() %>"?</p>
+                    <p>¿Estás seguro de eliminar el premio "<%= premio.getNombre()%>"?</p>
                 </div>
                 <div class="modal-footer">
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
                     <a href="ControladorPremio?instruccion=borrarPremio&idPremio=<%= premio.getId()%>" class="modal-action modal-close waves-effect waves-green btn-flat red-text">Eliminar</a>
                 </div>
             </div>
+            <div id="actualizarPremio<%= premio.getId()%>" class="modal modal-fixed-footer">
+                <form action="ControladorPremio" method="post">
+                    <div class="modal-content">
+                        <h4 class="center-align">Actualización de datos premio</h4>
+                        <input type="hidden" name="instruccion" value="actualizarPremio"/>
+                        <input type="hidden" name="idPremio" value="<%= premio.getId()%>"/>
+                        <div class="row">
+                            <div class="col s8 input-field">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="nombre" name="nombre" type="text" class="validate">
+                                <label for="nombre">Nombre premio</label>
+                            </div>
+                            <div class="col s4 input-field">
+                                <i class="material-icons prefix">adjust</i>
+                                <input id="puntos" name="puntos" type="number" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="validate">
+                                <label for="puntos">Puntos</label>
+                            </div>
+                        </div>         
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <textarea id="textarea1" name="descripcion" class="materialize-textarea"></textarea>
+                                <label for="textarea1">Descripción premio</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="modal-action modal-close waves-effect waves-light btn light-green darken-1 black-text" type="submit">Actualizar datos</button>
+                    </div>
+                </form>
+            </div>
             <% } %>
         </div>
         <% } %>
+
+        <div id="actualizarDatosPersonales" class="modal modal-fixed-footer">
+            <form action="ControladorAdministrador" method="post">
+                <div class="modal-content">
+                    <h4 class="center-align">Actualización de datos administrador</h4>
+                    <input type="hidden" name="instruccion" value="actualizarAdministrador"/>
+                    <div class="row">
+                        <div class="col s12 input-field">
+                            <i class="material-icons prefix">person</i>
+                            <input id="nombre" name="nombre" type="text" class="validate">
+                            <label for="nombre">Nombre</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 input-field">
+                            <i class="material-icons prefix">person</i>
+                            <input id="apellido" name="apellido" type="text" class="validate">
+                            <label for="apellido">Apellido</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s4 input-field">
+                            <i class="material-icons prefix">email</i>
+                            <input id="correo" name="correo" type="email" class="validate">
+                            <label for="correo" data-error="No válido">Correo</label>
+                        </div>
+                        <div class="col s4 input-field">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="telefono" name="telefono" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" class="validate">
+                            <label for="telefono">Teléfono</label>
+                        </div>
+                        <div class="col s4 input-field">
+                            <i class="material-icons prefix">lock_outline</i>
+                            <input id="contraseña" name="password" type="password" class="validate">
+                            <label for="contraseña">Contraseña</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-action modal-close waves-effect waves-light btn light-green darken-1 black-text" type="submit">Actualizar datos</button>
+                </div>
+            </form>
+        </div>
 
         <div id="actualizarDatosPersonales" class="modal modal-fixed-footer">
             <form action="ControladorAdministrador" method="post">

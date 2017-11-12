@@ -6,7 +6,7 @@
 package com.mallbit.premio;
 
 import com.mallbit.Conexion.ConexionDB;
-import com.mallbit.producto.Producto;
+import com.mallbit.administrador.Administrador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,7 +43,7 @@ public class ModeloPremio {
         preparedStatement.execute();
     }
 
-    public List<Premio> obtenerPremiosDB(int idAdmin) throws SQLException {
+    public List<Premio> obtenerPremiosAdministradorDB(int idAdmin) throws SQLException {
         List<Premio> premios = new ArrayList<>();
 
         Connection connection;
@@ -119,6 +119,39 @@ public class ModeloPremio {
         borrar = connection.prepareStatement(sentencia);
         borrar.setString(1, idPremio);
         borrar.execute();
+    }
+    
+    public void actualizarPremioDB(Premio antiguoPremio, Premio nuevoPremio) throws SQLException {
+        Connection connection;
+        PreparedStatement nombre;
+        PreparedStatement puntos;
+        PreparedStatement descripcion;
+
+        //Establecer la conexión
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement en caso de que los valores no sean nulos y ejecutar
+        if (!nuevoPremio.getNombre().equals("")) {
+            String sentenciaNombre = "UPDATE premio SET Nombre=? WHERE IDPremio=?";
+            nombre = connection.prepareStatement(sentenciaNombre);
+            nombre.setString(1, nuevoPremio.getNombre());
+            nombre.setInt(2, antiguoPremio.getId());
+            nombre.executeUpdate();
+        }
+        if (nuevoPremio.getPuntos() != 0 ) {
+            String sentenciaPuntos = "UPDATE premio SET Puntos=? WHERE IDPremio=?";
+            puntos = connection.prepareStatement(sentenciaPuntos);
+            puntos.setInt(1, nuevoPremio.getPuntos());
+            puntos.setInt(2, antiguoPremio.getId());
+            puntos.executeUpdate();
+        }
+        if (!nuevoPremio.getDescripcion().equals("")) {
+            String sentenciaDescripcion = "UPDATE premio SET Descripcion=? WHERE IDPremio=?";
+            descripcion = connection.prepareStatement(sentenciaDescripcion);
+            descripcion.setString(1, nuevoPremio.getDescripcion());
+            descripcion.setInt(2, antiguoPremio.getId());
+            descripcion.executeUpdate();
+        }
     }
     
     public Premio obtenerMasPopular() throws SQLException {
