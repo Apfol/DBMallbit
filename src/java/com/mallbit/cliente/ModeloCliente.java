@@ -137,5 +137,29 @@ public class ModeloCliente {
         borrar.setString(1, c.getUsuario());
         borrar.execute();
     }
+    
+    public int clientesTotales() throws SQLException {
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+        
+        int numeroClientes = 0;
+        
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+        
+        //Crear sentencia SQL y statement y ejecutar
+        String sentencia = "SELECT * FROM clientesTotales";
+        //Crear sentencia SQL y statement
+        statement = connection.createStatement();
+
+        //Ejecutar SQL y guardar valores de consulta en resultSet
+        resultSet = statement.executeQuery(sentencia);
+        
+        while(resultSet.next()) {
+            numeroClientes = resultSet.getInt("Clientes");
+        }
+        return numeroClientes;
+    }
 
 }

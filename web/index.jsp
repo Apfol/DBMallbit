@@ -1,4 +1,6 @@
 
+<%@page import="com.mallbit.compra.ModeloCompra"%>
+<%@page import="com.mallbit.producto.ModeloProducto"%>
 <%@page import="com.mallbit.premio.ModeloPremio"%>
 <%@page import="com.mallbit.premio.Premio"%>
 <%@page import="com.mallbit.administrador.ControladorAdministrador"%>
@@ -183,6 +185,7 @@
                             <li><a href="#belleza">BELLEZA</a></li>
                             <li><a href="#infantil">INFANTIL</a></li>
                             <li><a href="#premios">PREMIOS</a></li>
+                            <li><a href="#aboutUs">ACERCA</a></li>
                         </ul>
                     </div>
                 </div>
@@ -583,27 +586,28 @@
             <!-- Acerca de nosotros -->
             <div class="divider"></div>
 
-            <div id="aboutUs">
+            <div id="aboutUs" class="scrollspy">
                 <br>
-                <h4 class="center" style="font-weight: bold">¡Conoce un poco acerca de nosotros!</h4>
-                <h5 class="center grey-text">Aqui podras ver las cantidades de usuarios, locales y productos en MallBIT.</h5>
+                <h4 class="center" style="font-weight: bold">¡Conoce algunos datos de nuestra plataforma!</h4>
+                <h5 class="center grey-text">Aqui podras ver las cantidades de usuarios, productos y ventas realizadas en MallBIT.</h5>
+                <br>
                 <div>
                     <div class="row">
                         <div class="col s3">
-                            <h4 class="center-align  lime-text text-darken-3">100</h4>
+                            <h4 class="center-align  lime-text text-darken-3"><%= modeloCliente.clientesTotales() %></h4>
                             <p class="center-align" style="font-weight: bold">Clientes activos</p>
                         </div>
                         <div class="col s3">
-                            <h4 class="center-align  lime-text text-darken-3">100</h4>
+                            <h4 class="center-align  lime-text text-darken-3"><%= modeloVendedor.vendedoresTotales() %></h4>
                             <p class="center-align" style="font-weight: bold">Vendedores activos</p>
                         </div>
                         <div class="col s3">
-                            <h4 class="center-align  lime-text text-darken-3">100</h4>
-                            <p class="center-align" style="font-weight: bold">Locales</p>
+                            <h4 class="center-align  lime-text text-darken-3"><%= new ModeloProducto().productosTotales() %></h4>
+                            <p class="center-align" style="font-weight: bold">Productos totales</p>
                         </div>
                         <div class="col s3">
-                            <h4 class="center-align  lime-text text-darken-3">100</h4>
-                            <p class="center-align" style="font-weight: bold">Productos</p>
+                            <h4 class="center-align  lime-text text-darken-3"><%= new ModeloCompra().comprasTotales() %></h4>
+                            <p class="center-align" style="font-weight: bold">Compras realizadas</p>
                         </div>
                     </div>
                 </div>

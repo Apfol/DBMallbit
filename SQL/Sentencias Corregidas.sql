@@ -289,7 +289,22 @@ CREATE VIEW clientesPremio AS
 CREATE VIEW masPopular AS
 	SELECT * FROM premio 
 	INNER JOIN (SELECT ID FROM clientesPremio WHERE Cuenta = (SELECT MAX(Cuenta) FROM clientesPremio) GROUP BY ID) AS d
-	ON d.ID = premio.IDPremio; 
+	ON d.ID = premio.IDPremio;
+
+/* Insert view cantidad de clientes en DB*/
+
+CREATE VIEW clientesTotales AS
+	SELECT COUNT(IDCliente) Clientes FROM cliente;
+
+CREATE VIEW vendedoresTotales AS
+	SELECT COUNT(IDVendedor) Vendedores FROM vendedor;
+
+CREATE VIEW productosTotales AS
+	SELECT COUNT(IDProducto) Productos FROM producto;
+
+CREATE VIEW comprasTotales AS
+	SELECT COUNT(IDCompra) Compras FROM compra;
+
 
 /* Relación llaves foráneas */
 alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
