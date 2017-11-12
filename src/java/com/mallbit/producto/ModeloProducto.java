@@ -9,12 +9,13 @@ import com.mallbit.Conexion.ConexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ModeloProducto {
+
     public List<Producto> getProductos() throws Exception {
 
         List<Producto> productos = new ArrayList<>();
@@ -35,7 +36,7 @@ public class ModeloProducto {
 
         //Recorrer resultados de la sentencia mientras existan
         while (resultSet.next()) {
-        	
+
             int id = resultSet.getInt("IDProducto");
             String nombre = resultSet.getString("Nombre");
             int precio = resultSet.getInt("Precio");
@@ -53,8 +54,8 @@ public class ModeloProducto {
         return productos;
     }
 
-    public List<Producto> getProductos(String local) throws Exception{
-        
+    public List<Producto> getProductos(String local) throws Exception {
+
         List<Producto> productos = new ArrayList<>();
 
         Connection connection;
@@ -65,7 +66,7 @@ public class ModeloProducto {
         connection = ConexionDB.conectar();
 
         //Crear sentencia SQL y statement
-        String sentenciaSQL = "SELECT * FROM producto WHERE IDLocal="+local;
+        String sentenciaSQL = "SELECT * FROM producto WHERE IDLocal=" + local;
         preparedStatement = connection.prepareStatement(sentenciaSQL);
 
         //Ejecutar SQL
@@ -73,7 +74,7 @@ public class ModeloProducto {
 
         //Recorrer resultados de la sentencia mientras existan
         while (resultSet.next()) {
-        	
+
             int id = resultSet.getInt("IDProducto");
             String nombre = resultSet.getString("Nombre");
             int precio = resultSet.getInt("Precio");
@@ -90,9 +91,9 @@ public class ModeloProducto {
         }
         return productos;
     }
-    
-    public void insertarProducto (Producto producto) throws Exception{
-        
+
+    public void insertarProducto(Producto producto) throws Exception {
+
         Connection connection;
         PreparedStatement preparedStatement;
 
@@ -101,7 +102,7 @@ public class ModeloProducto {
 
         //Crear sentencia SQL y statement
         String sentenciaSQL = "INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock, Puntos) "
-                            + "VALUES (?,?,?,?,?,?,?,?)";
+                + "VALUES (?,?,?,?,?,?,?,?)";
         preparedStatement = connection.prepareStatement(sentenciaSQL);
         preparedStatement.setString(1, producto.getNombre());
         preparedStatement.setInt(2, producto.getPrecio());
@@ -111,40 +112,40 @@ public class ModeloProducto {
         preparedStatement.setString(6, producto.getNombreImagen());
         preparedStatement.setInt(7, producto.getStock());
         preparedStatement.setInt(8, producto.getPuntos());
-        
+
         preparedStatement.execute();
-        
+
         preparedStatement.close();
         connection.close();
-        
+
     }
-    
-    public List<String> obtenerEstadisticas (String iDLocal) throws Exception{
-        
+
+    public List<String> obtenerEstadisticas(String iDLocal) throws Exception {
+
         List<String> estadisticas = new ArrayList<>();
-        
+
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        
+
         //Establecer la conexion
         connection = ConexionDB.conectar();
-        
+
         //Crear sentencia SQL y statement
-        String sentenciaSQL = "SELECT Nombre, VecesVendido, Despachos, Entregas FROM estadisticasP WHERE IDLocal ="+iDLocal;
+        String sentenciaSQL = "SELECT Nombre, VecesVendido, Despachos, Entregas FROM estadisticasP WHERE IDLocal =" + iDLocal;
         preparedStatement = connection.prepareStatement(sentenciaSQL);
-        
+
         //Ejecutar sentencia
         resultSet = preparedStatement.executeQuery();
-        
+
         //Recorrer resultados de la Sentencia
         while (resultSet.next()) {
-        	
+
             String nombre = resultSet.getString("Nombre");
             int vecesVendido = resultSet.getInt("VecesVendido");
             int despachos = resultSet.getInt("Despachos");
             int envios = resultSet.getInt("Entregas");
-            
+
             String concat = nombre + "--" + vecesVendido + "--" + despachos + "--" + envios;
             estadisticas.add(concat);
 
@@ -153,32 +154,32 @@ public class ModeloProducto {
         preparedStatement.close();
         resultSet.close();
         connection.close();
-        
+
         return estadisticas;
-        
+
     }
-    
-    public Producto masVendido(String iDLocal) throws Exception{
-        
+
+    public Producto masVendido(String iDLocal) throws Exception {
+
         Producto producto = null;
-        
+
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        
+
         //Establecer la conexion
         connection = ConexionDB.conectar();
-        
+
         //Crear sentencia SQL y statement
-        String sentenciaSQL = "SELECT * FROM masVendido WHERE IDLocal ="+iDLocal;
+        String sentenciaSQL = "SELECT * FROM masVendido WHERE IDLocal =" + iDLocal;
         preparedStatement = connection.prepareStatement(sentenciaSQL);
-        
+
         //Ejecutar sentencia
         resultSet = preparedStatement.executeQuery();
-        
+
         //Recorrer resultados de la Sentencia
         while (resultSet.next()) {
-        	
+
             int id = resultSet.getInt("IDProducto");
             String nombre = resultSet.getString("Nombre");
             int precio = resultSet.getInt("Precio");
@@ -196,32 +197,32 @@ public class ModeloProducto {
         preparedStatement.close();
         resultSet.close();
         connection.close();
-        
+
         return producto;
-        
+
     }
-    
-    public Producto masReciente(String iDLocal) throws Exception{
-        
+
+    public Producto masReciente(String iDLocal) throws Exception {
+
         Producto producto = null;
-        
+
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        
+
         //Establecer la conexion
         connection = ConexionDB.conectar();
-        
+
         //Crear sentencia SQL y statement
-        String sentenciaSQL = "SELECT * FROM masReciente WHERE IDLocal ="+iDLocal;
+        String sentenciaSQL = "SELECT * FROM masReciente WHERE IDLocal =" + iDLocal;
         preparedStatement = connection.prepareStatement(sentenciaSQL);
-        
+
         //Ejecutar sentencia
         resultSet = preparedStatement.executeQuery();
-        
+
         //Recorrer resultados de la Sentencia
         while (resultSet.next()) {
-        	
+
             int id = resultSet.getInt("IDProducto");
             String nombre = resultSet.getString("Nombre");
             int precio = resultSet.getInt("Precio");
@@ -239,13 +240,13 @@ public class ModeloProducto {
         preparedStatement.close();
         resultSet.close();
         connection.close();
-        
+
         return producto;
-        
+
     }
 
     public void eliminarProducto(String idProducto) throws Exception {
-        
+
         Connection connection;
         PreparedStatement borrar;
 
@@ -257,10 +258,10 @@ public class ModeloProducto {
         borrar = connection.prepareStatement(sentencia);
         borrar.setString(1, idProducto);
         borrar.execute();
-        
+
     }
 
-    public void actualizarProducto(Producto producto) throws Exception{
+    public void actualizarProducto(Producto producto) throws Exception {
         Connection connection;
         PreparedStatement nombre;
         PreparedStatement precio;
@@ -324,28 +325,28 @@ public class ModeloProducto {
             puntos.executeUpdate();
         }
     }
-    
-    public Producto obtenerProducto(String iDProducto) throws Exception{
-        
+
+    public Producto obtenerProducto(String iDProducto) throws Exception {
+
         Producto producto = null;
-        
+
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        
+
         //Establecer la conexion
         connection = ConexionDB.conectar();
-        
+
         //Crear sentencia SQL y statement
-        String sentenciaSQL = "SELECT * FROM producto WHERE IDProducto ="+iDProducto;
+        String sentenciaSQL = "SELECT * FROM producto WHERE IDProducto =" + iDProducto;
         preparedStatement = connection.prepareStatement(sentenciaSQL);
-        
+
         //Ejecutar sentencia
         resultSet = preparedStatement.executeQuery();
-        
+
         //Recorrer resultados de la Sentencia
         while (resultSet.next()) {
-        	
+
             int id = resultSet.getInt("IDProducto");
             String nombre = resultSet.getString("Nombre");
             int precio = resultSet.getInt("Precio");
@@ -363,9 +364,33 @@ public class ModeloProducto {
         preparedStatement.close();
         resultSet.close();
         connection.close();
-        
+
         return producto;
-        
+
     }
-    
+
+    public int productosTotales() throws SQLException {
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+
+        int numeroProductos = 0;
+
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement y ejecutar
+        String sentencia = "SELECT * FROM productosTotales";
+        //Crear sentencia SQL y statement
+        statement = connection.createStatement();
+
+        //Ejecutar SQL y guardar valores de consulta en resultSet
+        resultSet = statement.executeQuery(sentencia);
+
+        while (resultSet.next()) {
+            numeroProductos = resultSet.getInt("Productos");
+        }
+        return numeroProductos;
+    }
+
 }
