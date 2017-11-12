@@ -198,5 +198,30 @@ public class ModeloVendedor {
         }
         return numeroVendedores;
     }
+    
+    public int obtenerVendedorDesdeProducto(int idProducto) throws SQLException {
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        int idVendedor = 0;
+
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+        
+        String sentenciaSQL = "SELECT V.IDVendedor FROM producto P\n" +
+                                "INNER JOIN local L ON L.IDLocal = P.IDLocal\n" +
+                                "INNER JOIN vendedor V ON V.IDVendedor = L.IDLocal\n" +
+                                "WHERE P.IDProducto = ? ";
+        
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+        preparedStatement.setInt(1, idProducto);
+        //Ejecutar SQL
+        resultSet = preparedStatement.executeQuery();
+        
+        while(resultSet.next()) {
+            idVendedor = resultSet.getInt(1);
+        }
+        return idVendedor;
+    }
 }
 

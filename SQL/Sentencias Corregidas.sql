@@ -24,16 +24,11 @@ create table compra(
     IDCompra int(11) not null auto_increment, 
     Fecha date not null,
     IDCliente int(11),
-    IDPago int(11),
     IDProducto int(11), 
     IDVendedor int(11),
-    Primary Key(IDCompra)
-);
-create table pago(
-    IDPago int(11) not null auto_increment,
-    NumeroTarjeta int(11) not null,
+	NumeroTarjeta bigint(15) not null,
     CVV int(3) not null,
-    Primary Key(IDPago)
+    Primary Key(IDCompra)
 );
 create table producto(
     IDProducto int(11) not null auto_increment, 
@@ -291,6 +286,11 @@ CREATE VIEW masPopular AS
 	INNER JOIN (SELECT ID FROM clientesPremio WHERE Cuenta = (SELECT MAX(Cuenta) FROM clientesPremio) GROUP BY ID) AS d
 	ON d.ID = premio.IDPremio;
 
+SELECT V.IDVendedor FROM producto P
+	INNER JOIN local L ON L.IDLocal = P.IDLocal
+	INNER JOIN vendedor V ON V.IDVendedor = L.IDLocal
+	WHERE P.IDProducto = 4; 
+
 /* Insert view cantidad de clientes en DB*/
 
 CREATE VIEW clientesTotales AS
@@ -310,7 +310,6 @@ CREATE VIEW comprasTotales AS
 alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
 alter table local add constraint local_categoria foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
 alter table local add constraint local_vendedor foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
-alter table compra add constraint compra_pago foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
 alter table compra add constraint compra_cliente foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
 alter table compra add constraint compra_producto foreign key(IDProducto) references producto(IDProducto) ON DELETE CASCADE;
 alter table compra add constraint compra_vendedor foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;

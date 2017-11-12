@@ -29,8 +29,9 @@
         </nav>
         <div class="block" id="blockrc">
             <div class="card-panel">
-                <form action="ControladorPago" method="post">
+                <form action="ControladorCompra" method="post">
                     <input type="hidden" name="instruccion" value="realizarPago">
+                    <input type="hidden" name="idProducto" value="<%= request.getParameter("idProducto") %>">
                     <div class="row">
                         <div class="col s10">
                             <p style="font-size: 30px" id="titleis">Datos tarjeta de credito</p>

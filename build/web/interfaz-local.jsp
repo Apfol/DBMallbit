@@ -149,7 +149,7 @@
                     <li id="producto<%= p.getId() %>" class="scrollspy">
                         <div class="collapsible-header" id="headPr">
                             <% if (cliente != null) { %>
-                            <a class="btn-floating btn-large waves-effect waves-light" id="comprar" href="registro-pago.jsp"><i class="material-icons" id="comprartext">shopping_cart</i></a>
+                            <a class="btn-floating btn-large waves-effect waves-light" id="comprar" href="registro-compra.jsp?idProducto=<%= p.getId() %>"><i class="material-icons" id="comprartext">shopping_cart</i></a>
                             <% } else { %>
                             <a class="btn-floating btn-large waves-effect waves-light" id="comprar" href="iniciar-sesion-cliente.jsp"><i class="material-icons" id="comprartext">shopping_cart</i></a>
                             <% } %>

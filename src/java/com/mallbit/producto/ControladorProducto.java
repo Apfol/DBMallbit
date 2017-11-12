@@ -9,7 +9,6 @@ import com.mallbit.cliente.Cliente;
 import com.mallbit.cliente.ModeloCliente;
 import com.mallbit.local.Local;
 import com.mallbit.local.ModeloLocal;
-import com.mallbit.premio.Premio;
 import com.mallbit.vendedor.ModeloVendedor;
 import com.mallbit.vendedor.Vendedor;
 import java.io.File;
@@ -18,7 +17,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,7 +32,7 @@ import javax.servlet.http.Part;
 @MultipartConfig
 public class ControladorProducto extends HttpServlet {
 
-     private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     ModeloProducto modeloProducto = new ModeloProducto();
     ModeloCliente modeloCliente = new ModeloCliente();
@@ -43,7 +41,7 @@ public class ControladorProducto extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, IOException {
-    
+
         try {
 
             //Leer parametro (value) del input hidden del formulario
@@ -60,41 +58,41 @@ public class ControladorProducto extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
-    }  
-        
+
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, IOException {
-        
+
         String parametro = request.getParameter("instruccion");
 
-        try{
-        
-        switch (parametro) {
-            case "listarProductos":
-                listarProductos(request, response);
-                break;
-            case "listarProductosL":
-                listarProductosL(request, response);
-                break;
-            case "insertarProducto":
-                insertarProducto(request, response);
-                break;
-            case "actualizarProducto":
-                actualizarProducto(request, response);
-                break;
-            default:
-                break;
-        }
-        
-        }catch(Exception e){
+        try {
+
+            switch (parametro) {
+                case "listarProductos":
+                    listarProductos(request, response);
+                    break;
+                case "listarProductosL":
+                    listarProductosL(request, response);
+                    break;
+                case "insertarProducto":
+                    insertarProducto(request, response);
+                    break;
+                case "actualizarProducto":
+                    actualizarProducto(request, response);
+                    break;
+                default:
+                    break;
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
 
-    private void listarProductos(HttpServletRequest request, HttpServletResponse response){
+    private void listarProductos(HttpServletRequest request, HttpServletResponse response) {
         try {
             List<Producto> productos = modeloProducto.getProductos();
             //Agregar clientes al request
@@ -107,14 +105,14 @@ public class ControladorProducto extends HttpServlet {
         }
     }
 
-    private void listarProductosL(HttpServletRequest request, HttpServletResponse response){
+    private void listarProductosL(HttpServletRequest request, HttpServletResponse response) {
         try {
             String local = request.getParameter("iDLocal");
             List<Producto> productos = modeloProducto.getProductos(local);
             Local localB = modeloLocal.obtenerLocalDB(local);
             List<Cliente> clientes = modeloCliente.obtenerClientesDB();
             Vendedor vendedor = modeloVendedor.obtenerVendedorL(local);
-            
+
             Cliente c = null;
             String usuario = request.getParameter("user");
             for (Cliente cliente : clientes) {
@@ -123,7 +121,7 @@ public class ControladorProducto extends HttpServlet {
                     break;
                 }
             }
-            
+
             //Crear sesion del cliente
             HttpSession session = request.getSession();
             session.setAttribute("CLIENTE_SESSION", c);
@@ -134,15 +132,15 @@ public class ControladorProducto extends HttpServlet {
             //Enviar request a la pagina que se desea
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/interfaz-local.jsp");
             requestDispatcher.forward(request, response);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void insertarProducto(HttpServletRequest request, HttpServletResponse response) {
-        try{
-            
+        try {
+
             Local l = modeloLocal.obtenerLocalDB(request.getParameter("local"));
             String nombre = request.getParameter("nombre");
             int precio = Integer.parseInt(request.getParameter("precio"));
@@ -150,22 +148,22 @@ public class ControladorProducto extends HttpServlet {
             int stock = Integer.parseInt(request.getParameter("stock"));
             String descripcion = request.getParameter("descripcion");
             String nombreImagen = guardarImagenObtenerNombre(request, "imagenPrincipal", nombre, l.getNombre());
-            
+
             //Operacion para calcular puntos
-            int puntos = 0; 
-            
-            Producto producto = new Producto (nombre, precio, marca, l.getId(), descripcion, nombreImagen, stock, puntos);
+            int puntos = 0;
+
+            Producto producto = new Producto(nombre, precio, marca, l.getId(), descripcion, nombreImagen, stock, puntos);
             modeloProducto.insertarProducto(producto);
-            
+
             request.setAttribute("caso", "InterfazProductos");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/carga-vendedor.jsp");
             requestDispatcher.forward(request, response);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     private void borrarProducto(HttpServletRequest request, HttpServletResponse response) {
         try {
 
@@ -179,16 +177,16 @@ public class ControladorProducto extends HttpServlet {
             e.printStackTrace();
         }
     }
-    
+
     private void actualizarProducto(HttpServletRequest request, HttpServletResponse response) {
         try {
 
             String idProducto = request.getParameter("iDProducto");
             String idLocal = request.getParameter("iDLocal");
-            
-            Local local = modeloLocal.obtenerLocalDB(idLocal);          
+
+            Local local = modeloLocal.obtenerLocalDB(idLocal);
             Producto p = modeloProducto.obtenerProducto(idProducto);
-            
+
             String nombre = request.getParameter("nombre");
             int precio = 0;
             if (!request.getParameter("precio").equals("")) {
@@ -200,26 +198,26 @@ public class ControladorProducto extends HttpServlet {
                 stock = Integer.parseInt(request.getParameter("stock"));
             }
             String descripcion = request.getParameter("descripcion");
-            
+
             String nombreImagen = "";
-            if(!request.getPart("imagenPrincipal").getSubmittedFileName().equals("")){
-                if(!nombre.equals("")){
+            if (!request.getPart("imagenPrincipal").getSubmittedFileName().equals("")) {
+                if (!nombre.equals("")) {
                     eliminarImagen(Integer.toString(p.getId()), Integer.toString(p.getIdLocal()));
                     nombreImagen = guardarImagenObtenerNombre(request, "imagenPrincipal", nombre, local.getNombre());
-                }else{
+                } else {
                     nombreImagen = guardarImagenObtenerNombre(request, "imagenPrincipal", p.getNombre(), local.getNombre());
                 }
-            }else{
-                if(!nombre.equals("")){
+            } else {
+                if (!nombre.equals("")) {
                     nombreImagen = actualizarImagenObtenerNombre(Integer.toString(p.getId()), local.getNombre(), nombre);
                 }
             }
             int puntos = 0;
-            
-            Producto producto = new Producto (p.getId(), nombre, precio, marca, 0, descripcion, nombreImagen, stock, puntos);
-            
+
+            Producto producto = new Producto(p.getId(), nombre, precio, marca, 0, descripcion, nombreImagen, stock, puntos);
+
             modeloProducto.actualizarProducto(producto);
-            
+
             request.setAttribute("caso", "InterfazProductos");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/carga-vendedor.jsp");
             requestDispatcher.forward(request, response);
@@ -228,7 +226,7 @@ public class ControladorProducto extends HttpServlet {
             e.printStackTrace();
         }
     }
-    
+
 //    Con estos métodos las imágenes que se suban al formulario
 //    seran guardadas en la carpeta images/locales y se obtiene
 //    el nombre de la imagen como una concatenación del nombre
@@ -282,42 +280,42 @@ public class ControladorProducto extends HttpServlet {
         }
         return null;
     }
-    
+
     private void eliminarImagen(String idProducto, String idLocal) throws Exception {
-        
+
         List<Producto> productos = modeloProducto.getProductos(idLocal);
-        
+
         String nombreImagen = "";
-        for(Producto producto: productos) {
-            if(producto.getId() == Integer.parseInt(idProducto)) {
+        for (Producto producto : productos) {
+            if (producto.getId() == Integer.parseInt(idProducto)) {
                 nombreImagen = producto.getNombreImagen();
             }
         }
-        
+
         String pathServlet = getServletContext().getRealPath("/");
         String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
         String path = pathProject + "\\web\\images\\Productos\\";
-        
+
         File imagen = new File(path + File.separator + nombreImagen);
         imagen.delete();
     }
-    
+
     private String actualizarImagenObtenerNombre(String idProducto, String nombreLocal, String nuevoNombre) throws Exception {
-        
+
         Producto p = modeloProducto.obtenerProducto(idProducto);
-        
+
         String nombreImagen = p.getNombreImagen();
 
         String[] a = nombreImagen.split("\\.(?=[^\\.]+$)");
         String nombreImagen2 = nombreLocal + "-" + nuevoNombre + "." + a[1];
-        
+
         String pathServlet = getServletContext().getRealPath("/");
         String pathProject = pathServlet.substring(0, pathServlet.length() - 11);
         String path = pathProject + "\\web\\images\\Productos\\";
-        
+
         File imagen = new File(path + File.separator + nombreImagen);
         imagen.renameTo(new File(path + File.separator + nombreImagen2));
-        
+
         return nombreImagen2;
     }
     // </editor-fold>
