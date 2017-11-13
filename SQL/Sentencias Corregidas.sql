@@ -253,7 +253,7 @@ CREATE VIEW estadisticasP AS
  
 /* Insert view Productos más vendidos por Local */
 CREATE VIEW masVendido AS	
- SELECT p.IDProducto, p.Nombre, p.Precio, p.Marca, p.IDLocal, p.Descripcion, p. NombreImagen, p.Stock, p.Puntos FROM producto p
+ SELECT p.IDProducto, p.Nombre, p.Precio, p.Marca, p.IDLocal, p.Descripcion, p.NombreImagen, p.Stock, p.Puntos FROM producto p
  INNER JOIN ( SELECT Nombre
 			FROM estadisticasP
 			WHERE VecesVendido in (SELECT MAX(VecesVendido) FROM estadisticasP GROUP BY IDLocal)
