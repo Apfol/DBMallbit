@@ -7,8 +7,10 @@ package com.mallbit.envio;
 
 import com.mallbit.Conexion.ConexionDB;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 /**
  *
@@ -37,5 +39,21 @@ public class ModeloEnvio {
         connection.close();
     }
     
+    public void actualizarEstadoEnvio(int idEnvio) throws SQLException {
+        Connection connection;
+        PreparedStatement preparedStatement;
+
+        //Establecer la conexi�n
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement
+        String sentenciaSQL = "update envio set IDEstado = 2, FechaEnvio = ? where IDEnvio = ?";
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+        preparedStatement.setDate(1, Date.valueOf(LocalDate.now()));
+        preparedStatement.setInt(2, idEnvio);
+        preparedStatement.execute();
+        preparedStatement.close();
+        connection.close();
+    }
     
 }

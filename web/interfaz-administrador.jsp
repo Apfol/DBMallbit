@@ -177,7 +177,6 @@
             <form action="ControladorAdministrador" method="post">
                 <div class="modal-content">
                     <h4>Actualización de datos administrador</h4>
-
                     <input type="hidden" name="instruccion" value="actualizarAdministrador"/>
                     <div class="row">
                         <div class="col s12 input-field">

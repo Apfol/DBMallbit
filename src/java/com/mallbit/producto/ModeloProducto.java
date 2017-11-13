@@ -7,6 +7,7 @@ package com.mallbit.producto;
 
 import com.mallbit.Conexion.ConexionDB;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -391,6 +392,39 @@ public class ModeloProducto {
             numeroProductos = resultSet.getInt("Productos");
         }
         return numeroProductos;
+    }
+    
+    public List<ProductoEnviar> obtenerProductosEnviarDB(int idVendedor) throws SQLException {
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        List<ProductoEnviar> productos = new ArrayList<>();
+        
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement
+        String sentenciaSQL = "SELECT CONCAT(C.nombre, ' ', C.Apellido), P.nombre, Co.Fecha, E.Direccion, E.IDEnvio FROM compra Co\n" +
+                                "INNER JOIN cliente C ON C.IDCliente = Co.IDCliente\n" +
+                                "INNER JOIN producto P ON P.IDProducto = Co.IDProducto\n" +
+                                "INNER JOIN envio E ON E.IDCompra = Co.IDCompra\n" +
+                                "INNER JOIN estado Es ON Es.IDEstado = E.IDEstado\n" +
+                                "WHERE Co.IDVendedor = ? and Es.IDEstado = 1";
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+        preparedStatement.setInt(1, idVendedor);
+
+        //Ejecutar sentencia
+        resultSet = preparedStatement.executeQuery();
+        
+        while(resultSet.next()) {
+            String nombreCliente = resultSet.getString(1);
+            String nombreProducto = resultSet.getString(2);
+            Date fecha = resultSet.getDate(3);
+            String direccion = resultSet.getString(4);
+            int idEnvio = resultSet.getInt(5);
+            productos.add(new ProductoEnviar(nombreCliente, nombreProducto, fecha, direccion, idEnvio));
+        }
+        return productos;
     }
 
 }

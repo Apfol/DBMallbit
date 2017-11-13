@@ -33,7 +33,8 @@
                 <div class="row">
                     <div class="col s10">
                         <p style="font-size: 30px" id="titleis">¡Compra realizada!</p>
-                        <p style="font-size: 15px" id="subtitleis">Tu compra acaba de ser despachada</p><br>
+                        <br>
+                        <p style="font-size: 15px" id="subtitleis">Tu compra está pendiente a ser despachada, por favor espera a que el vendedor confirme el envío.</p><br>
                     </div>
                     <div class="col s1">
                         <i class="material-icons left" id="personas">check</i>

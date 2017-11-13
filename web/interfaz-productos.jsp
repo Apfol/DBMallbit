@@ -1,3 +1,4 @@
+<%@page import="com.mallbit.producto.ProductoEnviar"%>
 <%@page import="com.mallbit.local.ModeloLocal"%>
 <%@page import="com.mallbit.producto.ModeloProducto"%>
 <%@page import="com.mallbit.producto.Producto"%>
@@ -55,6 +56,7 @@
             </a>
             <ul>
                 <li><a href="#actualizarDatosPersonales" class="btn-floating pulse modal-trigger tooltipped teal lighten-2" data-position="left" data-delay="50" data-tooltip="Ver estadísticas"><i class="material-icons">insert_chart</i></a></li>
+                <li><a href="#productosEnviar" class="btn-floating pulse modal-trigger tooltipped red darken-1" data-position="left" data-delay="50" data-tooltip="Productos a enviar"><i class="material-icons">local_shipping</i></a></li>
                 <li><a href="registro-producto.jsp" class="btn-floating pulse tooltipped yellow darken-1" data-position="left" data-delay="50" data-tooltip="Agregar producto"><i class="material-icons">local_mall</i></a></li>
             </ul>
         </div>
@@ -105,8 +107,8 @@
             <div id="editarProducto<%= producto.getId()%>" class="modal modal-fixed-footer" style="overflow: hidden">
                 <form action="ControladorProducto" method="post" enctype="multipart/form-data" class="col s12">
                     <input type="hidden" name="instruccion" value="actualizarProducto"/>
-                    <input type="hidden" name="iDProducto" value="<%= producto.getId() %>"/>
-                    <input type="hidden" name="iDLocal" value="<%= producto.getIdLocal() %>"/>
+                    <input type="hidden" name="iDProducto" value="<%= producto.getId()%>"/>
+                    <input type="hidden" name="iDLocal" value="<%= producto.getIdLocal()%>"/>
                     <div class="modal-content center-align" style="overflow: hidden">
                         <h3 class="light-blue-text text-darken-3">Editar producto</h3>
                         <p class="center" style="font-weight: 500; font-size: 15px;">A continuación ingresa los datos que desees actualizar</p>
@@ -241,6 +243,53 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <% List<ProductoEnviar> productosEnviar = new ModeloProducto().obtenerProductosEnviarDB(vendedor.getId()); %>
+        <div id="productosEnviar" class="modal modal-fixed-footer">
+            <% if (productosEnviar.size() != 0) { %>
+            <form action="ControladorEnvio" method="post">
+                <input type="hidden" name="instruccion" value="actualizarEstado"/>
+                <div class="modal-content">
+                    <h4 class="center-align">Productos a enviar</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Producto</th>
+                                <th>Fecha compra</th>
+                                <th>Dirección envío</th>
+                                <th>Enviar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (ProductoEnviar producto : productosEnviar) {%>
+                            <tr>
+                                <td><%= producto.getNombreCliente()%></td>
+                                <td><%= producto.getNombreProducto()%></td>
+                                <td><%= producto.getFecha()%></td>
+                                <td><%= producto.getDireccion()%></td>
+                                <td>
+                                    <input type="checkbox" id="test<%= producto.getIdEnvio()%>" name="idEnvio" value="<%= producto.getIdEnvio()%>" />
+                                    <label for="test<%= producto.getIdEnvio()%>"></label>
+                                </td>
+                            </tr>
+                            <% } %>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-action modal-close waves-effect waves-light btn light-blue darken-3 white-text" type="submit">Enviar productos</button>
+                </div>
+            </form>
+            <% } else { %>
+            <div class="modal-content">
+                <h4>Sin productos para enviar.</h4>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-action modal-close waves-effect waves-light btn light-blue darken-3 white-text" href="#!">OK</a>
+            </div>
+            <% } %>
         </div>
 
         <div class="tap-target light-blue darken-3" data-activates="elementosAdmin">

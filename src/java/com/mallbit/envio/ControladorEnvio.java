@@ -33,13 +33,23 @@ public class ControladorEnvio extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(ControladorEnvio.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
 
+            String instruccion = request.getParameter("instruccion");
+
+            switch (instruccion) {
+                case "actualizarEstado":
+                    actualizarEstado(request, response);
+                    break;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorEnvio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void agregarEnvio(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -52,6 +62,17 @@ public class ControladorEnvio extends HttpServlet {
         modeloEnvio.agregarEnvioDB(envio);
 
         response.sendRedirect("compra-realizada.jsp");
+    }
+
+    private void actualizarEstado(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        String idEnvio[] = request.getParameterValues("idEnvio");
+
+        if (idEnvio != null) {
+            for (String idEnvio1 : idEnvio) {
+                modeloEnvio.actualizarEstadoEnvio(Integer.parseInt(idEnvio1));
+            }
+        }
+        response.sendRedirect("interfaz-productos.jsp");
     }
 
 }
