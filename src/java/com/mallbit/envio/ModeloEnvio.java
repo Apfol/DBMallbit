@@ -25,12 +25,13 @@ public class ModeloEnvio {
 
         //Crear sentencia SQL y statement
         String sentenciaSQL = "INSERT INTO envio "
-                + "(IDCompra, IDVendedor) VALUES (?,?)";
+                + "(IDCompra, IDVendedor, Direccion) VALUES (?,?,?)";
         preparedStatement = connection.prepareStatement(sentenciaSQL);
         
         //Pasar valores del objeto envio a la sentenciaSQL
         preparedStatement.setInt(1, envio.getIdCompra());
         preparedStatement.setInt(2, envio.getIdVendedor());
+        preparedStatement.setString(3, envio.getDireccion());
         preparedStatement.execute();
         preparedStatement.close();
         connection.close();

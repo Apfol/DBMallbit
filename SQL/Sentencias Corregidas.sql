@@ -71,7 +71,8 @@ create table vendedor(
 );
 create table envio(
     IDEnvio int(11) not null auto_increment, 
-    FechaEnvio date,  
+    FechaEnvio date,
+	Direccion varchar(100),
     IDEstado int(11) default 1, 
     IDCompra int(11), 
     IDVendedor int(11), 

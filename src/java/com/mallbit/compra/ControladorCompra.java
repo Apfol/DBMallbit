@@ -61,13 +61,10 @@ public class ControladorCompra extends HttpServlet {
         modeloCompra.agregarCompra(compra);
         
         List<Compra> compras = modeloCompra.obtenerComprasCliente(idCliente);
-
-        request.setAttribute("IDCOMPRA", compras.get(compras.size() - 1).getId());
-        request.setAttribute("IDVENDEDOR", idVendedor);
         
-        //request.getRequestDispatcher("/ControladorEnvio").forward(request, response);
+        String direccion = request.getParameter("direccion");
 
-        response.sendRedirect("ControladorEnvio?idCompra=" + compras.get(compras.size() - 1).getId() + "&idVendedor=" + idVendedor);
+        response.sendRedirect("ControladorEnvio?idCompra=" + compras.get(compras.size() - 1).getId() + "&idVendedor=" + idVendedor + "&direccion=" + direccion);
     }
 
 }

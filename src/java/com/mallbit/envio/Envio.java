@@ -14,20 +14,23 @@ import java.sql.Date;
 public class Envio {
     private int id;
     private Date fechaEnvio;
+    private String direccion;
     private int idEstado;
     private int idCompra;
     private int idVendedor;
 
-    public Envio(int id, Date fechaEnvio, int idEstado, int idCompra, int idVendedor) {
+    public Envio(int id, Date fechaEnvio, String direccion, int idEstado, int idCompra, int idVendedor) {
         this.id = id;
         this.fechaEnvio = fechaEnvio;
+        this.direccion = direccion;
         this.idEstado = idEstado;
         this.idCompra = idCompra;
         this.idVendedor = idVendedor;
     }
 
-    public Envio(Date fechaEnvio, int idEstado, int idCompra, int idVendedor) {
+    public Envio(Date fechaEnvio, String direccion, int idEstado, int idCompra, int idVendedor) {
         this.fechaEnvio = fechaEnvio;
+        this.direccion = direccion;
         this.idEstado = idEstado;
         this.idCompra = idCompra;
         this.idVendedor = idVendedor;
@@ -47,6 +50,14 @@ public class Envio {
 
     public void setFechaEnvio(Date fechaEnvio) {
         this.fechaEnvio = fechaEnvio;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public int getIdEstado() {

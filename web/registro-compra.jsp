@@ -31,27 +31,37 @@
             <div class="card-panel">
                 <form action="ControladorCompra" method="post">
                     <input type="hidden" name="instruccion" value="realizarPago">
-                    <input type="hidden" name="idProducto" value="<%= request.getParameter("idProducto") %>">
+                    <input type="hidden" name="idProducto" value="<%= request.getParameter("idProducto")%>">
                     <div class="row">
                         <div class="col s10">
-                            <p style="font-size: 30px" id="titleis">Datos tarjeta de credito</p>
-                            <p style="font-size: 15px" id="subtitleis">Realizar pago en MallBIT</p><br>
+                            <p style="font-size: 30px" id="titleis">Datos de compra</p>
+                            <p style="font-size: 15px" id="subtitleis">Realizar pago en MallBIT</p>
                         </div>
                         <div class="col s1">
                             <i class="material-icons left" id="personas">attach_money</i>
                         </div>
                     </div>
-                    <div class="input-field">
-                        <i class="material-icons prefix">credit_card</i>
-                        <input id="usuario" type="number" name="numeroTarjeta" class="validate" maxlength="15" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
-                        <label for="numeroTarjeta">N° tarjeta de credito</label>
+                    <div class="row">
+                        <div class="col s12 input-field">
+                        <i class="material-icons prefix">home</i>
+                        <input id="usuario" type="text" name="direccion" class="validate">
+                        <label for="direccion">Dirección de envío</label>
+                    </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col s8 input-field">
+                            <i class="material-icons prefix">credit_card</i>
+                            <input id="usuario" type="number" name="numeroTarjeta" class="validate" maxlength="15" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <label for="numeroTarjeta">N° tarjeta de credito</label>
+                        </div>
+                        <div class="col s4 input-field">
+                            <i class="material-icons prefix">lock_outline</i>
+                            <input id="contraseña" type="number" name="cvv" class="validate" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <label for="cvv">CVV</label>
+                        </div>
                     </div>
 
-                    <div class="input-field">
-                        <i class="material-icons prefix">lock_outline</i>
-                        <input id="contraseña" type="number" name="cvv" class="validate" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
-                        <label for="cvv">CVV</label>
-                    </div>
                     <div class="center-align">
                         <button class="waves-effect waves-light btn lime lighten-2 black-text" type="submit">Realizar pago</button>
                     </div>

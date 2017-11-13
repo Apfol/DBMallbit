@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ControladorEnvio extends HttpServlet {
 
     ModeloEnvio modeloEnvio = new ModeloEnvio();
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,13 +43,14 @@ public class ControladorEnvio extends HttpServlet {
     }
 
     private void agregarEnvio(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        int idCompra = (int) Integer.parseInt(request.getParameter("idCompra"));
-        int idVendedor = (int) Integer.parseInt(request.getParameter("idVendedor"));
-        
-        Envio envio = new Envio(null, 0, idCompra, idVendedor);
-        
+        int idCompra = Integer.parseInt(request.getParameter("idCompra"));
+        int idVendedor = Integer.parseInt(request.getParameter("idVendedor"));
+        String direccion = request.getParameter("direccion");
+
+        Envio envio = new Envio(null, direccion, 0, idCompra, idVendedor);
+
         modeloEnvio.agregarEnvioDB(envio);
-        
+
         response.sendRedirect("compra-realizada.jsp");
     }
 
