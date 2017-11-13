@@ -24,7 +24,7 @@
         <link href="css/style.css" rel="stylesheet" />
         <link href="css/style-interfaz-administrador.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" href="css/materialize.css" />
-        <title>Cliente <%= cliente.getNombre()%></title>
+        <title>Compras cliente <%= cliente.getNombre()%></title>
         <title>Mis compras </title>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
