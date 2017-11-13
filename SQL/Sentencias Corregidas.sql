@@ -24,16 +24,11 @@ create table compra(
     IDCompra int(11) not null auto_increment, 
     Fecha date not null,
     IDCliente int(11),
-    IDPago int(11),
     IDProducto int(11), 
     IDVendedor int(11),
-    Primary Key(IDCompra)
-);
-create table pago(
-    IDPago int(11) not null auto_increment,
-    NumeroTarjeta int(11) not null,
+	NumeroTarjeta bigint(15) not null,
     CVV int(3) not null,
-    Primary Key(IDPago)
+    Primary Key(IDCompra)
 );
 create table producto(
     IDProducto int(11) not null auto_increment, 
@@ -76,8 +71,9 @@ create table vendedor(
 );
 create table envio(
     IDEnvio int(11) not null auto_increment, 
-    FechaEnvio date not null,  
-    IDEstado int(11), 
+    FechaEnvio date,
+	Direccion varchar(100),
+    IDEstado int(11) default 1, 
     IDCompra int(11), 
     IDVendedor int(11), 
     Primary Key(IDEnvio)
@@ -103,7 +99,7 @@ create table administrador(
 create table premio(
     IDPremio int(11) not null auto_increment, 
     Nombre varchar(100) not null, 
-    Descripcion varchar(500) not null,
+    Descripcion text not null,
     NombreImagen varchar(100) not null,
     Puntos int(10) not null,
     IDAdministrador int(11), 
@@ -122,6 +118,7 @@ INSERT INTO genero(IDGenero, TipoGenero) VALUES
 
 /* Insert estados */
 INSERT INTO estado(TipoEstado) VALUES
+	('Pendiente por despachar'),
 	("Despachado"),
 	("Entregado");
 
@@ -224,8 +221,22 @@ COMMIT;
 
 /* Insert premio */
 INSERT INTO premio(Nombre, Descripcion, NombreImagen, Puntos, IDAdministrador) VALUES
-	("Xbox One X", "Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 500, 1);
+	("Xbox One X", "Xbox One X will eventually bring true 4K on consoles", "Xbox One X-Xbox-One-X.jpg", 500, 1),
+	("Super Mario Odyssey", "Ponte en la piel de Mario y viaja a través de varios mundos en tu nave en forma de sombrero, la «Odyssey», en un esfuerzo por rescatar a la Princesa Peach de Bowser, quién planea casarse con ella. Esta vez Bowser se ha aliado con nuevos enemigos llamados Broodal que conseguirán ponerte en un terrible aprieto. Disfruta de emocionantes gameplays en los que podrás viajar junto a Mario a través de varios reinos. Completa distintos objetivos para poder obtener las «lunas de poder» que servirán de combustible para la Odyssey y te darán acceso a nuevos mundos.", "Super Mario Odyssey-Super Mario Odyssey.jpg", 200, 1);
 COMMIT;
+
+/* Insert cliente-premio */
+insert into cliente_premio (IDPremio, IDCliente) VALUES
+	(1, 2),
+	(1, 4),
+	(1, 7),
+	(1, 8),
+	(2, 1),
+	(2, 4),
+	(2, 5),
+	(2, 6),
+	(2, 8),
+	(2, 9);
 
 /* Insert view Estadisticas de Productos */
 CREATE VIEW estadisticasP AS
@@ -265,16 +276,42 @@ CREATE VIEW masReciente AS
  WHERE IDProducto IN (SELECT MAX(IDProducto) FROM producto GROUP BY IDLocal)
  GROUP BY IDLocal;
 
+/* Insert view cantidad de clientes por premio*/
+CREATE VIEW clientesPremio AS
+	SELECT P.IDPremio AS ID, COUNT(Cl.IDPremio) AS Cuenta FROM premio P
+	INNER JOIN cliente_premio Cl ON P.IDPremio = Cl.IDPremio
+	GROUP BY Cl.IDPremio;
+
+/* Insert view Premio más popular */
+CREATE VIEW masPopular AS
+	SELECT * FROM premio 
+	INNER JOIN (SELECT ID FROM clientesPremio WHERE Cuenta = (SELECT MAX(Cuenta) FROM clientesPremio) GROUP BY ID) AS d
+	ON d.ID = premio.IDPremio;
+
+
+CREATE VIEW clientesTotales AS
+	SELECT COUNT(IDCliente) Clientes FROM cliente;
+
+CREATE VIEW vendedoresTotales AS
+	SELECT COUNT(IDVendedor) Vendedores FROM vendedor;
+
+CREATE VIEW productosTotales AS
+	SELECT COUNT(IDProducto) Productos FROM producto;
+
+CREATE VIEW comprasTotales AS
+	SELECT COUNT(IDCompra) Compras FROM compra;
+
+
 /* Relación llaves foráneas */
 alter table producto add constraint producto_local foreign key(IDLocal) references local(IDLocal) ON DELETE CASCADE;
 alter table local add constraint local_categoria foreign key(IDCategoria) references categoria(IDCategoria) ON DELETE CASCADE;
 alter table local add constraint local_vendedor foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
-alter table compra add constraint compra_pago foreign key(IDPago) references pago(IDPago) ON DELETE CASCADE;
 alter table compra add constraint compra_cliente foreign key(IDCliente) references cliente(IDCliente) ON DELETE CASCADE;
 alter table compra add constraint compra_producto foreign key(IDProducto) references producto(IDProducto) ON DELETE CASCADE;
 alter table compra add constraint compra_vendedor foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
 alter table envio add constraint envio_estado foreign key(IDEstado) references estado(IDEstado) ON DELETE CASCADE;
 alter table envio add constraint envio_compra foreign key(IDCompra) references compra(IDCompra) ON DELETE CASCADE;
+alter table envio add constraint envio_vendedor foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
 alter table cliente add constraint cliente_genero foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
 alter table Vendedor add constraint vendedor_genero foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
 alter table premio add constraint premio_administrador foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;

@@ -72,7 +72,7 @@ public class ModeloVendedor {
                 + "(Nombre,Apellido,Correo,Identificacion,Telefono,Usuario,Password,FechaNacimiento,IDGenero) VALUES (?,?,?,?,?,?,?,?,?)";
         preparedStatement = connection.prepareStatement(sentenciaSQL);
 
-        //Pasar valores del objeto cliente a la sentenciaSQL
+        //Pasar valores del objeto vendedor a la sentenciaSQL
         preparedStatement.setString(1, vendedor.getNombre());
         preparedStatement.setString(2, vendedor.getApellido());
         preparedStatement.setString(3, vendedor.getCorreo());
@@ -85,6 +85,8 @@ public class ModeloVendedor {
         preparedStatement.setInt(9, vendedor.getIdGenero());
 
         preparedStatement.execute();
+        preparedStatement.close();
+        connection.close();
     }
     
         public void actualizarVendedorDB(Vendedor vendedor) throws SQLException {
@@ -173,6 +175,55 @@ public class ModeloVendedor {
 
         }
         return vendedor;
+    }
+    
+    public int vendedoresTotales() throws SQLException {
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+        
+        int numeroVendedores = 0;
+        
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+        
+        //Crear sentencia SQL y statement y ejecutar
+        String sentencia = "SELECT * FROM vendedoresTotales";
+        //Crear sentencia SQL y statement
+        statement = connection.createStatement();
+
+        //Ejecutar SQL y guardar valores de consulta en resultSet
+        resultSet = statement.executeQuery(sentencia);
+        
+        while(resultSet.next()) {
+            numeroVendedores = resultSet.getInt("Vendedores");
+        }
+        return numeroVendedores;
+    }
+    
+    public int obtenerVendedorDesdeProducto(int idProducto) throws SQLException {
+        Connection connection;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        int idVendedor = 0;
+
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+        
+        String sentenciaSQL = "SELECT V.IDVendedor FROM producto P\n" +
+                                "INNER JOIN local L ON L.IDLocal = P.IDLocal\n" +
+                                "INNER JOIN vendedor V ON V.IDVendedor = L.IDLocal\n" +
+                                "WHERE P.IDProducto = ? ";
+        
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+        preparedStatement.setInt(1, idProducto);
+        //Ejecutar SQL
+        resultSet = preparedStatement.executeQuery();
+        
+        while(resultSet.next()) {
+            idVendedor = resultSet.getInt(1);
+        }
+        return idVendedor;
     }
 }
 

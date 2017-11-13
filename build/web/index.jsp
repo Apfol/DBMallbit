@@ -1,4 +1,6 @@
 
+<%@page import="com.mallbit.compra.ModeloCompra"%>
+<%@page import="com.mallbit.producto.ModeloProducto"%>
 <%@page import="com.mallbit.premio.ModeloPremio"%>
 <%@page import="com.mallbit.premio.Premio"%>
 <%@page import="com.mallbit.administrador.ControladorAdministrador"%>
@@ -85,7 +87,7 @@
                                         <a onclick="document.getElementById('iu').submit()"><i class="material-icons left">people</i><%= cliente.getNombre()%></a>
                                     </form>
                                 </li>
-                                <li><a href="sass.html"><i class="material-icons left">shopping_cart</i>Mis Compras</a></li>
+                                <li><a href="interfaz-compras.jsp"><i class="material-icons left">shopping_cart</i>Mis Compras</a></li>
                                 <li><a href="ControladorCookie?objeto=<%= Cliente.CLIENTE_COOKIE%>"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
                                     <% }%>
                             </ul>
@@ -183,6 +185,7 @@
                             <li><a href="#belleza">BELLEZA</a></li>
                             <li><a href="#infantil">INFANTIL</a></li>
                             <li><a href="#premios">PREMIOS</a></li>
+                            <li><a href="#aboutUs">ACERCA</a></li>
                         </ul>
                     </div>
                 </div>
@@ -515,16 +518,16 @@
             <div class="divider"></div>
             <div id="premios" class="scrollspy">
                 <br>
-                <h4 class="center"style="font-weight: bold">¡Tienes la posibilidad de ganar premios!</h4>
+                <h4 class="center" style="font-weight: bold">¡Tienes la posibilidad de ganar premios!</h4>
                 <h5 class="center grey-text">Cuando compras en MallBit estas acumulando puntos con los que podrás ganar cualquiera de estos premios.</h5>
                 <br>
                 <div class="row scrollspy valign-wrapper container">
                     <div class="col s6">
                         <div>
-                            <h5 class="black-text">Gran variedad de premios</h5>
+                            <h5 class="black-text" style="font-weight: bold">Gran variedad de premios</h5>
                             <br>
                             <span class="black-text">
-                                Mallbit ofrece una gran variedad de premios los cuales cada uno tiene cierta cantidad de puntos.
+                                Mallbit ofrece una gran variedad de premios, para que tengas más posibilidades de ser ganador ¡Elige el que más te guste!
                             </span>
                         </div>
                     </div>
@@ -550,7 +553,7 @@
 
                 <div class="row container valign-wrapper">
                     <div class="col s6" style="height:300px;">
-                        <% for (Premio premio : premios) {%>
+                        <% Premio premio = new ModeloPremio().obtenerMasPopular();%>
                         <div class="col s12 m12">
                             <div  class="card sticky-action">
                                 <div class="card-image waves-effect waves-block waves-light">
@@ -565,14 +568,13 @@
                                 </div>
                             </div>
                         </div>
-                        <% } %>
                     </div>
                     <div class="col s6">
                         <div>
-                            <h5 class="black-text">Premio con más ganadores</h5>
+                            <h5 class="black-text" style="font-weight: bold">Premio más popular</h5>
                             <br>
                             <span class="black-text">
-                                Este es el producto que más clientes han llegado a ganar, si compras en MallBIT podrás ser uno de los siguientes ganadores.
+                                Este es el producto que más clientes han llegado a ganar, si compras en MallBIT podrás ser el siguiente.
                             </span>
                         </div>
                     </div>
@@ -581,8 +583,38 @@
             </div>  
             <% }%>
 
-            <!--# NOTE: Comienza parte pie de página.-->
+            <!-- Acerca de nosotros -->
+            <div class="divider"></div>
 
+            <div id="aboutUs" class="scrollspy">
+                <br>
+                <h4 class="center" style="font-weight: bold">¡Conoce algunos datos de nuestra plataforma!</h4>
+                <h5 class="center grey-text">Aqui podras ver las cantidades de usuarios, productos y ventas realizadas en MallBIT.</h5>
+                <br>
+                <div>
+                    <div class="row">
+                        <div class="col s3">
+                            <h4 class="center-align  brown-text text-darken-2"><%= modeloCliente.clientesTotales() %></h4>
+                            <p class="center-align" style="font-weight: bold">Clientes activos</p>
+                        </div>
+                        <div class="col s3">
+                            <h4 class="center-align  brown-text text-darken-2"><%= modeloVendedor.vendedoresTotales() %></h4>
+                            <p class="center-align" style="font-weight: bold">Vendedores activos</p>
+                        </div>
+                        <div class="col s3">
+                            <h4 class="center-align  brown-text text-darken-2"><%= new ModeloProducto().productosTotales() %></h4>
+                            <p class="center-align" style="font-weight: bold">Productos totales</p>
+                        </div>
+                        <div class="col s3">
+                            <h4 class="center-align  brown-text text-darken-2"><%= new ModeloCompra().comprasTotales() %></h4>
+                            <p class="center-align" style="font-weight: bold">Compras realizadas</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            <!--# NOTE: Comienza parte pie de página.-->
             <footer class="page-footer lime darken-2">
                 <div class="container">
                     <div class="row">
