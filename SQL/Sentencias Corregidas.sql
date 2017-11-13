@@ -72,7 +72,7 @@ create table vendedor(
 create table envio(
     IDEnvio int(11) not null auto_increment, 
     FechaEnvio date,  
-    IDEstado int(11) default 0, 
+    IDEstado int(11) default 1, 
     IDCompra int(11), 
     IDVendedor int(11), 
     Primary Key(IDEnvio)
@@ -310,6 +310,7 @@ alter table compra add constraint compra_producto foreign key(IDProducto) refere
 alter table compra add constraint compra_vendedor foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
 alter table envio add constraint envio_estado foreign key(IDEstado) references estado(IDEstado) ON DELETE CASCADE;
 alter table envio add constraint envio_compra foreign key(IDCompra) references compra(IDCompra) ON DELETE CASCADE;
+alter table envio add constraint envio_vendedor foreign key(IDVendedor) references vendedor(IDVendedor) ON DELETE CASCADE;
 alter table cliente add constraint cliente_genero foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
 alter table Vendedor add constraint vendedor_genero foreign key(IDGenero) references genero(IDGenero) ON DELETE CASCADE;
 alter table premio add constraint premio_administrador foreign key(IDAdministrador) references administrador(IDAdministrador) ON DELETE CASCADE;

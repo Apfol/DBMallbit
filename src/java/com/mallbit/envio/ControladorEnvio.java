@@ -6,7 +6,6 @@
 package com.mallbit.envio;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,8 +43,8 @@ public class ControladorEnvio extends HttpServlet {
     }
 
     private void agregarEnvio(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        int idCompra = (int) request.getAttribute("IDCOMPRA");
-        int idVendedor = (int) request.getAttribute("IDVENDEDOR");
+        int idCompra = (int) Integer.parseInt(request.getParameter("idCompra"));
+        int idVendedor = (int) Integer.parseInt(request.getParameter("idVendedor"));
         
         Envio envio = new Envio(null, 0, idCompra, idVendedor);
         

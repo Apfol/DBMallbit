@@ -65,10 +65,9 @@ public class ControladorCompra extends HttpServlet {
         request.setAttribute("IDCOMPRA", compras.get(compras.size() - 1).getId());
         request.setAttribute("IDVENDEDOR", idVendedor);
         
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ControladorEnvio");
-        requestDispatcher.forward(request, response);
+        //request.getRequestDispatcher("/ControladorEnvio").forward(request, response);
 
-        //response.sendRedirect("compra-realizada.jsp");
+        response.sendRedirect("ControladorEnvio?idCompra=" + compras.get(compras.size() - 1).getId() + "&idVendedor=" + idVendedor);
     }
 
 }

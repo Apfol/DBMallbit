@@ -21,7 +21,6 @@ import java.util.List;
  * @author Andres Ramos
  */
 public class ModeloCompra {
-
     public void agregarCompra(Compra compra) throws SQLException {
         Connection connection;
         PreparedStatement preparedStatement;
