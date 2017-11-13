@@ -71,8 +71,8 @@ create table vendedor(
 );
 create table envio(
     IDEnvio int(11) not null auto_increment, 
-    FechaEnvio date not null,  
-    IDEstado int(11), 
+    FechaEnvio date,  
+    IDEstado int(11) default 0, 
     IDCompra int(11), 
     IDVendedor int(11), 
     Primary Key(IDEnvio)
@@ -117,6 +117,7 @@ INSERT INTO genero(IDGenero, TipoGenero) VALUES
 
 /* Insert estados */
 INSERT INTO estado(TipoEstado) VALUES
+	('Pendiente por despachar'),
 	("Despachado"),
 	("Entregado");
 

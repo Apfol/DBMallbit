@@ -11,8 +11,10 @@ import com.mallbit.vendedor.ModeloVendedor;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControladorCompra", urlPatterns = {"/ControladorCompra"})
 public class ControladorCompra extends HttpServlet {
-    
+
     ModeloCompra modeloCompra = new ModeloCompra();
 
     @Override
@@ -33,7 +35,7 @@ public class ControladorCompra extends HttpServlet {
             throws ServletException, IOException {
         try {
             String parametro = request.getParameter("instruccion");
-            
+
             switch (parametro) {
                 case "realizarPago":
                     realizarCompra(request, response);
@@ -53,12 +55,20 @@ public class ControladorCompra extends HttpServlet {
         int idVendedor = new ModeloVendedor().obtenerVendedorDesdeProducto(idProducto);
         Long numeroTarjeta = Long.parseLong(request.getParameter("numeroTarjeta"));
         int cvv = Integer.parseInt(request.getParameter("cvv"));
-        
+
         Compra compra = new Compra(fecha, idCliente, idProducto, idVendedor, numeroTarjeta, cvv);
-        
+
         modeloCompra.agregarCompra(compra);
         
-        response.sendRedirect("compra-realizada.jsp");
+        List<Compra> compras = modeloCompra.obtenerComprasCliente(idCliente);
+
+        request.setAttribute("IDCOMPRA", compras.get(compras.size() - 1).getId());
+        request.setAttribute("IDVENDEDOR", idVendedor);
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ControladorEnvio");
+        requestDispatcher.forward(request, response);
+
+        //response.sendRedirect("compra-realizada.jsp");
     }
 
 }

@@ -72,7 +72,7 @@ public class ModeloVendedor {
                 + "(Nombre,Apellido,Correo,Identificacion,Telefono,Usuario,Password,FechaNacimiento,IDGenero) VALUES (?,?,?,?,?,?,?,?,?)";
         preparedStatement = connection.prepareStatement(sentenciaSQL);
 
-        //Pasar valores del objeto cliente a la sentenciaSQL
+        //Pasar valores del objeto vendedor a la sentenciaSQL
         preparedStatement.setString(1, vendedor.getNombre());
         preparedStatement.setString(2, vendedor.getApellido());
         preparedStatement.setString(3, vendedor.getCorreo());
@@ -85,6 +85,8 @@ public class ModeloVendedor {
         preparedStatement.setInt(9, vendedor.getIdGenero());
 
         preparedStatement.execute();
+        preparedStatement.close();
+        connection.close();
     }
     
         public void actualizarVendedorDB(Vendedor vendedor) throws SQLException {
