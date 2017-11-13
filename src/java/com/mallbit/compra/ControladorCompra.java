@@ -58,7 +58,7 @@ public class ControladorCompra extends HttpServlet {
         
         modeloCompra.agregarCompra(compra);
         
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("compra-realizada.jsp");
     }
 
 }
