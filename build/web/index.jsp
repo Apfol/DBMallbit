@@ -87,7 +87,7 @@
                                         <a onclick="document.getElementById('iu').submit()"><i class="material-icons left">people</i><%= cliente.getNombre()%></a>
                                     </form>
                                 </li>
-                                <li><a href="sass.html"><i class="material-icons left">shopping_cart</i>Mis Compras</a></li>
+                                <li><a href="interfaz-compras.jsp"><i class="material-icons left">shopping_cart</i>Mis Compras</a></li>
                                 <li><a href="ControladorCookie?objeto=<%= Cliente.CLIENTE_COOKIE%>"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
                                     <% }%>
                             </ul>
@@ -594,19 +594,19 @@
                 <div>
                     <div class="row">
                         <div class="col s3">
-                            <h4 class="center-align  lime-text text-darken-3"><%= modeloCliente.clientesTotales() %></h4>
+                            <h4 class="center-align  brown-text text-darken-2"><%= modeloCliente.clientesTotales() %></h4>
                             <p class="center-align" style="font-weight: bold">Clientes activos</p>
                         </div>
                         <div class="col s3">
-                            <h4 class="center-align  lime-text text-darken-3"><%= modeloVendedor.vendedoresTotales() %></h4>
+                            <h4 class="center-align  brown-text text-darken-2"><%= modeloVendedor.vendedoresTotales() %></h4>
                             <p class="center-align" style="font-weight: bold">Vendedores activos</p>
                         </div>
                         <div class="col s3">
-                            <h4 class="center-align  lime-text text-darken-3"><%= new ModeloProducto().productosTotales() %></h4>
+                            <h4 class="center-align  brown-text text-darken-2"><%= new ModeloProducto().productosTotales() %></h4>
                             <p class="center-align" style="font-weight: bold">Productos totales</p>
                         </div>
                         <div class="col s3">
-                            <h4 class="center-align  lime-text text-darken-3"><%= new ModeloCompra().comprasTotales() %></h4>
+                            <h4 class="center-align  brown-text text-darken-2"><%= new ModeloCompra().comprasTotales() %></h4>
                             <p class="center-align" style="font-weight: bold">Compras realizadas</p>
                         </div>
                     </div>
@@ -615,7 +615,6 @@
             </div>
 
             <!--# NOTE: Comienza parte pie de página.-->
-
             <footer class="page-footer lime darken-2">
                 <div class="container">
                     <div class="row">

@@ -5,14 +5,12 @@
  */
 package com.mallbit.compra;
 
-import com.mallbit.cliente.Cliente;
 import com.mallbit.cliente.ControladorCliente;
 import com.mallbit.cliente.ModeloCliente;
 import com.mallbit.vendedor.ModeloVendedor;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;

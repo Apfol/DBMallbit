@@ -286,12 +286,6 @@ CREATE VIEW masPopular AS
 	INNER JOIN (SELECT ID FROM clientesPremio WHERE Cuenta = (SELECT MAX(Cuenta) FROM clientesPremio) GROUP BY ID) AS d
 	ON d.ID = premio.IDPremio;
 
-SELECT V.IDVendedor FROM producto P
-	INNER JOIN local L ON L.IDLocal = P.IDLocal
-	INNER JOIN vendedor V ON V.IDVendedor = L.IDLocal
-	WHERE P.IDProducto = 4; 
-
-/* Insert view cantidad de clientes en DB*/
 
 CREATE VIEW clientesTotales AS
 	SELECT COUNT(IDCliente) Clientes FROM cliente;
