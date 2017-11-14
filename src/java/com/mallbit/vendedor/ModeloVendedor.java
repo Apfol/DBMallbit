@@ -56,6 +56,11 @@ public class ModeloVendedor {
             vendedores.add(new Vendedor(id, nombre, apellido, fechaNacimiento, correo, identificacion, telefono, usuario, contraseña, idGenero));
 
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return vendedores;
     }
 
@@ -107,6 +112,7 @@ public class ModeloVendedor {
             nombre.setString(1, vendedor.getNombre());
             nombre.setString(2, vendedor.getUsuario());
             nombre.executeUpdate();
+            nombre.close();
         }
         if (!vendedor.getApellido().equals("")) {
             String sentenciaApellido = "UPDATE vendedor SET Apellido=? WHERE Usuario=?";
@@ -114,6 +120,7 @@ public class ModeloVendedor {
             apellido.setString(1, vendedor.getApellido());
             apellido.setString(2, vendedor.getUsuario());
             apellido.executeUpdate();
+            apellido.close();
         }
         if (vendedor.getTelefono() != 0) {
             String sentenciaTelefono = "UPDATE vendedor SET Telefono=? WHERE Usuario=?";
@@ -121,6 +128,7 @@ public class ModeloVendedor {
             telefono.setLong(1, vendedor.getTelefono());
             telefono.setString(2, vendedor.getUsuario());
             telefono.executeUpdate();
+            telefono.close();
         }
         if (!vendedor.getCorreo().equals("")) {
             String sentenciaCorreo = "UPDATE vendedor SET Correo=? WHERE Usuario=?";
@@ -128,6 +136,7 @@ public class ModeloVendedor {
             correo.setString(1, vendedor.getCorreo());
             correo.setString(2, vendedor.getUsuario());
             correo.executeUpdate();
+            correo.close();
         }
         if (!vendedor.getContraseña().equals("")) {
             String sentenciaPassword = "UPDATE vendedor SET Password=? WHERE Usuario=?";
@@ -135,7 +144,10 @@ public class ModeloVendedor {
             password.setString(1, vendedor.getContraseña());
             password.setString(2, vendedor.getUsuario());
             password.executeUpdate();
+            password.close();
         }
+        
+        connection.close();
     }
 
     public Vendedor obtenerVendedorL(String local) throws SQLException {
@@ -174,6 +186,11 @@ public class ModeloVendedor {
             vendedor = new Vendedor(id, nombre, apellido, fechaNacimiento, correo, identificacion, telefono, usuario, password, idGenero);
 
         }
+        
+        connection.close();
+        preparedStatement.close();
+        resultSet.close();
+        
         return vendedor;
     }
     
@@ -198,6 +215,11 @@ public class ModeloVendedor {
         while(resultSet.next()) {
             numeroVendedores = resultSet.getInt("Vendedores");
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return numeroVendedores;
     }
     
@@ -223,6 +245,11 @@ public class ModeloVendedor {
         while(resultSet.next()) {
             idVendedor = resultSet.getInt(1);
         }
+        
+        connection.close();
+        preparedStatement.close();
+        resultSet.close();
+        
         return idVendedor;
     }
 }

@@ -52,6 +52,11 @@ public class ModeloProducto {
             productos.add(producto);
 
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return productos;
     }
 
@@ -90,6 +95,11 @@ public class ModeloProducto {
             productos.add(producto);
 
         }
+        
+        connection.close();
+        preparedStatement.close();
+        resultSet.close();
+        
         return productos;
     }
 
@@ -260,6 +270,9 @@ public class ModeloProducto {
         borrar.setString(1, idProducto);
         borrar.execute();
 
+        connection.close();
+        borrar.close();
+        
     }
 
     public void actualizarProducto(Producto producto) throws Exception {
@@ -282,6 +295,7 @@ public class ModeloProducto {
             nombre.setString(1, producto.getNombre());
             nombre.setInt(2, producto.getId());
             nombre.executeUpdate();
+            nombre.close();
         }
         if (producto.getPrecio() != 0) {
             String sentenciaPrecio = "UPDATE producto SET Precio=? WHERE iDProducto=?";
@@ -289,6 +303,7 @@ public class ModeloProducto {
             precio.setInt(1, producto.getPrecio());
             precio.setInt(2, producto.getId());
             precio.executeUpdate();
+            precio.close();
         }
         if (!producto.getMarca().equals("")) {
             String sentenciaMarca = "UPDATE producto SET Marca=? WHERE iDProducto=?";
@@ -296,6 +311,7 @@ public class ModeloProducto {
             marca.setString(1, producto.getMarca());
             marca.setInt(2, producto.getId());
             marca.executeUpdate();
+            marca.close();
         }
         if (producto.getStock() != 0) {
             String sentenciaStock = "UPDATE producto SET Stock=? WHERE iDProducto=?";
@@ -303,6 +319,7 @@ public class ModeloProducto {
             stock.setInt(1, producto.getStock());
             stock.setInt(2, producto.getId());
             stock.executeUpdate();
+            stock.close();
         }
         if (!producto.getDescripcion().equals("")) {
             String sentenciaDescripcion = "UPDATE producto SET Descripcion=? WHERE iDProducto=?";
@@ -310,6 +327,7 @@ public class ModeloProducto {
             descripcion.setString(1, producto.getDescripcion());
             descripcion.setInt(2, producto.getId());
             descripcion.executeUpdate();
+            descripcion.close();
         }
         if (!producto.getNombreImagen().equals("")) {
             String sentenciaNombreImagen = "UPDATE producto SET NombreImagen=? WHERE iDProducto=?";
@@ -317,6 +335,7 @@ public class ModeloProducto {
             nombreImagen.setString(1, producto.getNombreImagen());
             nombreImagen.setInt(2, producto.getId());
             nombreImagen.executeUpdate();
+            nombreImagen.close();
         }
         if (producto.getPuntos() != 0) {
             String sentenciaPuntos = "UPDATE producto SET Puntos=? WHERE iDProducto=?";
@@ -324,7 +343,10 @@ public class ModeloProducto {
             puntos.setInt(1, producto.getPuntos());
             puntos.setInt(2, producto.getId());
             puntos.executeUpdate();
+            puntos.close();
         }
+        
+        connection.close();
     }
 
     public Producto obtenerProducto(String iDProducto) throws Exception {
@@ -391,6 +413,11 @@ public class ModeloProducto {
         while (resultSet.next()) {
             numeroProductos = resultSet.getInt("Productos");
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return numeroProductos;
     }
     
@@ -424,6 +451,11 @@ public class ModeloProducto {
             int idEnvio = resultSet.getInt(5);
             productos.add(new ProductoEnviar(nombreCliente, nombreProducto, fecha, direccion, idEnvio));
         }
+        
+        connection.close();
+        preparedStatement.close();
+        resultSet.close();
+        
         return productos;
     }
 

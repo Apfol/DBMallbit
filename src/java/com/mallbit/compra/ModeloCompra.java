@@ -110,6 +110,10 @@ public class ModeloCompra {
             productos.add(new Producto(idProducto, nombre, Precio, marca, idLocal, descripcion, NombreImagen, stock, puntos));
         }
         
+        connection.close();
+        preparedStatement.close();
+        resultSet.close();
+        
         return productos;
     }
     

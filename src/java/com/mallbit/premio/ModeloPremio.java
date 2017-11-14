@@ -41,6 +41,9 @@ public class ModeloPremio {
         preparedStatement.setInt(5, premio.getIdAdminitrador());
 
         preparedStatement.execute();
+        
+        connection.close();
+        preparedStatement.close();
     }
 
     public List<Premio> obtenerPremiosAdministradorDB(int idAdmin) throws SQLException {
@@ -72,6 +75,11 @@ public class ModeloPremio {
             premios.add(new Premio(id, nombre, descripcion, nombreImagen, puntos, idAdministrador));
 
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return premios;
     }
     
@@ -104,6 +112,11 @@ public class ModeloPremio {
             premios.add(new Premio(id, nombre, descripcion, nombreImagen, puntos, idAdministrador));
 
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return premios;
     }
 
@@ -137,6 +150,7 @@ public class ModeloPremio {
             nombre.setString(1, nuevoPremio.getNombre());
             nombre.setInt(2, antiguoPremio.getId());
             nombre.executeUpdate();
+            nombre.close();
         }
         if (nuevoPremio.getPuntos() != 0 ) {
             String sentenciaPuntos = "UPDATE premio SET Puntos=? WHERE IDPremio=?";
@@ -144,6 +158,7 @@ public class ModeloPremio {
             puntos.setInt(1, nuevoPremio.getPuntos());
             puntos.setInt(2, antiguoPremio.getId());
             puntos.executeUpdate();
+            puntos.close();
         }
         if (!nuevoPremio.getDescripcion().equals("")) {
             String sentenciaDescripcion = "UPDATE premio SET Descripcion=? WHERE IDPremio=?";
@@ -151,7 +166,11 @@ public class ModeloPremio {
             descripcion.setString(1, nuevoPremio.getDescripcion());
             descripcion.setInt(2, antiguoPremio.getId());
             descripcion.executeUpdate();
+            descripcion.close();
         }
+        
+        connection.close();
+        
     }
     
     public Premio obtenerMasPopular() throws SQLException {
@@ -183,6 +202,11 @@ public class ModeloPremio {
 
             premio = new Premio(id, nombre, descripcion, nombreImagen, puntos, idAdministrador);
         }
+        
+        connection.close();
+        preparedStatement.close();
+        resultSet.close();
+        
         return premio;
     }
 }
