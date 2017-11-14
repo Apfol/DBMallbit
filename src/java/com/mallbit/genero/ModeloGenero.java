@@ -38,6 +38,11 @@ public class ModeloGenero {
             generos.add(genero);
 
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return generos;
     }
 }

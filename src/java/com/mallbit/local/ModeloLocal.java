@@ -49,6 +49,11 @@ public class ModeloLocal {
             locales.add(new Local(id, nombre, descripcion, idVendedor, idCategoria, nombreImagen));
 
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return locales;
     }
     
@@ -74,6 +79,9 @@ public class ModeloLocal {
         preparedStatement.setInt(5, local.getIdCategoria());
 
         preparedStatement.execute();
+        
+        connection.close();
+        preparedStatement.close();
     }
     
     public Local obtenerLocalDB(String idLocal) throws SQLException {
@@ -104,6 +112,11 @@ public class ModeloLocal {
             local = new Local(id, nombre, descripcion, idVendedor, idCategoria, nombreImagen);
 
         }
+        
+        connection.close();
+        preparedStatement.close();
+        resultSet.close();
+        
         return local;
         
     }
@@ -136,6 +149,11 @@ public class ModeloLocal {
             local = new Local(id, nombre, descripcion, idVendedor, idCategoria, nombreImagen);
 
         }
+        
+        connection.close();
+        preparedStatement.close();
+        resultSet.close();
+        
         return local;
         
     }

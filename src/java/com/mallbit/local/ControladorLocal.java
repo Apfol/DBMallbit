@@ -97,6 +97,8 @@ public class ControladorLocal extends HttpServlet {
             //Enviar objeto al modelo para guardar en la Base de Datos
             modeloLocal.agregarLocalDB(local);
             
+            request.setAttribute("caso", "interfaz-vendedor.jsp");
+            
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/carga-vendedor.jsp");
             requestDispatcher.forward(request, response);
 
