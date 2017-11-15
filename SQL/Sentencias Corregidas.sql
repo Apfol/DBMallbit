@@ -119,8 +119,7 @@ INSERT INTO genero(IDGenero, TipoGenero) VALUES
 /* Insert estados */
 INSERT INTO estado(TipoEstado) VALUES
 	('Pendiente por despachar'),
-	("Despachado"),
-	("Entregado");
+	("Despachado");
 
 /* Insert categoría */
 INSERT INTO categoria(TipoCategoria) VALUES 
@@ -247,13 +246,13 @@ CREATE VIEW estadisticasP AS
 			 FROM envio e
 			 LEFT OUTER JOIN compra c ON c.IDCompra = e.IDCompra
 			 INNER JOIN estado s ON s.IDEstado = e.IDEstado
-			 WHERE s.TipoEstado = "Despachado"
+			 WHERE s.TipoEstado = "Pendiente por despachar"
 			 GROUP BY e.IDCompra) AS d ON c.IDCompra = d.IDCompra
  LEFT OUTER JOIN (SELECT e.IDCompra, COUNT(e.IDCompra) Entregas
 			 FROM envio e
 			 LEFT OUTER JOIN compra c ON c.IDCompra = e.IDCompra
 			 INNER JOIN estado s ON s.IDEstado = e.IDEstado
-			 WHERE s.TipoEstado = "Entregado"
+			 WHERE s.TipoEstado = "Despachado"
 			 GROUP BY e.IDCompra) AS e ON c.IDCompra = e.IDCompra
  GROUP BY p.Nombre
  ORDER BY l.IDLocal;
