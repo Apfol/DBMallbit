@@ -34,7 +34,7 @@
             <div class="nav-wrapper lime darken-1">
                 <div class="col s12">
                     <div id="principal-nav">
-                        <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
+                        <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="index.jsp"><i class="material-icons left">home</i>Página principal</a></li>
                         </ul>
