@@ -10,8 +10,13 @@ public class ConexionDB {
     //Metodo para llamar a la base de datos desde otras clases
     public static Connection conectar() {
         try {
+<<<<<<< HEAD
             Class.forName("com.mysql.jdbc.Driver");            
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mallbit", "root", "wiwi1999");
+=======
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mallbit", "root", "Prosciutto123");
+>>>>>>> 1f080999e00f2f671f7c24dae5fce6dbcefeb3b4
             return connection;
         } catch (Exception ex) {
             Logger.getLogger(ConexionDB.class.getName()).log(Level.SEVERE, null, ex);

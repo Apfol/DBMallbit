@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/USUARIO/Documents/GitHub/DBMallBit/src/java/com/mallbit/local/ControladorLocal.java</file>
             <file>file:/C:/Users/USUARIO/Documents/GitHub/DBMallBit/src/java/com/mallbit/producto/ControladorProducto.java</file>
             <file>file:/C:/Users/USUARIO/Documents/GitHub/DBMallBit/src/java/com/mallbit/Conexion/ConexionDB.java</file>
             <file>file:/C:/Users/USUARIO/Documents/GitHub/DBMallBit/web/carga-vendedor.jsp</file>
             <file>file:/C:/Users/USUARIO/Documents/GitHub/DBMallBit/web/index.jsp</file>
+=======
+            <file>file:/C:/Users/DELL/Documents/GitHub/DBMallBit/web/interfaz-productos.jsp</file>
+            <file>file:/C:/Users/DELL/Documents/GitHub/DBMallBit/web/interfaz-compras.jsp</file>
+            <file>file:/C:/Users/DELL/Documents/GitHub/DBMallBit/web/interfaz-local.jsp</file>
+>>>>>>> 1f080999e00f2f671f7c24dae5fce6dbcefeb3b4
         </group>
     </open-files>
 </project-private>
