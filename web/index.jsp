@@ -620,7 +620,7 @@
                     <div class="row">
                         <div class="col l6 s12">
                             <h5 class="black-text">ACERCA DE NOSOTROS</h5>
-                            <p class="black-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                            <p class="black-text text-lighten-4">MallBit es una plataforma dedicada a la compra y venta de productos de diferentes marcas. ¡Puedes registrárte para empezar a comprar o registrar un local para empezar a vender!</p>
                         </div>
                         <div class="col l4 offset-l2 s12">
                             <h5 class="black-text">CONECTAR</h5>
@@ -646,6 +646,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script src="js/script.js"></script>
+        
 
     </body>
 
