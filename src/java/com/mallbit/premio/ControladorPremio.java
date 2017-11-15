@@ -3,6 +3,7 @@ package com.mallbit.premio;
 import com.mallbit.administrador.Administrador;
 import com.mallbit.administrador.ControladorAdministrador;
 import com.mallbit.administrador.ModeloAdministrador;
+import com.mallbit.cliente.ModeloCliente;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -45,6 +46,9 @@ public class ControladorPremio extends HttpServlet {
             switch (parametro) {
                 case "borrarPremio":
                     borrarPremio(request, response);
+                    break;
+                case "reclamarPremio":
+                    reclamarPremio(request, response);
                     break;
                 default:
                     break;
@@ -159,6 +163,19 @@ public class ControladorPremio extends HttpServlet {
         }
 
     }
+    
+    private void reclamarPremio(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int idPremio = Integer.parseInt(request.getParameter("idPremio"));
+            int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+            int puntos = Integer.parseInt(request.getParameter("puntos"));
+            modeloPremio.insertarClientePremio(idCliente ,idPremio);
+            new ModeloCliente().quitarPuntos(puntos, idCliente);
+            response.sendRedirect("premio-reclamado.jsp");
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorPremio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 //    Con estos métodos las imágenes que se suban al formulario
 //    seran guardadas en la carpeta images/locales y se obtiene
@@ -231,4 +248,5 @@ public class ControladorPremio extends HttpServlet {
         imagen.delete();
     }
     // </editor-fold>
+
 }

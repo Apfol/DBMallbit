@@ -27,6 +27,16 @@
         <!--Import materialize.css-->
         <link href="css/style.css" rel="stylesheet" />
         <link type="text/css" rel="stylesheet" href="css/materialize.css" />
+        <style>
+            #comprar{
+                height: 90px;
+                width: 90px;
+                background-color: indianred;
+                position: relative;
+                left: 95%;
+                top: 35%;
+            }
+        </style>
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,21 +69,6 @@
                         </ul>
                     </div>
 
-                    <div style="height: 56px;" id="search-nav">
-                        <div class="row">
-                            <div class="col s10">
-                                <div class="input-field black-text">
-                                    <i class="material-icons prefix">search</i>
-                                    <input placeholder="Haz click para buscar" id="icon_prefix" type="text" class="validate">
-                                </div>
-                            </div>
-                            <div class="col s2">
-                                <ul class="right hide-on-med-and-down">
-                                    <li><a id="search-nav-cancel" href="#"><i class="material-icons left black-text">cancel</i>Cancelar</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </nav>
@@ -149,10 +144,14 @@
                     <li id="producto<%= p.getId() %>" class="scrollspy">
                         <div class="collapsible-header" id="headPr">
                             <% if (cliente != null) { %>
-                            <a class="btn-floating btn-large waves-effect waves-light" id="comprar" href="registro-compra.jsp?idProducto=<%= p.getId() %>"><i class="material-icons" id="comprartext">shopping_cart</i></a>
+                            <% if (p.getStock() != 0) {%>
+                            <a class="btn-floating btn-large waves-effect waves-light" id="comprar" href="registro-compra.jsp?idProducto=<%= p.getId()%>"><i class="material-icons" id="comprartext">shopping_cart</i></a>
+                            <% } else { %>
+                            <a class="btn-floating btn-large waves-effect waves-light disabled" id="comprar" href="registro-compra.jsp?idProducto=<%= p.getId()%>"><i class="material-icons" id="comprartext">shopping_cart</i></a>
+                            <% } %>
                             <% } else { %>
                             <a class="btn-floating btn-large waves-effect waves-light" id="comprar" href="iniciar-sesion-cliente.jsp"><i class="material-icons" id="comprartext">shopping_cart</i></a>
-                            <% } %>
+                            <% }%>
                             <div class="row">
                                 <div class="col s3" id="divimg">
                                     <img class="materialboxed" src="images/Productos/<%= p.getNombreImagen() %>" id="imgPr">

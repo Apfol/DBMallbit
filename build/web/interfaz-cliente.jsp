@@ -35,16 +35,11 @@
 
         <div style="height: 64px;"></div>
         <%
-            Cliente interfaz = null;
-
-            if (request.getAttribute("ClienteInterfazS") != null) {
-                interfaz = (Cliente) request.getAttribute("ClienteInterfazS");
-            }
-            if (request.getAttribute("ClienteInterfazA") != null) {
-                interfaz = (Cliente) request.getAttribute("ClienteInterfazA");
-            }
-
+            ModeloCliente modeloCliente = new ModeloCliente();
+            List<Cliente> clientes = modeloCliente.obtenerClientesDB();
+            Cliente interfaz = new ControladorCliente().obtenerClienteCookie(clientes, request);
             String nombre = interfaz.getNombre() + " " + interfaz.getApellido();
+            System.out.print(interfaz.getPuntos());
         %>   
         <div class="row">
             <div class="col s8" >
@@ -146,7 +141,7 @@
             </div>
             <div class="col s2" id="opciones">
                 <div class="center-align" id="btn1">
-                    <a class="btn-floating btn-large waves-effect waves-light" id="compras"><i id="comprastext2">Mis Compras</i><i class="material-icons" id="comprastext">shopping_cart</i></a>
+                    <a class="btn-floating btn-large waves-effect waves-light" id="compras" href="interfaz-compras.jsp"><i id="comprastext2">Mis Compras</i><i class="material-icons" id="comprastext">shopping_cart</i></a>
                 </div>
                 <div class="center-align" id="btn2">
                     <a class="btn-floating btn-large waves-effect waves-light" id="editar" onclick="mostrarEditar()"><i id="editartext2">Editar</i><i class="material-icons" id="editartext">create</i></a>

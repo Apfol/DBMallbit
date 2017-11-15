@@ -151,6 +151,12 @@ public class ControladorProducto extends HttpServlet {
 
             //Operacion para calcular puntos
             int puntos = 0;
+            
+            if(precio < 200000){
+                puntos = 1;
+            } else {
+                puntos = puntos / 100000;
+            }
 
             Producto producto = new Producto(nombre, precio, marca, l.getId(), descripcion, nombreImagen, stock, puntos);
             modeloProducto.insertarProducto(producto);

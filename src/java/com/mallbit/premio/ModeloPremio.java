@@ -209,4 +209,25 @@ public class ModeloPremio {
         
         return premio;
     }
+    
+    public void insertarClientePremio(int idCliente, int idPremio) throws SQLException {
+        
+        Connection connection;
+        PreparedStatement preparedStatement;
+        
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+        
+        String sentenciaSQL = "INSERT INTO cliente_premio (IDCliente, IDPremio) values (? , ?)";
+        preparedStatement = connection.prepareStatement(sentenciaSQL);
+        preparedStatement.setInt(1, idCliente);
+        preparedStatement.setInt(2, idPremio);
+        
+        //Ejecutar sentencia
+        preparedStatement.execute();
+        
+        connection.close();
+        preparedStatement.close();
+        
+    }
 }
