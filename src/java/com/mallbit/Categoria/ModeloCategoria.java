@@ -38,6 +38,11 @@ public class ModeloCategoria {
             categoria.add(c);
 
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return categoria;
     }
 }

@@ -44,6 +44,11 @@ public class ModeloCliente {
             clientes.add(new Cliente(id, nombre, apellido, correo, identificacion, telefono, usuario, contraseña, fechaNacimiento, idGenero));
 
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return clientes;
     }
 
@@ -73,6 +78,9 @@ public class ModeloCliente {
         preparedStatement.setInt(9, cliente.getIdGenero());
 
         preparedStatement.execute();
+        
+        connection.close();
+        preparedStatement.close();
     }
     
     public void actualizarClienteDB(Cliente cliente) throws SQLException {
@@ -93,6 +101,7 @@ public class ModeloCliente {
             nombre.setString(1, cliente.getNombre());
             nombre.setString(2, cliente.getUsuario());
             nombre.executeUpdate();
+            nombre.close();
         }
         if (!cliente.getApellido().equals("")) {
             String sentenciaApellido = "UPDATE cliente SET Apellido=? WHERE Usuario=?";
@@ -100,6 +109,7 @@ public class ModeloCliente {
             apellido.setString(1, cliente.getApellido());
             apellido.setString(2, cliente.getUsuario());
             apellido.executeUpdate();
+            apellido.close();
         }
         if (cliente.getTelefono() != 0) {
             String sentenciaTelefono = "UPDATE cliente SET Telefono=? WHERE Usuario=?";
@@ -107,6 +117,7 @@ public class ModeloCliente {
             telefono.setLong(1, cliente.getTelefono());
             telefono.setString(2, cliente.getUsuario());
             telefono.executeUpdate();
+            telefono.close();
         }
         if (!cliente.getCorreo().equals("")) {
             String sentenciaCorreo = "UPDATE cliente SET Correo=? WHERE Usuario=?";
@@ -114,6 +125,7 @@ public class ModeloCliente {
             correo.setString(1, cliente.getCorreo());
             correo.setString(2, cliente.getUsuario());
             correo.executeUpdate();
+            correo.close();
         }
         if (!cliente.getContraseña().equals("")) {
             String sentenciaPassword = "UPDATE cliente SET Password=? WHERE Usuario=?";
@@ -121,7 +133,10 @@ public class ModeloCliente {
             password.setString(1, cliente.getContraseña());
             password.setString(2, cliente.getUsuario());
             password.executeUpdate();
+            password.close();
         }
+        
+        connection.close();
     }
 
     public void borrarClienteDB(Cliente c) throws SQLException {
@@ -136,6 +151,9 @@ public class ModeloCliente {
         borrar = connection.prepareStatement(sentencia);
         borrar.setString(1, c.getUsuario());
         borrar.execute();
+        
+        borrar.close();
+        connection.close();
     }
     
     public int clientesTotales() throws SQLException {
@@ -159,6 +177,11 @@ public class ModeloCliente {
         while(resultSet.next()) {
             numeroClientes = resultSet.getInt("Clientes");
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return numeroClientes;
     }
 

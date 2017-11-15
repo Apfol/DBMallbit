@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+public class ConexionDB {
 
-public class ConexionDB {    
     //Metodo para llamar a la base de datos desde otras clases
     public static Connection conectar() {
         try {

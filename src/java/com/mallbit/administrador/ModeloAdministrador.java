@@ -56,6 +56,11 @@ public class ModeloAdministrador {
             administradores.add(new Administrador(id, nombre, apellido, correo, identificacion, telefono, usuario, contraseña, fechaNacimiento, idGenero));
 
         }
+        
+        connection.close();
+        statement.close();
+        resultSet.close();
+        
         return administradores;
     }
 
@@ -85,6 +90,9 @@ public class ModeloAdministrador {
         preparedStatement.setInt(9, administrador.getIdGenero());
 
         preparedStatement.execute();
+        
+        connection.close();
+        preparedStatement.close();
     }
 
     public void actualizarAdministradorDB(Administrador antiguoAdmin, Administrador nuevoAdmin) throws SQLException {
@@ -105,6 +113,7 @@ public class ModeloAdministrador {
             nombre.setString(1, nuevoAdmin.getNombre());
             nombre.setInt(2, antiguoAdmin.getId());
             nombre.executeUpdate();
+            nombre.close();
         }
         if (!antiguoAdmin.getApellido().equals("")) {
             String sentenciaApellido = "UPDATE administrador SET Apellido=? WHERE IDAdministrador=?";
@@ -112,6 +121,7 @@ public class ModeloAdministrador {
             apellido.setString(1, nuevoAdmin.getApellido());
             apellido.setInt(2, antiguoAdmin.getId());
             apellido.executeUpdate();
+            apellido.close();
         }
         if (antiguoAdmin.getTelefono() != 0) {
             String sentenciaTelefono = "UPDATE administrador SET Telefono=? WHERE IDAdministrador=?";
@@ -119,6 +129,7 @@ public class ModeloAdministrador {
             telefono.setLong(1, nuevoAdmin.getTelefono());
             telefono.setInt(2, antiguoAdmin.getId());
             telefono.executeUpdate();
+            telefono.close();
         }
         if (!antiguoAdmin.getCorreo().equals("")) {
             String sentenciaCorreo = "UPDATE administrador SET Correo=? WHERE IDAdministrador=?";
@@ -126,6 +137,7 @@ public class ModeloAdministrador {
             correo.setString(1, nuevoAdmin.getCorreo());
             correo.setInt(2, antiguoAdmin.getId());
             correo.executeUpdate();
+            correo.close();
         }
         if (!antiguoAdmin.getContraseña().equals("")) {
             String sentenciaPassword = "UPDATE administrador SET Password=? WHERE IDAdministrador=?";
@@ -133,7 +145,10 @@ public class ModeloAdministrador {
             password.setString(1, nuevoAdmin.getContraseña());
             password.setInt(2, antiguoAdmin.getId());
             password.executeUpdate();
+            password.close();
         }
+      
+        connection.close();
     }
     
     
