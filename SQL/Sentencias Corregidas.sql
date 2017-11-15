@@ -150,35 +150,31 @@ INSERT INTO local (Nombre, IDVendedor, Descripcion, NombreImagen, IDCategoria) V
 COMMIT;
 
 /* Insert producto */
-INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock) VALUES
-	("Samsung Galaxy Note 7", 2000000, "Samsung", 4, "Explota.","Samsung-Samsung Galaxy Note 7.png", 10),
-	("Consola PS4 Pro", 1400000, "Sony", 1, "Consola Videojuegos.","Sony-Consola PS4 Pro.png", 3),
-	("Televisor X94E", 4000000, "Sony", 1, "Televisión 4K.","Sony-Televisor X94E.png", 0),
-	("Consola Xbox One X", 1800000, "Microsoft", 2, "Consola Videojuegos.","Microsoft-Consola Xbox One X.png", 1000),
-	("Office 365", 200000, "Microsoft", 2, "Licencia Office.","Microsoft-Office 365.png", 10),
-	("Wigetta", 20000, "Editorial", 3, "Libro para Mkas.","Panamericana-Wigetta.png", 100),
-	("Joycon", 300000, "Nintendo", 3, "Control Nintendo Switch.","Panamericana-Joycon.png", 1),
-	("Samsung Galaxy J7", 850000, "Sony", 4, "Celular Samsung.","Samsung-Samsung Galaxy J7.png", 0),
-	("D3400", 1200000, "Nikon", 5, "Cámara Profesional.","Nikon-D3400.png", 34),
-	("Lente 35mm", 620000, "Nikon", 5, "Lente Cámaras.","Nikon-Lente 35mm.png", 22),
-	("Mouse DX-110", 20000, "Genius", 6, "Mouse Inalámbrico.","Genius-Mouse DX-110.png", 12),
-	("Teclado K220", 42000, "Genius", 6, "Teclado Gamer.","Genius-Teclado K220.png", 8),
-	("Puerta", 88000, "Homecenter", 7, "Puerta de Madera.","Homecenter-Puerta.png", 4),
-	("Madera Pino", 20000, "Homecenter", 7, "Madera de Pino de 2x2.","Homecenter-Madera Pino.png", 19),
-	("Silla de Ruedas", 1100000, "Konfort", 8, "Silla de Ruedas Reclinable.","Konfort-Silla de Ruedas.png", 12),
-	("Sanitario", 127000, "Konfort", 8, "Eleva Sanitario con COnfort.","Konfort-Sanitario.png", 11),
-	("Bloqueador Fps 60", 25000, "Nivea", 9, "Bloqueador Sun Fps 60.","Nivea-Bloqueador Fps 60.png", 7),
-	("Crema Anti-Arrugas", 13000, "Nivea", 9, "Crema cuidado de la Piel.","Nivea-Crema Anti Arrugas.png", 5),
-	("Perfume", 57000, "Yanbal", 10, "Perfume para Hombre.","Yanbal-Perfume.png", 16),
-	("Bloqueador Total Block Fps 100", 33000, "Yanbal", 10, "Bloqueador Solar.","Yanbal-Bloqueador Total Block Fps 100.png", 6),
-	("Torre Eiffel Lego", 190000, "Lego", 11, "Torre Eiffel para Montar en Lego.","Lego-Torre Eiffel Lego.png", 4),
-	("Ladrillos Creativos Lego", 90000, "Lego", 11, "Conjunto Ladrillos Lego.","Lego-Ladrillos Creativos Lego.png", 12),
-	("Que dijo", 118000, "Hasbro", 12, "Juego de Mesa.","Hasbro-Que dijo.png", 7),
-	("Reloj Yo-Kai Watch", 149000, "Hasbro", 12, "Reloj con Motivo de Yo-Kai Watch.","Hasbro-Reloj YoKai Watch.png", 120),
-	("Hamburguesa Doble Carnes", 10000, "McDonald´s", 13, "Hamburguesa McDonald´s.","McDonalds-Hamburguesa Doble carnes.png", 1000),
-	("Cajita Feliz", 13000, "McDonald´s", 13, "Cajita Feliz con Motivo de Pokemon.","McDonalds-Cajita Feliz.png", 1000),
-	("Ramen", 20000, "WOK", 14, "Ramen con Carne de Cerdo.","WOK-Ramen.png", 1),
-	("Arroz Chino", 27000, "WOK", 14, "Arroz Chino con Verduras.","WOK-Arroz Chino.png", 4);
+INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock, Puntos) VALUES
+	("Samsung Galaxy Note 7", 2000000, "Samsung", 4, "Explota.","Samsung-Samsung Galaxy Note 7.png", 10, 20),
+	("Consola PS4 Pro", 1400000, "Sony", 1, "Consola Videojuegos.","Sony-Consola PS4 Pro.png", 3, 14),
+	("Televisor X94E", 4000000, "Sony", 1, "Televisión 4K.","Sony-Televisor X94E.png", 0, 40),
+	("Consola Xbox One X", 1800000, "Microsoft", 2, "Consola Videojuegos.","Microsoft-Consola Xbox One X.png", 1000, 18),
+	("Office 365", 200000, "Microsoft", 2, "Licencia Office.","Microsoft-Office 365.png", 10, 2),
+	("Wigetta", 20000, "Editorial", 3, "Libro para Mkas.","Panamericana-Wigetta.png", 100, 1),
+	("Joycon", 300000, "Nintendo", 3, "Control Nintendo Switch.","Panamericana-Joycon.png", 1, 3),
+	("Samsung Galaxy J7", 850000, "Sony", 4, "Celular Samsung.","Samsung-Samsung Galaxy J7.png", 0, 8),
+	("D3400", 1200000, "Nikon", 5, "Cámara Profesional.","Nikon-D3400.png", 34, 12),
+	("Lente 35mm", 620000, "Nikon", 5, "Lente Cámaras.","Nikon-Lente 35mm.png", 22, 6),
+	("Mouse DX-110", 20000, "Genius", 6, "Mouse Inalámbrico.","Genius-Mouse DX-110.png", 12, 2),
+	("Teclado K220", 42000, "Genius", 6, "Teclado Gamer.","Genius-Teclado K220.png", 8, 4),
+	("Puerta", 88000, "Homecenter", 7, "Puerta de Madera.","Homecenter-Puerta.png", 4, 8),
+	("Madera Pino", 20000, "Homecenter", 7, "Madera de Pino de 2x2.","Homecenter-Madera Pino.png", 19, 1),
+	("Silla de Ruedas", 1100000, "Konfort", 8, "Silla de Ruedas Reclinable.","Konfort-Silla de Ruedas.png", 12, 11),
+	("Sanitario", 127000, "Konfort", 8, "Eleva Sanitario con COnfort.","Konfort-Sanitario.png", 11, 12),
+	("Bloqueador Fps 60", 25000, "Nivea", 9, "Bloqueador Sun Fps 60.","Nivea-Bloqueador Fps 60.png", 7, 1),
+	("Crema Anti-Arrugas", 13000, "Nivea", 9, "Crema cuidado de la Piel.","Nivea-Crema Anti Arrugas.png", 5, 1),
+	("Perfume", 57000, "Yanbal", 10, "Perfume para Hombre.","Yanbal-Perfume.png", 16, 1),
+	("Bloqueador Total Block Fps 100", 33000, "Yanbal", 10, "Bloqueador Solar.","Yanbal-Bloqueador Total Block Fps 100.png", 6, 1),
+	("Torre Eiffel Lego", 190000, "Lego", 11, "Torre Eiffel para Montar en Lego.","Lego-Torre Eiffel Lego.png", 4, 1),
+	("Ladrillos Creativos Lego", 90000, "Lego", 11, "Conjunto Ladrillos Lego.","Lego-Ladrillos Creativos Lego.png", 12 , 1),
+	("Que dijo", 118000, "Hasbro", 12, "Juego de Mesa.","Hasbro-Que dijo.png", 7, 1),
+	("Reloj Yo-Kai Watch", 149000, "Hasbro", 12, "Reloj con Motivo de Yo-Kai Watch.","Hasbro-Reloj YoKai Watch.png", 120, 1);
 COMMIT;
 
 
@@ -248,17 +244,17 @@ CREATE VIEW estadisticasP AS
  LEFT OUTER JOIN compra c ON c.IDProducto = p.IDProducto
  INNER JOIN local l ON p.IDLocal = l.IDLocal
  LEFT OUTER JOIN (SELECT e.IDCompra, COUNT(e.IDCompra) Despachos
-			FROM envio e
-			LEFT OUTER JOIN compra c ON c.IDCompra = e.IDCompra
-			INNER JOIN estado s ON s.IDEstado = e.IDEstado
-			WHERE s.TipoEstado = "Despachado"
-			GROUP BY e.IDCompra) AS d ON c.IDCompra = d.IDCompra
+			 FROM envio e
+			 LEFT OUTER JOIN compra c ON c.IDCompra = e.IDCompra
+			 INNER JOIN estado s ON s.IDEstado = e.IDEstado
+			 WHERE s.TipoEstado = "Despachado"
+			 GROUP BY e.IDCompra) AS d ON c.IDCompra = d.IDCompra
  LEFT OUTER JOIN (SELECT e.IDCompra, COUNT(e.IDCompra) Entregas
-			FROM envio e
-			LEFT OUTER JOIN compra c ON c.IDCompra = e.IDCompra
-			INNER JOIN estado s ON s.IDEstado = e.IDEstado
-			WHERE s.TipoEstado = "Entregado"
-			GROUP BY e.IDCompra) AS e ON c.IDCompra = e.IDCompra
+			 FROM envio e
+			 LEFT OUTER JOIN compra c ON c.IDCompra = e.IDCompra
+			 INNER JOIN estado s ON s.IDEstado = e.IDEstado
+			 WHERE s.TipoEstado = "Entregado"
+			 GROUP BY e.IDCompra) AS e ON c.IDCompra = e.IDCompra
  GROUP BY p.Nombre
  ORDER BY l.IDLocal;
  
@@ -266,9 +262,9 @@ CREATE VIEW estadisticasP AS
 CREATE VIEW masVendido AS	
  SELECT p.IDProducto, p.Nombre, p.Precio, p.Marca, p.IDLocal, p.Descripcion, p.NombreImagen, p.Stock, p.Puntos FROM producto p
  INNER JOIN ( SELECT Nombre
-			FROM estadisticasP
-			WHERE VecesVendido in (SELECT MAX(VecesVendido) FROM estadisticasP GROUP BY IDLocal)
-			GROUP BY IDLocal ) AS d ON p.Nombre = d.Nombre;
+			 FROM estadisticasP
+			 WHERE VecesVendido in (SELECT MAX(VecesVendido) FROM estadisticasP GROUP BY IDLocal)
+			 GROUP BY IDLocal ) AS d ON p.Nombre = d.Nombre;
 			
 /* Insert view Producto más reciente por Local */
 CREATE VIEW masReciente AS
@@ -278,28 +274,28 @@ CREATE VIEW masReciente AS
 
 /* Insert view cantidad de clientes por premio*/
 CREATE VIEW clientesPremio AS
-	SELECT P.IDPremio AS ID, COUNT(Cl.IDPremio) AS Cuenta FROM premio P
-	INNER JOIN cliente_premio Cl ON P.IDPremio = Cl.IDPremio
-	GROUP BY Cl.IDPremio;
+	 SELECT P.IDPremio AS ID, COUNT(Cl.IDPremio) AS Cuenta FROM premio P
+	 INNER JOIN cliente_premio Cl ON P.IDPremio = Cl.IDPremio
+	 GROUP BY Cl.IDPremio;
 
 /* Insert view Premio más popular */
 CREATE VIEW masPopular AS
-	SELECT * FROM premio 
-	INNER JOIN (SELECT ID FROM clientesPremio WHERE Cuenta = (SELECT MAX(Cuenta) FROM clientesPremio) GROUP BY ID) AS d
-	ON d.ID = premio.IDPremio;
+	 SELECT * FROM premio 
+	 INNER JOIN (SELECT ID FROM clientesPremio WHERE Cuenta = (SELECT MAX(Cuenta) FROM clientesPremio) GROUP BY ID) AS d
+	 ON d.ID = premio.IDPremio;
 
 
 CREATE VIEW clientesTotales AS
-	SELECT COUNT(IDCliente) Clientes FROM cliente;
+	 SELECT COUNT(IDCliente) Clientes FROM cliente;
 
 CREATE VIEW vendedoresTotales AS
-	SELECT COUNT(IDVendedor) Vendedores FROM vendedor;
+	 SELECT COUNT(IDVendedor) Vendedores FROM vendedor;
 
 CREATE VIEW productosTotales AS
-	SELECT COUNT(IDProducto) Productos FROM producto;
+	 SELECT COUNT(IDProducto) Productos FROM producto;
 
 CREATE VIEW comprasTotales AS
-	SELECT COUNT(IDCompra) Compras FROM compra;
+	 SELECT COUNT(IDCompra) Compras FROM compra;
 
 
 /* Relación llaves foráneas */
