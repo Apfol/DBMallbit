@@ -193,13 +193,13 @@
                         <i class="material-icons prefix" style="padding: 0; margin: 0;">local_shipping</i>
                     </div>
                     <div class="col s2 input-field" style="border-right-style: solid; border-right-width: 1px">
-                        <p style="padding: 0; margin: 0; text-align: center">Cantidad de Despachos</p>
+                        <p style="padding: 0; margin: 0; text-align: center">Productos a despachar</p>
                     </div>
                     <div class="col s1 input-field">
                         <i class="material-icons prefix" style="padding: 0; margin: 0;">check_circle</i>
                     </div>   
                     <div class="col s2 input-field">
-                        <p style="padding: 0; margin: 0; text-align: center">Cantidad de Entregas</p>
+                        <p style="padding: 0; margin: 0; text-align: center">Cantidad de Despachos</p>
                     </div>
                 </div>
                 <%
