@@ -151,7 +151,7 @@ COMMIT;
 
 /* Insert producto */
 INSERT INTO producto (Nombre, Precio, Marca, IDLocal, Descripcion, NombreImagen, Stock, Puntos) VALUES
-	("Samsung Galaxy Note 7", 2000000, "Samsung", 4, "Explota.","Samsung-Samsung Galaxy Note 7.png", 10, 200),
+	("Samsung Galaxy Note 7", 2000000, "Samsung", 4, "Explota.","Samsung-Samsung Galaxy Note 7.png", 10, 20),
 	("Consola PS4 Pro", 1400000, "Sony", 1, "Consola Videojuegos.","Sony-Consola PS4 Pro.png", 3, 14),
 	("Televisor X94E", 4000000, "Sony", 1, "Televisión 4K.","Sony-Televisor X94E.png", 0, 40),
 	("Consola Xbox One X", 1800000, "Microsoft", 2, "Consola Videojuegos.","Microsoft-Consola Xbox One X.png", 1000, 18),
