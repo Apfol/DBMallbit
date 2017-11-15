@@ -3,8 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/USUARIO/Documents/GitHub/DBMallBit/web/interfaz-local.jsp</file>
             <file>file:/C:/Users/USUARIO/Documents/GitHub/DBMallBit/web/css/style.css</file>
+=======
+            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/web/interfaz-administrador.jsp</file>
+            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/web/index.jsp</file>
+            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/web/interfaz-productos.jsp</file>
+            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/src/java/com/mallbit/Conexion/ConexionDB.java</file>
+            <file>file:/C:/Users/Andres%20Ramos/Documents/GitHub/DBMallBit/web/css/style.css</file>
+>>>>>>> b545e31ade377320c9d0a543bbd8a5a7b8fea895
         </group>
     </open-files>
 </project-private>
