@@ -77,9 +77,7 @@
                                     <% } else {%>
                                 <li><a href="interfaz-administrador.jsp"><i class="material-icons left">security</i>Administrar</a></li>
                                     <% }%>
-                                <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
                                     <%} else {%>
-                                <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
                                 <li>
                                     <form method="post" action="ControladorCliente" id="iu">
                                         <input type="hidden" name="instruccion" value="sesion">
@@ -93,21 +91,6 @@
                             </ul>
                         </div>
 
-                        <div style="height: 56px;" id="search-nav">
-                            <div class="row">
-                                <div class="col s10">
-                                    <div class="input-field black-text">
-                                        <i class="material-icons prefix">search</i>
-                                        <input placeholder="Haz click para buscar" id="icon_prefix" type="text" class="validate">
-                                    </div>
-                                </div>
-                                <div class="col s2">
-                                    <ul class="right hide-on-med-and-down">
-                                        <li><a id="search-nav-cancel" href="#"><i class="material-icons left black-text">cancel</i>Cancelar</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </nav>
@@ -596,11 +579,11 @@
                     <div class="row">
                         <div class="col l6 s12">
                             <h5 class="black-text">ACERCA DE NOSOTROS</h5>
-<<<<<<< HEAD
+
                             <p class="black-text text-lighten-4">MallBit es una plataforma dedicada a la compra y venta de productos de diferentes marcas. ¡Puedes registrárte para empezar a comprar o registrar un local para empezar a vender!</p>
-=======
+
                             <p class="black-text text-lighten-4">Mallbit, aplicación de Servicio de Compras y Ventas.</p>
->>>>>>> 1f080999e00f2f671f7c24dae5fce6dbcefeb3b4
+
                         </div>
                         <div class="col l4 offset-l2 s12">
                             <h5 class="black-text">Locales</h5>

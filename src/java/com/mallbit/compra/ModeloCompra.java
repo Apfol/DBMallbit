@@ -78,36 +78,36 @@ public class ModeloCompra {
         return compras;
     }
     
-    public List<Producto> productosDeCompras(int idCliente) throws SQLException {
+    public List<String[]> productosDeCompras(int idCliente) throws SQLException {
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        List<Producto> productos = new ArrayList<>();
+        List<String[]> productos = new ArrayList<>();
         
         //Establecer la conexion
         connection = ConexionDB.conectar();
         //Crear sentencia SQL y statement y ejecutar
-        String sentenciaSQL = "SELECT * from producto P\n" +
+        String sentenciaSQL = "SELECT p.Nombre, p.Descripcion, p.Marca, p.Stock, p.Puntos, p.Precio, p.NombreImagen, c.IDCompra\n" +
+                                "FROM producto p\n" +
                                 "INNER JOIN compra C ON C.IDProducto = P.IDProducto\n" +
                                 "INNER JOIN cliente Cl ON C.IDCliente = Cl.IDCliente\n" +
-                                "WHERE Cl.IDCliente = ? ";
+                                "WHERE Cl.IDCliente="+idCliente;
         //Crear sentencia SQL y statement
         preparedStatement = connection.prepareStatement(sentenciaSQL);
-        preparedStatement.setInt(1, idCliente);
         resultSet = preparedStatement.executeQuery();
         
         while(resultSet.next()) {
-            int idProducto = resultSet.getInt("IDProducto");
-            String nombre = resultSet.getString("Nombre");
-            int Precio = resultSet.getInt("Precio");
-            String marca = resultSet.getString("Marca");
-            int idLocal = resultSet.getInt("IDLocal");
-            String descripcion = resultSet.getString("Descripcion");
-            String NombreImagen = resultSet.getString("NombreImagen");
-            int stock = resultSet.getInt("Stock");
-            int puntos = resultSet.getInt("Puntos");
-            
-            productos.add(new Producto(idProducto, nombre, Precio, marca, idLocal, descripcion, NombreImagen, stock, puntos));
+            String[] datos = new String[8];
+            datos[0] = resultSet.getString("Nombre");
+            datos[1] = resultSet.getString("Descripcion");
+            datos[2] = resultSet.getString("Marca");
+            datos[3] = resultSet.getString("Stock");
+            datos[4] = resultSet.getString("Puntos");
+            datos[5] = resultSet.getString("Precio");
+            datos[6] = resultSet.getString("NombreImagen");
+            datos[7] = resultSet.getString("IDCompra");
+
+            productos.add(datos);
         }
         
         connection.close();
@@ -140,5 +140,37 @@ public class ModeloCompra {
         statement.close();
         connection.close();
         return numeroCompras;
+    }
+    
+    public String[] detallesCompras(String idCompra) throws SQLException {
+        Connection connection;
+        Statement statement;
+        ResultSet resultSet;
+        String[] datos = new String[4];
+
+        //Establecer la conexion
+        connection = ConexionDB.conectar();
+        //Crear sentencia SQL y statement y ejecutar
+        String sentencia = "SELECT c.IDCompra, c.Fecha, p.Nombre, CONCAT(v.Nombre,' ',v.Apellido) NombreV\n" +
+                            "FROM compra c\n" +
+                            "INNER JOIN vendedor v ON v.IDVendedor = c.IDVendedor\n" +
+                            "INNER JOIN cliente cl ON cl.IDCliente = c.IDCliente \n" +
+                            "INNER JOIN producto p ON p.IDProducto = c.IDProducto\n" + 
+                            "WHERE c.IDCompra="+idCompra;
+        //Crear sentencia SQL y statement
+        statement = connection.createStatement();
+
+        //Ejecutar SQL y guardar valores de consulta en resultSet
+        resultSet = statement.executeQuery(sentencia);
+
+        while (resultSet.next()) {   
+            datos[0] = resultSet.getString("IDCompra");
+            datos[1] = resultSet.getString("Fecha");
+            datos[2] = resultSet.getString("Nombre");
+            datos[3] = resultSet.getString("NombreV");
+        }
+        statement.close();
+        connection.close();
+        return datos;
     }
 }
