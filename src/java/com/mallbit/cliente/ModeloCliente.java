@@ -39,9 +39,10 @@ public class ModeloCliente {
             String usuario = resultSet.getString("Usuario");
             String contraseña = resultSet.getString("Password");
             Date fechaNacimiento = resultSet.getDate("FechaNacimiento");
+            int puntos = resultSet.getInt("Puntos");
             int idGenero = resultSet.getInt("IDGenero");
 
-            clientes.add(new Cliente(id, nombre, apellido, correo, identificacion, telefono, usuario, contraseña, fechaNacimiento, idGenero));
+            clientes.add(new Cliente(id, nombre, apellido, correo, identificacion, telefono, usuario, contraseña, fechaNacimiento, idGenero, puntos));
 
         }
         
@@ -183,6 +184,46 @@ public class ModeloCliente {
         resultSet.close();
         
         return numeroClientes;
+    }
+    
+    public void agregarPuntos(int points, int idCliente) throws SQLException {
+        
+        Connection connection;
+        PreparedStatement puntos;
+
+        //Establecer la conexión
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement en caso de que los valores no sean nulos y ejecutar
+        String sentenciaNombre = "UPDATE cliente SET Puntos=Puntos+? WHERE IDCliente=?";
+        puntos = connection.prepareStatement(sentenciaNombre);
+        puntos.setInt(1, points);
+        puntos.setInt(2, idCliente);
+        puntos.executeUpdate();
+        puntos.close();
+        
+        connection.close();
+        
+    }
+    
+    public void quitarPuntos(int points, int idCliente) throws SQLException {
+        
+        Connection connection;
+        PreparedStatement puntos;
+
+        //Establecer la conexión
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement en caso de que los valores no sean nulos y ejecutar
+        String sentenciaNombre = "UPDATE cliente SET Puntos=Puntos-? WHERE IDCliente=?";
+        puntos = connection.prepareStatement(sentenciaNombre);
+        puntos.setInt(1, points);
+        puntos.setInt(2, idCliente);
+        puntos.executeUpdate();
+        puntos.close();
+        
+        connection.close();
+        
     }
 
 }

@@ -537,33 +537,13 @@ html{
 }
 
 #cardft{
-    position: absolute;
-    height: 120px;
-    width: 360px;
-    left: 0;
+
 }
 
-#cardnv{
-    position: absolute;
-    top: 54%;
-    height: 120px;
-    width: 360px;
-    left: 0;
-}
-
-#cardct{
-    position: absolute;
-    top: 69%;
-    height: 110px;
-    width: 360px;
-    left: 0;
-    background-color: #6f751d;
-    color: white;
-}
 
 #imagenft{
-    height: 120px;
-    width: 120px;
+    height: 100%;
+    width: 100%;
 }
 
 #contentft{
@@ -638,15 +618,6 @@ html{
     width: 290px;
     padding: 30px;
     background-color: #DCE775;
-}
-
-#comprar{
-    height: 90px;
-    width: 90px;
-    background-color: indianred;
-    position: relative;
-    left: 860px;
-    top: 35%;
 }
 
 #divtext{

@@ -458,5 +458,24 @@ public class ModeloProducto {
         
         return productos;
     }
+    
+    public void actualizarStock(int idProducto) throws SQLException {
+        
+        Connection connection;
+        PreparedStatement stock;
+
+        //Establecer la conexión
+        connection = ConexionDB.conectar();
+
+        //Crear sentencia SQL y statement en caso de que los valores no sean nulos y ejecutar
+        String sentenciaNombre = "UPDATE producto SET Stock=Stock-1 WHERE IDProducto=?";
+        stock = connection.prepareStatement(sentenciaNombre);
+        stock.setInt(1, idProducto);
+        stock.executeUpdate();
+        stock.close();
+        
+        connection.close();
+        
+    }
 
 }

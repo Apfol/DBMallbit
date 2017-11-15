@@ -7,6 +7,8 @@ package com.mallbit.compra;
 
 import com.mallbit.cliente.ControladorCliente;
 import com.mallbit.cliente.ModeloCliente;
+import com.mallbit.producto.ModeloProducto;
+import com.mallbit.producto.Producto;
 import com.mallbit.vendedor.ModeloVendedor;
 import java.io.IOException;
 import java.sql.Date;
@@ -62,7 +64,11 @@ public class ControladorCompra extends HttpServlet {
         List<Compra> compras = modeloCompra.obtenerComprasCliente(idCliente);
         
         String direccion = request.getParameter("direccion");
-
+        
+        int puntos = new ModeloProducto().obtenerProducto(Integer.toString(idProducto)).getPuntos();
+        new ModeloCliente().agregarPuntos(puntos, idCliente);
+        new ModeloProducto().actualizarStock(idProducto);
+        
         response.sendRedirect("ControladorEnvio?idCompra=" + compras.get(compras.size() - 1).getId() + "&idVendedor=" + idVendedor + "&direccion=" + direccion);
     }
 

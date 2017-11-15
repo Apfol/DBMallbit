@@ -499,6 +499,12 @@
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4"><%= premio.getNombre()%><b class="right"><%= premio.getPuntos() + " puntos "%></b></span>
+                                    <% if ( cliente != null ) { %>
+                                    <% if ( cliente.getPuntos() >= premio.getPuntos()) { %>
+                                    <center><a href="ControladorPremio?instruccion=reclamarPremio&idPremio=<%= premio.getId() %>&idCliente=<%= cliente.getId() %>&puntos=<%= premio.getPuntos() %>"><b>Reclamar Premio</b></a></center>
+                                    <% } else { %>
+                                    <center><a href="#!" onclick="Materialize.toast('¡No tienes suficientes puntos!', 4000)"><b>Reclamar Premio</b></a></center>
+                                    <% }} %>
                                 </div>
                                 <div class="card-reveal">
                                     <span class="card-title grey-text text-darken-4"><%= premio.getNombre()%><i class="material-icons right">close</i></span>
@@ -512,7 +518,7 @@
 
                 <div class="row container valign-wrapper">
                     <div class="col s6" style="height:300px;">
-                        <% Premio premio = new ModeloPremio().obtenerMasPopular();%>
+                        <% Premio premio = new ModeloPremio().obtenerMasPopular(); %>
                         <div class="col s12 m12">
                             <div  class="card sticky-action">
                                 <div class="card-image waves-effect waves-block waves-light">
