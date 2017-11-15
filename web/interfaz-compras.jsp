@@ -1,3 +1,4 @@
+<%@page import="com.mallbit.compra.Compra"%>
 <%@page import="com.mallbit.compra.ModeloCompra"%>
 <%@page import="com.mallbit.cliente.ControladorCliente"%>
 <%@page import="com.mallbit.cliente.Cliente"%>
@@ -34,7 +35,7 @@
             <div class="nav-wrapper lime darken-1">
                 <div class="col s12">
                     <div id="principal-nav">
-                        <a href="#" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
+                        <a href="index.jsp" class="brand-logo"><i class="material-icons">shopping_basket</i>MallBIT</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="index.jsp"><i class="material-icons left">home</i>Página principal</a></li>
                         </ul>
@@ -42,7 +43,8 @@
                 </div>
             </div>
         </nav>
-        <% List<Producto> productos = new ModeloCompra().productosDeCompras(cliente.getId()); %>
+        <% ModeloCompra m = new ModeloCompra(); %>
+        <% List<String[]> productos = m.productosDeCompras(cliente.getId()); %>
         <% if (productos.isEmpty()) { %>
         <div id="contenedorAviso" class="valign-wrapper">
             <div class="row">
@@ -53,91 +55,34 @@
         </div>
         <% } else { %>
         <div class="row">
-            <% for (Producto producto : productos) {%>
+            <% for (String[] producto : productos) {%>
             <div class="col s12 m3">
                 <div  class="card sticky-action">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="images/Productos/<%=producto.getNombreImagen()%>" style="height: 250px; width: 338px;">
+                        <img class="activator" src="images/Productos/<%=producto[6]%>" style="height: 250px; width: 338px;">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><%= producto.getNombre()%><b class="right"><%= "$" + producto.getPrecio()%></b></span>
+                        <span class="card-title activator grey-text text-darken-4"><%=producto[0]%><b class="right"><%= "$" + producto[5]%></b></span>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><b><%= producto.getNombre()%></b><i class="material-icons right">close</i></span>
-                        <p style="font-size: 18px; text-align: justify"><%= producto.getDescripcion()%></p>
-                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Marca: </b>" + producto.getMarca()%></p>
-                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Stock: </b>" + producto.getStock()%></p>
-                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Puntos: </b>" + producto.getPuntos()%></p>
+                        <span class="card-title grey-text text-darken-4"><b><%=producto[0]%></b><i class="material-icons right">close</i></span>
+                        <p style="font-size: 18px; text-align: justify"><%=producto[1]%></p>
+                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Marca: </b>" + producto[2]%></p>
+                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Stock: </b>" + producto[3]%></p>
+                        <p style="font-size: 14px; font-weight: 300;"><%= "<b>    Puntos: </b>" + producto[4]%></p>
                     </div>
                     <div class="card-action">
-                        <a class="green-text modal-trigger lighten-1" href="#datallesCompra<%= producto.getId()%>">Detalles compra</a>
+                        <a class="green-text modal-trigger lighten-1" href="#detallesCompra<%= producto[7]%>">Detalles compra</a>
                     </div>
                 </div>
             </div>
-            <div id="datallesCompra<%= producto.getId()%>" class="modal modal-fixed-footer" style="overflow: hidden">
-                <form action="ControladorProducto" method="post" enctype="multipart/form-data" class="col s12">
-                    <input type="hidden" name="instruccion" value="actualizarProducto"/>
-                    <input type="hidden" name="iDProducto" value="<%= producto.getId()%>"/>
-                    <input type="hidden" name="iDLocal" value="<%= producto.getIdLocal()%>"/>
-                    <div class="modal-content center-align" style="overflow: hidden">
-                        <h3 class="light-blue-text text-darken-3">Editar producto</h3>
-                        <p class="center" style="font-weight: 500; font-size: 15px;">A continuación ingresa los datos que desees actualizar</p>
-                        <div class="row" style="margin-right: 20px">
-                            <div class="col s6 input-field">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="nombre" name="nombre" type="text" class="validate" placeholder="<%= producto.getNombre()%>">
-                                <label for="nombre">Nombre del producto</label>
-                            </div>
-                            <div class="col s6 input-field">
-                                <i class="material-icons prefix">attach_money</i>
-                                <input id="puntos" name="precio" type="number" class="validate" value="<%= producto.getPrecio()%>">
-                                <label for="precio">Precio</label>
-                            </div>
-                        </div> 
-                        <div class="row" style="margin-right: 20px">
-                            <div class="col s6 input-field">
-                                <i class="material-icons prefix">grade</i>
-                                <input id="nombre" name="marca" type="text" class="validate" placeholder="<%= producto.getMarca()%>">
-                                <label for="marca">Marca</label>
-                            </div>
-                            <div class="col s6 input-field">
-                                <i class="material-icons prefix">widgets</i>
-                                <input id="puntos" name="stock" type="number" class="validate" value="<%= producto.getStock()%>">
-                                <label for="stock">Stock</label>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-right: 20px">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">mode_edit</i>
-                                <textarea id="textarea1" name="descripcion" class="materialize-textarea" placeholder="<%= producto.getDescripcion()%>"></textarea>
-                                <label for="textarea1">Descripción del producto</label>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-right: 20px">
-                            <div class="col s12 file-field input-field">
-                                <div class="btn grey darken-4">
-                                    <i class="material-icons">file_upload</i>
-                                    <input type="file" name="imagenPrincipal">
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="<%= producto.getNombreImagen()%>">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="row">
-                            <div class="col s6">
-                                <button class="btn waves-effect waves-light light-blue darken-3 white-text" type="submit" name="action">
-                                    Actualizar
-                                </button>
-                            </div>
-                            <div class="col s1">
-                                <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat">Cancelar</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+            <% String[] datos = m.detallesCompras(producto[7]); %>
+            <div id="detallesCompra<%=producto[7]%>" class="modal modal-fixed-footer" style="overflow: hidden; height: 60%; width: 20%; padding: 20px" >
+                <p style="font-size: 30px; font-weight: bold; text-align: center; border-bottom: 0.5px solid #bbbdc1; padding: 0 5px 5px 5px">Detalles de la compra</p>
+                <p style="font-size: 20px; font-weight: 300"><b>IDCompra: </b><br><%= datos[0]%></p>
+                <p style="font-size: 20px; font-weight: 300"><b>Fecha: </b><br><%= datos[1]%></p>
+                <p style="font-size: 20px; font-weight: 300"><b>Nombre del Producto: </b><%= datos[2]%></p>
+                <p style="font-size: 20px; font-weight: 300"><b>Nombre del Vendedor: </b><%= datos[3]%></p>   
             </div>
             <% } %>
         </div>

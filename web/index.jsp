@@ -77,9 +77,7 @@
                                     <% } else {%>
                                 <li><a href="interfaz-administrador.jsp"><i class="material-icons left">security</i>Administrar</a></li>
                                     <% }%>
-                                <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
                                     <%} else {%>
-                                <li><a id="search-nav-button" href="#search-nav"><i class="material-icons left">search</i>Buscar</a></li>
                                 <li>
                                     <form method="post" action="ControladorCliente" id="iu">
                                         <input type="hidden" name="instruccion" value="sesion">
@@ -93,21 +91,6 @@
                             </ul>
                         </div>
 
-                        <div style="height: 56px;" id="search-nav">
-                            <div class="row">
-                                <div class="col s10">
-                                    <div class="input-field black-text">
-                                        <i class="material-icons prefix">search</i>
-                                        <input placeholder="Haz click para buscar" id="icon_prefix" type="text" class="validate">
-                                    </div>
-                                </div>
-                                <div class="col s2">
-                                    <ul class="right hide-on-med-and-down">
-                                        <li><a id="search-nav-cancel" href="#"><i class="material-icons left black-text">cancel</i>Cancelar</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </nav>
@@ -120,52 +103,28 @@
                     <div id="first-photo-slides" class="row carousel-item white-text" href="#one!">
                         <div class="col s3 right">
                             <div class="card brown darken-3 z-depth-5">
-                                <div class="card-content white-text">
-                                    <span class="card-title">Nombre_Local</span>
-                                    <p>Cambienme plz.</p>
-                                </div>
-                                <div class="card-action">
-                                    <a href="#">Ir al Local</a>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <div id="second-photo-slides" class="row carousel-item black-text" href="#two!">
                         <div style="margin: 20px;" class="col s3 right">
                             <div class="card blue lighten-5 z-depth-5">
-                                <div class="card-content black-text">
-                                    <span class="card-title">Nombre_Local</span>
-                                    <p>Cambienme plz x2.</p>
-                                </div>
-                                <div class="card-action">
-                                    <a href="#">Ir al Local</a>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <div id="third-photo-slides" class="row carousel-item green black-text" href="#three!">
                         <div style="margin: 20px;" class="col s3 left">
                             <div class="card blue lighten-5 z-depth-5">
-                                <div class="card-content black-text">
-                                    <span class="card-title">Nombre_Local</span>
-                                    <p>Cambienme plz x3.</p>
-                                </div>
-                                <div class="card-action">
-                                    <a href="#">Ir al Local</a>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <div id="fourth-photo-slides" class="row carousel-item blue white-text" href="#four!">
                         <div style="margin: 20px;" class="col s3 left">
                             <div class="card lime lighten-4 z-depth-5">
-                                <div class="card-content black-text">
-                                    <span class="card-title">Nombre_Local</span>
-                                    <p>Cambienme plz x4.</p>
-                                </div>
-                                <div class="card-action">
-                                    <a href="#">Ir al Local</a>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -620,15 +579,19 @@
                     <div class="row">
                         <div class="col l6 s12">
                             <h5 class="black-text">ACERCA DE NOSOTROS</h5>
-                            <p class="black-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+
+                            <p class="black-text text-lighten-4">MallBit es una plataforma dedicada a la compra y venta de productos de diferentes marcas. ¡Puedes registrárte para empezar a comprar o registrar un local para empezar a vender!</p>
+
+                            <p class="black-text text-lighten-4">Mallbit, aplicación de Servicio de Compras y Ventas.</p>
+
                         </div>
                         <div class="col l4 offset-l2 s12">
-                            <h5 class="black-text">CONECTAR</h5>
+                            <h5 class="black-text">Locales</h5>
                             <ul>
-                                <li><a class="black-text text-lighten-3" href="#!">Link 1</a></li>
-                                <li><a class="black-text text-lighten-3" href="#!">Link 2</a></li>
-                                <li><a class="black-text text-lighten-3" href="#!">Link 3</a></li>
-                                <li><a class="black-text text-lighten-3" href="#!">Link 4</a></li>
+                                <li><a class="black-text text-lighten-3" href="#!">Microsoft</a></li>
+                                <li><a class="black-text text-lighten-3" href="#!">Sony</a></li>
+                                <li><a class="black-text text-lighten-3" href="#!">Yanbal</a></li>
+                                <li><a class="black-text text-lighten-3" href="#!">Homecenter</a></li>
                             </ul>
                         </div>
                     </div>
@@ -636,7 +599,7 @@
                 <div class="footer-copyright">
                     <div class="container black-text">
                         © 2017 MallBIT, Todos los derechos reservados
-                        <a class="black-text text-lighten-4 right" href="#!">More Links</a>
+                        <a class="black-text text-lighten-4 right" href="#!"></a>
                     </div>
                 </div>
             </footer>
@@ -646,6 +609,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script src="js/script.js"></script>
+        
 
     </body>
 
